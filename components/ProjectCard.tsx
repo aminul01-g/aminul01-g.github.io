@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import { GithubIcon } from './icons/GithubIcon';
 import { ExternalLinkIcon } from './icons/ExternalLinkIcon';
@@ -30,4 +31,4 @@ const ProjectCard = ({ project }: { project: Project }) => (
         </div>
     </div>
 );
-export default ProjectCard; // <-- ADD THIS LINE
+export default ProjectCard;

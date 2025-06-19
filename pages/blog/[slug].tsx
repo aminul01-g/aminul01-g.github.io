@@ -39,8 +39,7 @@ const BlogPostPage = ({ frontmatter, contentHtml }: BlogPostProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Use path.resolve for a guaranteed absolute path
-  const postsDirectory = path.resolve(process.cwd(), 'data/blog');
+  const postsDirectory = path.join(process.cwd(), 'data/blog');
   const filenames = fs.readdirSync(postsDirectory);
   const paths = filenames.map((filename) => ({
     params: {
@@ -55,12 +54,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<BlogPostProps, IParams> = async (context) => {
   const { slug } = context.params!;
-  // Use path.resolve for a guaranteed absolute path
-  const filePath = path.resolve(process.cwd(), 'data/blog', `${slug}.md`);
+  const filePath = path.join(process.cwd(), 'data/blog', `${slug}.md`);
 
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const matterResult = matter(fileContents);
+
     const processedContent = await remark()
       .use(html)
       .process(matterResult.content);
@@ -77,5 +76,4 @@ export const getStaticProps: GetStaticProps<BlogPostProps, IParams> = async (con
     return { notFound: true };
   }
 };
-
 export default BlogPostPage;

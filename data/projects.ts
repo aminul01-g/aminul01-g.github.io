@@ -1,4 +1,4 @@
-export interface Project { // <-- `export` keyword added to the type
+export interface Project {
     id: number;
     title: string;
     description: string;
@@ -8,7 +8,7 @@ export interface Project { // <-- `export` keyword added to the type
     image: string;
 }
 
-export const projectsData: Project[] = [ // <-- `export` keyword added
+export const projectsData: Project[] = [
   {
     id: 1,
     title: 'AI Study Assistant',
@@ -26,23 +26,5 @@ export const projectsData: Project[] = [ // <-- `export` keyword added
     liveUrl: '#',
     githubUrl: '#',
     image: 'https://placehold.co/600x400/0f172a/94a3b8?text=Ames+Housing+ML'
-  },
-  {
-    id: 3,
-    title: 'Titanic Survival Prediction',
-    description: 'A classic binary classification problem. Built a model to predict passenger survival on the Titanic, deployed as a simple web app.',
-    stack: ['Streamlit', 'Pandas', 'Seaborn', 'Scikit-learn'],
-    liveUrl: '#',
-    githubUrl: '#',
-    image: 'https://placehold.co/600x400/0f172a/94a3b8?text=Titanic+App'
-  },
-  {
-    id: 4,
-    title: 'PyTorch Experiments',
-    description: 'A repository of experiments implementing various neural networks and deep learning concepts from scratch using PyTorch.',
-    stack: ['PyTorch', 'Python', 'Google Colab'],
-    liveUrl: null,
-    githubUrl: '#',
-    image: 'https://placehold.co/600x400/0f172a/94a3b8?text=PyTorch+Experiments'
   },
 ];

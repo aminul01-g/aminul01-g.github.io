@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -12,19 +12,9 @@ const ContactForm = () => {
     e.preventDefault();
     setStatus('Sending...');
     
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-
-    if (res.ok) {
-        setStatus('Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
-    } else {
-        const data = await res.json();
-        setStatus(data.message || 'Failed to send message. Please try again.');
-    }
+    // NOTE: This will not work in a static export.
+    // You would need a service like Formspree or a serverless function.
+    setStatus('This form is for demo purposes only.');
   };
 
   return (
@@ -50,4 +40,4 @@ const ContactForm = () => {
     </form>
   );
 };
-export default ContactForm; // <-- ADD THIS LINE
+export default ContactForm;

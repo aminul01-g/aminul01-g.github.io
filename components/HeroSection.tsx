@@ -1,3 +1,4 @@
+import React from 'react';
 import { GithubIcon } from './icons/GithubIcon';
 import { LinkedinIcon } from './icons/LinkedinIcon';
 import { FileTextIcon } from './icons/FileTextIcon';
@@ -14,16 +15,16 @@ const HeroSection = () => (
             Currently learning, building, and open-sourcing projects at the intersection of machine learning and software engineering.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 transition-colors">
+            <a href="#" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 transition-colors">
                 <FileTextIcon /> <span className="ml-2">View Resume</span>
             </a>
-            <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-slate-600 text-base font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors">
+            <a href="https://github.com/aminul01-g" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-slate-600 text-base font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors">
                  <GithubIcon /> <span className="ml-2">GitHub</span>
             </a>
-             <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-slate-600 text-base font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors">
+             <a href="#" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-slate-600 text-base font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors">
                  <LinkedinIcon /> <span className="ml-2">LinkedIn</span>
             </a>
         </div>
     </section>
 );
-export default HeroSection; // <-- ADD THIS LINE
+export default HeroSection;
