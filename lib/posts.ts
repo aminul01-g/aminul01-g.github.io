@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const postsDirectory = path.join(process.cwd(), 'data/blog');
+// Use path.resolve for a guaranteed absolute path
+const postsDirectory = path.resolve(process.cwd(), 'data/blog');
 
 export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory);
