@@ -28,11 +28,13 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build static site
-        run: npm run build
+        run: GITHUB_ACTIONS=true npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './out'
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll
 
   deploy:
     environment:
@@ -44,3 +46,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+

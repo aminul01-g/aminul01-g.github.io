@@ -59,12 +59,10 @@ export const getStaticProps: GetStaticProps<BlogPostProps, IParams> = async (con
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const matterResult = matter(fileContents);
-
     const processedContent = await remark()
       .use(html)
       .process(matterResult.content);
     const contentHtml = processedContent.toString();
-
     return {
       props: {
         frontmatter: matterResult.data as { title: string; date: string; description: string; },

@@ -7,7 +7,6 @@ import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import { GetStaticProps } from 'next';
 
-// Import Node.js modules for file system access
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -25,17 +24,17 @@ interface HomeProps {
   allPostsData: PostData[];
 }
 
-// Apply the HomeProps type to the Home component
+// Apply the HomeProps type to the Home component's props
 export default function Home({ allPostsData }: HomeProps) {
   return (
     <div className="bg-slate-900 min-h-screen text-slate-200 font-sans">
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <HeroSection />
-        <div id="projects"><ProjectsSection /></div>
-        <div id="about"><AboutSection /></div>
-        <div id="blog"><BlogSection allPostsData={allPostsData} /></div>
-        <div id="contact"><ContactSection /></div>
+        <ProjectsSection />
+        <AboutSection />
+        <BlogSection allPostsData={allPostsData} />
+        <ContactSection />
       </main>
       <Footer />
     </div>
@@ -71,4 +70,4 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       allPostsData: sortedPosts,
     },
   };
-}
+};

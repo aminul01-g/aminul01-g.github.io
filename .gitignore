@@ -1,7 +1,5 @@
 # Dependencies
 /node_modules
-/.pnp
-.pnp.js
 
 # Local Environment Variables
 .env*.local
@@ -18,5 +16,4 @@
 
 # System files
 .DS_Store
-
-node_modules
+*.swp
