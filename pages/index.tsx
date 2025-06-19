@@ -5,14 +5,28 @@ import AboutSection from '../components/AboutSection';
 import BlogSection from '../components/BlogSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import { GetStaticProps } from 'next';
 
 // Import Node.js modules for file system access
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-// The Home component receives `allPostsData` as a prop from getStaticProps
-export default function Home({ allPostsData }) {
+// Define the shape of a single blog post's data
+interface PostData {
+  slug: string;
+  date: string;
+  title: string;
+  description: string;
+}
+
+// Define the shape of the props object for the Home page
+interface HomeProps {
+  allPostsData: PostData[];
+}
+
+// Apply the HomeProps type to the Home component
+export default function Home({ allPostsData }: HomeProps) {
   return (
     <div className="bg-slate-900 min-h-screen text-slate-200 font-sans">
       <Navbar />
@@ -28,8 +42,8 @@ export default function Home({ allPostsData }) {
   );
 }
 
-// getStaticProps runs at build time to fetch the data needed for the page.
-export async function getStaticProps() {
+// getStaticProps now has a return type for better type safety
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const postsDirectory = path.join(process.cwd(), 'data/blog');
   const fileNames = fs.readdirSync(postsDirectory);
 
@@ -44,7 +58,6 @@ export async function getStaticProps() {
     };
   });
 
-  // Sort posts by date in descending order
   const sortedPosts = allPostsData.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
