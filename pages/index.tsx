@@ -5,9 +5,13 @@ import AboutSection from '../components/AboutSection';
 import BlogSection from '../components/BlogSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
-import { getSortedPostsData } from '../lib/posts';
 
-// The Home component now receives `allPostsData` as a prop
+// Import Node.js modules for file system access
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+// The Home component receives `allPostsData` as a prop from getStaticProps
 export default function Home({ allPostsData }) {
   return (
     <div className="bg-slate-900 min-h-screen text-slate-200 font-sans">
@@ -16,7 +20,6 @@ export default function Home({ allPostsData }) {
         <HeroSection />
         <div id="projects"><ProjectsSection /></div>
         <div id="about"><AboutSection /></div>
-        {/* Here, we pass the fetched data into the component */}
         <div id="blog"><BlogSection allPostsData={allPostsData} /></div>
         <div id="contact"><ContactSection /></div>
       </main>
@@ -27,10 +30,32 @@ export default function Home({ allPostsData }) {
 
 // getStaticProps runs at build time to fetch the data needed for the page.
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const postsDirectory = path.join(process.cwd(), 'data/blog');
+  const fileNames = fs.readdirSync(postsDirectory);
+
+  const allPostsData = fileNames.map((fileName) => {
+    const slug = fileName.replace(/\.md$/, '');
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    return {
+      slug,
+      ...(matterResult.data as { date: string; title: string; description: string }),
+    };
+  });
+
+  // Sort posts by date in descending order
+  const sortedPosts = allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+
   return {
     props: {
-      allPostsData,
+      allPostsData: sortedPosts,
     },
   };
 }
