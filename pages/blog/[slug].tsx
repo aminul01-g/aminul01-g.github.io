@@ -1,7 +1,3 @@
-// =======================================================================
-// File: /pages/blog/[slug].tsx (Final Corrected Version)
-// This version adds the final type safety checks to satisfy TypeScript.
-// =======================================================================
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -63,7 +59,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 // This function fetches the data for a specific blog post
 export const getStaticProps: GetStaticProps = async (context) => {
-  // Use the IParams interface to type the context parameters
   const { slug } = context.params as IParams;
   const postsDirectory = path.join(process.cwd(), 'data/blog');
   const filePath = path.join(postsDirectory, `${slug}.md`);
@@ -71,7 +66,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
-    const htmlContent = marked(content);
+
+    // THE FIX IS HERE: We must `await` the result of marked.parse()
+    const htmlContent = await marked.parse(content);
 
     return {
       props: {
@@ -80,6 +77,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     };
   } catch (error) {
+    console.error(`Error processing slug "${slug}":`, error);
     return {
       notFound: true,
     };
