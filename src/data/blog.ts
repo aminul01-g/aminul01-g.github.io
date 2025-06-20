@@ -15,3 +15,5 @@ export const blogPosts: BlogPost[] = [
   }
 ];
 
+// Add more blog posts as needed
+// You can add more blog posts here following the same structure
