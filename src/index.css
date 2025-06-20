@@ -1,3 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f9fafb;
+  color: #222;
+}
+
+.dark body {
+  background-color: #18181b;
+  color: #f3f4f6;
+}
+
+/* Section spacing */
+section {
+  margin-bottom: 4rem;
+}
+
+/* Button styles */
+.btn {
+  @apply rounded-full px-6 py-2 font-semibold bg-primary text-white hover:bg-purple-700 transition shadow;
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #7C3AED 0%, #6366F1 100%);
+  color: #fff;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(124,58,237,0.08);
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+.btn:hover {
+  background: linear-gradient(90deg, #6366F1 0%, #7C3AED 100%);
+}
+
+/* Utility for fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.7s forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.blinking-cursor {
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse at 50% 30%, #a78bfa33 0%, #6366f100 70%);
+  pointer-events: none;
+}
