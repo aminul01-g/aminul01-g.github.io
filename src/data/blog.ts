@@ -15,5 +15,3 @@ export const blogPosts: BlogPost[] = [
   }
 ];
 
-
-// Add more blog posts as needed
