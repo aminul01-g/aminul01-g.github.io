@@ -3,325 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aminul's Portfolio</title>
     
-    <!-- 1. Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SEO and Social Media Meta Tags -->
+    <title>Aminul Islam | AI Engineer</title>
+    <meta name="description" content="Aminul Islam's personal portfolio. An AI Engineer building intelligent systems that learn and adapt.">
+    <meta property="og:title" content="Aminul Islam | AI Engineer">
+    <meta property="og:description" content="Building intelligent systems that learn and adapt.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0a0a0a/ffffff?text=Aminul+Islam">
+    <meta property="og:url" content="https://aminul01-g.github.io/">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- 2. React and Babel for running the portfolio -->
+    <!-- Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <style>
-        /* A simple font and background color for the body */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.js"></script>
+
+    <!-- Custom Tailwind Config & Fonts -->
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         html {
             scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* slate-900 */
-            color: #e2e8f0; /* slate-200 */
         }
-        /* Simple prose styles for the blog content */
-        .prose h3 {
-            color: #7dd3fc; /* sky-300 */
-            font-size: 1.25rem;
-            line-height: 1.75rem;
-            font-weight: 700;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
+        .prose {
+            color: #d1d5db; /* gray-300 */
         }
-        .prose p {
-            margin-bottom: 1rem;
+        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+            color: #f9fafb; /* gray-50 */
         }
-        .prose ul {
-            list-style-type: disc;
-            list-style-position: inside;
-            margin-bottom: 1rem;
+        .dark .prose {
+             color: #d1d5db;
         }
-        .prose li {
-            margin-bottom: 0.5rem;
+        .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4, .dark .prose h5, .dark .prose h6 {
+            color: #f9fafb;
         }
     </style>
 </head>
-<body>
+<body class="bg-white dark:bg-black text-gray-800 dark:text-gray-200 transition-colors duration-300">
 
-    <!-- This is where our React application will be rendered -->
     <div id="root"></div>
 
-    <!-- 3. All your portfolio code goes inside this single script tag -->
     <script type="text/babel">
-    
-        const { useState, useEffect } = React;
+        // =======================================================================
+        //  SETUP & HOOKS
+        // =======================================================================
+        const { useState, useEffect, useRef } = React;
+        // We will now reference Framer.motion directly in the components
+        // to avoid race conditions with script loading.
+        
+        // Custom hook for theme management
+        const useTheme = () => {
+            const [theme, setTheme] = useState('dark');
+            useEffect(() => {
+                const root = window.document.documentElement;
+                if (theme === 'dark') {
+                    root.classList.add('dark');
+                } else {
+                    root.classList.remove('dark');
+                }
+            }, [theme]);
+            return [theme, setTheme];
+        };
 
-        // --- ICONS (using inline SVGs for portability) ---
-        const GithubIcon = () => (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15-.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-        );
-        const LinkedinIcon = () => (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-        );
-        const FileTextIcon = () => (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-        );
-        const ExternalLinkIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 ml-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        );
-        const CodeIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-code-2"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-        );
-        const ArrowRightIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        );
-
-        // --- DATA (Hardcoded for simplicity) ---
+        // =======================================================================
+        //  DATA
+        // =======================================================================
         const projectsData = [
-          {id: 1, title: 'AI Study Assistant', description: 'An intelligent platform to help users summarize articles, generate questions, and chat with documents for an interactive learning experience.', stack: ['Next.js', 'Python', 'FastAPI', 'LangChain', 'Vercel'], liveUrl: '#', githubUrl: '#', image: 'https://placehold.co/600x400/0f172a/94a3b8?text=AI+Study+Assistant'},
-          {id: 2, title: 'Ames Housing Prices (ML)', description: 'A regression model to predict housing prices in Ames, Iowa. This project covers data cleaning, feature engineering, and model evaluation.', stack: ['Scikit-learn', 'Pandas', 'Jupyter', 'Matplotlib'], liveUrl: '#', githubUrl: '#', image: 'https://placehold.co/600x400/0f172a/94a3b8?text=Ames+Housing+ML'},
-          {id: 3, title: 'Titanic Survival Prediction', description: 'A classic binary classification problem. Built a model to predict passenger survival on the Titanic, deployed as a simple web app.', stack: ['Streamlit', 'Pandas', 'Seaborn', 'Scikit-learn'], liveUrl: '#', githubUrl: '#', image: 'https://placehold.co/600x400/0f172a/94a3b8?text=Titanic+App'},
-          {id: 4, title: 'PyTorch Experiments', description: 'A repository of experiments implementing various neural networks and deep learning concepts from scratch using PyTorch.', stack: ['PyTorch', 'Python', 'Google Colab'], liveUrl: null, githubUrl: '#', image: 'https://placehold.co/600x400/0f172a/94a3b8?text=PyTorch+Experiments'},
+            {
+                title: "Custom ChatGPT-based Assistant",
+                role: "Lead ML Engineer",
+                tech: ["LangChain", "OpenAI API", "Pinecone", "FastAPI"],
+                description: "Developed an AI-powered assistant capable of understanding and responding to queries based on a custom knowledge base, using retrieval-augmented generation (RAG).",
+                visual: "https://placehold.co/600x400/111827/4d7c0f?text=ChatGPT+Assistant",
+                codeUrl: "#",
+                demoUrl: "#",
+            },
+            {
+                title: "CNN Image Classifier with Explainability",
+                role: "AI Researcher",
+                tech: ["PyTorch", "OpenCV", "LIME", "Streamlit"],
+                description: "Built a high-accuracy CNN model for image classification and integrated LIME to generate visual explanations, making the model's predictions interpretable.",
+                visual: "https://placehold.co/600x400/111827/be123c?text=CNN+Classifier",
+                codeUrl: "#",
+                demoUrl: null,
+            },
+            {
+                title: "NLP News Summarizer",
+                role: "NLP Engineer",
+                tech: ["Hugging Face", "Transformers", "Gradio"],
+                description: "Fine-tuned a T5 transformer model to generate abstractive summaries of news articles, deployed as an interactive web app using Gradio.",
+                visual: "https://placehold.co/600x400/111827/0e7490?text=NLP+Summarizer",
+                codeUrl: "#",
+                demoUrl: "#",
+            },
         ];
-        const blogPostsData = [{slug: 'first-post', title: "My First Post", date: "2025-06-19", description: "Welcome to my blog on AI and learning.", content: `<p class="mb-4">This is the content of my first post. I'll share ideas, lessons, and breakthroughs as I grow as an AI Engineer.</p><h3 class="text-xl font-bold mt-6 mb-3 text-sky-300">The Journey Ahead</h3><p class="mb-4">The field of Artificial Intelligence is vast and exciting. My goal with this blog is to document my journey, including:</p><ul class="list-disc list-inside space-y-2 mb-4"><li>Project Retrospectives</li><li>Study Notes</li><li>Code Deep Dives</li></ul><p>Stay tuned for more updates!</p>`}];
 
-        // --- COMPONENTS ---
-        const Navbar = ({ activePage }) => {
-          const navLinks = ['Home', 'Projects', 'About', 'Blog', 'Contact'];
-          return (
-            <nav className="sticky top-0 z-50 bg-slate-900/70 backdrop-blur-lg border-b border-slate-700">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
-                  <a href="#home" className="flex items-center">
-                     <CodeIcon />
-                    <span className="font-bold text-xl ml-2 text-white">Aminul's Portfolio</span>
-                  </a>
-                  <div className="hidden md:block">
-                    <div className="ml-10 flex items-baseline space-x-4">
-                      {navLinks.map((link) => {
-                        const linkLower = link.toLowerCase();
-                        return (
-                          <a
-                            key={link}
-                            href={`#${linkLower}`}
-                            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                              activePage === linkLower
-                                ? 'bg-sky-500 text-white'
-                                : 'text-slate-300 hover:bg-slate-700 hover:text-white'
-                            }`}
-                          >
-                            {link}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
-          );
+        const skillsData = {
+            "AI / ML": ["PyTorch", "TensorFlow", "Scikit-learn", "OpenCV"],
+            "NLP": ["Hugging Face", "spaCy", "Transformers", "LangChain"],
+            "Languages": ["Python", "JavaScript/TypeScript", "SQL"],
+            "MLOps & Tools": ["Docker", "MLflow", "FastAPI", "Git", "VSCode"],
         };
 
-        const HeroSection = () => (
-            <section className="text-center py-20 md:py-32">
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">Md Aminul Islam Bhuiyan Amin</h1>
-                <p className="mt-4 text-lg md:text-xl text-sky-300">AI Engineering Student, Building LLM-Powered Tools with PyTorch & LangChain | Open to Internships & Research.</p>
-                <p className="mt-2 text-md text-slate-400 max-w-2xl mx-auto">Currently learning, building, and open-sourcing projects at the intersection of machine learning and software engineering.</p>
-                <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="#" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 transition-colors"><FileTextIcon /> <span className="ml-2">View Resume</span></a>
-                    <a href="#" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-slate-600 text-base font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors"><GithubIcon /> <span className="ml-2">GitHub</span></a>
-                    <a href="#" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-slate-600 text-base font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors"><LinkedinIcon /> <span className="ml-2">LinkedIn</span></a>
-                </div>
-            </section>
-        );
-        
-        const ProjectCard = ({ project }) => (
-            <div className="bg-slate-800/50 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-sky-500/20">
-                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+        // =======================================================================
+        //  REUSABLE COMPONENTS
+        // =======================================================================
+        const Navbar = ({ activePage, setActivePage, theme, setTheme }) => {
+            const navLinks = ['Home', 'Projects', 'Skills', 'Resume', 'Contact'];
+            return (
+                <Framer.motion.nav 
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex items-center justify-between h-16">
+                            <a href="#home" className="text-2xl font-bold text-gray-900 dark:text-white">AI</a>
+                            <div className="hidden md:flex items-center space-x-2">
+                                {navLinks.map(link => (
+                                    <a key={link} href={`#${link.toLowerCase()}`} 
+                                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${activePage === link.toLowerCase() ? 'bg-black text-white dark:bg-white dark:text-black' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
+                                        {link}
+                                    </a>
+                                ))}
+                                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+                                    {theme === 'dark' ? <lucide-react.Sun size={20} /> : <lucide-react.Moon size={20} />}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </Framer.motion.nav>
+            );
+        };
+
+        const ProjectCard = ({ project, index }) => (
+            <Framer.motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gray-50 dark:bg-gray-900/50 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800"
+            >
+                <img src={project.visual} alt={project.title} className="w-full h-56 object-cover" />
                 <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                    <p className="text-slate-400 text-sm mb-4">{project.description}</p>
-                    <div className="mb-4">
-                        <p className="text-xs text-slate-500 uppercase font-bold mb-2">Tech Stack</p>
-                        <div className="flex flex-wrap gap-2">{project.stack.map(tech => (<span key={tech} className="bg-sky-900/50 text-sky-300 text-xs font-medium px-2.5 py-1 rounded-full">{tech}</span>))}</div>
+                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                    <p className="text-sm font-semibold text-indigo-500 dark:text-indigo-400 mb-3">{project.role}</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4 h-24">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tech.map(t => <span key={t} className="text-xs font-medium bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded">{t}</span>)}
                     </div>
-                    <div className="flex justify-between items-center mt-6">
-                         {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-semibold text-sky-400 hover:text-sky-300">Live Demo <ExternalLinkIcon /></a>}
-                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-white"><GithubIcon /> <span className="ml-2">Source</span></a>
-                    </div>
-                </div>
-            </div>
-        );
-        
-        const BlogPostCard = ({ post, setSelectedPost }) => (
-            <div className="p-6 bg-slate-800/50 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors" onClick={() => setSelectedPost(post)}>
-                <h3 className="text-2xl font-bold text-sky-400 mb-2">{post.title}</h3>
-                <p className="text-sm text-slate-400 mb-3">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                <p className="text-slate-300">{post.description}</p>
-            </div>
-        );
-
-        // --- FULL PAGE SECTIONS ---
-        const ProjectsSection = () => (
-            <section id="projects" className="py-16 sm:py-24">
-                <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-12">All Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">{projectsData.map(p => <ProjectCard key={p.id} project={p} />)}</div>
-            </section>
-        );
-
-        const AboutSection = () => (
-            <section id="about" className="py-16 sm:py-24 max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl font-bold tracking-tight text-white mb-8">About Me</h2>
-                <div className="text-left bg-slate-800/50 p-8 rounded-lg">
-                    <p className="text-slate-300 mb-4 leading-relaxed">Hello! I'm Aminul, an aspiring AI Engineer with a passion for developing intelligent applications that solve real-world problems. My journey into tech was driven by a curiosity for how complex systems work, which naturally led me to the fascinating world of machine learning.</p>
-                    <p className="text-slate-300 mb-4 leading-relaxed">I'm currently focused on deepening my expertise in deep learning frameworks like PyTorch and TensorFlow, and exploring MLOps practices to build robust, scalable, and maintainable AI systems. My goal is to contribute to open-source projects and collaborate with teams that are pushing the boundaries of what's possible with AI.</p>
-                    <div className="mt-8">
-                         <h3 className="text-xl font-bold text-sky-300 mb-4">Core Skills</h3>
-                         <div className="flex flex-wrap gap-3 justify-center">{['Python', 'PyTorch', 'TensorFlow', 'Scikit-learn', 'Next.js', 'FastAPI'].map(skill => (<span key={skill} className="bg-slate-700 text-slate-200 text-sm font-medium px-4 py-2 rounded-lg">{skill}</span>))}</div>
+                    <div className="flex items-center gap-4">
+                        <a href={project.codeUrl} className="font-semibold text-gray-800 dark:text-white hover:underline">Code</a>
+                        {project.demoUrl && <a href={project.demoUrl} className="font-semibold text-gray-800 dark:text-white hover:underline">Live Demo</a>}
                     </div>
                 </div>
-            </section>
+            </Framer.motion.div>
         );
 
-        const BlogSection = () => {
-            const [selectedPost, setSelectedPost] = useState(null);
-            if (selectedPost) {
-                return (
-                    <div className="py-16 sm:py-24 max-w-3xl mx-auto">
-                        <a href="#blog" onClick={() => setSelectedPost(null)} className="inline-block mb-8 text-sky-400 hover:text-sky-300">&larr; Back to all posts</a>
-                        <article className="prose">
-                            <h1 className="text-3xl font-bold mb-2 text-white">{selectedPost.title}</h1>
-                            <p className="text-sm text-slate-400 mb-4">{new Date(selectedPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                            <div className="text-slate-300" dangerouslySetInnerHTML={{ __html: selectedPost.content }} />
-                        </article>
-                    </div>
-                );
-            }
-            return (
-                <section id="blog" className="py-16 sm:py-24 max-w-3xl mx-auto">
-                    <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-12">Writings & Notes</h2>
-                    <div className="space-y-8">{blogPostsData.map(post => <BlogPostCard key={post.slug} post={post} setSelectedPost={setSelectedPost} />)}</div>
-                </section>
-            );
-        };
-        
-        const ContactSection = () => {
-            const [status, setStatus] = useState('');
-            const handleSubmit = (e) => { e.preventDefault(); setStatus('This form is for demo purposes only.'); };
-            return (
-                <section id="contact" className="py-16 sm:py-24">
-                    <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-4">Get In Touch</h2>
-                    <p className="text-center text-slate-400 mb-12">Have a question or want to collaborate? Feel free to reach out.</p>
-                    <form onSubmit={handleSubmit} className="space-y-4 max-w-xl mx-auto">
-                        <div><label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1">Name</label><input id="name" name="name" placeholder="Your Name" className="w-full bg-slate-700 border border-slate-600 rounded-md p-3 text-white focus:ring-2 focus:ring-sky-500 outline-none" required /></div>
-                        <div><label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1">Email</label><input id="email" name="email" placeholder="you@example.com" type="email" className="w-full bg-slate-700 border border-slate-600 rounded-md p-3 text-white focus:ring-2 focus:ring-sky-500 outline-none" required /></div>
-                        <div><label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-1">Message</label><textarea id="message" name="message" placeholder="Your message..." rows="5" className="w-full bg-slate-700 border border-slate-600 rounded-md p-3 text-white focus:ring-2 focus:ring-sky-500 outline-none" required /></div>
-                        <div className="text-center"><button type="submit" className="bg-sky-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-sky-700 transition-colors">Send Message</button></div>
-                        {status && <p className="text-center mt-4 text-slate-300">{status}</p>}
-                    </form>
-                </section>
-            );
-        };
+        const SkillCategory = ({ category, skills }) => (
+            <Framer.motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 className="text-lg font-bold mb-4">{category}</h3>
+                <div className="flex flex-wrap gap-2">
+                    {skills.map(skill => <span key={skill} className="bg-gray-200 dark:bg-gray-800 px-3 py-1 rounded text-sm">{skill}</span>)}
+                </div>
+            </Framer.motion.div>
+        );
 
         const Footer = () => (
-            <footer className="bg-slate-900 border-t border-slate-800 mt-20">
-                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-slate-400">
-                    <div className="flex justify-center space-x-6 mb-4"><a href="#" className="hover:text-white"><GithubIcon /></a><a href="#" className="hover:text-white"><LinkedinIcon /></a></div>
-                    <p>&copy; {new Date().getFullYear()} Md Aminul Islam Bhuiyan Amin. All Rights Reserved.</p>
+            <footer className="border-t border-gray-200 dark:border-gray-800 mt-20">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">&copy; {new Date().getFullYear()} Aminul Islam. All rights reserved.</p>
+                    <div className="flex space-x-6 mt-4 sm:mt-0">
+                        <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"><lucide-react.Github size={20} /></a>
+                        <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"><lucide-react.Linkedin size={20} /></a>
+                        <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"><lucide-react.FileText size={20} /></a>
+                    </div>
                 </div>
             </footer>
         );
 
-        // --- NEW HOMEPAGE COMPONENT ---
-        const HomePage = () => {
-          // We'll feature the first 2 projects and the first blog post
-          const featuredProjects = projectsData.slice(0, 2);
-          const featuredPost = blogPostsData[0];
+        // =======================================================================
+        //  PAGE COMPONENTS
+        // =======================================================================
+        const HomePage = () => (
+             <Framer.motion.section 
+                id="home"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="min-h-screen flex flex-col justify-center items-center text-center px-4">
+                <Framer.motion.img 
+                    src="https://placehold.co/128x128/111827/ffffff?text=AI" 
+                    alt="Aminul Islam"
+                    className="w-32 h-32 rounded-full mb-6"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: 'spring' }}
+                />
+                <Framer.motion.h1 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                    className="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-teal-500"
+                >
+                    Aminul Islam
+                </Framer.motion.h1>
+                <Framer.motion.p 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                    className="mt-4 text-lg md:text-xl font-medium"
+                >
+                    AI Engineer | ML Developer | Python Enthusiast
+                </Framer.motion.p>
+                <Framer.motion.p 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.8, duration: 0.5 }}
+                    className="mt-2 max-w-2xl text-gray-600 dark:text-gray-400"
+                >
+                    Building intelligent systems that learn and adapt.
+                </Framer.motion.p>
+                 <Framer.motion.a 
+                    href="#projects"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1, duration: 0.5 }}
+                    className="mt-8 px-6 py-3 rounded-md font-semibold text-white bg-indigo-600 hover:bg-indigo-700"
+                >
+                    View My Work
+                 </Framer.motion.a>
+            </Framer.motion.section>
+        );
 
-          return (
-            <div>
-              <HeroSection />
-              
-              {/* Featured Projects Section */}
-              <section className="py-16 sm:py-24">
-                <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-12">Featured Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                  {featuredProjects.map(p => <ProjectCard key={p.id} project={p} />)}
+        const ProjectsPage = () => (
+            <Framer.motion.section 
+                id="projects"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="py-20">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-extrabold">Projects</h2>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">A selection of my work in AI and Machine Learning.</p>
                 </div>
-                <div className="text-center mt-12">
-                  <a href="#projects" className="inline-flex items-center text-lg font-semibold text-sky-400 hover:text-sky-300">
-                    View All Projects <ArrowRightIcon />
-                  </a>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {projectsData.map((p, i) => <ProjectCard key={i} project={p} index={i} />)}
                 </div>
-              </section>
+            </Framer.motion.section>
+        );
 
-              {/* About Me Summary Section */}
-              <section className="py-16 sm:py-24 max-w-3xl mx-auto text-center bg-slate-800/20 rounded-lg">
-                <h2 className="text-3xl font-bold tracking-tight text-white mb-4">About Me</h2>
-                <p className="text-slate-300 leading-relaxed mb-8 px-6">I'm an aspiring AI Engineer passionate about developing intelligent applications. My journey is driven by a curiosity for how complex systems work, leading me to the fascinating world of machine learning.</p>
-                <a href="#about" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 transition-colors">
-                  Learn More About Me
+        const SkillsPage = () => (
+            <Framer.motion.section 
+                id="skills"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="py-20">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-extrabold">My Tech Stack</h2>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">Tools and technologies I use to build AI systems.</p>
+                </div>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {Object.entries(skillsData).map(([category, skills]) => (
+                        <SkillCategory key={category} category={category} skills={skills} />
+                    ))}
+                 </div>
+            </Framer.motion.section>
+        );
+        
+        const ResumePage = () => (
+            <Framer.motion.section 
+                id="resume"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="py-20 text-center">
+                 <h2 className="text-3xl md:text-4xl font-extrabold">Resume & Profiles</h2>
+                 <p className="mt-2 text-gray-600 dark:text-gray-400 mb-8">Find more details about my professional experience.</p>
+                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold text-white bg-indigo-600 hover:bg-indigo-700">
+                        <lucide-react.Download size={20} className="mr-2"/> Download CV
+                    </a>
+                     <a href="#" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <lucide-react.Linkedin size={20} className="mr-2"/> LinkedIn
+                    </a>
+                 </div>
+            </Framer.motion.section>
+        );
+        
+        const ContactPage = () => (
+            <Framer.motion.section 
+                id="contact"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="py-20 text-center">
+                 <h2 className="text-3xl md:text-4xl font-extrabold">Contact</h2>
+                 <p className="mt-2 text-gray-600 dark:text-gray-400 mb-8">Let's build something intelligent together.</p>
+                 <a href="mailto:your.email@example.com" className="inline-flex items-center justify-center px-8 py-4 rounded-md font-semibold text-white bg-indigo-600 hover:bg-indigo-700">
+                    <lucide-react.Mail size={20} className="mr-2"/> Get In Touch
                 </a>
-              </section>
+            </Framer.motion.section>
+        );
 
-              {/* Featured Blog Section */}
-              <section className="py-16 sm:py-24">
-                <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-12">From the Blog</h2>
-                <div className="max-w-3xl mx-auto">
-                   <div className="p-6 bg-slate-800/50 rounded-lg">
-                        <h3 className="text-2xl font-bold text-sky-400 mb-2">{featuredPost.title}</h3>
-                        <p className="text-sm text-slate-400 mb-3">{new Date(featuredPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                        <p className="text-slate-300">{featuredPost.description}</p>
-                    </div>
-                </div>
-                 <div className="text-center mt-12">
-                  <a href="#blog" className="inline-flex items-center text-lg font-semibold text-sky-400 hover:text-sky-300">
-                    Read All Posts <ArrowRightIcon />
-                  </a>
-                </div>
-              </section>
-            </div>
-          );
-        };
-
-
-        // --- Main App Component (Updated to handle routing) ---
+        // =======================================================================
+        //  MAIN APP & ROUTING
+        // =======================================================================
         const App = () => {
-          const getPageFromHash = () => window.location.hash.substring(1) || 'home';
-          const [activePage, setActivePage] = useState(getPageFromHash());
+            const getPageFromHash = () => window.location.hash.substring(1) || 'home';
+            const [activePage, setActivePage] = useState(getPageFromHash());
+            const [theme, setTheme] = useTheme();
 
-          useEffect(() => {
-            const handleHashChange = () => setActivePage(getPageFromHash());
-            window.addEventListener('hashchange', handleHashChange);
-            return () => window.removeEventListener('hashchange', handleHashChange);
-          }, []);
+            useEffect(() => {
+                const handleHashChange = () => setActivePage(getPageFromHash());
+                window.addEventListener('hashchange', handleHashChange);
+                return () => window.removeEventListener('hashchange', handleHashChange);
+            }, []);
 
-          const renderPage = () => {
-            switch (activePage) {
-              case 'home':
-                return <HomePage />; // Use the new HomePage component
-              case 'projects':
-                return <ProjectsSection />;
-              case 'about':
-                return <AboutSection />;
-              case 'blog':
-                return <BlogSection />;
-              case 'contact':
-                return <ContactSection />;
-              default:
-                return <HomePage />; // Fallback to the home page
-            }
-          };
+            const renderPage = () => {
+                switch (activePage) {
+                    case 'home': return <HomePage />;
+                    case 'projects': return <ProjectsPage />;
+                    case 'skills': return <SkillsPage />;
+                    case 'resume': return <ResumePage />;
+                    case 'contact': return <ContactPage />;
+                    default: return <HomePage />;
+                }
+            };
 
-          return (
-            <div>
-              <Navbar activePage={activePage} />
-              <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {renderPage()}
-              </main>
-              <Footer />
-            </div>
-          );
+            return (
+                <div>
+                    <Navbar activePage={activePage} setActivePage={setActivePage} theme={theme} setTheme={setTheme} />
+                    <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                       <Framer.AnimatePresence mode="wait">
+                           {renderPage()}
+                       </Framer.AnimatePresence>
+                    </main>
+                    <Footer />
+                </div>
+            );
         };
 
         const container = document.getElementById('root');
