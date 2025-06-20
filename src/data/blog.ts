@@ -14,3 +14,6 @@ export const blogPosts: BlogPost[] = [
     summary: "This is the first post on my portfolio blog. More content coming soon!"
   }
 ];
+
+
+// Add more blog posts as needed
