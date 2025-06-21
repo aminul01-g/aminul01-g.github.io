@@ -12,9 +12,9 @@ export default function Contact() {
       transition={{ duration: 0.7 }}
     >
       <h2 className="text-2xl font-bold mb-6 dark:text-white">Contact Me</h2>
-      <p className="text-gray-700 dark:text-gray-200">Email: <a href="mailto:your.email@example.com" className="text-blue-500 dark:text-blue-300">your.email@example.com</a></p>
+      <p className="text-gray-700 dark:text-gray-200">Email: <a href="mailto:aminulamin0001@gmail.com" className="text-blue-500 dark:text-blue-300">aminulamin0001@gmail.com</a></p>
       <p className="text-gray-700 dark:text-gray-200">GitHub: <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 dark:text-blue-300">{profile.github.replace('https://', '')}</a></p>
-      <p className="text-gray-700 dark:text-gray-200">LinkedIn: <a href="https://linkedin.com/in/yourname" target="_blank" rel="noopener noreferrer" className="text-blue-500 dark:text-blue-300">linkedin.com/in/yourname</a></p>
+      <p className="text-gray-700 dark:text-gray-200">LinkedIn: <a href="https://linkedin.com/in/aminulai" target="_blank" rel="noopener noreferrer" className="text-blue-500 dark:text-blue-300">linkedin.com/in/aminulai</a></p>
     </motion.section>
   );
 }
