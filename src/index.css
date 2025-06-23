@@ -31,13 +31,61 @@ section {
   font-weight: 600;
   background: linear-gradient(90deg, #7C3AED 0%, #6366F1 100%);
   color: #fff;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
   box-shadow: 0 2px 8px 0 rgba(124,58,237,0.08);
   display: inline-block;
   margin-top: 1.5rem;
 }
-.btn:hover {
+.btn:hover, .btn:focus {
   background: linear-gradient(90deg, #6366F1 0%, #7C3AED 100%);
+  box-shadow: 0 4px 16px 0 rgba(124,58,237,0.16);
+  transform: translateY(-2px) scale(1.03);
+  outline: none;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Contact form input focus */
+input, textarea {
+  @apply border border-gray-300 dark:border-gray-700 rounded px-3 py-2 w-full transition-colors duration-200;
+  outline: none;
+}
+input:focus, textarea:focus {
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 2px #a78bfa55;
+  background: #f3f0ff;
+}
+
+/* Project card hover (already handled in component, but for extra polish) */
+.project-card {
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.project-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(124,58,237,0.18);
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* Blog excerpt uniformity */
+.blog-excerpt {
+  min-height: 72px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+  section {
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+  }
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
 }
 
 /* Utility for fade-in */
