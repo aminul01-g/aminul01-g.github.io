@@ -18,7 +18,8 @@ export default function Blog() {
           <Link
             key={post.slug}
             to={`/blog/${post.slug}`}
-            className="block border rounded-lg p-4 hover:shadow-md bg-white dark:bg-gray-800 transition-colors duration-300"
+            className="block border rounded-lg p-4 sm:p-6 hover:shadow-md bg-white dark:bg-gray-800 transition-colors duration-300 min-h-[64px] focus:outline-none focus:ring-2 focus:ring-primary"
+            style={{ minHeight: 64 }}
           >
             <h3 className="text-xl font-semibold text-primary mb-1 dark:text-primary">{post.title}</h3>
             <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
