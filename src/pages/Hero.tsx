@@ -45,7 +45,7 @@ const socialLinks = [
 		label: 'Behance',
 		icon: (
 			<img
-				src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/behance.svg"
+				src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/behance/behance-original.svg"
 				alt="Behance"
 				className="w-6 h-6"
 				style={{
