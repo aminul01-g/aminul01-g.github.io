@@ -33,50 +33,26 @@ const socialLinks = [
 		href: profile.leetcode,
 		label: 'LeetCode',
 		icon: (
-			<svg
+			<img
+				src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leetcode/leetcode-original.svg"
+				alt="LeetCode"
 				className="w-6 h-6"
-				viewBox="0 0 48 48"
-				fill="none"
-			>
-				<g>
-					<path
-						d="M33.5 40.5L14 24L33.5 7.5"
-						stroke="#FFA116"
-						strokeWidth="4"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					/>
-					<path
-						d="M14 24H42"
-						stroke="#222"
-						strokeWidth="4"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					/>
-				</g>
-			</svg>
+			/>
 		),
 	},
 	{
 		href: profile.behance,
 		label: 'Behance',
 		icon: (
-			<svg
+			<img
+				src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/behance.svg"
+				alt="Behance"
 				className="w-6 h-6"
-				viewBox="0 0 32 32"
-				fill="none"
-			>
-				<rect
-					width="32"
-					height="32"
-					rx="6"
-					fill="#1769FF"
-				/>
-				<path
-					d="M10.5 17.5H14C15.1046 17.5 16 18.3954 16 19.5C16 20.6046 15.1046 21.5 14 21.5H10.5V17.5ZM10.5 10.5H13.5C14.3284 10.5 15 11.1716 15 12C15 12.8284 14.3284 13.5 13.5 13.5H10.5V10.5ZM21.5 17.5C21.5 16.3954 22.3954 15.5 23.5 15.5C24.6046 15.5 25.5 16.3954 25.5 17.5H21.5ZM25.5 19.5C25.5 20.6046 24.6046 21.5 23.5 21.5C22.3954 21.5 21.5 20.6046 21.5 19.5H25.5Z"
-					fill="#fff"
-				/>
-			</svg>
+				style={{
+					filter:
+						'invert(18%) sepia(98%) saturate(7496%) hue-rotate(210deg) brightness(99%) contrast(101%)',
+				}}
+			/>
 		),
 	},
 	{
