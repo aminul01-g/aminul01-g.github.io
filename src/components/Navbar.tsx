@@ -7,7 +7,7 @@ const navLinks = [
   { label: 'About', to: '/about' },
   { label: 'Projects', to: '/projects' },
   { label: 'Blog', to: '/blog' },
-  { label: 'Contact', to: '/contact' },
+  // Contact handled as anchor link
 ];
 
 export default function Navbar() {
@@ -36,6 +36,14 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          {/* Contact anchor link for smooth scroll */}
+          <a
+            href="/#contact"
+            className="block py-2 sm:inline dark:text-white text-black font-medium hover:text-primary dark:hover:text-primary transition"
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact
+          </a>
           <ThemeToggle />
         </div>
       </div>
