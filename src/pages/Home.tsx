@@ -1,5 +1,4 @@
 import Hero from './Hero';
-import { profile } from '../data/profile';
 import { projects } from '../data/projects';
 import { blogPosts } from '../data/blog';
 import ProjectCard from '../components/ProjectCard';
