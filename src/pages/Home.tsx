@@ -35,11 +35,15 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-6 dark:text-white">✍️ Recent Blog Posts</h2>
         <div className="grid gap-6 md:grid-cols-3">
           {blogPosts.slice(0, 3).map((post) => (
-            <div key={post.slug} className="border rounded-lg p-4 bg-white dark:bg-gray-800 shadow transition-colors duration-300">
+            <Link
+              key={post.slug}
+              to={`/blog/${post.slug}`}
+              className="border rounded-lg p-4 bg-white dark:bg-gray-800 shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group block"
+            >
               <h3 className="text-lg font-semibold text-primary mb-1 dark:text-primary">{post.title}</h3>
               <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
               <p className="text-gray-700 dark:text-gray-200 mb-2">{post.summary.length > 110 ? post.summary.slice(0, 110) + '…' : post.summary}</p>
-            </div>
+            </Link>
           ))}
         </div>
         <Link to="/blog" className="btn mt-6">👉 Read All Blogs</Link>

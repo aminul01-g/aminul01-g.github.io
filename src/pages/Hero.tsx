@@ -33,26 +33,29 @@ const socialLinks = [
 		href: profile.leetcode,
 		label: 'LeetCode',
 		icon: (
-			<img
-				src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leetcode/leetcode-original.svg"
-				alt="LeetCode"
+			<svg
 				className="w-6 h-6"
-			/>
+        fill="currentColor"
+				viewBox="0 0 24 24"
+        >
+        <path d="M8.7 14.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L5.42 12l3.28 2.3zm6.6 0 3.28-2.3-3.28-2.3a1 1 0 1 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 1 1-1.4-1.4z"/>
+        </svg>
+			
 		),
 	},
 	{
 		href: profile.behance,
 		label: 'Behance',
 		icon: (
-			<img
-				src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/behance/behance-original.svg"
-				alt="Behance"
+			<svg
 				className="w-6 h-6"
-				style={{
-					filter:
-						'invert(18%) sepia(98%) saturate(7496%) hue-rotate(210deg) brightness(99%) contrast(101%)',
-				}}
-			/>
+        fill="currentColor"
+				viewBox="0 0 24 24"
+      >
+      <path d="M22 9.5h-6v1.5h6v-1.5zm-9.438 2.599c.535-.391.854-1.01.854-1.808 0-1.854-1.297-2.291-2.747-2.291h-6.669v9.5h6.826c1.635 0 3.174-.931 3.174-2.871 0-1.168-.519-1.9-1.438-2.53zm-5.562-2.099h2.588c.647 0 1.362.237 1.362 1.018 0 .708-.472 1.082-1.13 1.082h-2.82v-2.1zm2.97 6.5h-2.97v-2.4h2.949c.751 0 1.276.333 1.276 1.154 0 .82-.611 1.246-1.255 1.246zm11.03-2.5c-.088-.709-.35-1.27-.78-1.669-.456-.42-1.073-.631-1.836-.631-1.06 0-1.877.364-2.434 1.08-.466.605-.726 1.432-.726 2.365 0 .898.286 1.646.848 2.225.562.578 1.298.867 2.19.867 1.29 0 2.29-.591 2.702-1.57h-1.626c-.246.335-.612.5-1.096.5-.43 0-.781-.137-1.05-.408-.27-.271-.429-.648-.475-1.119h4.287c.031-.222.045-.438.05-.64.001-.08.002-.159.002-.237 0-.085-.001-.17-.004-.253-.006-.17-.016-.34-.035-.51z"/>
+      </svg>
+        
+			
 		),
 	},
 	{
