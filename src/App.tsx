@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -37,13 +38,18 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
-      <Navbar />
-      <main className="flex-1 w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-8">
-        <AnimatedRoutes />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Helmet>
+        <title>Aminul's | Portfolio</title>
+      </Helmet>
+      <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+        <Navbar />
+        <main className="flex-1 w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-8">
+          <AnimatedRoutes />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
 
