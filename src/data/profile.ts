@@ -6,6 +6,10 @@ export interface Profile {
   resume: string;
   github: string;
   bio: string;
+  linkedin?: string;
+  leetcode?: string;
+  behance?: string;
+  telegram?: string;
 }
 
 export const profile: Profile = {
@@ -15,5 +19,9 @@ export const profile: Profile = {
   profilePic: "https://avatars.githubusercontent.com/u/188814014?v=4",
   resume: "", // Add your resume link here if available
   github: "https://github.com/aminul01-g",
-  bio: "AI Engineering Student | Deep Learning, NLP & LLMs | Python, PyTorch, TensorFlow | Building Intelligent Systems"
+  bio: "AI Engineering Student | Deep Learning, NLP & LLMs | Python, PyTorch, TensorFlow | Building Intelligent Systems",
+  linkedin: "https://linkedin.com/in/aminulai",
+  leetcode: "https://leetcode.com/aminul01_g/",
+  behance: "https://behance.net/aminul01g",
+  telegram: "https://t.me/aminul01g"
 };
