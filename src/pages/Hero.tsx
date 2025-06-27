@@ -83,7 +83,7 @@ export default function Hero() {
 			<motion.img
 				src={profile.profilePic}
 				alt="profile"
-				className="w-36 h-36 rounded-full mb-6 border-4 border-primary shadow-lg relative z-10"
+				className="w-70 h-70 rounded-full mb-6 border-4 border-primary shadow-lg relative z-10"
 				initial={{ opacity: 0, scale: 0.8 }}
 				animate={{ opacity: 1, scale: 1 }}
 				transition={{ duration: 0.7 }}
@@ -117,7 +117,8 @@ export default function Hero() {
 					</a>
 				))}
 			</div>
-			<motion.a
+			{/*
+			 <motion.a
 				href={profile.resume}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -128,7 +129,8 @@ export default function Hero() {
 				tabIndex={0}
 			>
 				View Resume
-			</motion.a>
+			</motion.a> 
+			*/}
 		</section>
 	);
 }

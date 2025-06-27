@@ -21,7 +21,7 @@ export const profile: Profile = {
   github: "https://github.com/aminul01-g",
   bio: "AI Engineering Student | Deep Learning, NLP & LLMs | Python, PyTorch, TensorFlow | Building Intelligent Systems",
   linkedin: "https://linkedin.com/in/aminulai",
-  leetcode: "https://leetcode.com/aminul01_g/",
+  leetcode: "https://leetcode.com/u/aminul01-lc/",
   behance: "https://behance.net/aminul01g",
   telegram: "https://t.me/aminul01g"
 };

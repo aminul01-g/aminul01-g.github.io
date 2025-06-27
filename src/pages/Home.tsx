@@ -120,8 +120,8 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
-
-      {/* Tech Stack Section */}
+{/*
+      /*Tech Stack Section
       <motion.section
         id="tech-stack"
         className="relative flex flex-col items-center justify-center min-h-[60vh] text-center px-4 py-16 fade-in max-w-6xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-lg transition-all duration-300 mb-12"
@@ -135,7 +135,9 @@ export default function Home() {
         </h2>
         <p className="mb-10 text-gray-500 dark:text-gray-300 text-base sm:text-lg">Cutting-edge technologies I work with</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-5xl">
-          {/* AI/ML */}
+*/}
+{/*
+          /* AI/ML 
           <motion.div
             className="rounded-2xl bg-gradient-to-br from-white to-gray-200 dark:from-gray-900/80 dark:to-gray-800/80 shadow-xl p-8 text-left border border-gray-200 dark:border-gray-800 relative overflow-hidden group transition-colors duration-300 hover:shadow-2xl hover:-translate-y-1"
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -155,7 +157,10 @@ export default function Home() {
               <li>Scikit-learn</li>
             </ul>
           </motion.div>
-          {/* Frameworks */}
+*/}
+
+{/*
+          /* Frameworks 
           <motion.div
             className="rounded-2xl bg-gradient-to-br from-white to-gray-200 dark:from-gray-900/80 dark:to-gray-800/80 shadow-xl p-8 text-left border border-gray-200 dark:border-gray-800 relative overflow-hidden group transition-colors duration-300 hover:shadow-2xl hover:-translate-y-1"
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -175,7 +180,9 @@ export default function Home() {
               <li>Crew-AI</li>
             </ul>
           </motion.div>
-          {/* NLP */}
+*/}
+{/*
+          /* NLP 
           <motion.div
             className="rounded-2xl bg-gradient-to-br from-white to-gray-200 dark:from-gray-900/80 dark:to-gray-800/80 shadow-xl p-8 text-left border border-gray-200 dark:border-gray-800 relative overflow-hidden group transition-colors duration-300 hover:shadow-2xl hover:-translate-y-1"
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -195,7 +202,9 @@ export default function Home() {
               <li>Transformers</li>
             </ul>
           </motion.div>
-          {/* Databases */}
+*/}
+{/*
+          {/* Databases
           <motion.div
             className="rounded-2xl bg-gradient-to-br from-white to-gray-200 dark:from-gray-900/80 dark:to-gray-800/80 shadow-xl p-8 text-left border border-gray-200 dark:border-gray-800 relative overflow-hidden group transition-colors duration-300 hover:shadow-2xl hover:-translate-y-1"
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -217,7 +226,7 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
-
+ */}
       {/* Projects Preview */}
       <motion.section id="projects-preview" className="relative flex flex-col items-center justify-center min-h-[60vh] text-center px-4 py-16 fade-in max-w-6xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-lg transition-all duration-300 mb-12" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
         <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">

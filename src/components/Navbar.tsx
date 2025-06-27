@@ -33,7 +33,13 @@ export default function Navbar() {
   return (
     <nav className="bg-white dark:bg-gray-900 text-black dark:text-white shadow-md p-4 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold text-primary">Aminul</Link>
+        {/* Logo and ThemeToggle always together */}
+        <div className="flex items-center gap-2">
+          <Link to="/" className="text-xl font-bold text-primary">Aminul</Link>
+          <div className="ml-2">
+            <ThemeToggle />
+          </div>
+        </div>
         <div className="sm:hidden">
           {menuOpen ? (
             <button onClick={() => setMenuOpen(false)} className="p-2 focus:outline-none" aria-label="Close menu">
@@ -69,9 +75,6 @@ export default function Navbar() {
           >
             Contact
           </a>
-          <div className="mt-2 sm:mt-0">
-            <ThemeToggle />
-          </div>
         </div>
       </div>
     </nav>
