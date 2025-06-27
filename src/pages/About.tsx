@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaPython, FaDocker, FaGitAlt, FaLinux, FaDatabase, FaAward, FaRobot, FaCheckCircle, FaFlask, FaDownload, FaGraduationCap } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaPython, FaDocker, FaGitAlt, FaLinux, FaDatabase, FaAward, FaRobot, FaCheckCircle, FaFlask, FaDownload, FaUserGraduate } from 'react-icons/fa';
 import { SiFoodpanda } from 'react-icons/si';
 import { GiFamilyTree } from "react-icons/gi";
 
@@ -71,7 +71,7 @@ export default function About() {
         <div className="flex-1 text-center md:text-left mb-10 md:mb-0">
           <h1 className="text-5xl sm:text-6xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 drop-shadow-lg dark:from-primary dark:to-indigo-400">Md Aminul Islam Bhuiyan</h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-5 justify-center md:justify-start">
-            <span className="inline-flex items-center gap-2 text-xl font-semibold text-primary dark:text-indigo-300"><FaGraduationCap className="text-primary dark:text-indigo-300"/>AI Engineer & Computer Science and Engineering Student</span>
+            <span className="inline-flex items-center gap-2 text-xl font-semibold text-primary dark:text-indigo-300"><FaUserGraduate className="text-primary dark:text-indigo-300"/>AI Engineer & Computer Science and Engineering Student</span>
           </div>
           <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-4">
             {/*<a href="mailto:aminulamin0001@gmail.com" className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"><FaEnvelope/>aminulamin0001@gmail.com</a>
@@ -119,7 +119,7 @@ export default function About() {
       <motion.section className="max-w-5xl mx-auto mb-16 px-4 py-10 rounded-2xl bg-gradient-to-br from-white via-purple-50/60 to-white dark:from-gray-900 dark:via-gray-800/60 dark:to-gray-900 shadow-lg border border-primary/10 dark:border-gray-700" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
         <motion.h2 className="text-4xl font-extrabold mb-8 text-primary drop-shadow dark:text-indigo-300" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>🎓 Education</motion.h2>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="bg-white dark:bg-gray-900 rounded-2xl shadow p-6 mb-8 flex items-center gap-4 hover:scale-[1.03] hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 border border-primary/10 dark:border-gray-700">
-          <FaGraduationCap className="text-2xl text-primary dark:text-indigo-300"/>
+          <FaUserGraduate className="text-2xl text-primary dark:text-indigo-300"/>
           <div>
             <div className="font-semibold dark:text-gray-100">B.Sc. in Computer Science & Engineering</div>
             <div className="text-gray-600 dark:text-gray-300">Bangladesh University of Business & Technology (BUBT)</div>
@@ -209,7 +209,7 @@ export default function About() {
             </div>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05, boxShadow: '0 4px 24px #a78bfa33' }} className="bg-white dark:bg-gray-900 rounded-2xl shadow p-6 flex items-center gap-4 border border-primary/10 dark:border-gray-700 transition-transform duration-200 cursor-pointer">
-            <FaGraduationCap className="text-2xl text-primary dark:text-indigo-300"/>
+            <FaUserGraduate className="text-2xl text-primary dark:text-indigo-300"/>
             <div>
               <div className="font-semibold dark:text-gray-100">Volunteered mentoring high school students in Python & ML basics</div>
             </div>
