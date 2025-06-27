@@ -69,7 +69,7 @@ export default function About() {
         transition={{ duration: 0.7 }}
       >
         <div className="flex-1 text-center md:text-left mb-10 md:mb-0">
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 drop-shadow-lg dark:from-primary dark:to-indigo-400">Md Aminul Islam Bhuiyan</h1>
+          <h1 className="text-5xl sm:text-6xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 drop-shadow-lg dark:from-primary dark:to-indigo-400">Md Aminul Islam Bhuiyan Amin</h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-5 justify-center md:justify-start">
             <span className="inline-flex items-center gap-2 text-xl font-semibold text-primary dark:text-indigo-300"><FaUserGraduate className="text-primary dark:text-indigo-300"/>AI Engineer & Computer Science and Engineering Student</span>
           </div>
