@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGraduationCap } from 'react-icons/fa6';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaPython, FaDocker, FaGitAlt, FaLinux, FaDatabase, FaAward, FaRobot, FaCheckCircle, FaFlask, FaDownload } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaPython, FaDocker, FaGitAlt, FaLinux, FaDatabase, FaAward, FaRobot, FaCheckCircle, FaFlask, FaDownload, FaGraduationCap } from 'react-icons/fa';
 import { SiFoodpanda } from 'react-icons/si';
 import { GiFamilyTree } from "react-icons/gi";
 
