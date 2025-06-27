@@ -1,6 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
-import { FaGraduationCap } from 'react-icons/fa6';
 import { useState } from 'react';
 
 const navLinks = [
