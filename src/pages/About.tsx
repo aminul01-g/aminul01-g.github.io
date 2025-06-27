@@ -58,7 +58,7 @@ export default function About() {
       details: '.'
     }
   ];
-
+//s
   return (
     <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 dark:from-gray-900 dark:to-gray-950 min-h-screen pb-12">
       {/* Hero Banner */}
