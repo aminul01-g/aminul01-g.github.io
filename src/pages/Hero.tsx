@@ -35,11 +35,11 @@ const socialLinks = [
 		icon: (
 			<svg
 				className="w-6 h-6"
-        fill="currentColor"
+		fill="currentColor"
 				viewBox="0 0 24 24"
-        >
-        <path d="M8.7 14.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L5.42 12l3.28 2.3zm6.6 0 3.28-2.3-3.28-2.3a1 1 0 1 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 1 1-1.4-1.4z"/>
-        </svg>
+		>
+		<path d="M8.7 14.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L5.42 12l3.28 2.3zm6.6 0 3.28-2.3-3.28-2.3a1 1 0 1 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 1 1-1.4-1.4z"/>
+		</svg>
 			
 		),
 	},
@@ -49,12 +49,12 @@ const socialLinks = [
 		icon: (
 			<svg
 				className="w-6 h-6"
-        fill="currentColor"
+		fill="currentColor"
 				viewBox="0 0 24 24"
-      >
-      <path d="M22 9.5h-6v1.5h6v-1.5zm-9.438 2.599c.535-.391.854-1.01.854-1.808 0-1.854-1.297-2.291-2.747-2.291h-6.669v9.5h6.826c1.635 0 3.174-.931 3.174-2.871 0-1.168-.519-1.9-1.438-2.53zm-5.562-2.099h2.588c.647 0 1.362.237 1.362 1.018 0 .708-.472 1.082-1.13 1.082h-2.82v-2.1zm2.97 6.5h-2.97v-2.4h2.949c.751 0 1.276.333 1.276 1.154 0 .82-.611 1.246-1.255 1.246zm11.03-2.5c-.088-.709-.35-1.27-.78-1.669-.456-.42-1.073-.631-1.836-.631-1.06 0-1.877.364-2.434 1.08-.466.605-.726 1.432-.726 2.365 0 .898.286 1.646.848 2.225.562.578 1.298.867 2.19.867 1.29 0 2.29-.591 2.702-1.57h-1.626c-.246.335-.612.5-1.096.5-.43 0-.781-.137-1.05-.408-.27-.271-.429-.648-.475-1.119h4.287c.031-.222.045-.438.05-.64.001-.08.002-.159.002-.237 0-.085-.001-.17-.004-.253-.006-.17-.016-.34-.035-.51z"/>
-      </svg>
-        
+	  >
+	  <path d="M22 9.5h-6v1.5h6v-1.5zm-9.438 2.599c.535-.391.854-1.01.854-1.808 0-1.854-1.297-2.291-2.747-2.291h-6.669v9.5h6.826c1.635 0 3.174-.931 3.174-2.871 0-1.168-.519-1.9-1.438-2.53zm-5.562-2.099h2.588c.647 0 1.362.237 1.362 1.018 0 .708-.472 1.082-1.13 1.082h-2.82v-2.1zm2.97 6.5h-2.97v-2.4h2.949c.751 0 1.276.333 1.276 1.154 0 .82-.611 1.246-1.255 1.246zm11.03-2.5c-.088-.709-.35-1.27-.78-1.669-.456-.42-1.073-.631-1.836-.631-1.06 0-1.877.364-2.434 1.08-.466.605-.726 1.432-.726 2.365 0 .898.286 1.646.848 2.225.562.578 1.298.867 2.19.867 1.29 0 2.29-.591 2.702-1.57h-1.626c-.246.335-.612.5-1.096.5-.43 0-.781-.137-1.05-.408-.27-.271-.429-.648-.475-1.119h4.287c.031-.222.045-.438.05-.64.001-.08.002-.159.002-.237 0-.085-.001-.17-.004-.253-.006-.17-.016-.34-.035-.51z"/>
+	  </svg>
+		
 			
 		),
 	},
@@ -74,63 +74,84 @@ const socialLinks = [
 ];
 
 export default function Hero() {
-	return (
-		<section
-			id="hero"
-			className="relative flex flex-col items-center justify-center min-h-[80vh] text-center px-4 py-20 fade-in"
+  return (
+	<section
+	  id="hero"
+	  className="relative flex flex-col items-center justify-center min-h-[80vh] text-center px-4 py-20 fade-in overflow-hidden"
+	>
+	  {/* Animated Gradient Background */}
+	  <motion.div
+		className="absolute inset-0 z-0 pointer-events-none"
+		initial={{ opacity: 0 }}
+		animate={{ opacity: 1 }}
+		transition={{ duration: 1 }}
+		aria-hidden
+	  >
+		<div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-purple-400/20 rounded-full blur-3xl animate-pulse" />
+		<div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-purple-400/30 to-blue-400/10 rounded-full blur-2xl animate-pulse" />
+		<div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/20 to-indigo-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-spin-slow" />
+	  </motion.div>
+	  <motion.img
+		src={profile.profilePic}
+		alt="profile"
+		className="w-40 h-40 sm:w-56 sm:h-56 rounded-full mb-6 border-4 border-primary shadow-lg relative z-10 object-cover bg-white dark:bg-gray-800"
+		initial={{ opacity: 0, scale: 0.8 }}
+		animate={{ opacity: 1, scale: 1 }}
+		transition={{ duration: 0.7 }}
+	  />
+	  <motion.h1
+		className="text-4xl sm:text-6xl font-bold mb-4 dark:text-white relative z-10"
+		initial={{ opacity: 0, y: 40 }}
+		animate={{ opacity: 1, y: 0 }}
+		transition={{ delay: 0.2, duration: 0.7 }}
+	  >
+		Hi, I'm {profile.name}
+	  </motion.h1>
+	  <Typewriter
+		words={[profile.title, profile.slogan]}
+		className="text-primary text-xl sm:text-2xl mb-6 font-semibold relative z-10"
+		speed={70}
+		pause={1200}
+	  />
+	  <motion.p
+		className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto text-lg relative z-10"
+		initial={{ opacity: 0, y: 20 }}
+		animate={{ opacity: 1, y: 0 }}
+		transition={{ delay: 0.4, duration: 0.7 }}
+	  >
+		AI Engineering Student passionate about building intelligent systems. Let's connect and create something amazing!
+	  </motion.p>
+	  {/* Social Icons Row */}
+	  <div className="flex justify-center gap-4 mb-4 z-10">
+		{socialLinks.map((link) => (
+		  <a
+			key={link.label}
+			href={link.href}
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label={link.label}
+			className="text-gray-500 hover:text-primary dark:hover:text-primary transition-colors duration-200 text-2xl focus:outline-none focus:ring-2 focus:ring-primary rounded-full"
+		  >
+			{link.icon}
+		  </a>
+		))}
+	  </div>
+	  {/* Call-to-Action Button */}
+	  {profile.resume && (
+		<motion.a
+		  href={profile.resume}
+		  target="_blank"
+		  rel="noopener noreferrer"
+		  className="btn relative z-10 inline-flex items-center gap-2 mt-2"
+		  initial={{ opacity: 0, y: 40 }}
+		  animate={{ opacity: 1, y: 0 }}
+		  transition={{ delay: 0.8, duration: 0.7 }}
+		  tabIndex={0}
 		>
-			<div className="hero-bg" />
-			<motion.img
-				src={profile.profilePic}
-				alt="profile"
-				className="w-70 h-70 rounded-full mb-6 border-4 border-primary shadow-lg relative z-10"
-				initial={{ opacity: 0, scale: 0.8 }}
-				animate={{ opacity: 1, scale: 1 }}
-				transition={{ duration: 0.7 }}
-			/>
-			<motion.h1
-				className="text-4xl sm:text-6xl font-bold mb-4 dark:text-white relative z-10"
-				initial={{ opacity: 0, y: 40 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.2, duration: 0.7 }}
-			>
-				Hi, I'm {profile.name}
-			</motion.h1>
-			<Typewriter
-				words={[profile.title, profile.slogan]}
-				className="text-primary text-xl sm:text-2xl mb-6 font-semibold relative z-10"
-				speed={70}
-				pause={1200}
-			/>
-			{/* Social Icons Row */}
-			<div className="flex justify-center gap-4 mb-4 z-10">
-				{socialLinks.map((link) => (
-					<a
-						key={link.label}
-						href={link.href}
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label={link.label}
-						className="text-gray-500 hover:text-primary dark:hover:text-primary transition-colors duration-200"
-					>
-						{link.icon}
-					</a>
-				))}
-			</div>
-			{/*
-			 <motion.a
-				href={profile.resume}
-				target="_blank"
-				rel="noopener noreferrer"
-				className="btn relative z-10"
-				initial={{ opacity: 0, y: 40 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.8, duration: 0.7 }}
-				tabIndex={0}
-			>
-				View Resume
-			</motion.a> 
-			*/}
-		</section>
-	);
+		  <span>View Resume</span>
+		  <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+		</motion.a>
+	  )}
+	</section>
+  );
 }

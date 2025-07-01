@@ -1,32 +1,90 @@
 import { blogPosts, BlogPost } from '../data/blog';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Blog() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      setTimeout(() => {
+        const el = document.getElementById('contact');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById('contact');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <motion.section
       id="blog"
-      className="max-w-5xl mx-auto p-6 bg-white dark:bg-gray-900 transition-colors duration-300 mb-16"
+      className="relative max-w-5xl mx-auto p-8 bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp transition-all duration-300 mb-16 overflow-hidden"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7 }}
     >
-      <h2 className="text-3xl font-bold text-center mb-6 dark:text-white">Blog</h2>
-      <div className="space-y-6">
-        {blogPosts.map((post: BlogPost) => (
-          <Link
-            key={post.slug}
-            to={`/blog/${post.slug}`}
-            className="block border rounded-lg p-4 sm:p-6 hover:shadow-md bg-white dark:bg-gray-800 transition-colors duration-300 min-h-[64px] focus:outline-none focus:ring-2 focus:ring-primary"
-            style={{ minHeight: 64 }}
-          >
-            <h3 className="text-xl font-semibold text-primary mb-1 dark:text-primary">{post.title}</h3>
-            <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
-            <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
-          </Link>
-        ))}
+      {/* Animated Gradient Background */}
+      <motion.div
+        className="absolute inset-0 z-0 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        aria-hidden
+      >
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-pink-400/30 to-blue-400/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-blue-400/30 to-pink-400/10 rounded-full blur-2xl animate-pulse" />
+      </motion.div>
+      <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 relative z-10">Blog</h2>
+      <p className="text-center text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto relative z-10">
+        Insights, tutorials, and stories from my journey in tech, AI, and creative coding. Explore my thoughts, discoveries, and lessons learned along the way.
+      </p>
+      <div className="grid gap-8 md:grid-cols-2 relative z-10">
+        {blogPosts.length === 0 ? (
+          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No blog posts yet. Stay tuned!</div>
+        ) : (
+          blogPosts.map((post: BlogPost, i: number) => (
+            <motion.div
+              key={post.slug}
+              className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md group focus-within:ring-2 focus-within:ring-primary"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.12, delay: i * 0.06 }}
+              tabIndex={0}
+              aria-label={`Blog post: ${post.title}`}
+            >
+              <Link
+                to={`/blog/${post.slug}`}
+                className="block w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-lg transition-all duration-200 group-hover:scale-[1.02]"
+                style={{ minHeight: 64 }}
+                aria-label={`Read blog post: ${post.title}`}
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <svg className="w-6 h-6 text-primary/80 dark:text-primary/80 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h5l2-2h5a2 2 0 012 2v12a2 2 0 01-2 2z" /></svg>
+                  <h3 className="text-xl font-semibold text-primary mb-0 dark:text-primary group-hover:underline">{post.title}</h3>
+                </div>
+                <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
+                <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
+              </Link>
+            </motion.div>
+          ))
+        )}
       </div>
+      {/* Floating Contact Button - matches Home page position and style, links to Home's contact section */}
+      <a
+        href="/#contact"
+        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-primary text-white rounded-full shadow-lg p-4 flex items-center gap-2 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-primary transition-all animate-bounce"
+        aria-label="Contact"
+        tabIndex={0}
+        onClick={handleContactClick}
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z" /></svg>
+        <span className="hidden sm:inline">Contact</span>
+      </a>
     </motion.section>
   );
 }
