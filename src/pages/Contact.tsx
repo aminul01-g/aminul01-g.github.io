@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Button from '../components/Button';
 import { useState } from 'react';
 
 const contactInfo = [
@@ -160,7 +161,7 @@ export default function Contact() {
 				required
 			  ></textarea>
 			</div>
-			<button
+			<Button
 			  type="submit"
 			  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-md font-semibold hover:from-purple-500 hover:to-blue-500 transition flex items-center justify-center gap-2 mt-2 shadow-lg hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400/40"
 			>
@@ -183,7 +184,7 @@ export default function Contact() {
 				/>
 			  </svg>
 			  Send Message
-			</button>
+			</Button>
 			{status && (
 			  <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
 				{status}

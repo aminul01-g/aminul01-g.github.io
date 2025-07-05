@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
+import Button from '../components/Button';
 import Typewriter from '../components/Typewriter';
 
 const socialLinks = [
@@ -87,8 +88,8 @@ export default function Hero() {
 		transition={{ duration: 1 }}
 		aria-hidden
 	  >
-		<div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-purple-400/20 rounded-full blur-3xl animate-pulse" />
-		<div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-purple-400/30 to-blue-400/10 rounded-full blur-2xl animate-pulse" />
+		<div className="absolute -top-32 -left-32 w-96 h-96 themed-gradient-1 rounded-full blur-3xl animate-pulse" />
+		<div className="absolute bottom-0 right-0 w-80 h-80 themed-gradient-2 rounded-full blur-2xl animate-pulse" />
 		<div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/20 to-indigo-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-spin-slow" />
 	  </motion.div>
 	  <motion.img

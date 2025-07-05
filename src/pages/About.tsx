@@ -3,6 +3,10 @@ import { FaGithub, FaLinkedin, FaPython, FaDocker, FaGitAlt, FaLinux, FaDatabase
 import { SiFoodpanda } from 'react-icons/si';
 import { GiFamilyTree } from "react-icons/gi";
 import { useNavigate, useLocation } from 'react-router-dom';
+import Timeline from '../components/Timeline';
+import ResumeModal from '../components/ResumeModal';
+import { profile } from '../data/profile';
+import React from 'react';
 
 // Modern glassmorphism background effect
 const GlassBg = () => (
@@ -18,6 +22,7 @@ const profilePic = "https://avatars.githubusercontent.com/u/188814014?v=4";
 
 export default function About() {
   // Project cards data must be inside the function, before return
+  const [resumeOpen, setResumeOpen] = React.useState(false);
   const projectData = [
     {
       icon: FaPython,
@@ -88,7 +93,7 @@ export default function About() {
   return (
     <div className="relative min-h-screen pb-12 overflow-x-hidden">
       <GlassBg />
-      {/* Hero Banner with animated background and CTA */}
+       {/* Hero Banner with animated background and CTA */}
       <motion.section
         className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between px-6 sm:px-12 pt-20 pb-16 max-w-6xl mx-auto mb-16 overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
@@ -172,10 +177,10 @@ export default function About() {
           <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">LLMs</span>.
         </p>
         <div className="flex flex-wrap gap-2 justify-center mb-2 animate-fadeInUp delay-150">
-          <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 dark:bg-indigo-900/40 dark:text-indigo-200 font-semibold px-3 py-1 rounded-full text-sm"><FaPython/>Python</span>
-          <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-200 font-semibold px-3 py-1 rounded-full text-sm"><FaRobot/>AI/ML</span>
-          <span className="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-200 font-semibold px-3 py-1 rounded-full text-sm"><FaDocker/>Docker</span>
-          <span className="inline-flex items-center gap-1 bg-gray-200 text-gray-700 dark:bg-gray-800/40 dark:text-gray-200 font-semibold px-3 py-1 rounded-full text-sm"><FaLinux/>Linux</span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-blue font-semibold px-3 py-1 rounded-full text-sm"><FaPython/>Python</span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-green font-semibold px-3 py-1 rounded-full text-sm"><FaRobot/>AI/ML</span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-yellow font-semibold px-3 py-1 rounded-full text-sm"><FaDocker/>Docker</span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-gray font-semibold px-3 py-1 rounded-full text-sm"><FaLinux/>Linux</span>
         </div>
         <p className="text-gray-700 text-lg text-center dark:text-gray-200 animate-fadeInUp delay-200" tabIndex={0}>
           With a strong foundation in
@@ -232,6 +237,7 @@ export default function About() {
       <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
 
       {/* Education & Experience - Modernized */}
+      {/* Education & Experience - Modernized */}
       <motion.section
         className="max-w-5xl mx-auto mb-16 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp relative"
         initial={{ opacity: 0, y: 40 }}
@@ -254,10 +260,12 @@ export default function About() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
         >
-          <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/BUBT_logo.png" alt="BUBT Logo" className="w-14 h-14 rounded-full bg-white border shadow-inner mr-2" />
+          <a href="https://bubt.edu.bd/" target="_blank" rel="noopener noreferrer" className="focus:outline-none focus:ring-2 focus:ring-primary rounded-full">
+            <img src="/bubt-seeklogo.png" alt="BUBT Logo" className="w-16 h-16 rounded-full bg-white border-2 border-primary/30 shadow-lg object-contain p-1 mr-2 transition-transform duration-200 hover:scale-105" />
+          </a>
           <div>
             <div className="font-semibold text-lg dark:text-gray-100">B.Sc. in Computer Science & Engineering</div>
-            <div className="text-gray-600 dark:text-gray-300">Bangladesh University of Business & Technology (BUBT)</div>
+            <a href="https://bubt.edu.bd/" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 underline hover:text-primary transition-colors">Bangladesh University of Business & Technology (BUBT)</a>
             <div className="text-gray-500 text-sm dark:text-gray-400">Expected Graduation: September 2027</div>
           </div>
         </motion.div>
@@ -290,7 +298,6 @@ export default function About() {
           </ul>
         </motion.div>
       </motion.section>
-
       {/* Section Divider */}
       <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
 
@@ -327,7 +334,6 @@ export default function About() {
               <div className="pl-10">
                 <div className="font-semibold mb-1 dark:text-gray-100 text-lg flex items-center gap-2">
                   {proj.label}
-                  <a href="#contact" className="ml-2 text-xs text-blue-500 dark:text-blue-300 underline group-hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded transition-all">Contact for details</a>
                 </div>
                 <ul className="list-disc list-inside text-gray-700 ml-2 text-sm dark:text-gray-200">
                   <li>{proj.desc}<span className={proj.stackColor}>{proj.stack}</span>{proj.details}</li>
@@ -493,7 +499,15 @@ export default function About() {
       <motion.section className="max-w-2xl mx-auto text-center mt-20" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
         <motion.h2 className="text-2xl font-bold mb-4 text-primary dark:text-indigo-300" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>Let's Connect!</motion.h2>
         <p className="mb-6 text-gray-700 dark:text-gray-200">Interested in collaborating, hiring, or just want to chat about AI? Reach out.</p>
-        {/*<motion.a whileHover={{ scale: 1.07 }} href="#" className="btn bg-gradient-to-r from-primary to-indigo-500 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"><FaDownload/>Download Resume</motion.a>*/}
+        <button
+          className="btn bg-gradient-to-r from-primary to-indigo-500 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"
+          onClick={() => setResumeOpen(true)}
+          aria-label="View Resume"
+        >
+          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          View Resume
+        </button>
+        <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} resumeUrl={profile.resume || '/resume.pdf'} />
         <motion.a whileHover={{ scale: 1.07 }} href="https://linkedin.com/in/aminulai" target="_blank" rel="noopener noreferrer" className="ml-4 btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"><FaLinkedin/>Connect on LinkedIn</motion.a>
       </motion.section>
 

@@ -1,11 +1,22 @@
+import React from 'react';
 import { projects, Project } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
+import ProjectFilterBar from '../components/ProjectFilterBar';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Projects() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [filter, setFilter] = React.useState<string | null>(null);
+  const [search, setSearch] = React.useState('');
+
+  const allTags = Array.from(new Set(projects.flatMap(project => project.tags || [])));
+  const filteredProjects = projects.filter(project => {
+    const matchesTag = filter ? (project.tags || []).includes(filter) : true;
+    const matchesSearch = search ? (project.title + project.description).toLowerCase().includes(search.toLowerCase()) : true;
+    return matchesTag && matchesSearch;
+  });
 
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -24,7 +35,7 @@ export default function Projects() {
   return (
     <motion.section
       id="projects"
-      className="relative max-w-5xl mx-auto p-8 bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp transition-all duration-300 mb-16 overflow-hidden"
+      className="relative max-w-6xl mx-auto md:p-10 p-4 bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp transition-all duration-300 mb-16 overflow-hidden"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -38,24 +49,31 @@ export default function Projects() {
         transition={{ duration: 1 }}
         aria-hidden
       >
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-purple-400/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-purple-400/30 to-blue-400/10 rounded-full blur-2xl animate-pulse" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 themed-gradient-1 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 themed-gradient-2 rounded-full blur-2xl animate-pulse" />
       </motion.div>
       <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 relative z-10">Projects</h2>
       <p className="text-center text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto relative z-10">A showcase of my favorite projects, spanning AI, data science, and full-stack development. Each project reflects my passion for building intelligent, impactful solutions.</p>
-      <div className="grid gap-8 sm:grid-cols-2 relative z-10">
-        {projects.length === 0 ? (
-          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No projects yet. Stay tuned!</div>
+      <ProjectFilterBar tags={allTags} onFilter={setFilter} onSearch={setSearch} />
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative z-10">
+        {filteredProjects.length === 0 ? (
+          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No projects found.</div>
         ) : (
-          projects.map((project: Project, i: number) => (
+          filteredProjects.map((project: Project, i: number) => (
             <motion.div
               key={i}
-              className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md"
+              className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md min-w-0 w-full"
+              style={{ minWidth: 0 }}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.12, delay: i * 0.06 }}
             >
               <ProjectCard {...project} />
+              <div className="flex flex-wrap gap-2 mt-2">
+                {(project.tags || []).map(tag => (
+                  <span key={tag} className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded">#{tag}</span>
+                ))}
+              </div>
             </motion.div>
           ))
         )}

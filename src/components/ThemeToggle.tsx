@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ThemeSettingsModal from './ThemeSettingsModal';
 
 function getInitialTheme() {
   if (typeof window !== 'undefined' && window.localStorage) {
@@ -15,20 +16,18 @@ function getInitialTheme() {
 }
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(getInitialTheme);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark);
-    window.localStorage.setItem('theme', dark ? 'dark' : 'light');
-  }, [dark]);
-
+  const [modalOpen, setModalOpen] = useState(false);
   return (
-    <button
-      onClick={() => setDark(!dark)}
-      className="ml-2 p-1 text-sm border rounded dark:border-white dark:text-white text-black bg-gray-200 dark:bg-gray-700"
-      aria-label="Toggle dark mode"
-    >
-      {dark ? '🌙' : '☀️'}
-    </button>
+    <>
+      <button
+        onClick={() => setModalOpen(true)}
+        className="ml-2 p-1 text-sm border rounded dark:border-white dark:text-white text-black bg-gray-200 dark:bg-gray-700"
+        aria-label="Change theme"
+        title="Change theme"
+      >
+        🎨
+      </button>
+      <ThemeSettingsModal open={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 }

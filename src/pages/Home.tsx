@@ -1,16 +1,31 @@
 import Hero from './Hero';
+import ParallaxBackground from '../components/ParallaxBackground';
 import { projects } from '../data/projects';
 import { blogPosts } from '../data/blog';
+
+// Utility to estimate reading time (words per minute)
+function getReadingTime(text: string, wpm = 200): number {
+  if (!text) return 1;
+  const words = text.split(/\s+/).length;
+  return Math.max(1, Math.round(words / wpm));
+}
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 import { motion } from 'framer-motion';
 import Contact from './Contact';
+import Testimonials from '../components/Testimonials';
 
 const aboutSummary = `🎓 I'm an AI-driven Computer Science student at BUBT, deeply passionate about building intelligent systems. My main interests lie in Deep Learning, NLP, and LLMs — with hands-on experience using PyTorch, TensorFlow, and Hugging Face.\n\n🔬 Currently exploring prompt engineering, multimodal AI, and LangChain-based applications.`;
 
 export default function Home() {
   return (
-    <div>
+    <ParallaxBackground
+      layers={[
+        { className: 'bg-gradient-to-tr from-blue-200/30 to-indigo-200/20', speed: 0.08, style: { top: '-10%', left: '-10%', width: '120vw', height: '40vh', borderRadius: '50%', filter: 'blur(60px)' } },
+        { className: 'bg-gradient-to-br from-pink-200/20 to-purple-200/20', speed: 0.15, style: { bottom: '-10%', right: '-10%', width: '100vw', height: '30vh', borderRadius: '50%', filter: 'blur(80px)' } },
+      ]}
+    >
       <Hero />
       {/* About Preview */}
       <motion.section id="about-preview" className="relative flex flex-col items-center justify-center min-h-[60vh] text-center px-4 py-16 fade-in max-w-6xl mx-auto bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp transition-all duration-300 mb-12" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
@@ -21,9 +36,11 @@ export default function Home() {
           </h2>
         </div>
         <p className="text-gray-700 dark:text-gray-200 mb-4 whitespace-pre-line">{aboutSummary}</p>
-        <Link to="/about" className="btn inline-flex items-center gap-2 group">
-          Read More
-          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        <Link to="/about" className="inline-flex items-center gap-2 group">
+          <Button className="w-full h-full flex-1 inline-flex items-center gap-2 group">
+            Read More
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </Button>
         </Link>
       </motion.section>
 
@@ -251,7 +268,9 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-        <Link to="/projects" className="btn mt-6">See All Projects</Link>
+        <Link to="/projects" className="mt-6 w-full flex justify-center">
+          <Button className="w-full">See All Projects</Button>
+        </Link>
       </motion.section>
 
       {/* Blog Preview */}
@@ -263,35 +282,46 @@ export default function Home() {
           {blogPosts.length === 0 ? (
             <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No posts yet. Stay tuned!</div>
           ) : (
-            blogPosts.slice(0, 3).map((post, i) => (
-              <motion.div
-                key={post.slug}
-                className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.12, delay: i * 0.06 }}
-              >
-                <Link
-                  to={`/blog/${post.slug}`}
-                  className="block w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
-                >
-                  <h3 className="text-lg font-semibold text-primary mb-1 dark:text-primary flex items-center gap-2">
-                    {post.title}
-                    <span className="inline-block text-xs text-gray-400 dark:text-gray-500 font-normal">• 3 min read</span>
-                  </h3>
-                  <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
-                  <p className="text-gray-700 dark:text-gray-200 mb-2">{post.summary.length > 110 ? post.summary.slice(0, 110) + '…' : post.summary}</p>
-                  <span className="inline-flex items-center gap-1 text-blue-500 dark:text-blue-300 font-medium mt-2 group-hover:underline">
-                    Read More
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                  </span>
-                </Link>
-              </motion.div>
-            ))
+            blogPosts.slice(0, 3).map((post, i) => {
+              const BlogCardTiltWrapper = require('../components/BlogCardTiltWrapper').default;
+              const readingTime = getReadingTime(post.content || post.summary);
+              return (
+                <BlogCardTiltWrapper key={post.slug}>
+                  <motion.div
+                    className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.12, delay: i * 0.06 }}
+                  >
+                    <Link
+                      to={`/blog/${post.slug}`}
+                      className="block w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
+                    >
+                      <h3 className="text-lg font-semibold text-primary mb-1 dark:text-primary flex items-center gap-2">
+                        {post.title}
+                        <span className="inline-block text-xs text-gray-400 dark:text-gray-500 font-normal">• {readingTime} min read</span>
+                      </h3>
+                      <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
+                      <p className="text-gray-700 dark:text-gray-200 mb-2">{post.summary.length > 110 ? post.summary.slice(0, 110) + '…' : post.summary}</p>
+                      <span className="inline-flex items-center gap-1 text-blue-500 dark:text-blue-300 font-medium mt-2 group-hover:underline">
+                        Read More
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                      </span>
+                    </Link>
+                  </motion.div>
+                </BlogCardTiltWrapper>
+              );
+            })
           )}
         </div>
-        <Link to="/blog" className="btn mt-6">Read All Blogs</Link>
+        <Link to="/blog" className="mt-6 w-full flex justify-center">
+          <Button className="w-full">Read All Blogs</Button>
+        </Link>
       </motion.section>
+
+      {/* Testimonials Section */}
+      {/** visually after blog, before contact **/}
+      <Testimonials />
 
       {/* Contact Section (Full) */}
       <motion.div id="contact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
@@ -299,6 +329,6 @@ export default function Home() {
         {/* Floating Contact Button */}
 
       </motion.div>
-    </div>
+    </ParallaxBackground>
   );
 }

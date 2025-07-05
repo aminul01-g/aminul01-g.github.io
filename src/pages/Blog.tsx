@@ -1,10 +1,22 @@
+import React from 'react';
 import { blogPosts, BlogPost } from '../data/blog';
+import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
+import BlogFilterBar from '../components/BlogFilterBar';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Blog() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [filter, setFilter] = React.useState<string | null>(null);
+  const [search, setSearch] = React.useState('');
+
+  const allTags = Array.from(new Set(blogPosts.flatMap(post => post.tags || [])));
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesTag = filter ? (post.tags || []).includes(filter) : true;
+    const matchesSearch = search ? (post.title + post.summary).toLowerCase().includes(search.toLowerCase()) : true;
+    return matchesTag && matchesSearch;
+  });
 
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -36,41 +48,48 @@ export default function Blog() {
         transition={{ duration: 1 }}
         aria-hidden
       >
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-pink-400/30 to-blue-400/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-blue-400/30 to-pink-400/10 rounded-full blur-2xl animate-pulse" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 themed-gradient-1 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 themed-gradient-2 rounded-full blur-2xl animate-pulse" />
       </motion.div>
       <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 relative z-10">Blog</h2>
       <p className="text-center text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto relative z-10">
         Insights, tutorials, and stories from my journey in tech, AI, and creative coding. Explore my thoughts, discoveries, and lessons learned along the way.
       </p>
+      <BlogFilterBar tags={allTags} onFilter={setFilter} onSearch={setSearch} />
       <div className="grid gap-8 md:grid-cols-2 relative z-10">
-        {blogPosts.length === 0 ? (
-          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No blog posts yet. Stay tuned!</div>
+        {filteredPosts.length === 0 ? (
+          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No blog posts found.</div>
         ) : (
-          blogPosts.map((post: BlogPost, i: number) => (
-            <motion.div
-              key={post.slug}
-              className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md group focus-within:ring-2 focus-within:ring-primary"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.12, delay: i * 0.06 }}
-              tabIndex={0}
-              aria-label={`Blog post: ${post.title}`}
-            >
-              <Link
-                to={`/blog/${post.slug}`}
-                className="block w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-lg transition-all duration-200 group-hover:scale-[1.02]"
-                style={{ minHeight: 64 }}
-                aria-label={`Read blog post: ${post.title}`}
+          filteredPosts.map((post: BlogPost, i: number) => (
+            <BlogCardTiltWrapper key={post.slug}>
+              <motion.div
+                className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md group focus-within:ring-2 focus-within:ring-primary"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.12, delay: i * 0.06 }}
+                tabIndex={0}
+                aria-label={`Blog post: ${post.title}`}
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <svg className="w-6 h-6 text-primary/80 dark:text-primary/80 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h5l2-2h5a2 2 0 012 2v12a2 2 0 01-2 2z" /></svg>
-                  <h3 className="text-xl font-semibold text-primary mb-0 dark:text-primary group-hover:underline">{post.title}</h3>
-                </div>
-                <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
-                <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
-              </Link>
-            </motion.div>
+                <Link
+                  to={`/blog/${post.slug}`}
+                  className="block w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-lg transition-all duration-200 group-hover:scale-[1.02]"
+                  style={{ minHeight: 64 }}
+                  aria-label={`Read blog post: ${post.title}`}
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <svg className="w-6 h-6 text-primary/80 dark:text-primary/80 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h5l2-2h5a2 2 0 012 2v12a2 2 0 01-2 2z" /></svg>
+                    <h3 className="text-xl font-semibold text-primary mb-0 dark:text-primary group-hover:underline">{post.title}</h3>
+                  </div>
+                  <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {(post.tags || []).map(tag => (
+                      <span key={tag} className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded">#{tag}</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
+                </Link>
+              </motion.div>
+            </BlogCardTiltWrapper>
           ))
         )}
       </div>
