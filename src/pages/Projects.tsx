@@ -13,6 +13,13 @@ export default function Projects() {
 
   const allTags = Array.from(new Set(projects.flatMap(project => project.tags || [])));
   const filteredProjects = projects.filter(project => {
+  // Debug: Log projects and filteredProjects
+  if (typeof window !== 'undefined') {
+    // eslint-disable-next-line no-console
+    console.log('All projects:', projects);
+    // eslint-disable-next-line no-console
+    console.log('Filtered projects:', filteredProjects);
+  }
     const matchesTag = filter ? (project.tags || []).includes(filter) : true;
     const matchesSearch = search ? (project.title + project.description).toLowerCase().includes(search.toLowerCase()) : true;
     return matchesTag && matchesSearch;
@@ -56,7 +63,9 @@ export default function Projects() {
       <p className="text-center text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto relative z-10">A showcase of my favorite projects, spanning AI, data science, and full-stack development. Each project reflects my passion for building intelligent, impactful solutions.</p>
       <ProjectFilterBar tags={allTags} onFilter={setFilter} onSearch={setSearch} />
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative z-10">
-        {filteredProjects.length === 0 ? (
+        {projects.length === 0 ? (
+          <div className="col-span-full text-center text-red-500 dark:text-red-400 py-8 font-bold">No projects loaded. Please check your data source.</div>
+        ) : filteredProjects.length === 0 ? (
           <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No projects found.</div>
         ) : (
           filteredProjects.map((project: Project, i: number) => (

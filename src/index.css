@@ -1,3 +1,63 @@
+/* --- Contact Section Theme Fixes --- */
+.amoled .contact-section,
+.amoled .contact-card,
+.amoled .contact-form {
+  background-color: #111 !important;
+  color: #f3f4f6 !important;
+}
+.amoled .contact-title {
+  color: #00ffe7 !important;
+  background: none !important;
+}
+.amoled .contact-form input,
+.amoled .contact-form textarea {
+  background-color: #18181b !important;
+  color: #f3f4f6 !important;
+  border-color: #00ffe7 !important;
+}
+.amoled .contact-form label {
+  color: #00ffe7 !important;
+}
+
+.nord .contact-section,
+.nord .contact-card,
+.nord .contact-form {
+  background-color: #3b4252 !important;
+  color: #eceff4 !important;
+}
+.nord .contact-title {
+  color: #88c0d0 !important;
+  background: none !important;
+}
+.nord .contact-form input,
+.nord .contact-form textarea {
+  background-color: #434c5e !important;
+  color: #eceff4 !important;
+  border-color: #88c0d0 !important;
+}
+.nord .contact-form label {
+  color: #88c0d0 !important;
+}
+
+.solarized .contact-section,
+.solarized .contact-card,
+.solarized .contact-form {
+  background-color: #073642 !important;
+  color: #fdf6e3 !important;
+}
+.solarized .contact-title {
+  color: #b58900 !important;
+  background: none !important;
+}
+.solarized .contact-form input,
+.solarized .contact-form textarea {
+  background-color: #002b36 !important;
+  color: #fdf6e3 !important;
+  border-color: #b58900 !important;
+}
+.solarized .contact-form label {
+  color: #b58900 !important;
+}
 /* Themed badge utility classes for About and other skill tags */
 .themed-badge {
   background-color: var(--badge-bg, #f3f4f6);

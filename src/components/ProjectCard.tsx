@@ -21,7 +21,8 @@ export default function ProjectCard({ title, description, tags, github, thumbnai
   const isEmoji = !thumbnail && !!projectIcons[title];
   return (
     <div
-      className="border rounded-lg shadow p-4 sm:p-6 bg-white dark:bg-gray-800 transition-all duration-300 group relative overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:outline-none hover:border-primary hover:shadow-lg hover:ring-2 hover:ring-primary/30 w-full min-h-[370px] flex flex-col justify-between"
+      className="project-card border rounded-lg shadow p-4 sm:p-6 bg-white dark:bg-gray-800 transition-all duration-300 group relative overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:outline-none hover:border-primary hover:shadow-lg hover:ring-2 hover:ring-primary/30 w-full min-w-0 flex flex-col justify-between"
+      style={{ minHeight: '220px' }}
       tabIndex={0}
       aria-label={`Project: ${title}`}
     >

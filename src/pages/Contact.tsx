@@ -56,14 +56,14 @@ export default function Contact() {
   };
 
   return (
-	<section id="contact" className="py-16 bg-gradient-to-br from-blue-50/60 via-white/80 to-purple-100/60 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+	<section id="contact" className="contact-section py-16 bg-gradient-to-br from-blue-50/60 via-white/80 to-purple-100/60 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
 	  <div className="absolute inset-0 pointer-events-none z-0">
 		<div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-purple-400/20 rounded-full blur-3xl"></div>
 		<div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-purple-400/30 to-blue-400/10 rounded-full blur-2xl"></div>
 	  </div>
 	  <div className="max-w-5xl mx-auto px-4 relative z-10">
-		<motion.h2
-		  className="text-3xl md:text-4xl font-bold text-center mb-10 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg"
+	<motion.h2
+	  className="text-3xl md:text-4xl font-bold text-center mb-10 contact-title drop-shadow-lg"
 		  initial={{ opacity: 0, y: 40 }}
 		  whileInView={{ opacity: 1, y: 0 }}
 		  viewport={{ once: true, amount: 0.3 }}
@@ -71,10 +71,10 @@ export default function Contact() {
 		>
 		  Let's Connect
 		</motion.h2>
-		<div className="grid md:grid-cols-2 gap-8 items-start">
+	<div className="grid md:grid-cols-2 gap-8 items-start contact-grid">
 		  {/* Contact Info Cards */}
-		  <motion.div
-			className="space-y-6 flex flex-col justify-stretch h-full"
+	  <motion.div
+		className="contact-card space-y-6 flex flex-col justify-stretch h-full"
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.2 }}
@@ -109,8 +109,8 @@ export default function Contact() {
 			))}
 		  </motion.div>
 		  {/* Contact Form */}
-		  <motion.form
-			className="space-y-4 glass-card rounded-2xl p-8 flex flex-col justify-center h-full backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg"
+	  <motion.form
+		className="contact-form space-y-4 glass-card rounded-2xl p-8 flex flex-col justify-center h-full backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg"
 			style={{ minHeight: '370px', maxHeight: '520px' }}
 			onSubmit={handleSubmit}
 			autoComplete="off"
