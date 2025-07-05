@@ -1,7 +1,14 @@
+
 import Hero from './Hero';
 import ParallaxBackground from '../components/ParallaxBackground';
 import { projects } from '../data/projects';
 import { blogPosts } from '../data/blog';
+import ProjectCard from '../components/ProjectCard';
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
+import { motion } from 'framer-motion';
+import Contact from './Contact';
+import Testimonials from '../components/Testimonials';
 
 // Utility to estimate reading time (words per minute)
 function getReadingTime(text: string, wpm = 200): number {
@@ -9,12 +16,6 @@ function getReadingTime(text: string, wpm = 200): number {
   const words = text.split(/\s+/).length;
   return Math.max(1, Math.round(words / wpm));
 }
-import ProjectCard from '../components/ProjectCard';
-import { Link } from 'react-router-dom';
-import Button from '../components/Button';
-import { motion } from 'framer-motion';
-import Contact from './Contact';
-import Testimonials from '../components/Testimonials';
 
 const aboutSummary = `🎓 I'm an AI-driven Computer Science student at BUBT, deeply passionate about building intelligent systems. My main interests lie in Deep Learning, NLP, and LLMs — with hands-on experience using PyTorch, TensorFlow, and Hugging Face.\n\n🔬 Currently exploring prompt engineering, multimodal AI, and LangChain-based applications.`;
 
