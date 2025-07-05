@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
-import Button from '../components/Button';
 import Typewriter from '../components/Typewriter';
 
 const socialLinks = [

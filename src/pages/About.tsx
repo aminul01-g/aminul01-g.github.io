@@ -3,7 +3,6 @@ import { FaGithub, FaLinkedin, FaPython, FaDocker, FaGitAlt, FaLinux, FaDatabase
 import { SiFoodpanda } from 'react-icons/si';
 import { GiFamilyTree } from "react-icons/gi";
 import { useNavigate, useLocation } from 'react-router-dom';
-import Timeline from '../components/Timeline';
 import ResumeModal from '../components/ResumeModal';
 import { profile } from '../data/profile';
 import React from 'react';
