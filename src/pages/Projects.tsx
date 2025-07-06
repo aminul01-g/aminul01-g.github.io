@@ -62,31 +62,33 @@ export default function Projects() {
       <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 relative z-10">Projects</h2>
       <p className="text-center text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto relative z-10">A showcase of my favorite projects, spanning AI, data science, and full-stack development. Each project reflects my passion for building intelligent, impactful solutions.</p>
       <ProjectFilterBar tags={allTags} onFilter={setFilter} onSearch={setSearch} />
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative z-10 min-w-0 min-h-0">
-        {projects.length === 0 ? (
-          <div className="col-span-full text-center text-red-500 dark:text-red-400 py-8 font-bold">No projects loaded. Please check your data source.</div>
-        ) : filteredProjects.length === 0 ? (
-          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No projects found.</div>
-        ) : (
-          filteredProjects.map((project: Project, i: number) => (
-            <motion.div
-              key={i}
-              className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md min-w-0 w-full"
-              style={{ minWidth: 0 }}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.12, delay: i * 0.06 }}
-            >
-              <ProjectCard {...project} />
-              <div className="flex flex-wrap gap-2 mt-2">
-                {(project.tags || []).map(tag => (
-                  <span key={tag} className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded">#{tag}</span>
-                ))}
-              </div>
-            </motion.div>
-          ))
-        )}
-      </div>
+      <div
+         className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative z-10 !block !flex !min-h-[200px] !w-full"
+         style={{ display: 'block', minHeight: '200px', width: '100%' }}
+         >
+  {projects.length === 0 ? (
+    <div className="col-span-full text-center text-red-500 dark:text-red-400 py-8 font-bold">No projects loaded. Please check your data source.</div>
+  ) : filteredProjects.length === 0 ? (
+    <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No projects found.</div>
+  ) : (
+    filteredProjects.map((project: Project, i: number) => (
+      <motion.div
+        key={i}
+        className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md w-full"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.12, delay: i * 0.06 }}
+      >
+        <ProjectCard {...project} />
+        <div className="flex flex-wrap gap-2 mt-2">
+          {(project.tags || []).map(tag => (
+            <span key={tag} className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded">#{tag}</span>
+          ))}
+        </div>
+      </motion.div>
+    ))
+  )}
+</div>
       {/* Floating Contact Button - matches Home page position and style, links to Home's contact section */}
       <a
         href="/#contact"
