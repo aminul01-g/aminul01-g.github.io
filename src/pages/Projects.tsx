@@ -2,7 +2,7 @@ import React from 'react';
 import { projects, Project } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import ProjectFilterBar from '../components/ProjectFilterBar';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Projects() {
@@ -31,13 +31,23 @@ export default function Projects() {
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // --- Improved fix for framer-motion initial animation sticking on mobile ---
+  const sectionRef = React.useRef(null);
+  // Try a more forgiving threshold and margin for mobile quirks
+  const isInView = useInView(sectionRef, { once: true, amount: 0.01, margin: '0px 0px -100px 0px' });
+  // Debug: log inView state
+  React.useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('Projects isInView:', isInView);
+  }, [isInView]);
   return (
     <motion.section
+      ref={sectionRef}
       id="projects"
       className="w-full min-h-screen px-2 sm:px-4 py-6 sm:py-8 bg-white dark:bg-black"
       initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.7 }}
     >
       <div className="flex flex-col items-center justify-center gap-2 mb-8">
