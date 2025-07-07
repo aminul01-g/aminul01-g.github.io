@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import ResumeModal from '../components/ResumeModal';
 import { profile } from '../data/profile';
 import React from 'react';
+import ImageWithFallback from '../components/ImageWithFallback';
 
 // Modern glassmorphism background effect
 const GlassBg = () => (
@@ -137,7 +138,7 @@ export default function About() {
         </div>
         <div className="flex-1 flex justify-center md:justify-end animate-fadeInUp delay-300 relative z-10">
           <div className="rounded-full shadow-2xl border-4 border-primary ring-4 ring-primary/10 bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative">
-            <img src={profilePic} alt="Profile" className="w-full h-full object-cover" />
+            <ImageWithFallback src={profilePic} alt="Profile" webp="/images/optimized/profile.webp" avif="/images/optimized/profile.avif" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-indigo-400/10 pointer-events-none" />
           </div>
         </div>
@@ -260,7 +261,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <a href="https://bubt.edu.bd/" target="_blank" rel="noopener noreferrer" className="focus:outline-none focus:ring-2 focus:ring-primary rounded-full">
-            <img src="/bubt-seeklogo.png" alt="BUBT Logo" className="w-16 h-16 rounded-full bg-white border-2 border-primary/30 shadow-lg object-contain p-1 mr-2 transition-transform duration-200 hover:scale-105" />
+            <ImageWithFallback src="/bubt-seeklogo.png" alt="BUBT Logo" webp="/images/optimized/bubt-seeklogo.webp" avif="/images/optimized/bubt-seeklogo.avif" className="w-16 h-16 rounded-full bg-white border-2 border-primary/30 shadow-lg object-contain p-1 mr-2 transition-transform duration-200 hover:scale-105" loading="lazy" />
           </a>
           <div>
             <div className="font-semibold text-lg dark:text-gray-100">B.Sc. in Computer Science & Engineering</div>

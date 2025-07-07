@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
 import Typewriter from '../components/Typewriter';
+import ImageWithFallback from '../components/ImageWithFallback';
 
 const socialLinks = [
 	{
@@ -91,14 +92,22 @@ export default function Hero() {
 		<div className="absolute bottom-0 right-0 w-80 h-80 themed-gradient-2 rounded-full blur-2xl animate-pulse" />
 		<div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/20 to-indigo-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-spin-slow" />
 	  </motion.div>
-	  <motion.img
-		src={profile.profilePic}
-		alt="profile"
-		className="w-40 h-40 sm:w-56 sm:h-56 rounded-full mb-6 border-4 border-primary shadow-lg relative z-10 object-cover bg-white dark:bg-gray-800"
+	  {/* Profile Image with Fallback */}
+	  <motion.div
 		initial={{ opacity: 0, scale: 0.8 }}
 		animate={{ opacity: 1, scale: 1 }}
 		transition={{ duration: 0.7 }}
-	  />
+		className="mb-6"
+	  >
+		<ImageWithFallback
+		  src={profile.profilePic}
+		  alt="profile"
+		  webp="/images/optimized/profile.webp"
+		  avif="/images/optimized/profile.avif"
+		  className="w-40 h-40 sm:w-56 sm:h-56 rounded-full border-4 border-primary shadow-lg relative z-10 object-cover bg-white dark:bg-gray-800"
+		  loading="lazy"
+		/>
+	  </motion.div>
 	  <motion.h1
 		className="text-4xl sm:text-6xl font-bold mb-4 dark:text-white relative z-10"
 		initial={{ opacity: 0, y: 40 }}

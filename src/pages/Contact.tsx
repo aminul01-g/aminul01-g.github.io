@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import { useState } from 'react';
+import ContactForm from '../components/ContactForm';
 
 const contactInfo = [
 	{
@@ -40,21 +41,6 @@ const contactInfo = [
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('');
-
-  const handleChange = (
-	e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-	setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-	e.preventDefault();
-	setStatus('Message sending is not yet implemented.');
-	// Future: Integrate with Formspree, EmailJS, or backend
-  };
-
   return (
 	<section id="contact" className="contact-section py-16 bg-gradient-to-br from-blue-50/60 via-white/80 to-purple-100/60 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
 	  <div className="absolute inset-0 pointer-events-none z-0">
@@ -109,88 +95,7 @@ export default function Contact() {
 			))}
 		  </motion.div>
 		  {/* Contact Form */}
-	  <motion.form
-		className="contact-form space-y-4 glass-card rounded-2xl p-8 flex flex-col justify-center h-full backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg"
-			style={{ minHeight: '370px', maxHeight: '520px' }}
-			onSubmit={handleSubmit}
-			autoComplete="off"
-			initial={{ opacity: 0, y: 30 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, amount: 0.2 }}
-			transition={{ duration: 0.7, delay: 0.2 }}
-		  >
-			<div className="space-y-2">
-			  <label className="block text-sm font-medium text-gray-800 dark:text-white">
-				Name
-			  </label>
-			  <input
-				type="text"
-				name="name"
-				placeholder="Your Name"
-				className="w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner"
-				value={form.name}
-				onChange={handleChange}
-				required
-			  />
-			</div>
-			<div className="space-y-2">
-			  <label className="block text-sm font-medium text-gray-800 dark:text-white">
-				Email
-			  </label>
-			  <input
-				type="email"
-				name="email"
-				placeholder="your-mail@gmail.com"
-				className="w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner"
-				value={form.email}
-				onChange={handleChange}
-				required
-			  />
-			</div>
-			<div className="space-y-2">
-			  <label className="block text-sm font-medium text-gray-800 dark:text-white">
-				Message
-			  </label>
-			  <textarea
-				name="message"
-				placeholder="Your Message"
-				rows={5}
-				className="w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner resize-none"
-				value={form.message}
-				onChange={handleChange}
-				required
-			  ></textarea>
-			</div>
-			<Button
-			  type="submit"
-			  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-md font-semibold hover:from-purple-500 hover:to-blue-500 transition flex items-center justify-center gap-2 mt-2 shadow-lg hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400/40"
-			>
-			  <svg
-				className="w-5 h-5 mr-2"
-				fill="none"
-				stroke="currentColor"
-				strokeWidth="2"
-				viewBox="0 0 24 24"
-			  >
-				<path
-				  strokeLinecap="round"
-				  strokeLinejoin="round"
-				  d="M22 2L11 13"
-				/>
-				<path
-				  strokeLinecap="round"
-				  strokeLinejoin="round"
-				  d="M22 2L15 22l-4-9-9-4 20-7z"
-				/>
-			  </svg>
-			  Send Message
-			</Button>
-			{status && (
-			  <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
-				{status}
-			  </p>
-			)}
-		  </motion.form>
+	  <ContactForm />
 		</div>
 	  </div>
 	</section>

@@ -32,7 +32,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-900 text-black dark:text-white shadow-md p-4 sticky top-0 z-50">
+    <nav className="bg-white dark:bg-gray-900 text-black dark:text-white shadow-md p-4 sticky top-0 z-50" role="navigation" aria-label="Main navigation">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo and ThemeToggle always together */}
         <div className="flex items-center gap-2">
@@ -62,7 +62,7 @@ export default function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              className="block py-3 px-2 rounded-lg sm:inline dark:text-white text-black font-medium hover:text-primary dark:hover:text-primary transition focus:outline-none focus:ring-2 focus:ring-primary"
+              className="block py-3 px-2 rounded-lg sm:inline dark:text-white text-black font-medium hover:text-primary dark:hover:text-primary focus:bg-primary/10 dark:focus:bg-primary/20 focus:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
@@ -71,7 +71,7 @@ export default function Navbar() {
           {/* Contact anchor link for smooth scroll */}
           <a
             href="/#contact"
-            className="block py-3 px-2 rounded-lg sm:inline dark:text-white text-black font-medium hover:text-primary dark:hover:text-primary transition focus:outline-none focus:ring-2 focus:ring-primary"
+            className="block py-3 px-2 rounded-lg sm:inline dark:text-white text-black font-medium hover:text-primary dark:hover:text-primary focus:bg-primary/10 dark:focus:bg-primary/20 focus:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary"
             onClick={handleContactClick}
           >
             Contact

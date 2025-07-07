@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ProjectFilterBar({ tags, onFilter, onSearch }: { tags: string[]; onFilter: (tag: string) => void; onSearch: (q: string) => void }) {
+export default function ProjectFilterBar({ tags, onFilter, onSearch, activeTag }: { tags: string[]; onFilter: (tag: string | null) => void; onSearch: (q: string) => void; activeTag?: string | null }) {
   const [search, setSearch] = useState('');
   return (
     <div className="flex flex-wrap gap-2 items-center mb-6">
@@ -20,13 +20,23 @@ export default function ProjectFilterBar({ tags, onFilter, onSearch }: { tags: s
         {tags.map(tag => (
           <button
             key={tag}
-            className="px-3 py-1 rounded-full bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 font-semibold hover:bg-primary/20 dark:hover:bg-indigo-900/50 transition-all text-xs"
+            className={`px-3 py-1 rounded-full font-semibold text-xs transition-all
+              ${activeTag === tag ? 'bg-primary text-white dark:bg-indigo-600 dark:text-white shadow' : 'bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 hover:bg-primary/20 dark:hover:bg-indigo-900/50'}`}
             onClick={() => onFilter(tag)}
             aria-label={`Filter by ${tag}`}
           >
             #{tag}
           </button>
         ))}
+        {activeTag && (
+          <button
+            className="px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-xs transition-all ml-2"
+            onClick={() => onFilter(null)}
+            aria-label="Clear filter"
+          >
+            Clear
+          </button>
+        )}
       </div>
     </div>
   );

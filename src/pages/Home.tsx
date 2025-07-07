@@ -1,4 +1,3 @@
-
 import Hero from './Hero';
 import ParallaxBackground from '../components/ParallaxBackground';
 import { projects } from '../data/projects';
@@ -9,6 +8,8 @@ import Button from '../components/Button';
 import { motion } from 'framer-motion';
 import Contact from './Contact';
 import Testimonials from '../components/Testimonials';
+import ImageWithFallback from '../components/ImageWithFallback';
+import Achievements from '../components/Achievements';
 
 // Utility to estimate reading time (words per minute)
 function getReadingTime(text: string, wpm = 200): number {
@@ -31,7 +32,7 @@ export default function Home() {
       {/* About Preview */}
       <motion.section id="about-preview" className="relative flex flex-col items-center justify-center min-h-[60vh] text-center px-4 py-16 fade-in max-w-6xl mx-auto bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp transition-all duration-300 mb-12" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
         <div className="flex flex-col items-center gap-4 mb-4">
-          <img src="https://avatars.githubusercontent.com/u/188814014?v=4" alt="Profile" className="w-20 h-20 rounded-full border-2 border-primary shadow-md bg-white dark:bg-gray-800 object-cover" />
+          <ImageWithFallback src="https://avatars.githubusercontent.com/u/188814014?v=4" alt="Profile" webp="/images/optimized/github-profile.webp" avif="/images/optimized/github-profile.avif" className="w-20 h-20 rounded-full border-2 border-primary shadow-md bg-white dark:bg-gray-800 object-cover" loading="lazy" />
           <h2 className="text-3xl sm:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">
             About Me
           </h2>
@@ -44,6 +45,7 @@ export default function Home() {
           </Button>
         </Link>
       </motion.section>
+      <Achievements />
 
       {/* Skills & Expertise Section */}
       <motion.section

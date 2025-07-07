@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function BlogFilterBar({ tags, onFilter, onSearch }: { tags: string[]; onFilter: (tag: string) => void; onSearch: (q: string) => void }) {
+export default function BlogFilterBar({ tags, onFilter, onSearch, activeTag }: { tags: string[]; onFilter: (tag: string | null) => void; onSearch: (q: string) => void; activeTag?: string | null }) {
   const [search, setSearch] = useState('');
   return (
     <div className="flex flex-wrap gap-2 items-center mb-6">
@@ -17,10 +17,17 @@ export default function BlogFilterBar({ tags, onFilter, onSearch }: { tags: stri
       />
       <span className="ml-4 text-sm text-gray-500 dark:text-gray-400">Filter by tag:</span>
       <div className="flex gap-2 flex-wrap">
+        <button
+          className={`px-3 py-1 rounded-full font-semibold text-xs transition-all ${!activeTag ? 'bg-primary text-white dark:bg-indigo-700' : 'bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 hover:bg-primary/20 dark:hover:bg-indigo-900/50'}`}
+          onClick={() => onFilter(null)}
+          aria-label="Show all posts"
+        >
+          All
+        </button>
         {tags.map(tag => (
           <button
             key={tag}
-            className="px-3 py-1 rounded-full bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 font-semibold hover:bg-primary/20 dark:hover:bg-indigo-900/50 transition-all text-xs"
+            className={`px-3 py-1 rounded-full font-semibold text-xs transition-all ${activeTag === tag ? 'bg-primary text-white dark:bg-indigo-700' : 'bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 hover:bg-primary/20 dark:hover:bg-indigo-900/50'}`}
             onClick={() => onFilter(tag)}
             aria-label={`Filter by ${tag}`}
           >
