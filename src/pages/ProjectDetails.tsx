@@ -10,7 +10,7 @@ export default function ProjectDetails() {
     return (
       <div className="max-w-2xl mx-auto my-16 p-8 bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-lg text-center">
         <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-        <p className="mb-6">Sorry, we couldn't find that project.</p>
+        <p className="mb-6">Sorry, we couldn&apos;t find that project.</p>
         <Link to="/projects" className="text-primary underline">Back to Projects</Link>
       </div>
     );
@@ -34,7 +34,7 @@ export default function ProjectDetails() {
             <span key={tag} className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded">#{tag}</span>
           ))}
         </div>
-        <img src={project.thumbnail} alt={project.title + ' thumbnail'} className="w-full max-w-md rounded-lg mb-6 mx-auto" loading="lazy" />
+        <img src={project.thumbnail} alt={`${project.title} thumbnail`} className="w-full max-w-md rounded-lg mb-6 mx-auto" loading="lazy" />
         <p className="text-lg text-gray-700 dark:text-gray-200 mb-6">{project.description}</p>
         {/* Placeholder for case study/extended details */}
         <div className="prose dark:prose-invert max-w-none mb-8">

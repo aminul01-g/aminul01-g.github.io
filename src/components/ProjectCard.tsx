@@ -1,3 +1,4 @@
+import React from 'react';
 import ImageWithFallback from './ImageWithFallback';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +9,6 @@ export interface ProjectCardProps {
   github: string;
   thumbnail?: string;
 }
-
 
 // Emoji/icon fallback for project logos by title keyword
 const projectIcons: Record<string, string> = {
@@ -25,10 +25,10 @@ export default function ProjectCard({ title, description, tags, github, thumbnai
   return (
     <div
       className="group h-full flex flex-col rounded-xl overflow-hidden bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 max-w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
-      tabIndex={0}
       aria-label={`Project: ${title}`}
       role="article"
-      style={{minHeight: 300, width: '100%'}}>
+      style={{ minHeight: 300, width: '100%' }}
+    >
       {/* Project Image/Icon */}
       <div className="relative w-full pt-[56.25%] bg-gradient-to-br from-primary/5 to-indigo-500/5 dark:from-primary/10 dark:to-indigo-500/10">
         <div className="absolute inset-0 flex items-center justify-center">
@@ -37,7 +37,7 @@ export default function ProjectCard({ title, description, tags, github, thumbnai
           ) : (
             <ImageWithFallback
               src={logo}
-              alt={title + ' thumbnail'}
+              alt={`${title} thumbnail`}
               webp={`/images/optimized/${logo?.split('/').pop()?.replace(/\.[^.]+$/, '.webp')}`}
               avif={`/images/optimized/${logo?.split('/').pop()?.replace(/\.[^.]+$/, '.avif')}`}
               className="w-full h-full object-cover rounded-t-xl"
@@ -52,7 +52,7 @@ export default function ProjectCard({ title, description, tags, github, thumbnai
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-1">
           {title}
         </h3>
-        
+
         <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 group-hover:line-clamp-none transition-all duration-200">
           {description}
         </p>
@@ -60,8 +60,8 @@ export default function ProjectCard({ title, description, tags, github, thumbnai
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag, i) => (
-            <span 
-              key={i} 
+            <span
+              key={i}
               className="px-2 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300"
             >
               #{tag}
