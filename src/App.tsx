@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { AnimatePresence } from 'framer-motion';
 import { Suspense, lazy } from 'react';
-import React from 'react'; // <--- ADDED THIS IMPORT for JSX.Element and React.FC
+import React from 'react'; // <--- THIS IS CRITICAL
 
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -12,11 +12,7 @@ const About = lazy(() => import('./pages/About'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
 
-/**
- * AnimatedRoutes component handles routing with animation and suspense.
- * @returns {JSX.Element} The animated routing structure.
- */
-function AnimatedRoutes(): JSX.Element { // <--- ADDED RETURN TYPE
+function AnimatedRoutes(): JSX.Element { // <--- THIS IS CRITICAL
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
@@ -39,12 +35,7 @@ function AnimatedRoutes(): JSX.Element { // <--- ADDED RETURN TYPE
   );
 }
 
-/**
- * Main App component that renders the overall application structure.
- * @returns {JSX.Element} The main application layout including Navbar, routes, and Footer.
- */
-function App(): JSX.Element { // <--- ADDED RETURN TYPE
-  // Render full app with routing, navbar, and footer
+function App(): JSX.Element { // <--- THIS IS CRITICAL
   return (
     <>
       <Navbar />
