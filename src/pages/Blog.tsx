@@ -12,10 +12,12 @@ export default function Blog() {
   const [filter, setFilter] = React.useState<string | null>(null);
   const [search, setSearch] = React.useState('');
 
-  const allTags = Array.from(new Set(blogPosts.flatMap(post => post.tags || [])));
-  const filteredPosts = blogPosts.filter(post => {
+  const allTags = Array.from(new Set(blogPosts.flatMap((post) => post.tags || [])));
+  const filteredPosts = blogPosts.filter((post) => {
     const matchesTag = filter ? (post.tags || []).includes(filter) : true;
-    const matchesSearch = search ? (post.title + post.summary).toLowerCase().includes(search.toLowerCase()) : true;
+    const matchesSearch = search
+      ? (post.title + post.summary).toLowerCase().includes(search.toLowerCase())
+      : true;
     return matchesTag && matchesSearch;
   });
 
@@ -36,9 +38,15 @@ export default function Blog() {
     <>
       <Helmet>
         <title>Blog | Aminul Islam Bhuiyan Amin</title>
-        <meta name="description" content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin." />
+        <meta
+          name="description"
+          content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin."
+        />
         <meta property="og:title" content="Blog | Aminul Islam Bhuiyan Amin" />
-        <meta property="og:description" content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin." />
+        <meta
+          property="og:description"
+          content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin."
+        />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aminul01-g.github.io/blog" />
@@ -62,14 +70,24 @@ export default function Blog() {
           <div className="absolute -top-32 -left-32 w-96 h-96 themed-gradient-1 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-0 right-0 w-80 h-80 themed-gradient-2 rounded-full blur-2xl animate-pulse" />
         </motion.div>
-        <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 relative z-10">Blog</h2>
+        <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 relative z-10">
+          Blog
+        </h2>
         <p className="text-center text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto relative z-10">
-          Insights, tutorials, and stories from my journey in tech, AI, and creative coding. Explore my thoughts, discoveries, and lessons learned along the way.
+          Insights, tutorials, and stories from my journey in tech, AI, and creative coding. Explore
+          my thoughts, discoveries, and lessons learned along the way.
         </p>
-        <BlogFilterBar tags={allTags} onFilter={setFilter} onSearch={setSearch} activeTag={filter} />
+        <BlogFilterBar
+          tags={allTags}
+          onFilter={setFilter}
+          onSearch={setSearch}
+          activeTag={filter}
+        />
         <div className="grid gap-8 md:grid-cols-2 relative z-10">
           {filteredPosts.length === 0 ? (
-            <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">No blog posts found.</div>
+            <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">
+              No blog posts found.
+            </div>
           ) : (
             filteredPosts.map((post: BlogPost, i: number) => (
               <BlogCardTiltWrapper key={post.slug}>
@@ -88,13 +106,32 @@ export default function Blog() {
                     aria-label={`Read blog post: ${post.title}`}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <svg className="w-6 h-6 text-primary/80 dark:text-primary/80 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h5l2-2h5a2 2 0 012 2v12a2 2 0 01-2 2z" /></svg>
-                      <h3 className="text-xl font-semibold text-primary mb-0 dark:text-primary group-hover:underline">{post.title}</h3>
+                      <svg
+                        className="w-6 h-6 text-primary/80 dark:text-primary/80 group-hover:scale-110 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h5l2-2h5a2 2 0 012 2v12a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                      <h3 className="text-xl font-semibold text-primary mb-0 dark:text-primary group-hover:underline">
+                        {post.title}
+                      </h3>
                     </div>
                     <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
                     <div className="flex flex-wrap gap-2 mb-2">
-                      {(post.tags || []).map(tag => (
-                        <span key={tag} className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded">#{tag}</span>
+                      {(post.tags || []).map((tag) => (
+                        <span
+                          key={tag}
+                          className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded"
+                        >
+                          #{tag}
+                        </span>
                       ))}
                     </div>
                     <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
@@ -112,7 +149,19 @@ export default function Blog() {
           tabIndex={0}
           onClick={handleContactClick}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z" /></svg>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z"
+            />
+          </svg>
           <span className="hidden sm:inline">Contact</span>
         </a>
       </motion.section>

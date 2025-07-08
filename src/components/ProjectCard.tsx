@@ -18,7 +18,13 @@ const projectIcons: Record<string, string> = {
   'titanic-survival-app': '🚢',
 };
 
-export default function ProjectCard({ title, description, tags, github, thumbnail }: ProjectCardProps) {
+export default function ProjectCard({
+  title,
+  description,
+  tags,
+  github,
+  thumbnail,
+}: ProjectCardProps) {
   const logo = thumbnail || projectIcons[title] || '📦';
   const isEmoji = !thumbnail && !!projectIcons[title];
 
@@ -38,8 +44,14 @@ export default function ProjectCard({ title, description, tags, github, thumbnai
             <ImageWithFallback
               src={logo}
               alt={`${title} thumbnail`}
-              webp={`/images/optimized/${logo?.split('/').pop()?.replace(/\.[^.]+$/, '.webp')}`}
-              avif={`/images/optimized/${logo?.split('/').pop()?.replace(/\.[^.]+$/, '.avif')}`}
+              webp={`/images/optimized/${logo
+                ?.split('/')
+                .pop()
+                ?.replace(/\.[^.]+$/, '.webp')}`}
+              avif={`/images/optimized/${logo
+                ?.split('/')
+                .pop()
+                ?.replace(/\.[^.]+$/, '.avif')}`}
               className="w-full h-full object-cover rounded-t-xl"
               loading="lazy"
             />

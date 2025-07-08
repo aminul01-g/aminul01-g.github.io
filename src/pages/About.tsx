@@ -1,7 +1,19 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaPython, FaDocker, FaGitAlt, FaLinux, FaDatabase, FaAward, FaRobot, FaCheckCircle, FaUserGraduate } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaPython,
+  FaDocker,
+  FaGitAlt,
+  FaLinux,
+  FaDatabase,
+  FaAward,
+  FaRobot,
+  FaCheckCircle,
+  FaUserGraduate,
+} from 'react-icons/fa';
 import { SiFoodpanda } from 'react-icons/si';
-import { GiFamilyTree } from "react-icons/gi";
+import { GiFamilyTree } from 'react-icons/gi';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ResumeModal from '../components/ResumeModal';
 import { profile } from '../data/profile';
@@ -17,8 +29,7 @@ const GlassBg = () => (
   />
 );
 
-
-const profilePic = "https://avatars.githubusercontent.com/u/188814014?v=4";
+const profilePic = 'https://avatars.githubusercontent.com/u/188814014?v=4';
 
 export default function About() {
   // Project cards data must be inside the function, before return
@@ -30,7 +41,7 @@ export default function About() {
       desc: 'Built a ',
       stack: 'CNN',
       stackColor: 'text-primary font-semibold dark:text-indigo-300',
-      details: ' in PyTorch with ~99% accuracy on handwritten digit classification.'
+      details: ' in PyTorch with ~99% accuracy on handwritten digit classification.',
     },
     {
       icon: FaRobot,
@@ -38,7 +49,7 @@ export default function About() {
       desc: 'Developed full pipeline (tokenization to evaluation) using ',
       stack: 'Hugging Face Transformers',
       stackColor: 'text-primary font-semibold dark:text-indigo-300',
-      details: '.'
+      details: '.',
     },
     {
       icon: FaLinux,
@@ -46,7 +57,7 @@ export default function About() {
       desc: 'CLI-based scheduling simulation tool comparing ',
       stack: 'FCFS, SJF, and Priority',
       stackColor: 'text-primary font-semibold dark:text-indigo-300',
-      details: ' algorithms.'
+      details: ' algorithms.',
     },
     {
       icon: FaDatabase,
@@ -54,7 +65,7 @@ export default function About() {
       desc: 'Created an ',
       stack: 'LSTM + CNN',
       stackColor: 'text-primary font-semibold dark:text-indigo-300',
-      details: ' model combining ResNet50 encoder and LSTM decoder.'
+      details: ' model combining ResNet50 encoder and LSTM decoder.',
     },
     {
       icon: FaDocker,
@@ -62,7 +73,7 @@ export default function About() {
       desc: 'Fine-tuned a Transformer-based chatbot and deployed via ',
       stack: 'Flask & Docker',
       stackColor: 'text-primary font-semibold dark:text-indigo-300',
-      details: '.'
+      details: '.',
     },
     {
       icon: FaRobot,
@@ -70,8 +81,8 @@ export default function About() {
       desc: 'Developed a desktop productivity tool combining task tracking with ',
       stack: 'GPT-powered assistance',
       stackColor: 'text-primary font-semibold dark:text-indigo-300',
-      details: '.'
-    }
+      details: '.',
+    },
   ];
 
   const navigate = useNavigate();
@@ -93,7 +104,7 @@ export default function About() {
   return (
     <div className="relative min-h-screen pb-12 overflow-x-hidden">
       <GlassBg />
-       {/* Hero Banner with animated background and CTA */}
+      {/* Hero Banner with animated background and CTA */}
       <motion.section
         className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between px-6 sm:px-12 pt-20 pb-16 max-w-6xl mx-auto mb-16 overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
@@ -113,16 +124,58 @@ export default function About() {
           <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/20 to-indigo-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-spin-slow" />
         </motion.div>
         <div className="flex-1 text-center md:text-left mb-10 md:mb-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 drop-shadow-lg dark:from-primary dark:to-indigo-400 animate-fadeInUp">Md Aminul Islam Bhuiyan Amin</h1>
+          <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 drop-shadow-lg dark:from-primary dark:to-indigo-400 animate-fadeInUp">
+            Md Aminul Islam Bhuiyan Amin
+          </h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-6 justify-center md:justify-start">
-            <span className="inline-flex items-center gap-2 text-xl font-semibold text-primary dark:text-indigo-300 animate-fadeInUp delay-100"><FaUserGraduate className="text-primary dark:text-indigo-300"/>AI Engineer & Computer Science and Engineering Student</span>
+            <span className="inline-flex items-center gap-2 text-xl font-semibold text-primary dark:text-indigo-300 animate-fadeInUp delay-100">
+              <FaUserGraduate className="text-primary dark:text-indigo-300" />
+              AI Engineer & Computer Science and Engineering Student
+            </span>
           </div>
           <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-4 animate-fadeInUp delay-200">
-            <a href="https://github.com/aminul01-g" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"><FaGithub/>GitHub</a>
-            <a href="https://linkedin.com/in/aminulai" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"><FaLinkedin/>LinkedIn</a>
-            <a href="https://leetcode.com/u/aminul01-lc/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"><span className="text-yellow-500">LC</span>LeetCode</a>
-            <a href="https://behance.net/aminul01g" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"><span className="text-blue-500">Bē</span>Behance</a>
-            <a href="https://t.me/aminul01g" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"><span className="text-blue-400">TG</span>Telegram</a>
+            <a
+              href="https://github.com/aminul01-g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+            >
+              <FaGithub />
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/aminulai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+            >
+              <FaLinkedin />
+              LinkedIn
+            </a>
+            <a
+              href="https://leetcode.com/u/aminul01-lc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+            >
+              <span className="text-yellow-500">LC</span>LeetCode
+            </a>
+            <a
+              href="https://behance.net/aminul01g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+            >
+              <span className="text-blue-500">Bē</span>Behance
+            </a>
+            <a
+              href="https://t.me/aminul01g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+            >
+              <span className="text-blue-400">TG</span>Telegram
+            </a>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center md:justify-start">
             {/*<a href="#contact" className="btn inline-flex items-center gap-2 group">
@@ -138,7 +191,14 @@ export default function About() {
         </div>
         <div className="flex-1 flex justify-center md:justify-end animate-fadeInUp delay-300 relative z-10">
           <div className="rounded-full shadow-2xl border-4 border-primary ring-4 ring-primary/10 bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative">
-            <ImageWithFallback src={profilePic} alt="Profile" webp="/images/optimized/profile.webp" avif="/images/optimized/profile.avif" className="w-full h-full object-cover" loading="lazy" />
+            <ImageWithFallback
+              src={profilePic}
+              alt="Profile"
+              webp="/images/optimized/profile.webp"
+              avif="/images/optimized/profile.avif"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-indigo-400/10 pointer-events-none" />
           </div>
         </div>
@@ -165,28 +225,61 @@ export default function About() {
           🧠 Summary
         </motion.h2>
         <div className="mb-4">
-          <span className="inline-block bg-primary/10 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold px-4 py-2 rounded-full text-lg shadow-sm animate-fadeInUp">Empowering the future with AI & Intelligent Systems</span>
+          <span className="inline-block bg-primary/10 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold px-4 py-2 rounded-full text-lg shadow-sm animate-fadeInUp">
+            Empowering the future with AI & Intelligent Systems
+          </span>
         </div>
         <p className="text-gray-700 text-lg text-center mb-2 dark:text-gray-200 animate-fadeInUp delay-100">
-          I&apos;m a passionate and driven Computer Science and Engineering undergraduate at Bangladesh University of Business & Technology (BUBT), focused on
-          <span className="inline-flex items-center gap-1 font-semibold text-primary dark:text-indigo-300 ml-1"><FaRobot aria-hidden="true"/>AI</span>,
-          <span className="inline-flex items-center gap-1 font-semibold text-indigo-500 dark:text-indigo-300 ml-1"><FaPython aria-hidden="true"/>Python</span>, and real-world intelligent systems. My core interests lie in
-          <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">machine learning</span>,
-          <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">deep learning</span>,
-          <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">NLP</span>, and
+          I&apos;m a passionate and driven Computer Science and Engineering undergraduate at
+          Bangladesh University of Business & Technology (BUBT), focused on
+          <span className="inline-flex items-center gap-1 font-semibold text-primary dark:text-indigo-300 ml-1">
+            <FaRobot aria-hidden="true" />
+            AI
+          </span>
+          ,
+          <span className="inline-flex items-center gap-1 font-semibold text-indigo-500 dark:text-indigo-300 ml-1">
+            <FaPython aria-hidden="true" />
+            Python
+          </span>
+          , and real-world intelligent systems. My core interests lie in
+          <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">
+            machine learning
+          </span>
+          ,
+          <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">
+            deep learning
+          </span>
+          ,<span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">NLP</span>, and
           <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">LLMs</span>.
         </p>
         <div className="flex flex-wrap gap-2 justify-center mb-2 animate-fadeInUp delay-150">
-          <span className="inline-flex items-center gap-1 themed-badge themed-badge-blue font-semibold px-3 py-1 rounded-full text-sm"><FaPython/>Python</span>
-          <span className="inline-flex items-center gap-1 themed-badge themed-badge-green font-semibold px-3 py-1 rounded-full text-sm"><FaRobot/>AI/ML</span>
-          <span className="inline-flex items-center gap-1 themed-badge themed-badge-yellow font-semibold px-3 py-1 rounded-full text-sm"><FaDocker/>Docker</span>
-          <span className="inline-flex items-center gap-1 themed-badge themed-badge-gray font-semibold px-3 py-1 rounded-full text-sm"><FaLinux/>Linux</span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-blue font-semibold px-3 py-1 rounded-full text-sm">
+            <FaPython />
+            Python
+          </span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-green font-semibold px-3 py-1 rounded-full text-sm">
+            <FaRobot />
+            AI/ML
+          </span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-yellow font-semibold px-3 py-1 rounded-full text-sm">
+            <FaDocker />
+            Docker
+          </span>
+          <span className="inline-flex items-center gap-1 themed-badge themed-badge-gray font-semibold px-3 py-1 rounded-full text-sm">
+            <FaLinux />
+            Linux
+          </span>
         </div>
         <p className="text-gray-700 text-lg text-center dark:text-gray-200 animate-fadeInUp delay-200">
           With a strong foundation in
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">Python</span>,
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">PyTorch</span>, and
-          <span className="text-primary font-semibold dark:text-indigo-300 ml-1">Linux-based development</span>, I build and deploy scalable AI solutions that combine academic research with practical applications. I enjoy solving complex problems, contributing to open-source projects, and mentoring others in the field of AI.
+          <span className="text-primary font-semibold dark:text-indigo-300 ml-1">
+            Linux-based development
+          </span>
+          , I build and deploy scalable AI solutions that combine academic research with practical
+          applications. I enjoy solving complex problems, contributing to open-source projects, and
+          mentoring others in the field of AI.
         </p>
       </motion.div>
 
@@ -211,7 +304,16 @@ export default function About() {
         </motion.h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
           {/* Skill tags with glass, hover, and fade-in, plus progress bars */}
-          {[{icon: FaPython, label: 'Python', level: 95}, {icon: SiFoodpanda, label: 'Pandas', level: 90}, {icon: FaDocker, label: 'Docker', level: 80}, {icon: FaGitAlt, label: 'Git', level: 85}, {icon: FaLinux, label: 'Linux CLI', level: 90}, {icon: FaDatabase, label: 'SQL/SQLite', level: 75}, {icon: GiFamilyTree, label: 'Deep Learning', level: 88}, {icon: FaRobot, label: 'NLP/LLMs', level: 85}].map((skill, i) => (
+          {[
+            { icon: FaPython, label: 'Python', level: 95 },
+            { icon: SiFoodpanda, label: 'Pandas', level: 90 },
+            { icon: FaDocker, label: 'Docker', level: 80 },
+            { icon: FaGitAlt, label: 'Git', level: 85 },
+            { icon: FaLinux, label: 'Linux CLI', level: 90 },
+            { icon: FaDatabase, label: 'SQL/SQLite', level: 75 },
+            { icon: GiFamilyTree, label: 'Deep Learning', level: 88 },
+            { icon: FaRobot, label: 'NLP/LLMs', level: 85 },
+          ].map((skill, i) => (
             <motion.div
               key={skill.label}
               whileHover={{ scale: 1.13, boxShadow: '0 4px 32px #a78bfa33' }}
@@ -221,11 +323,16 @@ export default function About() {
               className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-center transition-transform duration-150 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp group"
               tabIndex={0}
             >
-              {skill.icon && <skill.icon className="text-4xl text-primary dark:text-indigo-300 mb-2" />}
+              {skill.icon && (
+                <skill.icon className="text-4xl text-primary dark:text-indigo-300 mb-2" />
+              )}
               <span className="font-semibold dark:text-gray-100 text-base mb-2">{skill.label}</span>
               {/* Progress bar */}
               <div className="w-full h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden mb-1">
-                <div className="h-2 bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 rounded-full" style={{ width: `${skill.level}%` }}></div>
+                <div
+                  className="h-2 bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 rounded-full"
+                  style={{ width: `${skill.level}%` }}
+                ></div>
               </div>
               <span className="text-xs text-gray-500 dark:text-gray-400">{skill.level}%</span>
             </motion.div>
@@ -260,13 +367,36 @@ export default function About() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
         >
-          <a href="https://bubt.edu.bd/" target="_blank" rel="noopener noreferrer" className="focus:outline-none focus:ring-2 focus:ring-primary rounded-full">
-            <ImageWithFallback src="/bubt-seeklogo.png" alt="BUBT Logo" webp="/images/optimized/bubt-seeklogo.webp" avif="/images/optimized/bubt-seeklogo.avif" className="w-16 h-16 rounded-full bg-white border-2 border-primary/30 shadow-lg object-contain p-1 mr-2 transition-transform duration-200 hover:scale-105" loading="lazy" />
+          <a
+            href="https://bubt.edu.bd/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="focus:outline-none focus:ring-2 focus:ring-primary rounded-full"
+          >
+            <ImageWithFallback
+              src="/bubt-seeklogo.png"
+              alt="BUBT Logo"
+              webp="/images/optimized/bubt-seeklogo.webp"
+              avif="/images/optimized/bubt-seeklogo.avif"
+              className="w-16 h-16 rounded-full bg-white border-2 border-primary/30 shadow-lg object-contain p-1 mr-2 transition-transform duration-200 hover:scale-105"
+              loading="lazy"
+            />
           </a>
           <div>
-            <div className="font-semibold text-lg dark:text-gray-100">B.Sc. in Computer Science & Engineering</div>
-            <a href="https://bubt.edu.bd/" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 underline hover:text-primary transition-colors">Bangladesh University of Business & Technology (BUBT)</a>
-            <div className="text-gray-500 text-sm dark:text-gray-400">Expected Graduation: September 2027</div>
+            <div className="font-semibold text-lg dark:text-gray-100">
+              B.Sc. in Computer Science & Engineering
+            </div>
+            <a
+              href="https://bubt.edu.bd/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 dark:text-gray-300 underline hover:text-primary transition-colors"
+            >
+              Bangladesh University of Business & Technology (BUBT)
+            </a>
+            <div className="text-gray-500 text-sm dark:text-gray-400">
+              Expected Graduation: September 2027
+            </div>
           </div>
         </motion.div>
         <motion.h2
@@ -286,14 +416,26 @@ export default function About() {
         >
           <div className="flex items-center gap-4 mb-2">
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-purple-400/30 to-blue-400/20 shadow-inner">
-              <FaAward className="text-2xl text-primary dark:text-indigo-300"/>
+              <FaAward className="text-2xl text-primary dark:text-indigo-300" />
             </div>
             <span className="font-semibold text-lg dark:text-gray-100">Data Analyst</span>
-            <span className="text-gray-500 text-sm dark:text-gray-400">Intelligent Image Management Inc. (IIMI), Dhaka — June 2024–Present</span>
+            <span className="text-gray-500 text-sm dark:text-gray-400">
+              Intelligent Image Management Inc. (IIMI), Dhaka — June 2024–Present
+            </span>
           </div>
           <ul className="list-disc list-inside text-gray-700 ml-2 dark:text-gray-200">
-            <li>Designed and maintained automated <span className="text-indigo-500 font-semibold dark:text-indigo-300">ETL pipelines</span> for high-volume medical datasets.</li>
-            <li>Supported predictive analytics and data preprocessing using <span className="text-primary font-semibold dark:text-indigo-300">Python</span> and <span className="text-primary font-semibold dark:text-indigo-300">Pandas</span>.</li>
+            <li>
+              Designed and maintained automated{' '}
+              <span className="text-indigo-500 font-semibold dark:text-indigo-300">
+                ETL pipelines
+              </span>{' '}
+              for high-volume medical datasets.
+            </li>
+            <li>
+              Supported predictive analytics and data preprocessing using{' '}
+              <span className="text-primary font-semibold dark:text-indigo-300">Python</span> and{' '}
+              <span className="text-primary font-semibold dark:text-indigo-300">Pandas</span>.
+            </li>
             <li>Collaborated with cross-functional teams on research-driven insights.</li>
           </ul>
         </motion.div>
@@ -336,7 +478,11 @@ export default function About() {
                   {proj.label}
                 </div>
                 <ul className="list-disc list-inside text-gray-700 ml-2 text-sm dark:text-gray-200">
-                  <li>{proj.desc}<span className={proj.stackColor}>{proj.stack}</span>{proj.details}</li>
+                  <li>
+                    {proj.desc}
+                    <span className={proj.stackColor}>{proj.stack}</span>
+                    {proj.details}
+                  </li>
                 </ul>
               </div>
             </motion.div>
@@ -365,28 +511,48 @@ export default function About() {
         </motion.h2>
         <div className="grid gap-10 md:grid-cols-2">
           {/* Certifications */}
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaCheckCircle className="text-2xl text-green-500"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaCheckCircle className="text-2xl text-green-500" />
             <div>
-              <div className="font-semibold dark:text-gray-100">IBM Machine Learning Professional Certificate – Rav Ahuja (Coursera) </div>
+              <div className="font-semibold dark:text-gray-100">
+                IBM Machine Learning Professional Certificate – Rav Ahuja (Coursera){' '}
+              </div>
             </div>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaCheckCircle className="text-2xl text-yellow-500"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaCheckCircle className="text-2xl text-yellow-500" />
             <div>
-              <div className="font-semibold dark:text-gray-100">IBM Applied AI Professional Certificate – In Progress</div>
+              <div className="font-semibold dark:text-gray-100">
+                IBM Applied AI Professional Certificate – In Progress
+              </div>
             </div>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaCheckCircle className="text-2xl text-yellow-500"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaCheckCircle className="text-2xl text-yellow-500" />
             <div>
-              <div className="font-semibold dark:text-gray-100">Deep Learning Specialization – Andrew Ng (Coursera) – In Progress </div>
+              <div className="font-semibold dark:text-gray-100">
+                Deep Learning Specialization – Andrew Ng (Coursera) – In Progress{' '}
+              </div>
             </div>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaCheckCircle className="text-2xl text-yellow-500"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaCheckCircle className="text-2xl text-yellow-500" />
             <div>
-              <div className="font-semibold dark:text-gray-100">Google Cloud ML Engineer – In Progress</div>
+              <div className="font-semibold dark:text-gray-100">
+                Google Cloud ML Engineer – In Progress
+              </div>
             </div>
           </motion.div>
         </div>
@@ -400,28 +566,46 @@ export default function About() {
         </motion.h2>
         <div className="grid gap-10 md:grid-cols-2">
           {/* Awards & Extracurriculars */}
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaAward className="text-2xl text-primary dark:text-indigo-300"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaAward className="text-2xl text-primary dark:text-indigo-300" />
             <div>
-              <div className="font-semibold dark:text-gray-100">Runner-Up – BUBT Programming Contest, 2023</div>
+              <div className="font-semibold dark:text-gray-100">
+                Runner-Up – BUBT Programming Contest, 2023
+              </div>
             </div>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaRobot className="text-2xl text-primary dark:text-indigo-300"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaRobot className="text-2xl text-primary dark:text-indigo-300" />
             <div>
               <div className="font-semibold dark:text-gray-100">Member – BUBT AI Club</div>
             </div>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaUserGraduate className="text-2xl text-primary dark:text-indigo-300"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaUserGraduate className="text-2xl text-primary dark:text-indigo-300" />
             <div>
-              <div className="font-semibold dark:text-gray-100">Volunteered mentoring high school students in Python & ML basics</div>
+              <div className="font-semibold dark:text-gray-100">
+                Volunteered mentoring high school students in Python & ML basics
+              </div>
             </div>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }} className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp">
-            <FaGithub className="text-2xl text-primary dark:text-indigo-300"/>
+          <motion.div
+            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
+            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          >
+            <FaGithub className="text-2xl text-primary dark:text-indigo-300" />
             <div>
-              <div className="font-semibold dark:text-gray-100">Active contributor to AI-related forums and GitHub discussions</div>
+              <div className="font-semibold dark:text-gray-100">
+                Active contributor to AI-related forums and GitHub discussions
+              </div>
             </div>
           </motion.div>
         </div>
@@ -462,8 +646,9 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <FaCheckCircle/>
-            Strong skills in model evaluation, debugging ML pipelines, and reproducible experimentation.
+            <FaCheckCircle />
+            Strong skills in model evaluation, debugging ML pipelines, and reproducible
+            experimentation.
           </motion.span>
           <motion.span
             className="inline-flex items-center gap-2 bg-primary/10 text-primary font-semibold px-5 py-3 rounded-full dark:bg-indigo-900/30 dark:text-indigo-300 shadow-sm hover:scale-105 transition-all duration-200"
@@ -471,7 +656,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <FaDocker/>
+            <FaDocker />
             Deployed AI/ML models with Flask APIs and Docker containers in Linux environments.
           </motion.span>
           <motion.span
@@ -480,7 +665,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <FaGitAlt/>
+            <FaGitAlt />
             Confident in using Git, collaborative workflows, and Agile-style development.
           </motion.span>
           <motion.span
@@ -489,26 +674,63 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <FaRobot/>
-            Familiar with prompt engineering and fine-tuning pre-trained LLMs for domain-specific tasks.
+            <FaRobot />
+            Familiar with prompt engineering and fine-tuning pre-trained LLMs for domain-specific
+            tasks.
           </motion.span>
         </motion.div>
       </motion.section>
 
       {/* Contact/Call-to-Action */}
-      <motion.section className="max-w-2xl mx-auto text-center mt-20" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
-        <motion.h2 className="text-2xl font-bold mb-4 text-primary dark:text-indigo-300" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>Let&apos;s Connect!</motion.h2>
-        <p className="mb-6 text-gray-700 dark:text-gray-200">Interested in collaborating, hiring, or just want to chat about AI? Reach out.</p>
+      <motion.section
+        className="max-w-2xl mx-auto text-center mt-20"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7 }}
+      >
+        <motion.h2
+          className="text-2xl font-bold mb-4 text-primary dark:text-indigo-300"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Let&apos;s Connect!
+        </motion.h2>
+        <p className="mb-6 text-gray-700 dark:text-gray-200">
+          Interested in collaborating, hiring, or just want to chat about AI? Reach out.
+        </p>
         <button
           className="btn bg-gradient-to-r from-primary to-indigo-500 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"
           onClick={() => setResumeOpen(true)}
           aria-label="View Resume"
         >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
           View Resume
         </button>
-        <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} resumeUrl={profile.resume || '/resume.pdf'} />
-        <motion.a whileHover={{ scale: 1.07 }} href="https://linkedin.com/in/aminulai" target="_blank" rel="noopener noreferrer" className="ml-4 btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"><FaLinkedin/>Connect on LinkedIn</motion.a>
+        <ResumeModal
+          open={resumeOpen}
+          onClose={() => setResumeOpen(false)}
+          resumeUrl={profile.resume || '/resume.pdf'}
+        />
+        <motion.a
+          whileHover={{ scale: 1.07 }}
+          href="https://linkedin.com/in/aminulai"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-4 btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"
+        >
+          <FaLinkedin />
+          Connect on LinkedIn
+        </motion.a>
       </motion.section>
 
       {/* Floating Contact Button */}
@@ -519,7 +741,19 @@ export default function About() {
         tabIndex={0}
         onClick={handleContactClick}
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z" /></svg>
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z"
+          />
+        </svg>
         <span className="hidden sm:inline">Contact</span>
       </a>
     </div>

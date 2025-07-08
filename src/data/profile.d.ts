@@ -10,5 +10,4 @@ export interface Profile {
 
 export const profile: Profile;
 
-
 // Example profile data

@@ -62,7 +62,9 @@
 .themed-badge {
   background-color: var(--badge-bg, #f3f4f6);
   color: var(--badge-text, #222);
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .themed-badge-blue {
   --badge-bg: #e0e7ff;
@@ -250,7 +252,7 @@
   color: #111 !important;
 }
 .amoled .btn {
-  background: linear-gradient(90deg, #00ffe7 0%, #7C3AED 100%) !important;
+  background: linear-gradient(90deg, #00ffe7 0%, #7c3aed 100%) !important;
   color: #111 !important;
 }
 .amoled .themed-badge {
@@ -408,10 +410,12 @@
   color: #f3f4f6 !important;
 }
 .amoled .btn {
-  background: linear-gradient(90deg, #00ffe7 0%, #7C3AED 100%) !important;
+  background: linear-gradient(90deg, #00ffe7 0%, #7c3aed 100%) !important;
   color: #111 !important;
 }
-.amoled .text-primary, .amoled .border-primary, .amoled .bg-primary {
+.amoled .text-primary,
+.amoled .border-primary,
+.amoled .bg-primary {
   color: #00ffe7 !important;
   border-color: #00ffe7 !important;
   background-color: transparent !important;
@@ -438,7 +442,9 @@
   background: linear-gradient(90deg, #5e81ac 0%, #81a1c1 100%) !important;
   color: #2e3440 !important;
 }
-.nord .text-primary, .nord .border-primary, .nord .bg-primary {
+.nord .text-primary,
+.nord .border-primary,
+.nord .bg-primary {
   color: #88c0d0 !important;
   border-color: #88c0d0 !important;
   background-color: transparent !important;
@@ -465,7 +471,9 @@
   background: linear-gradient(90deg, #b58900 0%, #268bd2 100%) !important;
   color: #002b36 !important;
 }
-.solarized .text-primary, .solarized .border-primary, .solarized .bg-primary {
+.solarized .text-primary,
+.solarized .border-primary,
+.solarized .bg-primary {
   color: #b58900 !important;
   border-color: #b58900 !important;
   background-color: transparent !important;
@@ -500,7 +508,7 @@ body {
 
 /* Accessibility: always show focus outlines for keyboard users */
 *:focus-visible {
-  outline: 2px solid #7C3AED;
+  outline: 2px solid #7c3aed;
   outline-offset: 2px;
 }
 
@@ -516,16 +524,20 @@ section {
   border-radius: 9999px;
   padding: 0.5rem 1.5rem;
   font-weight: 600;
-  background: linear-gradient(90deg, #7C3AED 0%, #6366F1 100%);
+  background: linear-gradient(90deg, #7c3aed 0%, #6366f1 100%);
   color: #fff;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
-  box-shadow: 0 2px 8px 0 rgba(124,58,237,0.08);
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
+  box-shadow: 0 2px 8px 0 rgba(124, 58, 237, 0.08);
   display: inline-block;
   margin-top: 1.5rem;
 }
-.btn:hover, .btn:focus {
-  background: linear-gradient(90deg, #6366F1 0%, #7C3AED 100%);
-  box-shadow: 0 4px 16px 0 rgba(124,58,237,0.16);
+.btn:hover,
+.btn:focus {
+  background: linear-gradient(90deg, #6366f1 0%, #7c3aed 100%);
+  box-shadow: 0 4px 16px 0 rgba(124, 58, 237, 0.16);
   transform: translateY(-2px) scale(1.03);
   outline: none;
 }
@@ -551,23 +563,27 @@ section {
 }
 
 /* Contact form input focus */
-input, textarea {
+input,
+textarea {
   /* stylelint-disable-next-line */
   @apply border border-gray-300 dark:border-gray-700 rounded px-3 py-2 w-full transition-colors duration-200;
   outline: none;
 }
-input:focus, textarea:focus {
-  border-color: #7C3AED;
+input:focus,
+textarea:focus {
+  border-color: #7c3aed;
   box-shadow: 0 0 0 2px #a78bfa55;
   background: #f3f0ff;
 }
 
 /* Project card hover (already handled in component, but for extra polish) */
 .project-card {
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 .project-card:hover {
-  box-shadow: 0 8px 32px 0 rgba(124,58,237,0.18);
+  box-shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.18);
   transform: translateY(-4px) scale(1.03);
 }
 

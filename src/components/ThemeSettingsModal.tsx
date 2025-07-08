@@ -9,7 +9,13 @@ const themes = [
   { name: 'Solarized', value: 'solarized' },
 ];
 
-export default function ThemeSettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function ThemeSettingsModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
   const [selected, setSelected] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'system';
@@ -35,7 +41,9 @@ export default function ThemeSettingsModal({ open, onClose }: { open: boolean; o
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 w-full max-w-xs relative">
-        <button onClick={onClose} className="absolute top-2 right-2 text-lg" aria-label="Close">×</button>
+        <button onClick={onClose} className="absolute top-2 right-2 text-lg" aria-label="Close">
+          ×
+        </button>
         <h2 className="text-xl font-bold mb-4 text-primary dark:text-indigo-300">Theme Settings</h2>
         <ul className="space-y-2">
           {themes.map((theme) => (

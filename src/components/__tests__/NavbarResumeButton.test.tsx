@@ -7,7 +7,7 @@ describe('Navbar Resume Button', () => {
     render(
       <BrowserRouter>
         <Navbar />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     const resumeButton = screen.getByText(/download resume/i);
     expect(resumeButton).toBeInTheDocument();

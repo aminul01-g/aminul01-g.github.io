@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 
-export default function ProjectFilterBar({ tags, onFilter, onSearch, activeTag }: { tags: string[]; onFilter: (tag: string | null) => void; onSearch: (q: string) => void; activeTag?: string | null }) {
+export default function ProjectFilterBar({
+  tags,
+  onFilter,
+  onSearch,
+  activeTag,
+}: {
+  tags: string[];
+  onFilter: (tag: string | null) => void;
+  onSearch: (q: string) => void;
+  activeTag?: string | null;
+}) {
   const [search, setSearch] = useState('');
   return (
     <div className="flex flex-wrap gap-2 items-center mb-6">
@@ -8,7 +18,7 @@ export default function ProjectFilterBar({ tags, onFilter, onSearch, activeTag }
         type="text"
         placeholder="Search projects..."
         value={search}
-        onChange={e => {
+        onChange={(e) => {
           setSearch(e.target.value);
           onSearch(e.target.value);
         }}
@@ -17,7 +27,7 @@ export default function ProjectFilterBar({ tags, onFilter, onSearch, activeTag }
       />
       <span className="ml-4 text-sm text-gray-500 dark:text-gray-400">Filter by tag:</span>
       <div className="flex gap-2 flex-wrap">
-        {tags.map(tag => (
+        {tags.map((tag) => (
           <button
             key={tag}
             className={`px-3 py-1 rounded-full font-semibold text-xs transition-all

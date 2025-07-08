@@ -7,7 +7,7 @@ describe('Projects Filter Logic', () => {
     render(
       <MemoryRouter>
         <Projects />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     // Wait for filter bar and click a tag
     const tagButton = await screen.findByRole('button', { name: /filter by/i });

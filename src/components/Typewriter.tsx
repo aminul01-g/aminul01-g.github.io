@@ -7,7 +7,12 @@ interface TypewriterProps {
   className?: string;
 }
 
-export default function Typewriter({ words, speed = 80, pause = 1200, className = '' }: TypewriterProps) {
+export default function Typewriter({
+  words,
+  speed = 80,
+  pause = 1200,
+  className = '',
+}: TypewriterProps) {
   const [index, setIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [deleting, setDeleting] = useState(false);
@@ -28,5 +33,10 @@ export default function Typewriter({ words, speed = 80, pause = 1200, className 
     return () => clearTimeout(timeout);
   }, [displayed, deleting, index, words, speed, pause]);
 
-  return <span className={className}>{displayed}<span className="blinking-cursor">|</span></span>;
+  return (
+    <span className={className}>
+      {displayed}
+      <span className="blinking-cursor">|</span>
+    </span>
+  );
 }

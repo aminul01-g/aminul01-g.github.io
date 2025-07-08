@@ -28,12 +28,26 @@ export default function Home() {
         {
           className: 'bg-gradient-to-tr from-blue-200/30 to-indigo-200/20',
           speed: 0.08,
-          style: { top: '-10%', left: '-10%', width: '120vw', height: '40vh', borderRadius: '50%', filter: 'blur(60px)' },
+          style: {
+            top: '-10%',
+            left: '-10%',
+            width: '120vw',
+            height: '40vh',
+            borderRadius: '50%',
+            filter: 'blur(60px)',
+          },
         },
         {
           className: 'bg-gradient-to-br from-pink-200/20 to-purple-200/20',
           speed: 0.15,
-          style: { bottom: '-10%', right: '-10%', width: '100vw', height: '30vh', borderRadius: '50%', filter: 'blur(80px)' },
+          style: {
+            bottom: '-10%',
+            right: '-10%',
+            width: '100vw',
+            height: '30vh',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+          },
         },
       ]}
     >
@@ -112,7 +126,11 @@ export default function Home() {
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm0-14a6 6 0 100 12 6 6 0 000-12z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm0-14a6 6 0 100 12 6 6 0 000-12z"
+                  />
                 </svg>
               </span>
               <span className="font-bold text-lg text-gray-900 dark:text-white">AI/ML</span>
@@ -170,7 +188,11 @@ export default function Home() {
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"
+                  />
                 </svg>
               </span>
               <span className="font-bold text-lg text-gray-900 dark:text-white">Data Science</span>
@@ -198,10 +220,16 @@ export default function Home() {
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v4a1 1 0 001 1h3m10-5v4a1 1 0 01-1 1h-3m-4 4v4a1 1 0 001 1h3m10-5v4a1 1 0 01-1 1h-3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 7v4a1 1 0 001 1h3m10-5v4a1 1 0 01-1 1h-3m-4 4v4a1 1 0 001 1h3m10-5v4a1 1 0 01-1 1h-3"
+                  />
                 </svg>
               </span>
-              <span className="font-bold text-lg text-gray-900 dark:text-white">Tools & Platforms</span>
+              <span className="font-bold text-lg text-gray-900 dark:text-white">
+                Tools & Platforms
+              </span>
             </div>
             <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-base">
               <li>Docker</li>
@@ -283,9 +311,7 @@ export default function Home() {
                         </span>
                       </h3>
                       <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
-                      <p className="text-gray-700 dark:text-gray-200 mb-2">
-                        {post.summary}
-                      </p>
+                      <p className="text-gray-700 dark:text-gray-200 mb-2">{post.summary}</p>
                     </Link>
                   </motion.div>
                 </BlogCardTiltWrapper>

@@ -8,14 +8,7 @@ type Props = React.ImgHTMLAttributes<HTMLImageElement> & {
   className?: string;
 };
 
-const ImageWithFallback: React.FC<Props> = ({
-  src,
-  alt,
-  webp,
-  avif,
-  className = '',
-  ...rest
-}) => {
+const ImageWithFallback: React.FC<Props> = ({ src, alt, webp, avif, className = '', ...rest }) => {
   const [imgError, setImgError] = useState(false);
 
   return (

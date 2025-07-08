@@ -34,10 +34,12 @@ export default function Projects() {
     return () => clearTimeout(timeout);
   }, []);
 
-  const allTags = Array.from(new Set(projects.flatMap(project => project.tags || [])));
-  const filteredProjects = projects.filter(project => {
+  const allTags = Array.from(new Set(projects.flatMap((project) => project.tags || [])));
+  const filteredProjects = projects.filter((project) => {
     const matchesTag = filter ? (project.tags || []).includes(filter) : true;
-    const matchesSearch = search ? (project.title + project.description).toLowerCase().includes(search.toLowerCase()) : true;
+    const matchesSearch = search
+      ? (project.title + project.description).toLowerCase().includes(search.toLowerCase())
+      : true;
     return matchesTag && matchesSearch;
   });
 
@@ -58,7 +60,11 @@ export default function Projects() {
   // --- Improved fix for framer-motion initial animation sticking on mobile ---
   const sectionRef = React.useRef(null);
   // Try a more forgiving threshold and margin for mobile quirks
-  const isInView = useInView(sectionRef, { once: true, amount: 0.01, margin: '0px 0px -100px 0px' });
+  const isInView = useInView(sectionRef, {
+    once: true,
+    amount: 0.01,
+    margin: '0px 0px -100px 0px',
+  });
   // Debug: log inView state
   React.useEffect(() => {
     // eslint-disable-next-line no-console
@@ -68,9 +74,15 @@ export default function Projects() {
     <>
       <Helmet>
         <title>Projects | Aminul Islam Bhuiyan Amin</title>
-        <meta name="description" content="A showcase of AI, data science, and full-stack projects by Aminul Islam Bhuiyan Amin." />
+        <meta
+          name="description"
+          content="A showcase of AI, data science, and full-stack projects by Aminul Islam Bhuiyan Amin."
+        />
         <meta property="og:title" content="Projects | Aminul Islam Bhuiyan Amin" />
-        <meta property="og:description" content="A showcase of AI, data science, and full-stack projects by Aminul Islam Bhuiyan Amin." />
+        <meta
+          property="og:description"
+          content="A showcase of AI, data science, and full-stack projects by Aminul Islam Bhuiyan Amin."
+        />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aminul01-g.github.io/projects" />
@@ -88,17 +100,25 @@ export default function Projects() {
             <span className="inline-block align-middle">🚀</span> Projects
           </h2>
           <p className="text-center text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-medium">
-            A showcase of my favorite projects, spanning <span className="text-primary font-semibold">AI</span>, <span className="text-indigo-500 font-semibold">data science</span>, and <span className="text-pink-500 font-semibold">full-stack development</span>.<br className="hidden sm:block" /> Each project reflects my passion for building intelligent, impactful solutions.
+            A showcase of my favorite projects, spanning{' '}
+            <span className="text-primary font-semibold">AI</span>,{' '}
+            <span className="text-indigo-500 font-semibold">data science</span>, and{' '}
+            <span className="text-pink-500 font-semibold">full-stack development</span>.
+            <br className="hidden sm:block" /> Each project reflects my passion for building
+            intelligent, impactful solutions.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <ProjectFilterBar tags={allTags} onFilter={setFilter} onSearch={setSearch} activeTag={filter} />
+          <ProjectFilterBar
+            tags={allTags}
+            onFilter={setFilter}
+            onSearch={setSearch}
+            activeTag={filter}
+          />
         </div>
         <div className="w-full max-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-4">
           {loading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <ProjectCardSkeleton key={i} />
-            ))
+            Array.from({ length: 6 }).map((_, i) => <ProjectCardSkeleton key={i} />)
           ) : projects.length === 0 ? (
             <div className="col-span-full text-center text-red-500 dark:text-red-400 py-8 font-bold text-lg">
               No projects loaded. Please check your data source.
@@ -128,8 +148,18 @@ export default function Projects() {
           tabIndex={0}
           onClick={handleContactClick}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z"
+            />
           </svg>
         </a>
       </motion.section>

@@ -59,9 +59,17 @@ export default function ContactForm() {
   };
 
   return (
-    <form className="contact-form space-y-4 glass-card rounded-2xl p-8 flex flex-col justify-center h-full backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg" onSubmit={handleSubmit} autoComplete="off" noValidate aria-label="Contact form">
+    <form
+      className="contact-form space-y-4 glass-card rounded-2xl p-8 flex flex-col justify-center h-full backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg"
+      onSubmit={handleSubmit}
+      autoComplete="off"
+      noValidate
+      aria-label="Contact form"
+    >
       <div className="space-y-2">
-        <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-white">Name</label>
+        <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-white">
+          Name
+        </label>
         <input
           id="name"
           type="text"
@@ -74,10 +82,16 @@ export default function ContactForm() {
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? 'name-error' : undefined}
         />
-        {errors.name && <span id="name-error" className="text-xs text-red-500">{errors.name}</span>}
+        {errors.name && (
+          <span id="name-error" className="text-xs text-red-500">
+            {errors.name}
+          </span>
+        )}
       </div>
       <div className="space-y-2">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-white">Email</label>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-white">
+          Email
+        </label>
         <input
           id="email"
           type="email"
@@ -90,10 +104,19 @@ export default function ContactForm() {
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? 'email-error' : undefined}
         />
-        {errors.email && <span id="email-error" className="text-xs text-red-500">{errors.email}</span>}
+        {errors.email && (
+          <span id="email-error" className="text-xs text-red-500">
+            {errors.email}
+          </span>
+        )}
       </div>
       <div className="space-y-2">
-        <label htmlFor="message" className="block text-sm font-medium text-gray-800 dark:text-white">Message</label>
+        <label
+          htmlFor="message"
+          className="block text-sm font-medium text-gray-800 dark:text-white"
+        >
+          Message
+        </label>
         <textarea
           id="message"
           name="message"
@@ -106,7 +129,11 @@ export default function ContactForm() {
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? 'message-error' : undefined}
         ></textarea>
-        {errors.message && <span id="message-error" className="text-xs text-red-500">{errors.message}</span>}
+        {errors.message && (
+          <span id="message-error" className="text-xs text-red-500">
+            {errors.message}
+          </span>
+        )}
       </div>
       <Button
         type="submit"
@@ -115,14 +142,37 @@ export default function ContactForm() {
         aria-busy={status === 'loading'}
       >
         {status === 'loading' ? (
-          <svg className="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+          <svg className="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+          </svg>
         ) : (
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13" /><path strokeLinecap="round" strokeLinejoin="round" d="M22 2L15 22l-4-9-9-4 20-7z" /></svg>
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L15 22l-4-9-9-4 20-7z" />
+          </svg>
         )}
         {status === 'loading' ? 'Sending...' : 'Send Message'}
       </Button>
       {serverMsg && (
-        <p className={`text-center text-sm mt-2 ${status === 'success' ? 'text-green-600' : 'text-red-500'}`}>{serverMsg}</p>
+        <p
+          className={`text-center text-sm mt-2 ${status === 'success' ? 'text-green-600' : 'text-red-500'}`}
+        >
+          {serverMsg}
+        </p>
       )}
     </form>
   );

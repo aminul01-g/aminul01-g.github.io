@@ -10,7 +10,11 @@ interface ParallaxBackgroundProps {
   }>;
 }
 
-export default function ParallaxBackground({ children, className = '', layers = [] }: ParallaxBackgroundProps) {
+export default function ParallaxBackground({
+  children,
+  className = '',
+  layers = [],
+}: ParallaxBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,7 +32,11 @@ export default function ParallaxBackground({ children, className = '', layers = 
   }, [layers]);
 
   return (
-    <div ref={containerRef} className={`relative overflow-hidden ${className}`} style={{ zIndex: 0 }}>
+    <div
+      ref={containerRef}
+      className={`relative overflow-hidden ${className}`}
+      style={{ zIndex: 0 }}
+    >
       {layers.map((layer, i) => (
         <div
           key={i}

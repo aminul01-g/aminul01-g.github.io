@@ -105,7 +105,8 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.7 }}
       >
-        AI Engineering Student passionate about building intelligent systems. Let&apos;s connect and create something amazing!
+        AI Engineering Student passionate about building intelligent systems. Let&apos;s connect and
+        create something amazing!
       </motion.p>
       {/* Social Icons Row */}
       <div className="flex justify-center gap-4 mb-4 z-10">

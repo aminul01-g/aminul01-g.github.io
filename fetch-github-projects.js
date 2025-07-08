@@ -12,23 +12,29 @@ if (!username) {
 
 const url = `https://api.github.com/users/${username}/repos?per_page=100`;
 
-https.get(url, {
-  headers: { 'User-Agent': 'Node.js' }
-}, (res) => {
-  let data = '';
-  res.on('data', chunk => data += chunk);
-  res.on('end', () => {
-    const repos = JSON.parse(data);
-    const projects = repos.map(repo => ({
-      title: repo.name,
-      description: repo.description || '',
-      tags: [], // You can manually add tags later
-      github: repo.html_url,
-      // thumbnail: '', // Optionally add a thumbnail or emoji
-    }));
-    console.log('Copy the following into your projects.ts:');
-    console.log(JSON.stringify(projects, null, 2));
+https
+  .get(
+    url,
+    {
+      headers: { 'User-Agent': 'Node.js' },
+    },
+    (res) => {
+      let data = '';
+      res.on('data', (chunk) => (data += chunk));
+      res.on('end', () => {
+        const repos = JSON.parse(data);
+        const projects = repos.map((repo) => ({
+          title: repo.name,
+          description: repo.description || '',
+          tags: [], // You can manually add tags later
+          github: repo.html_url,
+          // thumbnail: '', // Optionally add a thumbnail or emoji
+        }));
+        console.log('Copy the following into your projects.ts:');
+        console.log(JSON.stringify(projects, null, 2));
+      });
+    },
+  )
+  .on('error', (err) => {
+    console.error('Error fetching repos:', err);
   });
-}).on('error', err => {
-  console.error('Error fetching repos:', err);
-});

@@ -7,7 +7,7 @@ describe('Navbar', () => {
     render(
       <BrowserRouter>
         <Navbar />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     expect(screen.getByRole('navigation')).toBeInTheDocument();
     expect(screen.getByText(/projects/i)).toBeInTheDocument();

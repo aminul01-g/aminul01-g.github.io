@@ -11,7 +11,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:prettier/recommended"  // ✅ safer way to include prettier
+    "plugin:prettier/recommended" // ✅ safer way to include prettier
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -23,7 +23,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "jsx-a11y", "import", "prettier"],
   "rules": {
-    "prettier/prettier": "warn",  // ✅ Enable Prettier as ESLint rule
+    "prettier/prettier": "warn", // ✅ Enable Prettier as ESLint rule
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/explicit-module-boundary-types": "warn",

@@ -15,7 +15,11 @@ function AnimatedRoutes() {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Suspense fallback={<div className="flex justify-center items-center min-h-[40vh] text-lg">Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center min-h-[40vh] text-lg">Loading...</div>
+        }
+      >
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
