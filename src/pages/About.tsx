@@ -167,8 +167,8 @@ export default function About() {
         <div className="mb-4">
           <span className="inline-block bg-primary/10 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold px-4 py-2 rounded-full text-lg shadow-sm animate-fadeInUp">Empowering the future with AI & Intelligent Systems</span>
         </div>
-        <p className="text-gray-700 text-lg text-center mb-2 dark:text-gray-200 animate-fadeInUp delay-100" tabIndex={0}>
-          I'm a passionate and driven Computer Science and Engineering undergraduate at Bangladesh University of Business & Technology (BUBT), focused on
+        <p className="text-gray-700 text-lg text-center mb-2 dark:text-gray-200 animate-fadeInUp delay-100">
+          I&apos;m a passionate and driven Computer Science and Engineering undergraduate at Bangladesh University of Business & Technology (BUBT), focused on
           <span className="inline-flex items-center gap-1 font-semibold text-primary dark:text-indigo-300 ml-1"><FaRobot aria-hidden="true"/>AI</span>,
           <span className="inline-flex items-center gap-1 font-semibold text-indigo-500 dark:text-indigo-300 ml-1"><FaPython aria-hidden="true"/>Python</span>, and real-world intelligent systems. My core interests lie in
           <span className="text-indigo-500 font-semibold dark:text-indigo-300 ml-1">machine learning</span>,
@@ -182,7 +182,7 @@ export default function About() {
           <span className="inline-flex items-center gap-1 themed-badge themed-badge-yellow font-semibold px-3 py-1 rounded-full text-sm"><FaDocker/>Docker</span>
           <span className="inline-flex items-center gap-1 themed-badge themed-badge-gray font-semibold px-3 py-1 rounded-full text-sm"><FaLinux/>Linux</span>
         </div>
-        <p className="text-gray-700 text-lg text-center dark:text-gray-200 animate-fadeInUp delay-200" tabIndex={0}>
+        <p className="text-gray-700 text-lg text-center dark:text-gray-200 animate-fadeInUp delay-200">
           With a strong foundation in
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">Python</span>,
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">PyTorch</span>, and
@@ -497,7 +497,7 @@ export default function About() {
 
       {/* Contact/Call-to-Action */}
       <motion.section className="max-w-2xl mx-auto text-center mt-20" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
-        <motion.h2 className="text-2xl font-bold mb-4 text-primary dark:text-indigo-300" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>Let's Connect!</motion.h2>
+        <motion.h2 className="text-2xl font-bold mb-4 text-primary dark:text-indigo-300" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>Let&apos;s Connect!</motion.h2>
         <p className="mb-6 text-gray-700 dark:text-gray-200">Interested in collaborating, hiring, or just want to chat about AI? Reach out.</p>
         <button
           className="btn bg-gradient-to-r from-primary to-indigo-500 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"

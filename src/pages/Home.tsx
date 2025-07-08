@@ -10,6 +10,7 @@ import Contact from './Contact';
 import Testimonials from '../components/Testimonials';
 import ImageWithFallback from '../components/ImageWithFallback';
 import Achievements from '../components/Achievements';
+import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
 
 // Utility to estimate reading time (words per minute)
 function getReadingTime(text: string, wpm = 200): number {
@@ -262,7 +263,6 @@ export default function Home() {
             </div>
           ) : (
             blogPosts.slice(0, 3).map((post, i) => {
-              const BlogCardTiltWrapper = require('../components/BlogCardTiltWrapper').default;
               const readingTime = getReadingTime(post.content || post.summary);
               return (
                 <BlogCardTiltWrapper key={post.slug}>
