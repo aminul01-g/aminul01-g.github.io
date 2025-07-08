@@ -12,7 +12,7 @@ const About = lazy(() => import('./pages/About'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
 
-function AnimatedRoutes(): JSX.Element { // <--- THIS IS CRITICAL
+function AnimatedRoutes(): React.JSX.Element { // <--- THIS IS CRITICAL
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
