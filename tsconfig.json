@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["dom", "dom.iterable", "esnext"],// ✅ include DOM types
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -13,8 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "types": ["react", "react-dom"]
+    "jsx": "react-jsx", // ✅ for React 17+ (or use "react" for <17)
+    "types": ["react", "react-dom"] // ✅ explicitly include React types
   },
   "include": ["src"]
   

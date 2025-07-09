@@ -35,7 +35,7 @@ function AnimatedRoutes(): React.JSX.Element { // <--- THIS IS CRITICAL
   );
 }
 
-function App(): JSX.Element { // <--- THIS IS CRITICAL
+function App(): React.ReactElement { // <--- THIS IS CRITICAL
   return (
     <>
       <Navbar />
