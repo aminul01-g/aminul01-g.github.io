@@ -2,8 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { AnimatePresence } from 'framer-motion';
-import { Suspense, lazy } from 'react';
-import React from 'react'; // <--- THIS IS CRITICAL
+import React, { Suspense, lazy } from 'react';
 
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -12,7 +11,7 @@ const About = lazy(() => import('./pages/About'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
 
-function AnimatedRoutes(): React.JSX.Element { // <--- THIS IS CRITICAL
+function AnimatedRoutes(): React.ReactElement {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
@@ -35,7 +34,7 @@ function AnimatedRoutes(): React.JSX.Element { // <--- THIS IS CRITICAL
   );
 }
 
-function App(): React.ReactElement { // <--- THIS IS CRITICAL
+function App(): React.ReactElement {
   return (
     <>
       <Navbar />
