@@ -5,7 +5,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export default function Button({ children, className = '', ...props }: ButtonProps) : React.ReactElement {
+export default function Button({
+  children,
+  className = '',
+  ...props
+}: ButtonProps): React.ReactElement {
   const btnRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

@@ -64,7 +64,7 @@ const contactInfo = [
   },
 ];
 
-export default function Contact() : React.ReactElement {
+export default function Contact(): React.ReactElement {
   return (
     <section
       id="contact"

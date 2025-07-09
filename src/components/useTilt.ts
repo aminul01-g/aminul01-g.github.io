@@ -1,9 +1,6 @@
 import { useRef, useEffect } from 'react';
 
-export function useTilt(
-  maxTilt = 15,
-  scale = 1.04
-): React.RefObject<HTMLDivElement | null> {
+export function useTilt(maxTilt = 15, scale = 1.04): React.RefObject<HTMLDivElement | null> {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -59,4 +56,3 @@ export function useTilt(
 
   return ref;
 }
-
