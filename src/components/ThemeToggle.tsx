@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ThemeSettingsModal from './ThemeSettingsModal';
 
-export default function ThemeToggle() {
+export default function ThemeToggle(): React.ReactElement {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <>

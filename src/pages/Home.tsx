@@ -21,7 +21,7 @@ function getReadingTime(text: string, wpm = 200): number {
 
 const aboutSummary = `🎓 I'm an AI-driven Computer Science student at BUBT, deeply passionate about building intelligent systems. My main interests lie in Deep Learning, NLP, and LLMs — with hands-on experience using PyTorch, TensorFlow, and Hugging Face.\n\n🔬 Currently exploring prompt engineering, multimodal AI, and LangChain-based applications.`;
 
-export default function Home() {
+export default function Home(): React.ReactElement {
   return (
     <ParallaxBackground
       layers={[

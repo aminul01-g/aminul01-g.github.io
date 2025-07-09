@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ProjectCardSkeleton() {
+export default function ProjectCardSkeleton(): React.ReactElement {
   return (
     <div className="animate-pulse h-full flex flex-col rounded-xl overflow-hidden bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 shadow-lg max-w-full">
       <div className="relative w-full pt-[56.25%] bg-gray-200 dark:bg-gray-700" />

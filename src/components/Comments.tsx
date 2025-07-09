@@ -6,7 +6,7 @@ interface Comment {
   date: string;
 }
 
-export default function Comments({ postSlug }: { postSlug: string }) {
+export default function Comments({ postSlug }: { postSlug: string }): React.ReactElement {
   const [comments, setComments] = useState<Comment[]>([]);
   const [form, setForm] = useState({ name: '', text: '' });
   const [error, setError] = useState('');

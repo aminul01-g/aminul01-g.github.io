@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { Helmet } from 'react-helmet-async';
 
-export default function ProjectDetails() {
+export default function ProjectDetails(): React.ReactElement {
   const { slug } = useParams<{ slug: string }>();
   const project = projects.find((p) => p.title.replace(/\s+/g, '-').toLowerCase() === slug);
 

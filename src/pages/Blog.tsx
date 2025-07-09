@@ -6,7 +6,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 
-export default function Blog() {
+export default function Blog() : React.ReactElement {
   const navigate = useNavigate();
   const location = useLocation();
   const [filter, setFilter] = React.useState<string | null>(null);

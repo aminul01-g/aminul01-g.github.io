@@ -12,7 +12,7 @@ export default function Typewriter({
   speed = 80,
   pause = 1200,
   className = '',
-}: TypewriterProps) {
+}: TypewriterProps): React.ReactElement {
   const [index, setIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [deleting, setDeleting] = useState(false);

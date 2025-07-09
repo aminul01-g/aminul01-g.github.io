@@ -51,7 +51,7 @@ const socialLinks = [
   },
 ];
 
-export default function Hero() {
+export default function Hero() : React.ReactElement {
   return (
     <section
       id="hero"

@@ -15,7 +15,7 @@ export default function ThemeSettingsModal({
 }: {
   open: boolean;
   onClose: () => void;
-}) {
+}): React.ReactElement | null {
   const [selected, setSelected] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'system';

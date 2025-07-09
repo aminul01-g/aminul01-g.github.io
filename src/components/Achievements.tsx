@@ -23,7 +23,7 @@ const achievements = [
   },
 ];
 
-export default function Achievements() {
+export default function Achievements(): React.ReactElement {
   return (
     <section id="achievements" className="max-w-5xl mx-auto my-16 px-4">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">

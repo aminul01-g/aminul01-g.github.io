@@ -25,7 +25,7 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
+export default function Testimonials(): React.ReactElement {
   return (
     <section className="max-w-4xl mx-auto my-16 px-4">
       <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">

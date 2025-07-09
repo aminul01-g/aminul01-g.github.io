@@ -14,7 +14,7 @@ export default function ParallaxBackground({
   children,
   className = '',
   layers = [],
-}: ParallaxBackgroundProps) {
+}: ParallaxBackgroundProps): React.ReactElement {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

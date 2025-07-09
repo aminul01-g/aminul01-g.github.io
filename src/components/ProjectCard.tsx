@@ -24,7 +24,7 @@ export default function ProjectCard({
   tags,
   github,
   thumbnail,
-}: ProjectCardProps) {
+}: ProjectCardProps): React.ReactElement {
   const logo = thumbnail || projectIcons[title] || '📦';
   const isEmoji = !thumbnail && !!projectIcons[title];
 

@@ -10,7 +10,7 @@ export default function ProjectFilterBar({
   onFilter: (tag: string | null) => void;
   onSearch: (q: string) => void;
   activeTag?: string | null;
-}) {
+}): React.ReactElement {
   const [search, setSearch] = useState('');
   return (
     <div className="flex flex-wrap gap-2 items-center mb-6">

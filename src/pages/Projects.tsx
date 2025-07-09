@@ -7,7 +7,7 @@ import { motion, useInView } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-export default function Projects() {
+export default function Projects() : React.ReactElement {
   const navigate = useNavigate();
   const location = useLocation();
   // Read filter from query param on mount

@@ -11,7 +11,7 @@ const navLinks = [
   // Contact handled as anchor link
 ];
 
-export default function Navbar() {
+export default function Navbar() : React.ReactElement {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();

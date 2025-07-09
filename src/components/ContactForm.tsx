@@ -19,7 +19,7 @@ function validate(form: FormState) {
   return errors;
 }
 
-export default function ContactForm() {
+export default function ContactForm() : React.ReactElement {
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');

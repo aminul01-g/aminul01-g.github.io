@@ -31,7 +31,7 @@ const GlassBg = () => (
 
 const profilePic = 'https://avatars.githubusercontent.com/u/188814014?v=4';
 
-export default function About() {
+export default function About() : React.ReactElement {
   // Project cards data must be inside the function, before return
   const [resumeOpen, setResumeOpen] = React.useState(false);
   const projectData = [
