@@ -2,13 +2,13 @@ import React from 'react';
 
 const achievements = [
   {
-    title: 'Top 1% on LeetCode',
-    description: 'Ranked among the top 1% globally in LeetCode contests.',
+    title: 'LeetCode Problem Solver',
+    description: 'Ranked among globally in LeetCode contests.',
     icon: '🏆',
   },
   {
     title: 'AI Research Publication',
-    description: 'Published a paper on NLP in an international journal.',
+    description: 'Willing to Publish a paper on NLP in an international journal.',
     icon: '📄',
   },
   {
@@ -17,8 +17,8 @@ const achievements = [
     icon: '🌐',
   },
   {
-    title: 'Hackathon Winner',
-    description: 'Won 1st place in the BUBT AI Hackathon 2024.',
+    title: 'Hackathon',
+    description: 'Trying to take a place in the BUBT AI Hackathon 2024.',
     icon: '🥇',
   },
 ];

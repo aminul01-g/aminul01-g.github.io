@@ -425,11 +425,11 @@ export default function About(): React.ReactElement {
           </div>
           <ul className="list-disc list-inside text-gray-700 ml-2 dark:text-gray-200">
             <li>
-              Designed and maintained automated{' '}
+              Analyzed large datasets to{' '}
               <span className="text-indigo-500 font-semibold dark:text-indigo-300">
-                ETL pipelines
+                extract insights
               </span>{' '}
-              for high-volume medical datasets.
+              using Python, NumPy, and Pandas.
             </li>
             <li>
               Supported predictive analytics and data preprocessing using{' '}
