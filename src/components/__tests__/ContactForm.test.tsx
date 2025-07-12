@@ -3,8 +3,11 @@ import ContactForm from '../ContactForm';
 
 // Mock fetch
 beforeEach(() => {
-  global.fetch = jest.fn(() =>
-    Promise.resolve({ ok: true, json: () => Promise.resolve({}) }),
+  global.fetch = jest.fn(
+    () =>
+      new Promise((resolve) =>
+        setTimeout(() => resolve({ ok: true, json: () => Promise.resolve({}) }), 100),
+      ),
   ) as jest.Mock;
 });
 afterEach(() => {

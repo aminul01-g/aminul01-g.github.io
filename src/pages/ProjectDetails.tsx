@@ -1,6 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { Helmet } from 'react-helmet-async';
+import ImageWithFallback from '../components/ImageWithFallback';
+import SocialShare from '../components/SocialShare';
+import FeedbackWidget from '../components/FeedbackWidget';
 
 export default function ProjectDetails(): React.ReactElement {
   const { slug } = useParams<{ slug: string }>();
@@ -21,16 +24,44 @@ export default function ProjectDetails(): React.ReactElement {
   return (
     <>
       <Helmet>
-        <title>{project.title} | Project Details | Aminul Islam Bhuiyan Amin</title>
-        <meta name="description" content={project.description} />
-        <meta
-          property="og:title"
-          content={`${project.title} | Project Details | Aminul Islam Bhuiyan Amin`}
-        />
-        <meta property="og:description" content={project.description} />
-        <meta property="og:image" content={project.thumbnail} />
-        <meta property="og:type" content="website" />
+        <title>{project?.title || 'Project'} | Aminul Islam Bhuiyan Amin</title>
+        <meta name="description" content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'} />
+        <meta property="og:title" content={project?.title || 'Project'} />
+        <meta property="og:description" content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'} />
+        <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
+        <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://aminul01-g.github.io/projects/${slug}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={project?.title || 'Project'} />
+        <meta name="twitter:description" content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'} />
+        <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
+        <link rel="canonical" href={`https://aminul01-g.github.io/projects/${slug}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://aminul01-g.github.io/'
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Projects',
+                item: 'https://aminul01-g.github.io/projects'
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: project.title,
+                item: `https://aminul01-g.github.io/projects/${slug}`
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <section className="max-w-3xl mx-auto my-12 p-8 bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl border border-primary/10 dark:border-gray-700">
         <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
@@ -44,13 +75,14 @@ export default function ProjectDetails(): React.ReactElement {
             </span>
           ))}
         </div>
-        <img
-          src={project.thumbnail}
+        <ImageWithFallback
+          src={project.thumbnail || '📁'}
           alt={`${project.title} thumbnail`}
           className="w-full max-w-md rounded-lg mb-6 mx-auto"
           loading="lazy"
         />
         <p className="text-lg text-gray-700 dark:text-gray-200 mb-6">{project.description}</p>
+        <SocialShare url={`https://aminul01-g.github.io/projects/${slug}`} title={project.title} className="mb-8" />
         {/* Placeholder for case study/extended details */}
         <div className="prose dark:prose-invert max-w-none mb-8">
           <h2>Case Study</h2>
@@ -76,6 +108,7 @@ export default function ProjectDetails(): React.ReactElement {
             Back to Projects
           </Link>
         </div>
+        <FeedbackWidget className="my-8" />
       </section>
     </>
   );

@@ -42,6 +42,17 @@
       },
       "plugins": ["cypress"],
       "extends": ["plugin:cypress/recommended"]
+    },
+    {
+      "files": [
+        "./jest.config.js",
+        "./postcss.config.js",
+        "./tailwind.config.js",
+        "./fetch-github-projects.js"
+      ],
+      "env": {
+        "node": true
+      }
     }
   ]
 }

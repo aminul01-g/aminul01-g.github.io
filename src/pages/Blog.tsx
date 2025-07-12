@@ -1,19 +1,23 @@
 import React from 'react';
-import { blogPosts, BlogPost } from '../data/blog';
 import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
 import BlogFilterBar from '../components/BlogFilterBar';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { BlogPost, blogPosts } from '../data/blog';
 
 export default function Blog(): React.ReactElement {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [posts, setPosts] = React.useState<BlogPost[]>([]);
   const [filter, setFilter] = React.useState<string | null>(null);
   const [search, setSearch] = React.useState('');
 
-  const allTags = Array.from(new Set(blogPosts.flatMap((post) => post.tags || [])));
-  const filteredPosts = blogPosts.filter((post) => {
+  React.useEffect(() => {
+    // Use mock data instead of Sanity fetch
+    setPosts(blogPosts);
+  }, []);
+
+  const allTags = Array.from(new Set(posts.flatMap((post) => post.tags || [])));
+  const filteredPosts = posts.filter((post) => {
     const matchesTag = filter ? (post.tags || []).includes(filter) : true;
     const matchesSearch = search
       ? (post.title + post.summary).toLowerCase().includes(search.toLowerCase())
@@ -21,19 +25,6 @@ export default function Blog(): React.ReactElement {
     return matchesTag && matchesSearch;
   });
 
-  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      setTimeout(() => {
-        const el = document.getElementById('contact');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const el = document.getElementById('contact');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
   return (
     <>
       <Helmet>
@@ -50,6 +41,61 @@ export default function Blog(): React.ReactElement {
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aminul01-g.github.io/blog" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog | Aminul Islam Bhuiyan Amin" />
+        <meta name="twitter:description" content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin." />
+        <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
+        <link rel="canonical" href="https://aminul01-g.github.io/blog" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Aminul Islam Bhuiyan Amin's Blog",
+            "description": "Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin.",
+            "url": "https://aminul01-g.github.io/blog",
+            "author": {
+              "@type": "Person",
+              "name": "Aminul Islam Bhuiyan Amin",
+              "url": "https://aminul01-g.github.io"
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "Aminul Islam Bhuiyan Amin"
+            },
+            "blogPost": filteredPosts.map(post => ({
+              "@type": "BlogPosting",
+              "headline": post.title,
+              "description": post.summary,
+              "datePublished": post.date,
+              "author": {
+                "@type": "Person",
+                "name": "Aminul Islam Bhuiyan Amin"
+              },
+              "url": `https://aminul01-g.github.io/blog/${post.slug}`
+            }))
+          })}
+        </script>
+        {/* BreadcrumbList structured data in a separate script tag */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://aminul01-g.github.io/'
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blog',
+                item: 'https://aminul01-g.github.io/blog'
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <motion.section
         id="blog"
@@ -86,7 +132,8 @@ export default function Blog(): React.ReactElement {
         <div className="grid gap-8 md:grid-cols-2 relative z-10">
           {filteredPosts.length === 0 ? (
             <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">
-              No blog posts found.
+              <p className="text-lg mb-4">No blog posts available yet.</p>
+              <p className="text-sm">New articles and insights will be published here soon. Stay tuned!</p>
             </div>
           ) : (
             filteredPosts.map((post: BlogPost, i: number) => (
@@ -112,6 +159,7 @@ export default function Blog(): React.ReactElement {
                         stroke="currentColor"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -141,29 +189,7 @@ export default function Blog(): React.ReactElement {
             ))
           )}
         </div>
-        {/* Floating Contact Button - matches Home page position and style, links to Home's contact section */}
-        <a
-          href="/#contact"
-          className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-primary text-white rounded-full shadow-lg p-4 flex items-center gap-2 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-primary transition-all animate-bounce"
-          aria-label="Contact"
-          tabIndex={0}
-          onClick={handleContactClick}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z"
-            />
-          </svg>
-          <span className="hidden sm:inline">Contact</span>
-        </a>
+        {/* Floating Contact Button - removed, now handled globally */}
       </motion.section>
     </>
   );

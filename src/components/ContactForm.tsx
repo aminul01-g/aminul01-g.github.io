@@ -1,178 +1,282 @@
+import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Button from './Button';
 
-interface FormState {
+interface FormData {
   name: string;
   email: string;
   message: string;
-}
-
-const initialForm: FormState = { name: '', email: '', message: '' };
-
-function validate(form: FormState) {
-  const errors: Partial<FormState> = {};
-  if (!form.name.trim()) errors.name = 'Name is required.';
-  if (!form.email.trim()) errors.email = 'Email is required.';
-  else if (!/^\S+@\S+\.\S+$/.test(form.email)) errors.email = 'Invalid email address.';
-  if (!form.message.trim()) errors.message = 'Message is required.';
-  else if (form.message.length < 10) errors.message = 'Message should be at least 10 characters.';
-  return errors;
+  website?: string; // Honeypot field
 }
 
 export default function ContactForm(): React.ReactElement {
-  const [form, setForm] = useState<FormState>(initialForm);
-  const [errors, setErrors] = useState<Partial<FormState>>({});
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [serverMsg, setServerMsg] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch
+  } = useForm<FormData>();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: undefined });
-  };
+  const watchedFields = watch();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const validation = validate(form);
-    setErrors(validation);
-    if (Object.keys(validation).length > 0) return;
-    setStatus('loading');
-    setServerMsg('');
+  const onSubmit = async (data: FormData) => {
+    // Check honeypot field
+    if (data.website) {
+      console.log('Bot detected');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
     try {
-      // Replace with your Formspree endpoint
-      const res = await fetch('https://formspree.io/f/xayvjqyo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus('success');
-        setForm(initialForm);
-        setServerMsg('Thank you! Your message has been sent.');
-      } else {
-        setStatus('error');
-        setServerMsg('Something went wrong. Please try again later.');
-      }
-    } catch {
-      setStatus('error');
-      setServerMsg('Network error. Please try again.');
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Here you would typically send the data to your backend
+      console.log('Form submitted:', data);
+      
+      setSubmitStatus('success');
+      reset();
+      
+      // Reset status after 3 seconds
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+      
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
+  const isFormValid = Object.keys(errors).length === 0 && 
+    watchedFields.name && 
+    watchedFields.email && 
+    watchedFields.message;
 
   return (
     <form
       className="contact-form space-y-4 glass-card rounded-2xl p-8 flex flex-col justify-center h-full backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       autoComplete="off"
       noValidate
       aria-label="Contact form"
     >
+      {/* Honeypot field for spam protection */}
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        style={{ display: 'none' }}
+        {...register('website')}
+        aria-hidden="true"
+      />
+      
       <div className="space-y-2">
         <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-white">
-          Name
+          Name <span className="text-red-500" aria-label="required">*</span>
         </label>
-        <input
+        <motion.input
           id="name"
           type="text"
-          name="name"
           placeholder="Your Name"
-          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner ${errors.name ? 'ring-2 ring-red-400' : ''}`}
-          value={form.name}
-          onChange={handleChange}
-          required
+          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner transition-all duration-200 ${
+            errors.name ? 'ring-2 ring-red-400 bg-red-50 dark:bg-red-900/20' : ''
+          }`}
+          {...register('name', {
+            required: 'Name is required.',
+            minLength: { value: 2, message: 'Name should be at least 2 characters.' },
+            maxLength: { value: 50, message: 'Name should be less than 50 characters.' },
+          })}
           aria-invalid={!!errors.name}
-          aria-describedby={errors.name ? 'name-error' : undefined}
+          aria-describedby={errors.name ? 'name-error' : 'name-help'}
+          whileFocus={{ scale: 1.01, boxShadow: '0 0 0 2px #6366f1' }}
+          whileHover={{ scale: 1.005 }}
+          disabled={isSubmitting}
         />
+        <div id="name-help" className="sr-only">
+          Enter your full name (2-50 characters)
+        </div>
         {errors.name && (
-          <span id="name-error" className="text-xs text-red-500">
-            {errors.name}
-          </span>
+          <motion.span 
+            id="name-error" 
+            className="text-xs text-red-500 flex items-center gap-1" 
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            role="alert"
+            aria-live="polite"
+          >
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            {errors.name.message}
+          </motion.span>
         )}
       </div>
+
       <div className="space-y-2">
         <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-white">
-          Email
+          Email <span className="text-red-500" aria-label="required">*</span>
         </label>
-        <input
+        <motion.input
           id="email"
           type="email"
-          name="email"
-          placeholder="your-mail@gmail.com"
-          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner ${errors.email ? 'ring-2 ring-red-400' : ''}`}
-          value={form.email}
-          onChange={handleChange}
-          required
+          placeholder="your-email@gmail.com"
+          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner transition-all duration-200 ${
+            errors.email ? 'ring-2 ring-red-400 bg-red-50 dark:bg-red-900/20' : ''
+          }`}
+          {...register('email', {
+            required: 'Email is required.',
+            pattern: { 
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 
+              message: 'Please enter a valid email address.' 
+            },
+          })}
           aria-invalid={!!errors.email}
-          aria-describedby={errors.email ? 'email-error' : undefined}
+          aria-describedby={errors.email ? 'email-error' : 'email-help'}
+          whileFocus={{ scale: 1.01, boxShadow: '0 0 0 2px #6366f1' }}
+          whileHover={{ scale: 1.005 }}
+          disabled={isSubmitting}
         />
+        <div id="email-help" className="sr-only">
+          Enter a valid email address
+        </div>
         {errors.email && (
-          <span id="email-error" className="text-xs text-red-500">
-            {errors.email}
-          </span>
-        )}
-      </div>
-      <div className="space-y-2">
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-gray-800 dark:text-white"
-        >
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Your Message"
-          rows={5}
-          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner resize-none ${errors.message ? 'ring-2 ring-red-400' : ''}`}
-          value={form.message}
-          onChange={handleChange}
-          required
-          aria-invalid={!!errors.message}
-          aria-describedby={errors.message ? 'message-error' : undefined}
-        ></textarea>
-        {errors.message && (
-          <span id="message-error" className="text-xs text-red-500">
-            {errors.message}
-          </span>
-        )}
-      </div>
-      <Button
-        type="submit"
-        className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-md font-semibold hover:from-purple-500 hover:to-blue-500 transition flex items-center justify-center gap-2 mt-2 shadow-lg hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400/40"
-        disabled={status === 'loading'}
-        aria-busy={status === 'loading'}
-      >
-        {status === 'loading' ? (
-          <svg className="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            ></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-          </svg>
-        ) : (
-          <svg
-            className="w-5 h-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
+          <motion.span 
+            id="email-error" 
+            className="text-xs text-red-500 flex items-center gap-1" 
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            role="alert"
+            aria-live="polite"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L15 22l-4-9-9-4 20-7z" />
-          </svg>
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            {errors.email.message}
+          </motion.span>
         )}
-        {status === 'loading' ? 'Sending...' : 'Send Message'}
-      </Button>
-      {serverMsg && (
-        <p
-          className={`text-center text-sm mt-2 ${status === 'success' ? 'text-green-600' : 'text-red-500'}`}
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="message" className="block text-sm font-medium text-gray-800 dark:text-white">
+          Message <span className="text-red-500" aria-label="required">*</span>
+        </label>
+        <motion.textarea
+          id="message"
+          rows={5}
+          placeholder="Your Message"
+          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner resize-none transition-all duration-200 ${
+            errors.message ? 'ring-2 ring-red-400 bg-red-50 dark:bg-red-900/20' : ''
+          }`}
+          {...register('message', {
+            required: 'Message is required.',
+            minLength: { value: 10, message: 'Message should be at least 10 characters.' },
+            maxLength: { value: 1000, message: 'Message should be less than 1000 characters.' },
+          })}
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? 'message-error' : 'message-help'}
+          whileFocus={{ scale: 1.005, boxShadow: '0 0 0 2px #6366f1' }}
+          whileHover={{ scale: 1.002 }}
+          disabled={isSubmitting}
+        />
+        <div id="message-help" className="sr-only">
+          Enter your message (10-1000 characters)
+        </div>
+        {errors.message && (
+          <motion.span 
+            id="message-error" 
+            className="text-xs text-red-500 flex items-center gap-1" 
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            role="alert"
+            aria-live="polite"
+          >
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            {errors.message.message}
+          </motion.span>
+        )}
+      </div>
+
+      {/* Submit Status Messages */}
+      {submitStatus === 'success' && (
+        <motion.div
+          className="p-3 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg flex items-center gap-2"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          role="alert"
+          aria-live="polite"
         >
-          {serverMsg}
-        </p>
+          <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+          </svg>
+          <span className="text-green-800 dark:text-green-200 text-sm font-medium">
+            Message sent successfully! I&apos;ll get back to you soon.
+          </span>
+        </motion.div>
+      )}
+
+      {submitStatus === 'error' && (
+        <motion.div
+          className="p-3 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg flex items-center gap-2"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          role="alert"
+          aria-live="polite"
+        >
+          <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>
+          <span className="text-red-800 dark:text-red-200 text-sm font-medium">
+            Failed to send message. Please try again or contact me directly.
+          </span>
+        </motion.div>
+      )}
+
+      <motion.button
+        type="submit"
+        disabled={isSubmitting || !isFormValid}
+        className={`w-full py-3 px-6 rounded-xl text-white font-semibold transition-all duration-300 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400/40 flex items-center justify-center gap-2 mt-2 shadow-lg ${
+          isSubmitting || !isFormValid
+            ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
+            : 'bg-gradient-to-r from-primary to-indigo-500 hover:from-primary-600 hover:to-indigo-600'
+        }`}
+        whileHover={!isSubmitting && isFormValid ? { scale: 1.02 } : {}}
+        whileTap={!isSubmitting && isFormValid ? { scale: 0.98 } : {}}
+        aria-describedby={!isFormValid ? 'form-validation' : undefined}
+      >
+        {isSubmitting ? (
+          <>
+            <motion.div
+              className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            />
+            Sending...
+          </>
+        ) : (
+          <>
+            Send Message
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </>
+        )}
+      </motion.button>
+
+      {!isFormValid && (
+        <div id="form-validation" className="sr-only">
+          Please fill in all required fields correctly to enable the submit button.
+        </div>
       )}
     </form>
   );

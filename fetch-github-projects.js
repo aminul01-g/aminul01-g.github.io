@@ -1,8 +1,7 @@
 // This script fetches your public GitHub repositories and outputs them in the format for your portfolio's projects.ts file.
 // Usage: node fetch-github-projects.js <your-github-username>
 
-const https = require('https');
-const fs = require('fs');
+import https from 'https';
 
 const username = process.argv[2];
 if (!username) {

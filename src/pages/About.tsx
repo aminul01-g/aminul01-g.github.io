@@ -14,11 +14,16 @@ import {
 } from 'react-icons/fa';
 import { SiFoodpanda } from 'react-icons/si';
 import { GiFamilyTree } from 'react-icons/gi';
-import { useNavigate, useLocation } from 'react-router-dom';
-import ResumeModal from '../components/ResumeModal';
-import { profile } from '../data/profile';
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ImageWithFallback from '../components/ImageWithFallback';
+import { profile } from '../data/profile';
+import { timelineData } from '../data/timeline';
+import { countersData } from '../data/counters';
+import { Helmet } from 'react-helmet-async';
+
+const ResumeModal = lazy(() => import('../components/ResumeModal'));
+const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
+const AnimatedCounters = lazy(() => import('../components/AnimatedCounters'));
 
 // Modern glassmorphism background effect
 const GlassBg = () => (
@@ -29,7 +34,7 @@ const GlassBg = () => (
   />
 );
 
-const profilePic = 'https://avatars.githubusercontent.com/u/188814014?v=4';
+const profilePic = '/images/optimized/profile_pic.jpeg';
 
 export default function About(): React.ReactElement {
   // Project cards data must be inside the function, before return
@@ -85,36 +90,54 @@ export default function About(): React.ReactElement {
     },
   ];
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      setTimeout(() => {
-        const el = document.getElementById('contact');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const el = document.getElementById('contact');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // handleContactClick removed as it was unused
 
   return (
-    <div className="relative min-h-screen pb-12 overflow-x-hidden">
+    <div className="relative min-h-screen pb-12 overflow-x-hidden z-10">
+      <Helmet>
+        <title>About | Aminul Islam Bhuiyan Amin</title>
+        <meta name="description" content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT." />
+        <meta property="og:title" content="About | Aminul Islam Bhuiyan Amin" />
+        <meta property="og:description" content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT." />
+        <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://aminul01-g.github.io/about" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About | Aminul Islam Bhuiyan Amin" />
+        <meta name="twitter:description" content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT." />
+        <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
+        <link rel="canonical" href="https://aminul01-g.github.io/about" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://aminul01-g.github.io/'
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'About',
+                item: 'https://aminul01-g.github.io/about'
+              }
+            ]
+          })}
+        </script>
+      </Helmet>
       <GlassBg />
       {/* Hero Banner with animated background and CTA */}
       <motion.section
-        className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between px-6 sm:px-12 pt-20 pb-16 max-w-6xl mx-auto mb-16 overflow-hidden"
-        initial={{ opacity: 0, y: 40 }}
+        className="relative z-20 w-full flex flex-col md:flex-row items-center justify-between px-6 sm:px-12 pt-20 pb-16 max-w-6xl mx-auto mb-16 overflow-hidden"
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         {/* Animated Gradient Background */}
         <motion.div
           className="absolute inset-0 z-0 pointer-events-none"
-          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
           aria-hidden
@@ -190,13 +213,11 @@ export default function About(): React.ReactElement {
           </div>
         </div>
         <div className="flex-1 flex justify-center md:justify-end animate-fadeInUp delay-300 relative z-10">
-          <div className="rounded-full shadow-2xl border-4 border-primary ring-4 ring-primary/10 bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative">
+          <div className="rounded-full shadow-2xl border-4 border-primary ring-4 ring-primary/10 bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative mx-auto">
             <ImageWithFallback
               src={profilePic}
               alt="Profile"
-              webp="/images/optimized/profile.webp"
-              avif="/images/optimized/profile.avif"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover mx-auto"
               loading="lazy"
             />
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-indigo-400/10 pointer-events-none" />
@@ -205,21 +226,18 @@ export default function About(): React.ReactElement {
       </motion.section>
 
       {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
+      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
 
       {/* Professional Summary Block - Modernized */}
       <motion.div
-        className="relative max-w-2xl mx-auto bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl p-8 sm:p-10 mb-20 flex flex-col items-center border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="relative z-20 max-w-2xl mx-auto bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl p-8 sm:p-10 mb-20 flex flex-col items-center border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         aria-label="Professional summary"
       >
         <motion.h2
           className="text-3xl sm:text-4xl font-extrabold mb-4 text-primary flex items-center gap-2 drop-shadow dark:text-indigo-300 animate-fadeInUp text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           🧠 Summary
@@ -284,20 +302,17 @@ export default function About(): React.ReactElement {
       </motion.div>
 
       {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
+      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
 
       {/* Skills & Tools Section - Modernized */}
       <motion.section
-        className="relative max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
           className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           🛠 Technical Skills
@@ -340,22 +355,23 @@ export default function About(): React.ReactElement {
         </div>
       </motion.section>
 
+      {/* Interactive Timeline - moved up for visibility */}
+      <Suspense fallback={<div className="flex justify-center items-center min-h-[10vh] text-lg">Loading Timeline...</div>}>
+        <InteractiveTimeline items={timelineData} />
+      </Suspense>
+
       {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
+      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
 
       {/* Education & Experience - Modernized */}
-      {/* Education & Experience - Modernized */}
       <motion.section
-        className="max-w-5xl mx-auto mb-16 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp relative"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-5xl mx-auto mb-16 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp relative mt-32 z-20"
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
           className="text-4xl font-extrabold mb-8 text-primary drop-shadow dark:text-indigo-300 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           🎓 Education
@@ -376,8 +392,6 @@ export default function About(): React.ReactElement {
             <ImageWithFallback
               src="/bubt-seeklogo.png"
               alt="BUBT Logo"
-              webp="/images/optimized/bubt-seeklogo.webp"
-              avif="/images/optimized/bubt-seeklogo.avif"
               className="w-16 h-16 rounded-full bg-white border-2 border-primary/30 shadow-lg object-contain p-1 mr-2 transition-transform duration-200 hover:scale-105"
               loading="lazy"
             />
@@ -441,20 +455,17 @@ export default function About(): React.ReactElement {
         </motion.div>
       </motion.section>
       {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
+      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
 
       {/* Projects & AI Engineering Experience - Modernized */}
       <motion.section
-        className="relative max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
           className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           🚀 AI Engineering Experience
@@ -491,20 +502,17 @@ export default function About(): React.ReactElement {
       </motion.section>
 
       {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
+      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
 
       {/* Certifications & Achievements - Modernized */}
       <motion.section
-        className="relative max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
           className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           📜 Certifications
@@ -612,20 +620,17 @@ export default function About(): React.ReactElement {
       </motion.section>
 
       {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-2" />
+      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
 
       {/* Highlights Section - Modernized */}
       <motion.section
-        className="max-w-4xl mx-auto mb-16"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-4xl mx-auto mb-16 mt-32 z-20 relative"
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
           className="text-3xl font-extrabold mb-8 text-primary drop-shadow dark:text-indigo-300 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           📌 Highlights
@@ -681,18 +686,20 @@ export default function About(): React.ReactElement {
         </motion.div>
       </motion.section>
 
-      {/* Contact/Call-to-Action */}
+      {/* Animated Counters */}
+      <Suspense fallback={<div className="flex justify-center items-center min-h-[10vh] text-lg">Loading Counters...</div>}>
+        <AnimatedCounters counters={countersData} />
+      </Suspense>
+
+      {/* Let's Connect Section restored to About page */}
       <motion.section
-        className="max-w-2xl mx-auto text-center mt-20"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-2xl mx-auto text-center mt-64 z-20 relative"
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
           className="text-2xl font-bold mb-4 text-primary dark:text-indigo-300"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           Let&apos;s Connect!
@@ -716,11 +723,11 @@ export default function About(): React.ReactElement {
           </svg>
           View Resume
         </button>
-        <ResumeModal
-          open={resumeOpen}
-          onClose={() => setResumeOpen(false)}
-          resumeUrl={profile.resume || '/resume.pdf'}
-        />
+        <Suspense fallback={<div className="flex justify-center items-center min-h-[10vh] text-lg">Loading Resume Modal...</div>}>
+          {resumeOpen && (
+            <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} resumeUrl={profile.resume || '/resume.pdf'} />
+          )}
+        </Suspense>
         <motion.a
           whileHover={{ scale: 1.07 }}
           href="https://linkedin.com/in/aminulai"
@@ -732,30 +739,6 @@ export default function About(): React.ReactElement {
           Connect on LinkedIn
         </motion.a>
       </motion.section>
-
-      {/* Floating Contact Button */}
-      <a
-        href="/#contact"
-        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-primary text-white rounded-full shadow-lg p-4 flex items-center gap-2 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-primary transition-all animate-bounce"
-        aria-label="Contact"
-        tabIndex={0}
-        onClick={handleContactClick}
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l2.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112 3.5a8.5 8.5 0 018.5 8.5z"
-          />
-        </svg>
-        <span className="hidden sm:inline">Contact</span>
-      </a>
     </div>
   );
 }

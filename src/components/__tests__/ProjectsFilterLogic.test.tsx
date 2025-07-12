@@ -1,21 +1,50 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '../../test-utils/test-utils';
 import Projects from '../../pages/Projects';
-import { MemoryRouter } from 'react-router-dom';
+
+// Mock IntersectionObserver for framer-motion
+class IntersectionObserver {
+  observe = jest.fn();
+  unobserve = jest.fn();
+  disconnect = jest.fn();
+}
+
+Object.defineProperty(window, 'IntersectionObserver', {
+  writable: true,
+  configurable: true,
+  value: IntersectionObserver,
+});
+
+Object.defineProperty(global, 'IntersectionObserver', {
+  writable: true,
+  configurable: true,
+  value: IntersectionObserver,
+});
 
 describe('Projects Filter Logic', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
+  });
+
   it('filters projects by tag', async () => {
-    render(
-      <MemoryRouter>
-        <Projects />
-      </MemoryRouter>,
-    );
-    // Wait for filter bar and click a tag
-    const tagButton = await screen.findByRole('button', { name: /filter by/i });
-    if (tagButton) {
-      fireEvent.click(tagButton);
-      // Check that only filtered projects are shown
-      // (This is a basic smoke test; for more, mock data or use test ids)
-      expect(screen.getAllByRole('article').length).toBeGreaterThan(0);
+    render(<Projects />);
+    jest.runAllTimers(); // Advance timers to clear loading state
+    
+    // Wait for the page to load and find the "Show Advanced" button
+    const showAdvancedButton = await screen.findByText('Show Advanced');
+    fireEvent.click(showAdvancedButton);
+    
+    // Get all AI buttons and click the first one (should be the filter button)
+    const aiButtons = screen.getAllByText('#AI');
+    if (aiButtons.length > 0) {
+      fireEvent.click(aiButtons[0]);
     }
+    
+    // Check that projects are still shown (basic smoke test)
+    expect(screen.getAllByTestId('project-card').length).toBeGreaterThan(0);
   });
 });

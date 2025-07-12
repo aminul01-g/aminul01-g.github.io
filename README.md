@@ -46,3 +46,32 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 # aminul01-github.io
+
+## Security Headers
+
+If you self-host this site or use a custom server (not GitHub Pages), it is strongly recommended to set the following HTTP security headers:
+
+```
+Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://aminul01-g.github.io https://www.google-analytics.com https://www.googletagmanager.com https://randomuser.me; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+```
+
+If you use GitHub Pages, a fallback `<meta http-equiv="Content-Security-Policy">` is included in `public/index.html`, but HTTP headers are always preferred for maximum protection.
+
+## Error Monitoring (Sentry)
+
+This project supports error and performance monitoring with [Sentry](https://sentry.io/).
+
+To enable Sentry:
+1. Create a Sentry account and project at https://sentry.io/.
+2. Add your Sentry DSN to a `.env` file:
+   ```
+   REACT_APP_SENTRY_DSN=your_sentry_dsn_here
+   ```
+3. The app will only send errors if the DSN is set.
+
+Sentry is initialized in `src/index.tsx` and will capture unhandled errors and performance issues in production.
