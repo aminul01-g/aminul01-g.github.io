@@ -41,7 +41,12 @@ export default function ThemeToggle(): React.ReactElement {
     <motion.button
       onClick={toggleTheme}
       onKeyDown={handleKeyDown}
-      className="glass-card p-2 rounded-full text-white hover:text-primary-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
+      className={
+        `p-2 rounded-full border shadow transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent ` +
+        (isDark
+          ? 'bg-gray-800 border-gray-700 text-yellow-300 hover:text-yellow-200'
+          : 'bg-white border-gray-200 text-gray-700 hover:text-primary')
+      }
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}

@@ -18,9 +18,7 @@ export const useToast = () => useContext(ToastContext);
 
 let toastId = 0;
 
-export const ToastProvider = ({
-  children,
-}: { children: ReactNode }): React.ReactElement => {
+export const ToastProvider = ({ children }: { children: ReactNode }): React.ReactElement => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const showToast = useCallback((message: string, type: ToastType = 'info') => {
