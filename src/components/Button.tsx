@@ -15,19 +15,12 @@ function filterValidChildren(children: React.ReactNode): React.ReactNode {
     return (
       <Fragment>
         {children.filter(
-          (child) =>
-            typeof child === 'string' ||
-            typeof child === 'number' ||
-            isValidElement(child)
+          (child) => typeof child === 'string' || typeof child === 'number' || isValidElement(child)
         )}
       </Fragment>
     );
   }
-  if (
-    typeof children === 'string' ||
-    typeof children === 'number' ||
-    isValidElement(children)
-  ) {
+  if (typeof children === 'string' || typeof children === 'number' || isValidElement(children)) {
     return children;
   }
   return null;
@@ -70,30 +63,37 @@ function filterProps(props: Record<string, unknown>) {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    children, 
-    className = '', 
-    variant = 'primary', 
-    size = 'md',
-    loading = false,
-    icon,
-    iconPosition = 'left',
-    disabled,
-    ...props 
-  }, ref) => {
-    const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none';
-    
+  (
+    {
+      children,
+      className = '',
+      variant = 'primary',
+      size = 'md',
+      loading = false,
+      icon,
+      iconPosition = 'left',
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
+    const baseClasses =
+      'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none';
+
     const variantClasses = {
-      primary: 'bg-gradient-to-r from-primary to-indigo-500 hover:from-primary-600 hover:to-indigo-600 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
-      secondary: 'bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
-      outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
-      ghost: 'text-primary hover:bg-primary/10 hover:scale-105 active:scale-95'
+      primary:
+        'bg-gradient-to-r from-primary to-indigo-500 hover:from-primary-600 hover:to-indigo-600 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
+      secondary:
+        'bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
+      outline:
+        'border-2 border-primary text-primary hover:bg-primary hover:text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
+      ghost: 'text-primary hover:bg-primary/10 hover:scale-105 active:scale-95',
     };
-    
+
     const sizeClasses = {
       sm: 'px-4 py-2 text-sm min-h-[36px] min-w-[36px]',
       md: 'px-6 py-3 text-base min-h-[44px] min-w-[44px]',
-      lg: 'px-8 py-4 text-lg min-h-[52px] min-w-[52px]'
+      lg: 'px-8 py-4 text-lg min-h-[52px] min-w-[52px]',
     };
 
     const isDisabled = disabled || loading;
@@ -114,21 +114,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <motion.div
             className="mr-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full"
             animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
             aria-hidden="true"
           />
         )}
-        
+
         {!loading && icon && iconPosition === 'left' && (
           <span className="mr-2" aria-hidden="true">
             {icon}
           </span>
         )}
-        
-        <span className={loading ? 'sr-only' : ''}>
-          {filterValidChildren(children)}
-        </span>
-        
+
+        <span className={loading ? 'sr-only' : ''}>{filterValidChildren(children)}</span>
+
         {!loading && icon && iconPosition === 'right' && (
           <span className="ml-2" aria-hidden="true">
             {icon}

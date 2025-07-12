@@ -32,7 +32,9 @@ interface UseScrollTriggerReturn {
   rotate: MotionValue<number>;
 }
 
-export default function useScrollTrigger(options: UseScrollTriggerOptions = {}): UseScrollTriggerReturn {
+export default function useScrollTrigger(
+  options: UseScrollTriggerOptions = {}
+): UseScrollTriggerReturn {
   const { threshold = 0.1, offset = ['start end', 'end start'] } = options;
   const ref = useRef<HTMLDivElement>(null);
 
@@ -53,4 +55,4 @@ export default function useScrollTrigger(options: UseScrollTriggerOptions = {}):
     scale,
     rotate,
   };
-} 
+}

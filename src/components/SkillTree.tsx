@@ -6,7 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Node,
   Edge,
-  Position
+  Position,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -32,7 +32,7 @@ const skillTreeData: SkillNode[] = [
         children: [
           { id: 'pytorch', label: 'PyTorch', category: 'AI' },
           { id: 'sklearn', label: 'Scikit-learn', category: 'AI' },
-        ]
+        ],
       },
       {
         id: 'web',
@@ -41,17 +41,15 @@ const skillTreeData: SkillNode[] = [
         children: [
           { id: 'django', label: 'Django', category: 'Web' },
           { id: 'flask', label: 'Flask', category: 'Web' },
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     id: 'cpp',
     label: 'C++',
     category: 'Programming',
-    children: [
-      { id: 'cp', label: 'Competitive Programming', category: 'Algorithms' },
-    ]
+    children: [{ id: 'cp', label: 'Competitive Programming', category: 'Algorithms' }],
   },
 ];
 
@@ -110,4 +108,4 @@ const SkillTree: React.FC = () => {
   );
 };
 
-export default SkillTree; 
+export default SkillTree;

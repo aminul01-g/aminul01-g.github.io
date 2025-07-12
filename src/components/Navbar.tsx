@@ -101,14 +101,14 @@ export default function Navbar(): React.ReactElement {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
         {/* Logo and ThemeToggle */}
-        <motion.div 
+        <motion.div
           className="flex items-center gap-4"
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="text-2xl font-bold bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent dark:from-primary dark:to-indigo-500 hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
             aria-label="Go to homepage"
           >
@@ -123,7 +123,7 @@ export default function Navbar(): React.ReactElement {
           className="sm:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50 focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
           onClick={handleMenuToggle}
           onKeyDown={handleMenuKeyDown}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-haspopup="true"
@@ -168,13 +168,13 @@ export default function Navbar(): React.ReactElement {
                 <motion.div
                   className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 rounded-full"
                   initial={{ width: 0 }}
-                  whileHover={{ width: "100%" }}
+                  whileHover={{ width: '100%' }}
                   transition={{ duration: 0.3 }}
                 />
               </Link>
             </motion.div>
           ))}
-          
+
           {/* Contact Button */}
           <motion.div
             initial={{ y: -20, opacity: 0 }}
@@ -192,7 +192,7 @@ export default function Navbar(): React.ReactElement {
               <motion.div
                 className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 rounded-full"
                 initial={{ width: 0 }}
-                whileHover={{ width: "100%" }}
+                whileHover={{ width: '100%' }}
                 transition={{ duration: 0.3 }}
               />
             </a>
@@ -232,7 +232,7 @@ export default function Navbar(): React.ReactElement {
                     </Link>
                   </motion.div>
                 ))}
-                
+
                 <motion.div
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}

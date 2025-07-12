@@ -48,7 +48,7 @@ export default function ProjectCard({
       aria-label={`Project: ${title}`}
       role="article"
       style={{ minHeight: 350, width: '100%' }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.02,
         rotateY: 5,
         rotateX: 2,
@@ -62,7 +62,7 @@ export default function ProjectCard({
       <div className="relative w-full pt-[56.25%] bg-gradient-to-br from-primary/10 to-indigo-500/10 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
           {isEmoji ? (
-            <motion.span 
+            <motion.span
               className="text-6xl"
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ duration: 0.3 }}
@@ -78,17 +78,17 @@ export default function ProjectCard({
             />
           )}
         </div>
-        
+
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {/* Glow effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-indigo-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
 
       {/* Content with Enhanced Styling */}
       <div className="flex-1 p-6 sm:p-8 relative z-10">
-        <motion.h3 
+        <motion.h3
           className="text-xl font-bold text-glass dark:text-white mb-3 line-clamp-1 group-hover:text-primary-300 transition-colors duration-300"
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
@@ -127,13 +127,23 @@ export default function ProjectCard({
             >
               <span className="flex items-center justify-center gap-2">
                 View Details
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
                 </svg>
               </span>
             </Link>
           </motion.div>
-          
+
           <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <a
               href={github}
@@ -153,12 +163,18 @@ export default function ProjectCard({
           </motion.div>
         </div>
       </div>
-      
+
       {/* Floating particles effect */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full animate-pulse" />
-        <div className="absolute bottom-4 left-4 w-1 h-1 bg-indigo-400/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 right-6 w-1.5 h-1.5 bg-cyan-400/30 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute bottom-4 left-4 w-1 h-1 bg-indigo-400/40 rounded-full animate-pulse"
+          style={{ animationDelay: '1s' }}
+        />
+        <div
+          className="absolute top-1/2 right-6 w-1.5 h-1.5 bg-cyan-400/30 rounded-full animate-pulse"
+          style={{ animationDelay: '2s' }}
+        />
       </div>
     </motion.div>
   );

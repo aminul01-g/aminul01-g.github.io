@@ -33,17 +33,17 @@ describe('Projects Filter Logic', () => {
   it('filters projects by tag', async () => {
     render(<Projects />);
     jest.runAllTimers(); // Advance timers to clear loading state
-    
+
     // Wait for the page to load and find the "Show Advanced" button
     const showAdvancedButton = await screen.findByText('Show Advanced');
     fireEvent.click(showAdvancedButton);
-    
+
     // Get all AI buttons and click the first one (should be the filter button)
     const aiButtons = screen.getAllByText('#AI');
     if (aiButtons.length > 0) {
       fireEvent.click(aiButtons[0]);
     }
-    
+
     // Check that projects are still shown (basic smoke test)
     expect(screen.getAllByTestId('project-card').length).toBeGreaterThan(0);
   });

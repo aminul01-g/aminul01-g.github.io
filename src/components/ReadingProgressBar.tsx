@@ -8,10 +8,10 @@ interface ReadingProgressBarProps {
 const ReadingProgressBar: React.FC<ReadingProgressBarProps> = ({ className = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
   const { scrollYProgress } = useScroll();
-  
+
   // Transform scroll progress to width percentage
   const width = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-  
+
   // Show progress bar when user starts scrolling
   useEffect(() => {
     const handleScroll = () => {
@@ -32,13 +32,13 @@ const ReadingProgressBar: React.FC<ReadingProgressBarProps> = ({ className = '' 
     >
       {/* Background track */}
       <div className="w-full h-full bg-white/10 backdrop-blur-sm" />
-      
+
       {/* Progress bar */}
       <motion.div
         className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-indigo-500 rounded-r-full"
         style={{ width }}
       />
-      
+
       {/* Glow effect */}
       <motion.div
         className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary/50 to-indigo-500/50 rounded-r-full blur-sm"
@@ -48,4 +48,4 @@ const ReadingProgressBar: React.FC<ReadingProgressBarProps> = ({ className = '' 
   );
 };
 
-export default ReadingProgressBar; 
+export default ReadingProgressBar;

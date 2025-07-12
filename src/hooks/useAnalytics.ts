@@ -63,4 +63,4 @@ export const usePageTracking = (pagePath: string, pageTitle?: string) => {
   useEffect(() => {
     trackPageView(pagePath, pageTitle);
   }, [pagePath, pageTitle, trackPageView]);
-}; 
+};

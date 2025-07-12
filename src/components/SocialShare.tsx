@@ -49,4 +49,4 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, className = '' })
   );
 };
 
-export default SocialShare; 
+export default SocialShare;

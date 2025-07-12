@@ -22,7 +22,9 @@ interface AccessibilityProviderProps {
   children: ReactNode;
 }
 
-export function AccessibilityProvider({ children }: AccessibilityProviderProps): React.ReactElement {
+export function AccessibilityProvider({
+  children,
+}: AccessibilityProviderProps): React.ReactElement {
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [isHighContrast, setIsHighContrast] = useState(false);
   const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('medium');
@@ -69,11 +71,11 @@ export function AccessibilityProvider({ children }: AccessibilityProviderProps):
   // Apply accessibility settings to document
   useEffect(() => {
     const root = document.documentElement;
-    
+
     // Apply font size
-    root.style.setProperty('--font-size-multiplier', 
-      fontSize === 'small' ? '0.875' : 
-      fontSize === 'large' ? '1.25' : '1'
+    root.style.setProperty(
+      '--font-size-multiplier',
+      fontSize === 'small' ? '0.875' : fontSize === 'large' ? '1.25' : '1'
     );
 
     // Apply high contrast
@@ -110,9 +112,5 @@ export function AccessibilityProvider({ children }: AccessibilityProviderProps):
     toggleHighContrast: handleToggleHighContrast,
   };
 
-  return (
-    <AccessibilityContext.Provider value={value}>
-      {children}
-    </AccessibilityContext.Provider>
-  );
-} 
+  return <AccessibilityContext.Provider value={value}>{children}</AccessibilityContext.Provider>;
+}

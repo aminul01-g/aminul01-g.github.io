@@ -24,11 +24,17 @@ const BackToTopButton: React.FC = () => {
       aria-label="Back to top"
       tabIndex={0}
     >
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
       </svg>
     </button>
   );
 };
 
-export default BackToTopButton; 
+export default BackToTopButton;

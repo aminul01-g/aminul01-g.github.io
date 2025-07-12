@@ -157,17 +157,25 @@
 
 /* Gradient utilities for themes */
 .themed-gradient-1 {
-  background: linear-gradient(135deg, var(--gradient-1-start, #667eea) 0%, var(--gradient-1-end, #764ba2) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gradient-1-start, #667eea) 0%,
+    var(--gradient-1-end, #764ba2) 100%
+  );
 }
 .themed-gradient-2 {
-  background: linear-gradient(135deg, var(--gradient-2-start, #f093fb) 0%, var(--gradient-2-end, #f5576c) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gradient-2-start, #f093fb) 0%,
+    var(--gradient-2-end, #f5576c) 100%
+  );
 }
 
 /* CSS Variables for Theme System */
 :root {
   --glass-bg: rgba(255, 255, 255, 0.25);
   --glass-border: rgba(0, 0, 0, 0.07);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -307,7 +315,7 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
@@ -550,14 +558,14 @@ textarea:invalid {
   section {
     margin-bottom: 2rem;
   }
-  
+
   .btn {
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
     min-height: 48px; /* Larger touch targets on mobile */
     min-width: 48px;
   }
-  
+
   input,
   textarea {
     min-height: 48px;
@@ -585,8 +593,14 @@ textarea:invalid {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Hero background */
@@ -599,11 +613,11 @@ textarea:invalid {
   * {
     border-color: currentColor !important;
   }
-  
+
   .btn {
     border: 2px solid currentColor !important;
   }
-  
+
   input,
   textarea {
     border: 2px solid currentColor !important;
@@ -618,18 +632,18 @@ textarea:invalid {
   .footer {
     display: none !important;
   }
-  
+
   * {
     background: white !important;
     color: black !important;
     box-shadow: none !important;
   }
-  
+
   a {
     text-decoration: underline !important;
   }
-  
+
   a[href]:after {
-    content: " (" attr(href) ")";
+    content: ' (' attr(href) ')';
   }
 }

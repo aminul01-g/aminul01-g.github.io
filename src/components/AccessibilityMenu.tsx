@@ -41,7 +41,12 @@ export default function AccessibilityMenu(): React.ReactElement {
         aria-controls="accessibility-menu"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          />
         </svg>
       </button>
 
@@ -61,7 +66,9 @@ export default function AccessibilityMenu(): React.ReactElement {
             aria-labelledby="accessibility-controls-heading"
           >
             {/* Visually hidden heading for screen readers */}
-            <h2 className="sr-only" id="accessibility-controls-heading">Accessibility Controls</h2>
+            <h2 className="sr-only" id="accessibility-controls-heading">
+              Accessibility Controls
+            </h2>
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Accessibility Settings
@@ -145,4 +152,4 @@ export default function AccessibilityMenu(): React.ReactElement {
       </div>
     </div>
   );
-} 
+}

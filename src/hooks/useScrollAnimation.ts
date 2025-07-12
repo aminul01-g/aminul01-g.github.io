@@ -46,4 +46,4 @@ function useScrollAnimation<T extends HTMLElement = HTMLElement>(
   return { elementRef, isVisible };
 }
 
-export default useScrollAnimation; 
+export default useScrollAnimation;

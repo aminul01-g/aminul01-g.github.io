@@ -96,35 +96,44 @@ export default function About(): React.ReactElement {
     <div className="relative min-h-screen pb-12 overflow-x-hidden z-10">
       <Helmet>
         <title>About | Aminul Islam Bhuiyan Amin</title>
-        <meta name="description" content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT." />
+        <meta
+          name="description"
+          content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT."
+        />
         <meta property="og:title" content="About | Aminul Islam Bhuiyan Amin" />
-        <meta property="og:description" content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT." />
+        <meta
+          property="og:description"
+          content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT."
+        />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aminul01-g.github.io/about" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About | Aminul Islam Bhuiyan Amin" />
-        <meta name="twitter:description" content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT." />
+        <meta
+          name="twitter:description"
+          content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT."
+        />
         <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
         <link rel="canonical" href="https://aminul01-g.github.io/about" />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
-            'itemListElement': [
+            itemListElement: [
               {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://aminul01-g.github.io/'
+                item: 'https://aminul01-g.github.io/',
               },
               {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'About',
-                item: 'https://aminul01-g.github.io/about'
-              }
-            ]
+                item: 'https://aminul01-g.github.io/about',
+              },
+            ],
           })}
         </script>
       </Helmet>
@@ -356,7 +365,13 @@ export default function About(): React.ReactElement {
       </motion.section>
 
       {/* Interactive Timeline - moved up for visibility */}
-      <Suspense fallback={<div className="flex justify-center items-center min-h-[10vh] text-lg">Loading Timeline...</div>}>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center min-h-[10vh] text-lg">
+            Loading Timeline...
+          </div>
+        }
+      >
         <InteractiveTimeline items={timelineData} />
       </Suspense>
 
@@ -687,7 +702,13 @@ export default function About(): React.ReactElement {
       </motion.section>
 
       {/* Animated Counters */}
-      <Suspense fallback={<div className="flex justify-center items-center min-h-[10vh] text-lg">Loading Counters...</div>}>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center min-h-[10vh] text-lg">
+            Loading Counters...
+          </div>
+        }
+      >
         <AnimatedCounters counters={countersData} />
       </Suspense>
 
@@ -723,9 +744,19 @@ export default function About(): React.ReactElement {
           </svg>
           View Resume
         </button>
-        <Suspense fallback={<div className="flex justify-center items-center min-h-[10vh] text-lg">Loading Resume Modal...</div>}>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center min-h-[10vh] text-lg">
+              Loading Resume Modal...
+            </div>
+          }
+        >
           {resumeOpen && (
-            <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} resumeUrl={profile.resume || '/resume.pdf'} />
+            <ResumeModal
+              open={resumeOpen}
+              onClose={() => setResumeOpen(false)}
+              resumeUrl={profile.resume || '/resume.pdf'}
+            />
           )}
         </Suspense>
         <motion.a

@@ -7,7 +7,7 @@ describe('Navbar', () => {
     render(
       <MemoryRouter>
         <Navbar />
-      </MemoryRouter>,
+      </MemoryRouter>
     );
     expect(screen.getByRole('navigation')).toBeInTheDocument();
     expect(screen.getByText(/projects/i)).toBeInTheDocument();

@@ -15,7 +15,7 @@ export default function Post(): React.ReactElement {
 
   React.useEffect(() => {
     // Use mock data instead of Sanity fetch
-    const foundPost = blogPosts.find(p => p.slug === slug);
+    const foundPost = blogPosts.find((p) => p.slug === slug);
     setPost(foundPost || null);
     setLoading(false);
   }, [slug]);
@@ -68,52 +68,52 @@ export default function Post(): React.ReactElement {
         <link rel="canonical" href={`https://aminul01-g.github.io/blog/${post?.slug || ''}`} />
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": post?.title || "Blog Post",
-            "description": post?.summary || "Read this blog post by Aminul Islam Bhuiyan Amin.",
-            "datePublished": post?.date || "",
-            "author": {
-              "@type": "Person",
-              "name": "Aminul Islam Bhuiyan Amin",
-              "url": "https://aminul01-g.github.io"
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post?.title || 'Blog Post',
+            description: post?.summary || 'Read this blog post by Aminul Islam Bhuiyan Amin.',
+            datePublished: post?.date || '',
+            author: {
+              '@type': 'Person',
+              name: 'Aminul Islam Bhuiyan Amin',
+              url: 'https://aminul01-g.github.io',
             },
-            "publisher": {
-              "@type": "Person",
-              "name": "Aminul Islam Bhuiyan Amin"
+            publisher: {
+              '@type': 'Person',
+              name: 'Aminul Islam Bhuiyan Amin',
             },
-            "url": `https://aminul01-g.github.io/blog/${post?.slug || ''}`,
-            "image": "https://aminul01-g.github.io/logo512.png",
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": `https://aminul01-g.github.io/blog/${post?.slug || ''}`
-            }
+            url: `https://aminul01-g.github.io/blog/${post?.slug || ''}`,
+            image: 'https://aminul01-g.github.io/logo512.png',
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': `https://aminul01-g.github.io/blog/${post?.slug || ''}`,
+            },
           })}
         </script>
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
-            'itemListElement': [
+            itemListElement: [
               {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://aminul01-g.github.io/'
+                item: 'https://aminul01-g.github.io/',
               },
               {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Blog',
-                item: 'https://aminul01-g.github.io/blog'
+                item: 'https://aminul01-g.github.io/blog',
               },
               {
                 '@type': 'ListItem',
                 position: 3,
                 name: post?.title || 'Blog Post',
-                item: `https://aminul01-g.github.io/blog/${post?.slug || ''}`
-              }
-            ]
+                item: `https://aminul01-g.github.io/blog/${post?.slug || ''}`,
+              },
+            ],
           })}
         </script>
       </Helmet>
@@ -139,7 +139,11 @@ export default function Post(): React.ReactElement {
           </p>
         )}
       </article>
-      <SocialShare url={`https://aminul01-g.github.io/blog/${post.slug}`} title={post.title} className="mb-8" />
+      <SocialShare
+        url={`https://aminul01-g.github.io/blog/${post.slug}`}
+        title={post.title}
+        className="mb-8"
+      />
       {/* Comments section */}
       <Comments />
       <FeedbackWidget className="my-8" />

@@ -18,4 +18,4 @@ declare module '@giscus/react' {
   }
   const Giscus: React.FC<GiscusProps>;
   export default Giscus;
-} 
+}

@@ -18,8 +18,8 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
 
     // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       // Here you would typically make an API call to subscribe the user
       // For now, we'll just simulate success
       setIsSubscribed(true);
@@ -40,7 +40,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
       viewport={{ once: true }}
     >
       <div className="text-center mb-6">
-        <motion.h3 
+        <motion.h3
           className="text-2xl font-bold text-white mb-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
         >
           Stay Updated
         </motion.h3>
-        <motion.p 
+        <motion.p
           className="text-gray-300 text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,7 +117,12 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
                     exit={{ opacity: 0 }}
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
                     </svg>
                     Subscribe to Newsletter
                   </motion.div>
@@ -125,7 +130,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
               </AnimatePresence>
             </motion.button>
 
-            <motion.p 
+            <motion.p
               className="text-xs text-gray-400 text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -145,14 +150,24 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
               className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
             >
-              <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              <svg
+                className="w-8 h-8 text-green-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </motion.div>
-            
-            <motion.h4 
+
+            <motion.h4
               className="text-xl font-semibold text-white mb-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -160,16 +175,16 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
             >
               Successfully Subscribed!
             </motion.h4>
-            
-            <motion.p 
+
+            <motion.p
               className="text-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Thank you for subscribing! You'll receive updates on the latest content.
+              Thank you for subscribing! You&apos;ll receive updates on the latest content.
             </motion.p>
-            
+
             <motion.button
               onClick={() => setIsSubscribed(false)}
               className="mt-4 text-primary-300 hover:text-primary-200 transition-colors duration-200"
@@ -186,4 +201,4 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({ classNa
   );
 };
 
-export default NewsletterSubscription; 
+export default NewsletterSubscription;

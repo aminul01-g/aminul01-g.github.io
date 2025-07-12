@@ -38,7 +38,11 @@ const NewsletterModal: React.FC = () => {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+    >
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-sm w-full relative animate-fadeInUp">
         <button
           onClick={() => setOpen(false)}
@@ -53,14 +57,20 @@ const NewsletterModal: React.FC = () => {
             <p className="text-gray-700 dark:text-gray-200">You&apos;re subscribed to updates.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4" aria-label="Newsletter signup form">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4"
+            aria-label="Newsletter signup form"
+          >
             <h3 className="text-xl font-bold mb-2 text-primary">Subscribe for Updates</h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Get the latest blog posts, projects, and AI insights straight to your inbox.</p>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+              Get the latest blog posts, projects, and AI insights straight to your inbox.
+            </p>
             <input
               ref={inputRef}
               type="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Your email address"
               className="border border-primary/30 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
@@ -79,4 +89,4 @@ const NewsletterModal: React.FC = () => {
   );
 };
 
-export default NewsletterModal; 
+export default NewsletterModal;

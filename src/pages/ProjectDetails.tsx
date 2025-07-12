@@ -25,41 +25,50 @@ export default function ProjectDetails(): React.ReactElement {
     <>
       <Helmet>
         <title>{project?.title || 'Project'} | Aminul Islam Bhuiyan Amin</title>
-        <meta name="description" content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'} />
+        <meta
+          name="description"
+          content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'}
+        />
         <meta property="og:title" content={project?.title || 'Project'} />
-        <meta property="og:description" content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'} />
+        <meta
+          property="og:description"
+          content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'}
+        />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://aminul01-g.github.io/projects/${slug}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={project?.title || 'Project'} />
-        <meta name="twitter:description" content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'} />
+        <meta
+          name="twitter:description"
+          content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'}
+        />
         <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
         <link rel="canonical" href={`https://aminul01-g.github.io/projects/${slug}`} />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
-            'itemListElement': [
+            itemListElement: [
               {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://aminul01-g.github.io/'
+                item: 'https://aminul01-g.github.io/',
               },
               {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Projects',
-                item: 'https://aminul01-g.github.io/projects'
+                item: 'https://aminul01-g.github.io/projects',
               },
               {
                 '@type': 'ListItem',
                 position: 3,
                 name: project.title,
-                item: `https://aminul01-g.github.io/projects/${slug}`
-              }
-            ]
+                item: `https://aminul01-g.github.io/projects/${slug}`,
+              },
+            ],
           })}
         </script>
       </Helmet>
@@ -82,7 +91,11 @@ export default function ProjectDetails(): React.ReactElement {
           loading="lazy"
         />
         <p className="text-lg text-gray-700 dark:text-gray-200 mb-6">{project.description}</p>
-        <SocialShare url={`https://aminul01-g.github.io/projects/${slug}`} title={project.title} className="mb-8" />
+        <SocialShare
+          url={`https://aminul01-g.github.io/projects/${slug}`}
+          title={project.title}
+          className="mb-8"
+        />
         {/* Placeholder for case study/extended details */}
         <div className="prose dark:prose-invert max-w-none mb-8">
           <h2>Case Study</h2>

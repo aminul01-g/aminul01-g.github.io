@@ -88,13 +88,13 @@ export default function Hero(): React.ReactElement {
     >
       {/* Particle Background */}
       <ParticleBackground />
-      
+
       {/* Animated Gradient Background with Parallax */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 animated-gradient opacity-20"
         style={{ y: backgroundY }}
       />
-      
+
       {/* Glassmorphism Orbs with Parallax */}
       <motion.div
         className="absolute inset-0 z-0 pointer-events-none"
@@ -103,15 +103,15 @@ export default function Hero(): React.ReactElement {
         transition={{ duration: 1 }}
         aria-hidden
       >
-        <motion.div 
+        <motion.div
           className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-primary/30 to-indigo-500/30 rounded-full blur-3xl float"
           style={{ y: orb1Y }}
         />
-        <motion.div 
-          className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/30 to-purple-500/30 rounded-full blur-2xl float" 
-          style={{ y: orb2Y, animationDelay: '1s' }} 
+        <motion.div
+          className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/30 to-purple-500/30 rounded-full blur-2xl float"
+          style={{ y: orb2Y, animationDelay: '1s' }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 pulse"
           style={{ y: orb3Y }}
         />
@@ -154,9 +154,9 @@ export default function Hero(): React.ReactElement {
             animate="visible"
           >
             {words.map((word, index) => (
-              <motion.span 
-                key={index} 
-                variants={wordVariants} 
+              <motion.span
+                key={index}
+                variants={wordVariants}
                 className="inline-block mr-2 bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent dark:from-white dark:to-gray-200"
               >
                 {word}
@@ -186,8 +186,8 @@ export default function Hero(): React.ReactElement {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7 }}
           >
-            AI Engineering Student passionate about building intelligent systems. Let&apos;s connect and
-            create something amazing!
+            AI Engineering Student passionate about building intelligent systems. Let&apos;s connect
+            and create something amazing!
           </motion.p>
 
           {/* Enhanced Social Icons */}

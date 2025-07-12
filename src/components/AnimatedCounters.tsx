@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
 
 export interface CounterItem {
   id: string;
@@ -20,11 +19,11 @@ interface AnimatedCountersProps {
 
 const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
   counters,
-  title = "My Achievements",
-  subtitle = "Numbers that tell my story"
+  title = 'My Achievements',
+  subtitle = 'Numbers that tell my story',
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [counts, setCounts] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
@@ -47,7 +46,7 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
         currentValue = targetValue;
         clearInterval(timer);
       }
-      setCounts(prev => ({ ...prev, [id]: Math.floor(currentValue) }));
+      setCounts((prev) => ({ ...prev, [id]: Math.floor(currentValue) }));
     }, duration / steps);
   };
 
@@ -65,9 +64,7 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-indigo-400 bg-clip-text text-transparent">
             {title}
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            {subtitle}
-          </p>
+          <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         {/* Counters Grid */}
@@ -83,10 +80,14 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
               whileHover={{ scale: 1.05, y: -5 }}
             >
               {/* Background Glow */}
-              <div className={`absolute inset-0 rounded-2xl ${counter.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-              
+              <div
+                className={`absolute inset-0 rounded-2xl ${counter.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+              />
+
               {/* Icon */}
-              <div className={`w-16 h-16 mx-auto mb-4 p-3 rounded-full bg-gradient-to-r ${counter.color} text-white flex items-center justify-center`}>
+              <div
+                className={`w-16 h-16 mx-auto mb-4 p-3 rounded-full bg-gradient-to-r ${counter.color} text-white flex items-center justify-center`}
+              >
                 {counter.icon}
               </div>
 
@@ -104,15 +105,13 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
               </motion.div>
 
               {/* Label */}
-              <p className="text-gray-600 dark:text-gray-400 font-medium">
-                {counter.label}
-              </p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">{counter.label}</p>
 
               {/* Animated Border */}
               <motion.div
                 className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-indigo-500 rounded-b-2xl"
                 initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
+                whileInView={{ width: '100%' }}
                 transition={{ duration: 1, delay: index * 0.1 + 1 }}
                 viewport={{ once: true }}
               />
@@ -146,4 +145,4 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
   );
 };
 
-export default AnimatedCounters; 
+export default AnimatedCounters;

@@ -12,13 +12,13 @@ interface FormData {
 export default function ContactForm(): React.ReactElement {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    watch
+    watch,
   } = useForm<FormData>();
 
   const watchedFields = watch();
@@ -35,20 +35,20 @@ export default function ContactForm(): React.ReactElement {
 
     try {
       // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Here you would typically send the data to your backend
       console.log('Form submitted:', data);
-      
+
       setSubmitStatus('success');
       reset();
-      
+
       // Reset status after 3 seconds
       setTimeout(() => setSubmitStatus('idle'), 3000);
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
-      
+
       // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
@@ -56,9 +56,10 @@ export default function ContactForm(): React.ReactElement {
     }
   };
 
-  const isFormValid = Object.keys(errors).length === 0 && 
-    watchedFields.name && 
-    watchedFields.email && 
+  const isFormValid =
+    Object.keys(errors).length === 0 &&
+    watchedFields.name &&
+    watchedFields.email &&
     watchedFields.message;
 
   return (
@@ -78,10 +79,13 @@ export default function ContactForm(): React.ReactElement {
         {...register('website')}
         aria-hidden="true"
       />
-      
+
       <div className="space-y-2">
         <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-white">
-          Name <span className="text-red-500" aria-label="required">*</span>
+          Name{' '}
+          <span className="text-red-500" aria-label="required">
+            *
+          </span>
         </label>
         <motion.input
           id="name"
@@ -105,16 +109,20 @@ export default function ContactForm(): React.ReactElement {
           Enter your full name (2-50 characters)
         </div>
         {errors.name && (
-          <motion.span 
-            id="name-error" 
-            className="text-xs text-red-500 flex items-center gap-1" 
+          <motion.span
+            id="name-error"
+            className="text-xs text-red-500 flex items-center gap-1"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
           >
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
             </svg>
             {errors.name.message}
           </motion.span>
@@ -123,7 +131,10 @@ export default function ContactForm(): React.ReactElement {
 
       <div className="space-y-2">
         <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-white">
-          Email <span className="text-red-500" aria-label="required">*</span>
+          Email{' '}
+          <span className="text-red-500" aria-label="required">
+            *
+          </span>
         </label>
         <motion.input
           id="email"
@@ -134,9 +145,9 @@ export default function ContactForm(): React.ReactElement {
           }`}
           {...register('email', {
             required: 'Email is required.',
-            pattern: { 
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 
-              message: 'Please enter a valid email address.' 
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Please enter a valid email address.',
             },
           })}
           aria-invalid={!!errors.email}
@@ -149,16 +160,20 @@ export default function ContactForm(): React.ReactElement {
           Enter a valid email address
         </div>
         {errors.email && (
-          <motion.span 
-            id="email-error" 
-            className="text-xs text-red-500 flex items-center gap-1" 
+          <motion.span
+            id="email-error"
+            className="text-xs text-red-500 flex items-center gap-1"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
           >
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
             </svg>
             {errors.email.message}
           </motion.span>
@@ -166,8 +181,14 @@ export default function ContactForm(): React.ReactElement {
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="message" className="block text-sm font-medium text-gray-800 dark:text-white">
-          Message <span className="text-red-500" aria-label="required">*</span>
+        <label
+          htmlFor="message"
+          className="block text-sm font-medium text-gray-800 dark:text-white"
+        >
+          Message{' '}
+          <span className="text-red-500" aria-label="required">
+            *
+          </span>
         </label>
         <motion.textarea
           id="message"
@@ -191,16 +212,20 @@ export default function ContactForm(): React.ReactElement {
           Enter your message (10-1000 characters)
         </div>
         {errors.message && (
-          <motion.span 
-            id="message-error" 
-            className="text-xs text-red-500 flex items-center gap-1" 
+          <motion.span
+            id="message-error"
+            className="text-xs text-red-500 flex items-center gap-1"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
           >
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
             </svg>
             {errors.message.message}
           </motion.span>
@@ -216,8 +241,16 @@ export default function ContactForm(): React.ReactElement {
           role="alert"
           aria-live="polite"
         >
-          <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+          <svg
+            className="w-5 h-5 text-green-600 dark:text-green-400"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clipRule="evenodd"
+            />
           </svg>
           <span className="text-green-800 dark:text-green-200 text-sm font-medium">
             Message sent successfully! I&apos;ll get back to you soon.
@@ -233,8 +266,16 @@ export default function ContactForm(): React.ReactElement {
           role="alert"
           aria-live="polite"
         >
-          <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          <svg
+            className="w-5 h-5 text-red-600 dark:text-red-400"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+              clipRule="evenodd"
+            />
           </svg>
           <span className="text-red-800 dark:text-red-200 text-sm font-medium">
             Failed to send message. Please try again or contact me directly.
@@ -259,15 +300,25 @@ export default function ContactForm(): React.ReactElement {
             <motion.div
               className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
             />
             Sending...
           </>
         ) : (
           <>
             Send Message
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+              />
             </svg>
           </>
         )}

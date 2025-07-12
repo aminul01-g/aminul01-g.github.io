@@ -71,8 +71,7 @@ const ParticleBackground: React.FC = () => {
         // Draw connections
         particlesRef.current.forEach((otherParticle) => {
           const distance = Math.sqrt(
-            Math.pow(particle.x - otherParticle.x, 2) +
-            Math.pow(particle.y - otherParticle.y, 2)
+            Math.pow(particle.x - otherParticle.x, 2) + Math.pow(particle.y - otherParticle.y, 2)
           );
 
           if (distance < 100) {
@@ -109,4 +108,4 @@ const ParticleBackground: React.FC = () => {
   );
 };
 
-export default ParticleBackground; 
+export default ParticleBackground;

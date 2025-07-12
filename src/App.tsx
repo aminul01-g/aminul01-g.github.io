@@ -26,7 +26,11 @@ function AnimatedRoutes(): React.ReactElement {
     <AnimatePresence mode="wait">
       <Suspense
         fallback={
-          <div className="flex justify-center items-center min-h-[40vh] text-lg" role="status" aria-live="polite">
+          <div
+            className="flex justify-center items-center min-h-[40vh] text-lg"
+            role="status"
+            aria-live="polite"
+          >
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
               Loading...
@@ -52,7 +56,8 @@ function AnimatedRoutes(): React.ReactElement {
 function App(): React.ReactElement {
   const { showToast } = useToast();
   React.useEffect(() => {
-    const handleOffline = () => showToast('You are offline. Some features may not work.', 'warning');
+    const handleOffline = () =>
+      showToast('You are offline. Some features may not work.', 'warning');
     const handleOnline = () => showToast('You are back online!', 'success');
     window.addEventListener('offline', handleOffline);
     window.addEventListener('online', handleOnline);
@@ -66,22 +71,18 @@ function App(): React.ReactElement {
       <AccessibilityProvider>
         <>
           {/* Skip to content link for accessibility - must be first focusable element */}
-          <a
-            href="#main-content"
-            className="skip-link"
-            tabIndex={0}
-          >
+          <a href="#main-content" className="skip-link" tabIndex={0}>
             Skip to main content
           </a>
-          
+
           <ScrollProgress />
           <Navbar />
-          
+
           {/* Main content area should have id="main-content" */}
           <div id="main-content" tabIndex={-1} className="outline-none">
             <AnimatedRoutes />
           </div>
-          
+
           <FloatingActions>
             <BackToTopButton />
             {/* Contact button removed as per user request */}

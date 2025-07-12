@@ -7,7 +7,7 @@ describe('NotFound Page', () => {
     render(
       <MemoryRouter>
         <NotFound />
-      </MemoryRouter>,
+      </MemoryRouter>
     );
     expect(screen.getByText(/404/i)).toBeInTheDocument();
     expect(screen.getByText(/not found/i)).toBeInTheDocument();

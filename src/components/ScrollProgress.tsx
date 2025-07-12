@@ -14,4 +14,4 @@ export default function ScrollProgress(): React.ReactElement {
       style={{ scaleX }}
     />
   );
-} 
+}

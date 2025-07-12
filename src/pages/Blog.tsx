@@ -43,36 +43,40 @@ export default function Blog(): React.ReactElement {
         <meta property="og:url" content="https://aminul01-g.github.io/blog" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Blog | Aminul Islam Bhuiyan Amin" />
-        <meta name="twitter:description" content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin." />
+        <meta
+          name="twitter:description"
+          content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin."
+        />
         <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
         <link rel="canonical" href="https://aminul01-g.github.io/blog" />
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "name": "Aminul Islam Bhuiyan Amin's Blog",
-            "description": "Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin.",
-            "url": "https://aminul01-g.github.io/blog",
-            "author": {
-              "@type": "Person",
-              "name": "Aminul Islam Bhuiyan Amin",
-              "url": "https://aminul01-g.github.io"
+            '@context': 'https://schema.org',
+            '@type': 'Blog',
+            name: "Aminul Islam Bhuiyan Amin's Blog",
+            description:
+              'Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin.',
+            url: 'https://aminul01-g.github.io/blog',
+            author: {
+              '@type': 'Person',
+              name: 'Aminul Islam Bhuiyan Amin',
+              url: 'https://aminul01-g.github.io',
             },
-            "publisher": {
-              "@type": "Person",
-              "name": "Aminul Islam Bhuiyan Amin"
+            publisher: {
+              '@type': 'Person',
+              name: 'Aminul Islam Bhuiyan Amin',
             },
-            "blogPost": filteredPosts.map(post => ({
-              "@type": "BlogPosting",
-              "headline": post.title,
-              "description": post.summary,
-              "datePublished": post.date,
-              "author": {
-                "@type": "Person",
-                "name": "Aminul Islam Bhuiyan Amin"
+            blogPost: filteredPosts.map((post) => ({
+              '@type': 'BlogPosting',
+              headline: post.title,
+              description: post.summary,
+              datePublished: post.date,
+              author: {
+                '@type': 'Person',
+                name: 'Aminul Islam Bhuiyan Amin',
               },
-              "url": `https://aminul01-g.github.io/blog/${post.slug}`
-            }))
+              url: `https://aminul01-g.github.io/blog/${post.slug}`,
+            })),
           })}
         </script>
         {/* BreadcrumbList structured data in a separate script tag */}
@@ -80,20 +84,20 @@ export default function Blog(): React.ReactElement {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
-            'itemListElement': [
+            itemListElement: [
               {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://aminul01-g.github.io/'
+                item: 'https://aminul01-g.github.io/',
               },
               {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Blog',
-                item: 'https://aminul01-g.github.io/blog'
-              }
-            ]
+                item: 'https://aminul01-g.github.io/blog',
+              },
+            ],
           })}
         </script>
       </Helmet>
@@ -133,7 +137,9 @@ export default function Blog(): React.ReactElement {
           {filteredPosts.length === 0 ? (
             <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">
               <p className="text-lg mb-4">No blog posts available yet.</p>
-              <p className="text-sm">New articles and insights will be published here soon. Stay tuned!</p>
+              <p className="text-sm">
+                New articles and insights will be published here soon. Stay tuned!
+              </p>
             </div>
           ) : (
             filteredPosts.map((post: BlogPost, i: number) => (

@@ -15,31 +15,34 @@ export interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Dr. Sarah Chen",
-    role: "AI Research Lead",
-    company: "TechCorp",
-    content: "Aminul's expertise in machine learning and his innovative approach to problem-solving have been invaluable to our team. His work on our NLP project exceeded expectations.",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    rating: 5
+    name: 'Dr. Sarah Chen',
+    role: 'AI Research Lead',
+    company: 'TechCorp',
+    content:
+      "Aminul's expertise in machine learning and his innovative approach to problem-solving have been invaluable to our team. His work on our NLP project exceeded expectations.",
+    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+    rating: 5,
   },
   {
     id: 2,
-    name: "Prof. Michael Rodriguez",
-    role: "Computer Science Professor",
-    company: "BUBT University",
-    content: "Aminul is one of the most dedicated students I've had the pleasure to teach. His passion for AI and commitment to excellence is truly remarkable.",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    rating: 5
+    name: 'Prof. Michael Rodriguez',
+    role: 'Computer Science Professor',
+    company: 'BUBT University',
+    content:
+      "Aminul is one of the most dedicated students I've had the pleasure to teach. His passion for AI and commitment to excellence is truly remarkable.",
+    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    rating: 5,
   },
   {
     id: 3,
-    name: "Alex Thompson",
-    role: "Senior Developer",
-    company: "InnovateTech",
-    content: "Working with Aminul on our deep learning project was a great experience. His technical skills and collaborative spirit made him an excellent team member.",
-    avatar: "https://randomuser.me/api/portraits/men/65.jpg",
-    rating: 5
-  }
+    name: 'Alex Thompson',
+    role: 'Senior Developer',
+    company: 'InnovateTech',
+    content:
+      'Working with Aminul on our deep learning project was a great experience. His technical skills and collaborative spirit made him an excellent team member.',
+    avatar: 'https://randomuser.me/api/portraits/men/65.jpg',
+    rating: 5,
+  },
 ];
 
 export default function TestimonialsCarousel(): React.ReactElement {
@@ -97,7 +100,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
     <section className="py-20 px-4" aria-labelledby="testimonials-heading">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 
+          <h2
             id="testimonials-heading"
             className="text-3xl sm:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300"
           >
@@ -125,7 +128,13 @@ export default function TestimonialsCarousel(): React.ReactElement {
             aria-label="Previous testimonial"
             aria-controls="testimonials-carousel"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -136,7 +145,13 @@ export default function TestimonialsCarousel(): React.ReactElement {
             aria-label="Next testimonial"
             aria-controls="testimonials-carousel"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -168,7 +183,10 @@ export default function TestimonialsCarousel(): React.ReactElement {
                   </div>
 
                   {/* Rating */}
-                  <div className="flex items-center gap-1 mb-6" aria-label={`${testimonials[currentIndex].rating} out of 5 stars`}>
+                  <div
+                    className="flex items-center gap-1 mb-6"
+                    aria-label={`${testimonials[currentIndex].rating} out of 5 stars`}
+                  >
                     {renderStars(testimonials[currentIndex].rating)}
                   </div>
 
@@ -194,7 +212,11 @@ export default function TestimonialsCarousel(): React.ReactElement {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 space-x-2" role="tablist" aria-label="Testimonial navigation">
+          <div
+            className="flex justify-center mt-8 space-x-2"
+            role="tablist"
+            aria-label="Testimonial navigation"
+          >
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -220,4 +242,4 @@ export default function TestimonialsCarousel(): React.ReactElement {
       </div>
     </section>
   );
-} 
+}

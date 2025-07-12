@@ -2,15 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body, .dark {
-  transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
+body,
+.dark {
+  transition:
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Modern CSS Variables for Design System */
 :root {
   --glass-bg: rgba(255, 255, 255, 0.25); /* More opaque for light mode */
   --glass-border: rgba(0, 0, 0, 0.07);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -31,9 +34,15 @@ body, .dark {
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Glassmorphism Effects */
@@ -51,14 +60,14 @@ body, .dark {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   transition: all var(--animation-duration) ease;
 }
 
 .dark .glass-card {
   background: rgba(30, 41, 59, 0.7);
   color: #f3f4f6;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
@@ -88,8 +97,13 @@ body, .dark {
 
 /* Floating Animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .float {
@@ -98,8 +112,13 @@ body, .dark {
 
 /* Pulse Animation */
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .pulse {
@@ -108,20 +127,31 @@ body, .dark {
 
 /* Typewriter Effect */
 @keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .typewriter {
   overflow: hidden;
   border-right: 2px solid;
   white-space: nowrap;
-  animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation:
+    typewriter 3s steps(40, end),
+    blink-caret 0.75s step-end infinite;
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: currentColor; }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: currentColor;
+  }
 }
 
 /* Scroll Animations */
@@ -229,4 +259,4 @@ body, .dark {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gradient-secondary);
-} 
+}

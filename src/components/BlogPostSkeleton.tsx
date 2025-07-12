@@ -22,4 +22,4 @@ const BlogPostSkeleton: React.FC = () => (
   </article>
 );
 
-export default BlogPostSkeleton; 
+export default BlogPostSkeleton;

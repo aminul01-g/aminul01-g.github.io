@@ -20,14 +20,24 @@ const FeedbackWidget: React.FC<{ className?: string }> = ({ className = '' }) =>
 
   if (submitted) {
     return (
-      <div className={`rounded-lg bg-green-50 dark:bg-green-900/30 p-4 text-center ${className}`} role="status" aria-live="polite">
-        <span className="text-green-700 dark:text-green-200 font-semibold">Thank you for your feedback!</span>
+      <div
+        className={`rounded-lg bg-green-50 dark:bg-green-900/30 p-4 text-center ${className}`}
+        role="status"
+        aria-live="polite"
+      >
+        <span className="text-green-700 dark:text-green-200 font-semibold">
+          Thank you for your feedback!
+        </span>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`rounded-lg bg-white dark:bg-gray-900/30 p-4 shadow-md flex flex-col items-center gap-3 ${className}`} aria-label="Feedback form">
+    <form
+      onSubmit={handleSubmit}
+      className={`rounded-lg bg-white dark:bg-gray-900/30 p-4 shadow-md flex flex-col items-center gap-3 ${className}`}
+      aria-label="Feedback form"
+    >
       <span className="font-semibold text-primary">Was this page helpful?</span>
       <div className="flex gap-4">
         <button
@@ -51,7 +61,7 @@ const FeedbackWidget: React.FC<{ className?: string }> = ({ className = '' }) =>
         className="w-full mt-2 p-2 border border-primary/20 rounded focus:outline-none focus:ring-2 focus:ring-primary text-sm"
         placeholder="Optional: Tell us how we can improve."
         value={comment}
-        onChange={e => setComment(e.target.value)}
+        onChange={(e) => setComment(e.target.value)}
         rows={2}
         aria-label="Additional comments"
       />
@@ -66,4 +76,4 @@ const FeedbackWidget: React.FC<{ className?: string }> = ({ className = '' }) =>
   );
 };
 
-export default FeedbackWidget; 
+export default FeedbackWidget;

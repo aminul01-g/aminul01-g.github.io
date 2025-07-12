@@ -21,18 +21,20 @@ Object.defineProperty(global, 'IntersectionObserver', {
 });
 
 // Robust matchMedia mock for Framer Motion and jsdom
-global.window.matchMedia = global.window.matchMedia || function(query) {
-  return {
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+global.window.matchMedia =
+  global.window.matchMedia ||
+  function (query) {
+    return {
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // deprecated
+      removeListener: jest.fn(), // deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    };
   };
-};
 
 if (typeof (global as NodeJS.Global & typeof globalThis).TextEncoder === 'undefined') {
   (global as NodeJS.Global & typeof globalThis).TextEncoder = TextEncoder;

@@ -26,16 +26,12 @@ const AnimatedSkillBar: React.FC<AnimatedSkillBarProps> = ({ skill, index }) => 
     >
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-3">
-          {skill.icon && (
-            <div className="w-6 h-6 text-primary">
-              {skill.icon}
-            </div>
-          )}
+          {skill.icon && <div className="w-6 h-6 text-primary">{skill.icon}</div>}
           <span className="text-white font-medium">{skill.name}</span>
         </div>
         <span className="text-gray-300 text-sm">{skill.level}%</span>
       </div>
-      
+
       <div className="relative h-3 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
         <motion.div
           className="absolute top-0 left-0 h-full rounded-full"
@@ -47,7 +43,7 @@ const AnimatedSkillBar: React.FC<AnimatedSkillBarProps> = ({ skill, index }) => 
           animate={isVisible ? { width: `${skill.level}%` } : { width: 0 }}
           transition={{ duration: 1, delay: index * 0.1 + 0.2 }}
         />
-        
+
         {/* Glow effect */}
         <motion.div
           className="absolute top-0 left-0 h-full rounded-full blur-sm"
@@ -71,10 +67,10 @@ interface SkillsSectionProps {
   subtitle?: string;
 }
 
-const SkillsSection: React.FC<SkillsSectionProps> = ({ 
-  skills, 
-  title = "Skills & Expertise",
-  subtitle = "Leveraging cutting-edge technologies to build innovative solutions"
+const SkillsSection: React.FC<SkillsSectionProps> = ({
+  skills,
+  title = 'Skills & Expertise',
+  subtitle = 'Leveraging cutting-edge technologies to build innovative solutions',
 }) => {
   return (
     <section className="py-16 px-4">
@@ -89,9 +85,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-indigo-400 bg-clip-text text-transparent">
             {title}
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            {subtitle}
-          </p>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -128,4 +122,4 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
   );
 };
 
-export default SkillsSection; 
+export default SkillsSection;
