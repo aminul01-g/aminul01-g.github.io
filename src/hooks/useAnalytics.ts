@@ -6,7 +6,15 @@ declare global {
   }
 }
 
-export const useAnalytics = () => {
+export const useAnalytics = (): {
+  trackEvent: (action: string, category: string, label?: string, value?: number) => void;
+  trackPageView: (pagePath: string, pageTitle?: string) => void;
+  trackProjectView: (projectTitle: string) => void;
+  trackBlogView: (postTitle: string) => void;
+  trackDownload: (fileType: string) => void;
+  trackContact: (method: string) => void;
+  trackThemeToggle: (theme: string) => void;
+} => {
   const trackEvent = (action: string, category: string, label?: string, value?: number) => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', action, {
@@ -57,7 +65,7 @@ export const useAnalytics = () => {
   };
 };
 
-export const usePageTracking = (pagePath: string, pageTitle?: string) => {
+export const usePageTracking = (pagePath: string, pageTitle?: string): void => {
   const { trackPageView } = useAnalytics();
 
   useEffect(() => {
