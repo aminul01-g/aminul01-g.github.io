@@ -10,7 +10,7 @@ interface AccessibilityContextType {
 
 const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined);
 
-export function useAccessibility() {
+export function useAccessibility(): AccessibilityContextType {
   const context = useContext(AccessibilityContext);
   if (!context) {
     throw new Error('useAccessibility must be used within an AccessibilityProvider');
@@ -22,7 +22,9 @@ interface AccessibilityProviderProps {
   children: ReactNode;
 }
 
-export const AccessibilityProvider = ({ children }: AccessibilityProviderProps): React.ReactElement => {
+export const AccessibilityProvider = ({
+  children,
+}: AccessibilityProviderProps): React.ReactElement => {
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [isHighContrast, setIsHighContrast] = useState(false);
   const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('medium');

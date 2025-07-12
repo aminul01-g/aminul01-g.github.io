@@ -14,7 +14,7 @@ interface ToastContextType {
 
 const ToastContext = createContext<ToastContextType>({ showToast: () => {} });
 
-export const useToast = () => useContext(ToastContext);
+export const useToast = (): ToastContextType => useContext(ToastContext);
 
 let toastId = 0;
 
