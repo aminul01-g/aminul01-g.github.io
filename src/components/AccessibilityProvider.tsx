@@ -22,9 +22,9 @@ interface AccessibilityProviderProps {
   children: ReactNode;
 }
 
-export function AccessibilityProvider({
+export const AccessibilityProvider = ({
   children,
-}: AccessibilityProviderProps): React.ReactElement {
+}: AccessibilityProviderProps): React.ReactElement => {
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [isHighContrast, setIsHighContrast] = useState(false);
   const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('medium');
@@ -113,4 +113,4 @@ export function AccessibilityProvider({
   };
 
   return <AccessibilityContext.Provider value={value}>{children}</AccessibilityContext.Provider>;
-}
+};
