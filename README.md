@@ -1,77 +1,125 @@
-# Getting Started with Create React App
+# Aminul Islam Bhuiyan Amin – Portfolio & Blog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the source code for [Aminul Islam Bhuiyan Amin’s](https://aminul01-g.github.io) personal portfolio and blog!  
+This project is a modern, accessible, and highly customizable React-based site to showcase my work, skills, and thoughts in AI, ML, and software engineering.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Modern UI**: Glassmorphism, gradients, and smooth animations
+- **Multiple Themes**: Light, Dark, Amoled, Nord, Solarized, and High Contrast (for accessibility)
+- **Accessibility**: Keyboard navigation, focus styles, high contrast mode, and screen reader support
+- **Responsive Design**: Looks great on all devices
+- **Dynamic Content**: Projects, blog posts, skills, and achievements
+- **SEO Optimized**: Meta tags, Open Graph, and structured data
+- **Performance**: Lazy loading, code splitting, and optimized images
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🖥️ Tech Stack
 
-### `npm test`
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Animation**: Framer Motion
+- **Routing**: React Router
+- **Icons**: React Icons
+- **SEO**: React Helmet Async
+- **Other**: Custom hooks, lazy loading, and more
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📦 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-# aminul01-github.io
-
-## Security Headers
-
-If you self-host this site or use a custom server (not GitHub Pages), it is strongly recommended to set the following HTTP security headers:
-
-```
-Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://aminul01-g.github.io https://www.google-analytics.com https://www.googletagmanager.com https://randomuser.me; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Referrer-Policy: strict-origin-when-cross-origin
-Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-Permissions-Policy: geolocation=(), microphone=(), camera=()
+```bash
+git clone https://github.com/aminul01-g/aminul01-g.github.io.git
+cd aminul01-g.github.io
+npm install
+# or
+yarn install
 ```
 
-If you use GitHub Pages, a fallback `<meta http-equiv="Content-Security-Policy">` is included in `public/index.html`, but HTTP headers are always preferred for maximum protection.
+### Running Locally
 
-## Error Monitoring (Sentry)
+```bash
+npm start
+# or
+yarn start
+```
+The app will run at [http://localhost:3000](http://localhost:3000).
 
-This project supports error and performance monitoring with [Sentry](https://sentry.io/).
+### Building for Production
 
-To enable Sentry:
-1. Create a Sentry account and project at https://sentry.io/.
-2. Add your Sentry DSN to a `.env` file:
-   ```
-   REACT_APP_SENTRY_DSN=your_sentry_dsn_here
-   ```
-3. The app will only send errors if the DSN is set.
+```bash
+npm run build
+# or
+yarn build
+```
 
-Sentry is initialized in `src/index.tsx` and will capture unhandled errors and performance issues in production.
+---
+
+## 🛠️ Customization
+
+- **Themes**: Easily switch between Light, Dark, Amoled, Nord, Solarized, and High Contrast modes.
+- **Content**: Update your profile, projects, blog posts, and skills in the `/src/data/` directory.
+- **Images**: Place your optimized images in `/public/images/optimized/`.
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+  components/      # Reusable UI components
+  data/            # Profile, projects, blog, etc.
+  hooks/           # Custom React hooks
+  pages/           # Main pages (Home, About, etc.)
+  styles/          # Global and theme CSS
+  App.tsx          # App entry point
+  index.css        # Main CSS (themes, accessibility)
+  ...
+public/
+  images/optimized/  # Profile and project images
+```
+
+---
+
+## ♿ Accessibility
+
+- **High Contrast Mode**: For users with visual impairments
+- **Keyboard Navigation**: All interactive elements are focusable
+- **Screen Reader Support**: Proper ARIA labels and roles
+- **Color Contrast**: Carefully tuned for all themes
+
+---
+
+## 🌐 Deployment
+
+This project is ready to deploy on GitHub Pages, Vercel, Netlify, or any static hosting provider.
+
+---
+
+## 🙋‍♂️ Author
+
+**Md Aminul Islam Bhuiyan Amin**  
+- [Portfolio & Blog](https://aminul01-g.github.io)
+- [GitHub](https://github.com/aminul01-g)
+- [LinkedIn](https://linkedin.com/in/aminulai)
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## ⭐️ Show your support
+
+If you like this project, please consider starring the repo or sharing it!

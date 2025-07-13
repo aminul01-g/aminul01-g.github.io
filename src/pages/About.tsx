@@ -222,14 +222,17 @@ export default function About(): React.ReactElement {
           </div>
         </div>
         <div className="flex-1 flex justify-center md:justify-end animate-fadeInUp delay-300 relative z-10">
-          <div className="rounded-full shadow-2xl border-4 border-primary ring-4 ring-primary/10 bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative mx-auto">
+          <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative mx-auto">
             <ImageWithFallback
               src={profilePic}
               alt="Profile"
               className="w-full h-full object-cover mx-auto"
               loading="lazy"
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-indigo-400/10 pointer-events-none" />
+            {/* Subtle glowing ring effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-indigo-500/10 dark:from-primary/20 dark:to-indigo-500/20 blur-md pointer-events-none" />
+            {/* Enhanced border glow for better visibility */}
+            <div className="absolute inset-0 rounded-full border-2 border-primary/30 dark:border-primary/50 pointer-events-none" />
           </div>
         </div>
       </motion.section>

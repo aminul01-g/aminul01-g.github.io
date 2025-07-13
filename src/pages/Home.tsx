@@ -256,13 +256,17 @@ export default function Home(): React.ReactElement {
               className="text-center mb-12"
             >
               <div className="flex flex-col items-center gap-6 mb-8">
-                <div className="rounded-full shadow-2xl border-4 border-primary ring-4 ring-primary/10 bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-20 h-20">
+                <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-20 h-20">
                   <ImageWithFallback
                     src="/images/optimized/profile_pic.jpeg"
                     alt="Profile"
                     className="w-full h-full object-cover mx-auto"
                     loading="lazy"
                   />
+                  {/* Subtle glowing ring effect */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-indigo-500/10 dark:from-primary/20 dark:to-indigo-500/20 blur-sm pointer-events-none" />
+                  {/* Enhanced border glow for better visibility */}
+                  <div className="absolute inset-0 rounded-full border border-primary/30 dark:border-primary/50 pointer-events-none" />
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">
                   About Me

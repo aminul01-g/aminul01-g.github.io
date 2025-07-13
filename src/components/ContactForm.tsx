@@ -18,10 +18,7 @@ export default function ContactForm(): React.ReactElement {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
   } = useForm<FormData>();
-
-  const watchedFields = watch();
 
   const onSubmit = async (data: FormData) => {
     // Check honeypot field
@@ -34,33 +31,38 @@ export default function ContactForm(): React.ReactElement {
     setSubmitStatus('idle');
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Create FormData for Formspree
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('message', data.message);
 
-      // Here you would typically send the data to your backend
-      console.log('Form submitted:', data);
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/mgvzwoao', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
 
-      setSubmitStatus('success');
-      reset();
-
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      if (response.ok) {
+        setSubmitStatus('success');
+        reset();
+        // Reset status after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
-
       // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const isFormValid =
-    Object.keys(errors).length === 0 &&
-    watchedFields.name &&
-    watchedFields.email &&
-    watchedFields.message;
 
   return (
     <form
@@ -78,6 +80,7 @@ export default function ContactForm(): React.ReactElement {
         style={{ display: 'none' }}
         {...register('website')}
         aria-hidden="true"
+        name="website"
       />
 
       <div className="space-y-2">
@@ -104,6 +107,7 @@ export default function ContactForm(): React.ReactElement {
           whileFocus={{ scale: 1.01, boxShadow: '0 0 0 2px #6366f1' }}
           whileHover={{ scale: 1.005 }}
           disabled={isSubmitting}
+          name="name"
         />
         <div id="name-help" className="sr-only">
           Enter your full name (2-50 characters)
@@ -155,6 +159,7 @@ export default function ContactForm(): React.ReactElement {
           whileFocus={{ scale: 1.01, boxShadow: '0 0 0 2px #6366f1' }}
           whileHover={{ scale: 1.005 }}
           disabled={isSubmitting}
+          name="email"
         />
         <div id="email-help" className="sr-only">
           Enter a valid email address
@@ -207,6 +212,7 @@ export default function ContactForm(): React.ReactElement {
           whileFocus={{ scale: 1.005, boxShadow: '0 0 0 2px #6366f1' }}
           whileHover={{ scale: 1.002 }}
           disabled={isSubmitting}
+          name="message"
         />
         <div id="message-help" className="sr-only">
           Enter your message (10-1000 characters)
@@ -285,15 +291,14 @@ export default function ContactForm(): React.ReactElement {
 
       <motion.button
         type="submit"
-        disabled={isSubmitting || !isFormValid}
+        disabled={isSubmitting}
         className={`w-full py-3 px-6 rounded-xl text-white font-semibold transition-all duration-300 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400/40 flex items-center justify-center gap-2 mt-2 shadow-lg ${
-          isSubmitting || !isFormValid
+          isSubmitting
             ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
             : 'bg-gradient-to-r from-primary to-indigo-500 hover:from-primary-600 hover:to-indigo-600'
         }`}
-        whileHover={!isSubmitting && isFormValid ? { scale: 1.02 } : {}}
-        whileTap={!isSubmitting && isFormValid ? { scale: 0.98 } : {}}
-        aria-describedby={!isFormValid ? 'form-validation' : undefined}
+        whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
       >
         {isSubmitting ? (
           <>
@@ -323,12 +328,6 @@ export default function ContactForm(): React.ReactElement {
           </>
         )}
       </motion.button>
-
-      {!isFormValid && (
-        <div id="form-validation" className="sr-only">
-          Please fill in all required fields correctly to enable the submit button.
-        </div>
-      )}
     </form>
   );
 }

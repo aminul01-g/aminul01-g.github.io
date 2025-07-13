@@ -11,8 +11,8 @@ body,
 
 /* Modern CSS Variables for Design System */
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.25); /* More opaque for light mode */
-  --glass-border: rgba(0, 0, 0, 0.07);
+  --glass-bg: rgba(255, 255, 255, 0.85); /* More opaque for light mode */
+  --glass-border: rgba(0, 0, 0, 0.1);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -21,7 +21,7 @@ body,
 }
 
 .dark {
-  --glass-bg: rgba(30, 41, 59, 0.18); /* More transparent for dark mode */
+  --glass-bg: rgba(30, 41, 59, 0.85); /* More opaque for dark mode */
   --glass-border: rgba(255, 255, 255, 0.15);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
@@ -55,20 +55,39 @@ body,
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.7); /* More visible in light mode */
-  color: #18181b; /* dark text for light glass */
+  background: rgba(255, 255, 255, 0.85) !important; /* More visible in light mode */
+  color: #1f2937 !important; /* Darker text for better contrast */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   transition: all var(--animation-duration) ease;
 }
 
 .dark .glass-card {
-  background: rgba(30, 41, 59, 0.7);
-  color: #f3f4f6;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(30, 41, 59, 0.85) !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Theme-specific glass card improvements */
+.amoled .glass-card {
+  background: rgba(17, 17, 17, 0.95) !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(0, 255, 231, 0.3) !important;
+}
+
+.nord .glass-card {
+  background: rgba(59, 66, 82, 0.95) !important;
+  color: #eceff4 !important;
+  border: 1px solid rgba(136, 192, 208, 0.3) !important;
+}
+
+.solarized .glass-card {
+  background: rgba(7, 54, 66, 0.95) !important;
+  color: #fdf6e3 !important;
+  border: 1px solid rgba(181, 137, 0, 0.3) !important;
 }
 
 .glass-card:hover {
@@ -84,7 +103,7 @@ body,
 
 /* Adaptive text color utility */
 .text-glass {
-  color: #18181b;
+  color: #1f2937;
 }
 .dark .text-glass {
   color: #f3f4f6;

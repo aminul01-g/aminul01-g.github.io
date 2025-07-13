@@ -133,15 +133,17 @@ export default function Hero(): React.ReactElement {
             className="mb-8"
           >
             <div className="relative flex justify-center">
-              <div className="rounded-full shadow-2xl border-4 border-primary ring-4 ring-primary/10 bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-40 h-40 sm:w-56 sm:h-56">
+              <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-40 h-40 sm:w-56 sm:h-56 relative">
                 <ImageWithFallback
                   src="/images/optimized/profile_pic.jpeg"
                   alt="profile"
                   className="w-full h-full object-cover mx-auto"
                   loading="lazy"
                 />
-                {/* Glowing ring effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/30 to-indigo-500/30 dark:from-primary/50 dark:to-indigo-500/50 blur-xl animate-pulse pointer-events-none" />
+                {/* Subtle glowing ring effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-indigo-500/10 dark:from-primary/20 dark:to-indigo-500/20 blur-md pointer-events-none" />
+                {/* Enhanced border glow for better visibility */}
+                <div className="absolute inset-0 rounded-full border-2 border-primary/30 dark:border-primary/50 pointer-events-none" />
               </div>
             </div>
           </motion.div>

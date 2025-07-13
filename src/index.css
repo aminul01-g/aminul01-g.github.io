@@ -58,6 +58,237 @@
 .solarized .contact-form label {
   color: #b58900 !important;
 }
+
+/* --- Comprehensive Theme Fixes for Glass Cards and Text --- */
+
+/* Light theme glass card improvements */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85) !important; /* More opaque for better visibility */
+  color: #1f2937 !important; /* Darker text for better contrast */
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Dark theme glass card improvements */
+.dark .glass-card {
+  background: rgba(30, 41, 59, 0.85) !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Amoled theme glass card improvements */
+.amoled .glass-card {
+  background: rgba(17, 17, 17, 0.95) !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(0, 255, 231, 0.3) !important;
+}
+
+/* Nord theme glass card improvements */
+.nord .glass-card {
+  background: rgba(59, 66, 82, 0.95) !important;
+  color: #eceff4 !important;
+  border: 1px solid rgba(136, 192, 208, 0.3) !important;
+}
+
+/* Solarized theme glass card improvements */
+.solarized .glass-card {
+  background: rgba(7, 54, 66, 0.95) !important;
+  color: #fdf6e3 !important;
+  border: 1px solid rgba(181, 137, 0, 0.3) !important;
+}
+
+/* Text color fixes for all themes */
+.text-gray-700 {
+  color: #374151 !important;
+}
+
+.dark .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.amoled .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+.nord .text-gray-700 {
+  color: #d8dee9 !important;
+}
+
+.solarized .text-gray-700 {
+  color: #eee8d5 !important;
+}
+
+.text-gray-900 {
+  color: #111827 !important;
+}
+
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.amoled .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.nord .text-gray-900 {
+  color: #eceff4 !important;
+}
+
+.solarized .text-gray-900 {
+  color: #fdf6e3 !important;
+}
+
+.text-gray-500 {
+  color: #6b7280 !important;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.amoled .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.nord .text-gray-500 {
+  color: #a3a3a3 !important;
+}
+
+.solarized .text-gray-500 {
+  color: #93a1a1 !important;
+}
+
+.text-gray-300 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-300 {
+  color: #6b7280 !important;
+}
+
+.amoled .text-gray-300 {
+  color: #9ca3af !important;
+}
+
+.nord .text-gray-300 {
+  color: #a3a3a3 !important;
+}
+
+.solarized .text-gray-300 {
+  color: #93a1a1 !important;
+}
+
+.text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.amoled .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.nord .text-gray-400 {
+  color: #a3a3a3 !important;
+}
+
+.solarized .text-gray-400 {
+  color: #93a1a1 !important;
+}
+
+.text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.dark .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.amoled .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.nord .text-gray-600 {
+  color: #a3a3a3 !important;
+}
+
+.solarized .text-gray-600 {
+  color: #93a1a1 !important;
+}
+
+/* Background color fixes for all themes */
+.bg-white\/70 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dark .bg-white\/70 {
+  background-color: rgba(30, 41, 59, 0.85) !important;
+}
+
+.amoled .bg-white\/70 {
+  background-color: rgba(17, 17, 17, 0.95) !important;
+}
+
+.nord .bg-white\/70 {
+  background-color: rgba(59, 66, 82, 0.95) !important;
+}
+
+.solarized .bg-white\/70 {
+  background-color: rgba(7, 54, 66, 0.95) !important;
+}
+
+.bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark .bg-white\/80 {
+  background-color: rgba(30, 41, 59, 0.9) !important;
+}
+
+.amoled .bg-white\/80 {
+  background-color: rgba(17, 17, 17, 0.98) !important;
+}
+
+.nord .bg-white\/80 {
+  background-color: rgba(59, 66, 82, 0.98) !important;
+}
+
+.solarized .bg-white\/80 {
+  background-color: rgba(7, 54, 66, 0.98) !important;
+}
+
+/* Form input improvements for all themes */
+input, textarea {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #1f2937 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark input, .dark textarea {
+  background-color: rgba(30, 41, 59, 0.9) !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.amoled input, .amoled textarea {
+  background-color: rgba(17, 17, 17, 0.95) !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(0, 255, 231, 0.3) !important;
+}
+
+.nord input, .nord textarea {
+  background-color: rgba(59, 66, 82, 0.95) !important;
+  color: #eceff4 !important;
+  border: 1px solid rgba(136, 192, 208, 0.3) !important;
+}
+
+.solarized input, .solarized textarea {
+  background-color: rgba(7, 54, 66, 0.95) !important;
+  color: #fdf6e3 !important;
+  border: 1px solid rgba(181, 137, 0, 0.3) !important;
+}
+
 /* Themed badge utility classes for About and other skill tags */
 .themed-badge {
   background-color: var(--badge-bg, #f3f4f6);
@@ -293,6 +524,7 @@
   background-color: #b58900 !important;
   color: #002b36 !important;
 }
+
 /* stylelint-disable at-rule-no-unknown */
 /* stylelint-disable-next-line */
 @tailwind base;
@@ -321,25 +553,248 @@ html {
   }
 }
 
-/* High contrast mode styles */
+/* Improved High contrast mode styles */
 .high-contrast {
   --primary-color: #000000;
   --secondary-color: #ffffff;
   --text-color: #000000;
   --background-color: #ffffff;
   --border-color: #000000;
+  --accent-color: #0000ff;
 }
 
-.high-contrast * {
-  color: var(--text-color) !important;
-  background-color: var(--background-color) !important;
-  border-color: var(--border-color) !important;
+/* High contrast mode - more selective overrides */
+.high-contrast .glass-card {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast .bg-white\/70,
+.high-contrast .bg-white\/80 {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast input,
+.high-contrast textarea {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
 }
 
 .high-contrast .btn {
-  background: var(--primary-color) !important;
-  color: var(--secondary-color) !important;
-  border: 2px solid var(--border-color) !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast .text-gray-700,
+.high-contrast .text-gray-900 {
+  color: #000000 !important;
+}
+
+.high-contrast .text-gray-500,
+.high-contrast .text-gray-300,
+.high-contrast .text-gray-400,
+.high-contrast .text-gray-600 {
+  color: #000000 !important;
+}
+
+/* Theme-specific high contrast overrides */
+.high-contrast.amoled .glass-card {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.nord .glass-card {
+  background-color: #2e3440 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.solarized .glass-card {
+  background-color: #002b36 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Dark theme high contrast overrides */
+.high-contrast.dark {
+  --primary-color: #ffffff;
+  --secondary-color: #000000;
+  --text-color: #ffffff;
+  --background-color: #000000;
+  --border-color: #ffffff;
+  --accent-color: #ffff00;
+}
+
+.high-contrast.dark body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.high-contrast.dark .glass-card {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.dark .bg-white\/70,
+.high-contrast.dark .bg-white\/80 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.dark input,
+.high-contrast.dark textarea {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.dark .btn {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.dark .text-gray-700,
+.high-contrast.dark .text-gray-900 {
+  color: #ffffff !important;
+}
+
+.high-contrast.dark .text-gray-500,
+.high-contrast.dark .text-gray-300,
+.high-contrast.dark .text-gray-400,
+.high-contrast.dark .text-gray-600 {
+  color: #ffffff !important;
+}
+
+/* Dark theme high contrast badge overrides */
+.high-contrast.dark .themed-badge-blue {
+  --badge-bg: #000000;
+  --badge-text: #ffffff;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.dark .themed-badge-green {
+  --badge-bg: #000000;
+  --badge-text: #ffffff;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.dark .themed-badge-yellow {
+  --badge-bg: #000000;
+  --badge-text: #ffffff;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast.dark .themed-badge-gray {
+  --badge-bg: #000000;
+  --badge-text: #ffffff;
+  border: 2px solid #ffffff !important;
+}
+
+/* Improved high contrast dark mode profile image visibility - softened */
+.high-contrast.dark .profile-image-container {
+  background: #f3f3f3 !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 0 0 8px #e0e0e0, 0 0 24px 8px #fff2 !important;
+  border: 3px solid #e0e0e0 !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.high-contrast.dark .profile-image-container img {
+  filter: contrast(1.3) brightness(1.1) !important;
+  background: #f3f3f3 !important;
+  border-radius: 9999px !important;
+  z-index: 2;
+}
+
+.high-contrast.dark .profile-image-border {
+  border: 3px solid #e0e0e0 !important;
+  box-shadow: 0 0 0 8px #e0e0e0, 0 0 24px 8px #fff2 !important;
+  border-radius: 9999px !important;
+  z-index: 3;
+}
+
+.high-contrast.dark .profile-image-container .bg-gradient-to-r,
+.high-contrast.dark .profile-image-container .bg-gradient-to-br,
+.high-contrast.dark .profile-image-container .bg-gradient-to-tr {
+  display: none !important;
+}
+
+/* Dark theme high contrast focus styles */
+.high-contrast.dark *:focus-visible {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 1px #ffffff !important;
+}
+
+/* Additional dark theme high contrast overrides */
+.high-contrast.dark a {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast.dark a:hover {
+  color: #ffffff !important;
+  background-color: #ffff00 !important;
+}
+
+.high-contrast.dark h1,
+.high-contrast.dark h2,
+.high-contrast.dark h3,
+.high-contrast.dark h4,
+.high-contrast.dark h5,
+.high-contrast.dark h6 {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+.high-contrast.dark .text-primary {
+  color: #ffff00 !important;
+}
+
+.high-contrast.dark .bg-primary {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+.high-contrast.dark .border-primary {
+  border-color: #ffff00 !important;
+}
+
+/* Dark theme high contrast for gradients and backgrounds */
+.high-contrast.dark .bg-gradient-to-r,
+.high-contrast.dark .bg-gradient-to-br,
+.high-contrast.dark .bg-gradient-to-tr {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.high-contrast.dark .bg-clip-text {
+  background-clip: unset !important;
+  color: #ffffff !important;
+}
+
+/* Dark theme high contrast for form elements */
+.high-contrast.dark input::placeholder,
+.high-contrast.dark textarea::placeholder {
+  color: #cccccc !important;
+}
+
+.high-contrast.dark input:focus,
+.high-contrast.dark textarea:focus {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #ffff00 !important;
+  box-shadow: 0 0 0 2px #ffff00 !important;
 }
 
 .high-contrast *:focus-visible {
@@ -627,23 +1082,91 @@ textarea:invalid {
 /* Print styles for better accessibility */
 @media print {
   .skip-link,
-  .accessibility-menu,
-  .navbar,
-  .footer {
+  .btn,
+  .glass-card {
     display: none !important;
   }
 
   * {
     background: white !important;
     color: black !important;
-    box-shadow: none !important;
   }
 
   a {
+    color: black !important;
     text-decoration: underline !important;
   }
 
   a[href]:after {
     content: ' (' attr(href) ')';
   }
+}
+
+/* Profile Picture Visibility Improvements */
+.profile-image-container {
+  position: relative;
+  z-index: 10;
+}
+
+.profile-image-container img {
+  filter: contrast(1.1) brightness(1.05);
+  transition: filter 0.3s ease;
+}
+
+/* Theme-specific profile image improvements */
+.dark .profile-image-container img {
+  filter: contrast(1.2) brightness(1.1);
+}
+
+.amoled .profile-image-container img {
+  filter: contrast(1.3) brightness(1.15);
+}
+
+.nord .profile-image-container img {
+  filter: contrast(1.15) brightness(1.08);
+}
+
+.solarized .profile-image-container img {
+  filter: contrast(1.25) brightness(1.1);
+}
+
+/* High contrast mode profile image */
+.high-contrast .profile-image-container img {
+  filter: contrast(1.5) brightness(1.2);
+}
+
+/* Profile image border improvements for better visibility */
+.profile-image-border {
+  border: 4px solid rgba(124, 58, 237, 0.2) !important;
+  box-shadow: 
+    0 0 0 4px rgba(124, 58, 237, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .profile-image-border {
+  border: 4px solid rgba(167, 139, 250, 0.3) !important;
+  box-shadow: 
+    0 0 0 4px rgba(167, 139, 250, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+.amoled .profile-image-border {
+  border: 4px solid rgba(0, 255, 231, 0.4) !important;
+  box-shadow: 
+    0 0 0 4px rgba(0, 255, 231, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.nord .profile-image-border {
+  border: 4px solid rgba(136, 192, 208, 0.4) !important;
+  box-shadow: 
+    0 0 0 4px rgba(136, 192, 208, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+.solarized .profile-image-border {
+  border: 4px solid rgba(181, 137, 0, 0.4) !important;
+  box-shadow: 
+    0 0 0 4px rgba(181, 137, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.3) !important;
 }
