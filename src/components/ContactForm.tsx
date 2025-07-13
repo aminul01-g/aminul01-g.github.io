@@ -42,7 +42,7 @@ export default function ContactForm(): React.ReactElement {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
         },
       });
 
