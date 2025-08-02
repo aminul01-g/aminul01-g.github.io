@@ -39,35 +39,88 @@ const generateSummary = (
   tags: string[] = []
 ): GeneratedSummary => {
   // Extract key information from content
-  const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 10);
+  const sentences = content.split(/[.!?]+/).filter((s) => s.trim().length > 10);
   const words = content.toLowerCase().split(/\s+/);
   const wordCount = words.length;
-  
+
   // Calculate reading time (average 200 words per minute)
   const readingTime = Math.ceil(wordCount / 200);
-  
+
   // Extract keywords based on frequency and relevance
-  const stopWords = new Set(['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'can', 'this', 'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them']);
-  
+  const stopWords = new Set([
+    'the',
+    'a',
+    'an',
+    'and',
+    'or',
+    'but',
+    'in',
+    'on',
+    'at',
+    'to',
+    'for',
+    'of',
+    'with',
+    'by',
+    'is',
+    'are',
+    'was',
+    'were',
+    'be',
+    'been',
+    'have',
+    'has',
+    'had',
+    'do',
+    'does',
+    'did',
+    'will',
+    'would',
+    'could',
+    'should',
+    'may',
+    'might',
+    'can',
+    'this',
+    'that',
+    'these',
+    'those',
+    'i',
+    'you',
+    'he',
+    'she',
+    'it',
+    'we',
+    'they',
+    'me',
+    'him',
+    'her',
+    'us',
+    'them',
+  ]);
+
   const wordFreq = words
-    .filter(word => word.length > 3 && !stopWords.has(word))
-    .reduce((acc, word) => {
-      acc[word] = (acc[word] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-  
+    .filter((word) => word.length > 3 && !stopWords.has(word))
+    .reduce(
+      (acc, word) => {
+        acc[word] = (acc[word] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
+
   const keywords = [
     ...tags,
     ...Object.entries(wordFreq)
       .sort(([, a], [, b]) => b - a)
       .slice(0, 5)
-      .map(([word]) => word)
+      .map(([word]) => word),
   ].slice(0, 8);
-  
+
   // Generate summary based on type and length
   let summary = '';
   let targetLength = 0;
-  
+
   switch (options.length) {
     case 'short':
       targetLength = 1;
@@ -79,10 +132,10 @@ const generateSummary = (
       targetLength = 3;
       break;
   }
-  
+
   // Select most important sentences
   const importantSentences = sentences
-    .map(sentence => {
+    .map((sentence) => {
       const sentenceWords = sentence.toLowerCase().split(/\s+/);
       const score = sentenceWords.reduce((acc, word) => {
         return acc + (wordFreq[word] || 0) + (keywords.includes(word) ? 2 : 0);
@@ -91,8 +144,8 @@ const generateSummary = (
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, Math.max(targetLength, 1))
-    .map(item => item.sentence);
-  
+    .map((item) => item.sentence);
+
   // Generate summary based on type
   switch (options.type) {
     case 'brief':
@@ -102,19 +155,27 @@ const generateSummary = (
         summary = `This blog post explores ${keywords.slice(0, 2).join(' and ')}. ${importantSentences[0] || 'It provides valuable insights for developers.'}`;
       }
       break;
-      
+
     case 'detailed':
       summary = importantSentences.join(' ');
       if (options.includeKeywords) {
         summary += ` Key technologies include: ${keywords.slice(0, 5).join(', ')}.`;
       }
       break;
-      
+
     case 'technical': {
-      const techKeywords = keywords.filter(k => 
-        ['react', 'typescript', 'python', 'ai', 'ml', 'api', 'database', 'framework', 'library'].some(tech => 
-          k.toLowerCase().includes(tech)
-        )
+      const techKeywords = keywords.filter((k) =>
+        [
+          'react',
+          'typescript',
+          'python',
+          'ai',
+          'ml',
+          'api',
+          'database',
+          'framework',
+          'library',
+        ].some((tech) => k.toLowerCase().includes(tech))
       );
       summary = `Technical Overview: ${importantSentences.join(' ')}`;
       if (techKeywords.length > 0) {
@@ -122,7 +183,7 @@ const generateSummary = (
       }
       break;
     }
- 
+
     case 'marketing':
       if (contentType === 'project') {
         summary = `🚀 Discover ${title} - an innovative ${keywords[0]} solution that ${importantSentences[0]?.toLowerCase() || 'delivers exceptional results'}. Built with cutting-edge technology for optimal performance.`;
@@ -131,32 +192,34 @@ const generateSummary = (
       }
       break;
   }
-  
+
   // Adjust tone
   switch (options.tone) {
     case 'casual':
-      summary = summary.replace(/\b(demonstrates|utilizes|implements)\b/gi, 'uses')
-                    .replace(/\b(comprehensive|extensive)\b/gi, 'complete')
-                    .replace(/\b(furthermore|moreover)\b/gi, 'also');
+      summary = summary
+        .replace(/\b(demonstrates|utilizes|implements)\b/gi, 'uses')
+        .replace(/\b(comprehensive|extensive)\b/gi, 'complete')
+        .replace(/\b(furthermore|moreover)\b/gi, 'also');
       break;
     case 'academic':
-      summary = summary.replace(/\b(uses|shows)\b/gi, 'demonstrates')
-                    .replace(/\b(complete|full)\b/gi, 'comprehensive')
-                    .replace(/\b(also|too)\b/gi, 'furthermore');
+      summary = summary
+        .replace(/\b(uses|shows)\b/gi, 'demonstrates')
+        .replace(/\b(complete|full)\b/gi, 'comprehensive')
+        .replace(/\b(also|too)\b/gi, 'furthermore');
       break;
     // Professional tone is default
   }
-  
+
   // Calculate confidence based on content quality
   const confidence = Math.min(
     0.95,
-    0.6 + 
-    (sentences.length > 3 ? 0.1 : 0) +
-    (keywords.length > 3 ? 0.1 : 0) +
-    (wordCount > 100 ? 0.1 : 0) +
-    (tags.length > 0 ? 0.05 : 0)
+    0.6 +
+      (sentences.length > 3 ? 0.1 : 0) +
+      (keywords.length > 3 ? 0.1 : 0) +
+      (wordCount > 100 ? 0.1 : 0) +
+      (tags.length > 0 ? 0.05 : 0)
   );
-  
+
   return {
     id: Date.now().toString(),
     content: summary,
@@ -166,7 +229,7 @@ const generateSummary = (
     keywords,
     readingTime,
     confidence,
-    timestamp: new Date()
+    timestamp: new Date(),
   };
 };
 
@@ -176,7 +239,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
   contentType,
   tags = [],
   className = '',
-  onSummaryGenerated
+  onSummaryGenerated,
 }) => {
   const [summaries, setSummaries] = useState<GeneratedSummary[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -186,7 +249,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
     type: 'brief',
     length: 'medium',
     tone: 'professional',
-    includeKeywords: true
+    includeKeywords: true,
   });
 
   // Auto-generate initial summary
@@ -198,15 +261,15 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
   const generateNewSummary = async () => {
     if (!content || !title) return;
-    
+
     setIsGenerating(true);
-    
+
     // Simulate AI processing time
-    await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500 + Math.random() * 1000));
+
     const newSummary = generateSummary(content, title, contentType, options, tags);
-    
-    setSummaries(prev => [newSummary, ...prev.slice(0, 4)]); // Keep last 5 summaries
+
+    setSummaries((prev) => [newSummary, ...prev.slice(0, 4)]); // Keep last 5 summaries
     onSummaryGenerated?.(newSummary);
     setIsGenerating(false);
   };
@@ -223,21 +286,31 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
   const getTypeIcon = (type: SummaryOptions['type']) => {
     switch (type) {
-      case 'brief': return '⚡';
-      case 'detailed': return '📋';
-      case 'technical': return '🔧';
-      case 'marketing': return '🎯';
-      default: return '📝';
+      case 'brief':
+        return '⚡';
+      case 'detailed':
+        return '📋';
+      case 'technical':
+        return '🔧';
+      case 'marketing':
+        return '🎯';
+      default:
+        return '📝';
     }
   };
 
   const getTypeColor = (type: SummaryOptions['type']) => {
     switch (type) {
-      case 'brief': return 'text-yellow-500';
-      case 'detailed': return 'text-blue-500';
-      case 'technical': return 'text-green-500';
-      case 'marketing': return 'text-purple-500';
-      default: return 'text-gray-500';
+      case 'brief':
+        return 'text-yellow-500';
+      case 'detailed':
+        return 'text-blue-500';
+      case 'technical':
+        return 'text-green-500';
+      case 'marketing':
+        return 'text-purple-500';
+      default:
+        return 'text-gray-500';
     }
   };
 
@@ -259,12 +332,10 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               AI-Generated Summary
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              Intelligent summaries powered by AI
-            </p>
+            <p className="text-gray-600 dark:text-gray-400">Intelligent summaries powered by AI</p>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowSettings(!showSettings)}
@@ -273,7 +344,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
           >
             <FiSettings className="w-5 h-5" />
           </button>
-          
+
           <button
             onClick={generateNewSummary}
             disabled={isGenerating}
@@ -297,17 +368,25 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Summary Settings
             </h3>
-            
+
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {/* Type */}
               <div>
-                <label htmlFor="summary-type" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="summary-type"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Summary Type
                 </label>
                 <select
                   id="summary-type"
                   value={options.type}
-                  onChange={(e) => setOptions(prev => ({ ...prev, type: e.target.value as SummaryOptions['type'] }))}
+                  onChange={(e) =>
+                    setOptions((prev) => ({
+                      ...prev,
+                      type: e.target.value as SummaryOptions['type'],
+                    }))
+                  }
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="brief">Brief Overview</option>
@@ -319,13 +398,21 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
               {/* Length */}
               <div>
-                <label htmlFor="summary-length" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="summary-length"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Length
                 </label>
                 <select
                   id="summary-length"
                   value={options.length}
-                  onChange={(e) => setOptions(prev => ({ ...prev, length: e.target.value as SummaryOptions['length'] }))}
+                  onChange={(e) =>
+                    setOptions((prev) => ({
+                      ...prev,
+                      length: e.target.value as SummaryOptions['length'],
+                    }))
+                  }
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="short">Short (1-2 sentences)</option>
@@ -336,13 +423,21 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
               {/* Tone */}
               <div>
-                <label htmlFor="summary-tone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="summary-tone"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Tone
                 </label>
                 <select
                   id="summary-tone"
                   value={options.tone}
-                  onChange={(e) => setOptions(prev => ({ ...prev, tone: e.target.value as SummaryOptions['tone'] }))}
+                  onChange={(e) =>
+                    setOptions((prev) => ({
+                      ...prev,
+                      tone: e.target.value as SummaryOptions['tone'],
+                    }))
+                  }
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="professional">Professional</option>
@@ -356,12 +451,17 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                 <div className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Options
                 </div>
-                <label htmlFor="include-keywords" className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="include-keywords"
+                  className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"
+                >
                   <input
                     id="include-keywords"
                     type="checkbox"
                     checked={options.includeKeywords}
-                    onChange={(e) => setOptions(prev => ({ ...prev, includeKeywords: e.target.checked }))}
+                    onChange={(e) =>
+                      setOptions((prev) => ({ ...prev, includeKeywords: e.target.checked }))
+                    }
                     className="rounded border-gray-300 text-primary focus:ring-primary"
                   />
                   Include keywords
@@ -380,7 +480,9 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
               <span className="text-2xl">{getTypeIcon(currentSummary.type)}</span>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className={`text-sm px-2 py-1 rounded-full bg-white/10 ${getTypeColor(currentSummary.type)}`}>
+                  <span
+                    className={`text-sm px-2 py-1 rounded-full bg-white/10 ${getTypeColor(currentSummary.type)}`}
+                  >
                     {currentSummary.type}
                   </span>
                   <span className="text-xs text-gray-500">
@@ -392,14 +494,16 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                     <FiBookOpen className="w-3 h-3" />
                     {currentSummary.readingTime} min read
                   </span>
-                  <span className={`flex items-center gap-1 ${getConfidenceColor(currentSummary.confidence)}`}>
+                  <span
+                    className={`flex items-center gap-1 ${getConfidenceColor(currentSummary.confidence)}`}
+                  >
                     <FiZap className="w-3 h-3" />
                     {Math.round(currentSummary.confidence * 100)}% confidence
                   </span>
                 </div>
               </div>
             </div>
-            
+
             <button
               onClick={() => copyToClipboard(currentSummary)}
               className="flex items-center gap-2 px-3 py-1 text-sm text-gray-500 hover:text-primary transition-colors"
@@ -425,9 +529,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
           {/* Keywords */}
           {currentSummary.keywords.length > 0 && (
             <div className="space-y-2">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Key Topics:
-              </h4>
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Key Topics:</h4>
               <div className="flex flex-wrap gap-2">
                 {currentSummary.keywords.map((keyword, index) => (
                   <span
@@ -452,12 +554,10 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
               <h3 className="font-medium text-gray-900 dark:text-white">
                 Generating AI Summary...
               </h3>
-              <p className="text-sm text-gray-500">
-                Analyzing content and extracting key insights
-              </p>
+              <p className="text-sm text-gray-500">Analyzing content and extracting key insights</p>
             </div>
           </div>
-          
+
           <div className="space-y-2">
             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4"></div>
@@ -472,7 +572,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Previous Summaries
           </h3>
-          
+
           <div className="space-y-3">
             {summaries.slice(1).map((summary, index) => (
               <motion.div
@@ -485,14 +585,16 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{getTypeIcon(summary.type)}</span>
-                    <span className={`text-xs px-2 py-1 rounded-full bg-white/10 ${getTypeColor(summary.type)}`}>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full bg-white/10 ${getTypeColor(summary.type)}`}
+                    >
                       {summary.type}
                     </span>
                     <span className="text-xs text-gray-500">
                       {summary.timestamp.toLocaleTimeString()}
                     </span>
                   </div>
-                  
+
                   <button
                     onClick={() => copyToClipboard(summary)}
                     className="text-gray-400 hover:text-primary transition-colors"
@@ -504,10 +606,8 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                     )}
                   </button>
                 </div>
-                
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                  {summary.content}
-                </p>
+
+                <p className="text-sm text-gray-700 dark:text-gray-300">{summary.content}</p>
               </motion.div>
             ))}
           </div>

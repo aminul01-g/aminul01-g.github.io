@@ -48,10 +48,26 @@ export const ToastProvider = ({ children }: { children: ReactNode }): React.Reac
               ${toast.type === 'warning' ? 'bg-yellow-600 text-gray-900' : ''}
             `}
           >
-            {toast.type === 'success' && <span aria-hidden="true" className="text-green-200">✓</span>}
-            {toast.type === 'error' && <span aria-hidden="true" className="text-red-200">✕</span>}
-            {toast.type === 'info' && <span aria-hidden="true" className="text-blue-200">i</span>}
-            {toast.type === 'warning' && <span aria-hidden="true" className="text-yellow-200">!</span>}
+            {toast.type === 'success' && (
+              <span aria-hidden="true" className="text-green-200">
+                ✓
+              </span>
+            )}
+            {toast.type === 'error' && (
+              <span aria-hidden="true" className="text-red-200">
+                ✕
+              </span>
+            )}
+            {toast.type === 'info' && (
+              <span aria-hidden="true" className="text-blue-200">
+                i
+              </span>
+            )}
+            {toast.type === 'warning' && (
+              <span aria-hidden="true" className="text-yellow-200">
+                !
+              </span>
+            )}
             <span>{toast.message}</span>
             <button
               onClick={() => removeToast(toast.id)}

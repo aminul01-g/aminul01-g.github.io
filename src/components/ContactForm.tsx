@@ -13,12 +13,12 @@ interface FormData {
 const inputVariants = {
   focus: {
     scale: 1.02,
-    transition: { duration: 0.2 }
+    transition: { duration: 0.2 },
   },
   blur: {
     scale: 1,
-    transition: { duration: 0.2 }
-  }
+    transition: { duration: 0.2 },
+  },
 };
 
 const formVariants = {
@@ -28,9 +28,9 @@ const formVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 const fieldVariants = {
@@ -38,8 +38,8 @@ const fieldVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 }
-  }
+    transition: { duration: 0.5 },
+  },
 };
 
 export default function ContactForm(): React.ReactElement {
@@ -114,7 +114,8 @@ export default function ContactForm(): React.ReactElement {
           Send me a message
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
-          I&apos;d love to hear from you. Send me a message and I&apos;ll respond as soon as possible.
+          I&apos;d love to hear from you. Send me a message and I&apos;ll respond as soon as
+          possible.
         </p>
       </motion.div>
 
@@ -142,8 +143,8 @@ export default function ContactForm(): React.ReactElement {
           type="text"
           placeholder="Your full name"
           className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 ${
-            errors.name 
-              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20' 
+            errors.name
+              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20'
               : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
           } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
           {...register('name', {
@@ -195,8 +196,8 @@ export default function ContactForm(): React.ReactElement {
           type="email"
           placeholder="your.email@example.com"
           className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 ${
-            errors.email 
-              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20' 
+            errors.email
+              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20'
               : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
           } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
           {...register('email', {
@@ -239,7 +240,10 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Message Field */}
       <motion.div className="space-y-2" variants={fieldVariants}>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-800 dark:text-white">
+        <label
+          htmlFor="message"
+          className="block text-sm font-medium text-gray-800 dark:text-white"
+        >
           Message{' '}
           <span className="text-red-500" aria-label="required">
             *
@@ -250,8 +254,8 @@ export default function ContactForm(): React.ReactElement {
           rows={5}
           placeholder="Tell me about your project, ideas, or just say hello..."
           className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none ${
-            errors.message 
-              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20' 
+            errors.message
+              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20'
               : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
           } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
           {...register('message', {
@@ -300,11 +304,7 @@ export default function ContactForm(): React.ReactElement {
           aria-live="polite"
         >
           <div className="flex-shrink-0">
-            <svg
-              className="w-6 h-6 text-green-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
+            <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -332,11 +332,7 @@ export default function ContactForm(): React.ReactElement {
           aria-live="polite"
         >
           <div className="flex-shrink-0">
-            <svg
-              className="w-6 h-6 text-red-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
+            <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
@@ -345,9 +341,7 @@ export default function ContactForm(): React.ReactElement {
             </svg>
           </div>
           <div>
-            <h4 className="text-red-800 dark:text-red-200 font-medium">
-              Failed to send message
-            </h4>
+            <h4 className="text-red-800 dark:text-red-200 font-medium">Failed to send message</h4>
             <p className="text-red-700 dark:text-red-300 text-sm">
               Please try again or contact me directly via email.
             </p>
@@ -395,10 +389,7 @@ export default function ContactForm(): React.ReactElement {
       </motion.div>
 
       {/* Additional Info */}
-      <motion.div 
-        className="text-center pt-4 border-t border-white/10"
-        variants={fieldVariants}
-      >
+      <motion.div className="text-center pt-4 border-t border-white/10" variants={fieldVariants}>
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Your information is secure and will never be shared with third parties.
         </p>

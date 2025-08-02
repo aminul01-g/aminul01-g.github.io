@@ -50,12 +50,16 @@ export default function Post(): React.ReactElement {
         <title>{post.title} | Blog | Aminul Islam Bhuiyan Amin</title>
         <meta
           name="description"
-          content={post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`}
+          content={
+            post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`
+          }
         />
         <meta property="og:title" content={`${post.title} | Blog | Aminul Islam Bhuiyan Amin`} />
         <meta
           property="og:description"
-          content={post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`}
+          content={
+            post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`
+          }
         />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://aminul01-g.github.io/blog/${postSlug}`} />
@@ -63,16 +67,18 @@ export default function Post(): React.ReactElement {
         <meta name="twitter:title" content={post.title} />
         <meta
           name="twitter:description"
-          content={post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`}
+          content={
+            post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`
+          }
         />
         <link rel="canonical" href={`https://aminul01-g.github.io/blog/${postSlug}`} />
       </Helmet>
-      
+
       <div className="max-w-6xl mx-auto my-12 px-4 space-y-12">
         {/* Main Blog Post Content */}
         <article className="prose dark:prose-invert max-w-3xl mx-auto bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl border border-primary/10 dark:border-gray-700 p-8">
           <h1 className="mb-2">{post.title}</h1>
-          
+
           {/* Post Metadata */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm text-gray-500">
             <span>Published on {post.date || 'an unknown date'}</span>
@@ -87,28 +93,32 @@ export default function Post(): React.ReactElement {
               ))}
             </div>
           </div>
-          
+
           {/* Post Content */}
           <div className="prose dark:prose-invert max-w-none">
             {post.body ? (
               <div className="text-gray-600 dark:text-gray-400">
                 {/* Content would be rendered here if Sanity was configured */}
-                <p>Post content not available. The content may be coming soon or is currently unavailable.</p>
+                <p>
+                  Post content not available. The content may be coming soon or is currently
+                  unavailable.
+                </p>
               </div>
             ) : (
               <p className="text-gray-600 dark:text-gray-400">
-                Post content not available. The content may be coming soon or is currently unavailable.
+                Post content not available. The content may be coming soon or is currently
+                unavailable.
               </p>
             )}
           </div>
-          
+
           {/* Social Sharing */}
           <SocialShare
             url={`https://aminul01-g.github.io/blog/${postSlug}`}
             title={post.title}
             className="my-8"
           />
-          
+
           <FeedbackWidget className="my-8" />
         </article>
 

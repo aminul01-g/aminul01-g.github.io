@@ -52,7 +52,7 @@ export default function Footer(): React.ReactElement {
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent pointer-events-none" />
-      
+
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand Section */}
@@ -63,10 +63,11 @@ export default function Footer(): React.ReactElement {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h3 className="text-2xl font-display font-bold text-gradient mb-4">
-             Md Aminul Islam Bhuiyan Amin
+              Md Aminul Islam Bhuiyan Amin
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-              AI Engineering Student passionate about building intelligent systems that shape the future.
+              AI Engineering Student passionate about building intelligent systems that shape the
+              future.
             </p>
             <div className="flex justify-center md:justify-start gap-4">
               {socialLinks.map((link, index) => (
@@ -77,10 +78,10 @@ export default function Footer(): React.ReactElement {
                   rel="noopener noreferrer"
                   aria-label={link.label}
                   className="glass-card p-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-300 hover:shadow-glow"
-                  whileHover={{ 
-                    scale: 1.1, 
+                  whileHover={{
+                    scale: 1.1,
                     y: -2,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -134,10 +135,20 @@ export default function Footer(): React.ReactElement {
             </h4>
             <div className="space-y-2 text-gray-600 dark:text-gray-300">
               <p className="flex items-center justify-center md:justify-end gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
                 </svg>
-                <a 
+                <a
                   href={`mailto:${profile.email}`}
                   className="hover:text-primary transition-colors duration-300"
                 >
@@ -145,9 +156,23 @@ export default function Footer(): React.ReactElement {
                 </a>
               </p>
               <p className="flex items-center justify-center md:justify-end gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
                 </svg>
                 <span>{profile.location}</span>
               </p>
@@ -171,7 +196,7 @@ export default function Footer(): React.ReactElement {
             >
               &copy; {currentYear} Md Aminul Islam Bhuiyan Amin. All rights reserved.
             </motion.p>
-            
+
             <motion.div
               className="flex items-center gap-6 text-sm"
               initial={{ opacity: 0, y: 20 }}
@@ -199,10 +224,10 @@ export default function Footer(): React.ReactElement {
         <motion.button
           className="absolute -top-6 right-8 glass-card p-3 rounded-full text-gray-600 dark:text-gray-300 hover:text-primary hover:shadow-glow transition-all duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          whileHover={{ 
-            scale: 1.1, 
+          whileHover={{
+            scale: 1.1,
             y: -2,
-            transition: { duration: 0.2 }
+            transition: { duration: 0.2 },
           }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}
@@ -210,7 +235,13 @@ export default function Footer(): React.ReactElement {
           transition={{ duration: 0.6, delay: 0.8 }}
           aria-label="Back to top"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </motion.button>
@@ -227,7 +258,7 @@ export default function Footer(): React.ReactElement {
           transition={{
             duration: 4,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: 'easeInOut',
           }}
         />
         <motion.div
@@ -239,8 +270,8 @@ export default function Footer(): React.ReactElement {
           transition={{
             duration: 3.5,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
+            ease: 'easeInOut',
+            delay: 1,
           }}
         />
         <motion.div
@@ -252,8 +283,8 @@ export default function Footer(): React.ReactElement {
           transition={{
             duration: 3,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
+            ease: 'easeInOut',
+            delay: 2,
           }}
         />
       </div>

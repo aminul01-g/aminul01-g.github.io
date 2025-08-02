@@ -1,6 +1,13 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
-export type ThemeType = 'system' | 'light' | 'dark' | 'amoled' | 'nord' | 'solarized' | 'high-contrast';
+export type ThemeType =
+  | 'system'
+  | 'light'
+  | 'dark'
+  | 'amoled'
+  | 'nord'
+  | 'solarized'
+  | 'high-contrast';
 
 interface ThemeConfig {
   name: string;
@@ -20,7 +27,7 @@ export const themeConfigs: Record<ThemeType, ThemeConfig> = {
     primaryColor: '#7c3aed',
     backgroundColor: 'auto',
     textColor: 'auto',
-    accentColor: '#a78bfa'
+    accentColor: '#a78bfa',
   },
   light: {
     name: 'Light',
@@ -29,7 +36,7 @@ export const themeConfigs: Record<ThemeType, ThemeConfig> = {
     primaryColor: '#7c3aed',
     backgroundColor: '#ffffff',
     textColor: '#1f2937',
-    accentColor: '#a78bfa'
+    accentColor: '#a78bfa',
   },
   dark: {
     name: 'Dark',
@@ -38,7 +45,7 @@ export const themeConfigs: Record<ThemeType, ThemeConfig> = {
     primaryColor: '#a78bfa',
     backgroundColor: '#1f2937',
     textColor: '#f9fafb',
-    accentColor: '#7c3aed'
+    accentColor: '#7c3aed',
   },
   amoled: {
     name: 'Amoled',
@@ -47,7 +54,7 @@ export const themeConfigs: Record<ThemeType, ThemeConfig> = {
     primaryColor: '#00ffe7',
     backgroundColor: '#000000',
     textColor: '#f3f4f6',
-    accentColor: '#7c3aed'
+    accentColor: '#7c3aed',
   },
   nord: {
     name: 'Nord',
@@ -56,7 +63,7 @@ export const themeConfigs: Record<ThemeType, ThemeConfig> = {
     primaryColor: '#88c0d0',
     backgroundColor: '#2e3440',
     textColor: '#eceff4',
-    accentColor: '#5e81ac'
+    accentColor: '#5e81ac',
   },
   solarized: {
     name: 'Solarized',
@@ -65,7 +72,7 @@ export const themeConfigs: Record<ThemeType, ThemeConfig> = {
     primaryColor: '#b58900',
     backgroundColor: '#002b36',
     textColor: '#fdf6e3',
-    accentColor: '#268bd2'
+    accentColor: '#268bd2',
   },
   'high-contrast': {
     name: 'High Contrast',
@@ -74,8 +81,8 @@ export const themeConfigs: Record<ThemeType, ThemeConfig> = {
     primaryColor: '#0000ff',
     backgroundColor: '#ffffff',
     textColor: '#000000',
-    accentColor: '#ff0000'
-  }
+    accentColor: '#ff0000',
+  },
 };
 
 interface ThemeContextType {
@@ -127,14 +134,14 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     if (typeof window === 'undefined') return;
 
     const root = document.documentElement;
-    
+
     // Remove all theme classes
-    Object.values(themeConfigs).forEach(config => {
+    Object.values(themeConfigs).forEach((config) => {
       root.classList.remove(config.value);
     });
 
     let effectiveTheme = currentTheme;
-    
+
     // Handle system theme
     if (currentTheme === 'system') {
       effectiveTheme = systemPrefersDark ? 'dark' : 'light';
@@ -156,10 +163,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
     // Save to localStorage
     localStorage.setItem('theme', currentTheme);
-    
+
     // Set data attribute for CSS targeting
     root.setAttribute('data-theme', effectiveTheme);
-
   }, [currentTheme, systemPrefersDark]);
 
   const setTheme = (theme: ThemeType) => {
@@ -168,12 +174,15 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   const toggleTheme = () => {
     const themes: ThemeType[] = ['light', 'dark', 'amoled', 'nord', 'solarized', 'high-contrast'];
-    const currentIndex = themes.indexOf(currentTheme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : currentTheme);
+    const currentIndex = themes.indexOf(
+      currentTheme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : currentTheme
+    );
     const nextIndex = (currentIndex + 1) % themes.length;
     setTheme(themes[nextIndex]);
   };
 
-  const effectiveTheme = currentTheme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : currentTheme;
+  const effectiveTheme =
+    currentTheme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : currentTheme;
   const themeConfig = themeConfigs[effectiveTheme];
   const isDarkMode = ['dark', 'amoled', 'nord', 'solarized'].includes(effectiveTheme);
 
@@ -183,14 +192,10 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setTheme,
     toggleTheme,
     availableThemes: Object.values(themeConfigs),
-    isDarkMode
+    isDarkMode,
   };
 
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {

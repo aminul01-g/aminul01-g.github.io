@@ -89,7 +89,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         'bg-gradient-to-r from-secondary to-pink-500 hover:from-secondary-600 hover:to-pink-600 text-white shadow-medium hover:shadow-hard',
       outline:
         'border-2 border-primary/50 text-primary hover:bg-primary hover:text-white hover:border-primary shadow-soft hover:shadow-medium backdrop-blur-sm',
-      ghost: 
+      ghost:
         'text-primary hover:bg-primary/10 hover:backdrop-blur-sm shadow-none hover:shadow-soft',
       glass:
         'glass-card text-gray-700 dark:text-gray-200 hover:text-primary shadow-glass hover:shadow-glass border-gradient',
@@ -114,9 +114,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         whileTap={!isDisabled ? { scale: 0.98, y: 0, transition: { duration: 0.1 } } : {}}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ 
-          duration: 0.3, 
-          ease: "easeInOut"
+        transition={{
+          duration: 0.3,
+          ease: 'easeInOut',
         }}
         aria-disabled={isDisabled}
         aria-busy={loading}
@@ -142,8 +142,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
 
         {!loading && icon && iconPosition === 'left' && (
-          <motion.span 
-            className="mr-2" 
+          <motion.span
+            className="mr-2"
             aria-hidden="true"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
@@ -153,7 +153,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </motion.span>
         )}
 
-        <motion.span 
+        <motion.span
           className={loading ? 'sr-only' : 'relative z-10'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -163,8 +163,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         </motion.span>
 
         {!loading && icon && iconPosition === 'right' && (
-          <motion.span 
-            className="ml-2" 
+          <motion.span
+            className="ml-2"
             aria-hidden="true"
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}

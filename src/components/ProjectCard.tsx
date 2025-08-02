@@ -50,21 +50,21 @@ export default function ProjectCard({
       role="article"
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      whileHover={{ 
+      whileHover={{
         y: -8,
         scale: 1.02,
-        transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+        transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
       }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         ease: [0.4, 0, 0.2, 1],
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
       }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: '-50px' }}
     >
       {/* Enhanced Project Image/Icon */}
       <div className="relative w-full h-48 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute inset-0 flex items-center justify-center"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
@@ -72,10 +72,10 @@ export default function ProjectCard({
           {isEmoji ? (
             <motion.div
               className="text-6xl filter drop-shadow-lg"
-              whileHover={{ 
-                scale: 1.2, 
+              whileHover={{
+                scale: 1.2,
                 rotate: [0, -5, 5, 0],
-                transition: { duration: 0.5 }
+                transition: { duration: 0.5 },
               }}
               animate={{
                 y: [0, -5, 0],
@@ -83,7 +83,7 @@ export default function ProjectCard({
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: 'easeInOut',
               }}
             >
               {logo}
@@ -99,14 +99,14 @@ export default function ProjectCard({
         </motion.div>
 
         {/* Enhanced gradient overlays */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
         />
-        
+
         {/* Animated glow effect */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           animate={{
             opacity: [0, 0.3, 0],
@@ -115,13 +115,13 @@ export default function ProjectCard({
           transition={{
             duration: 3,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: 'easeInOut',
           }}
         />
 
         {/* Floating particles */}
         <div className="absolute inset-0 pointer-events-none">
-          <motion.div 
+          <motion.div
             className="absolute top-4 right-4 w-2 h-2 bg-primary/50 rounded-full"
             animate={{
               y: [0, -10, 0],
@@ -130,10 +130,10 @@ export default function ProjectCard({
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: 'easeInOut',
             }}
           />
-          <motion.div 
+          <motion.div
             className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-secondary/50 rounded-full"
             animate={{
               y: [0, -8, 0],
@@ -142,8 +142,8 @@ export default function ProjectCard({
             transition={{
               duration: 2.5,
               repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
+              ease: 'easeInOut',
+              delay: 0.5,
             }}
           />
         </div>
@@ -160,7 +160,7 @@ export default function ProjectCard({
           {title}
         </motion.h3>
 
-        <motion.p 
+        <motion.p
           className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 leading-relaxed flex-grow"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +170,7 @@ export default function ProjectCard({
         </motion.p>
 
         {/* Enhanced Tags with better animations */}
-        <motion.div 
+        <motion.div
           className="flex flex-wrap gap-2 mb-6"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -182,10 +182,10 @@ export default function ProjectCard({
               className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-gray-700 dark:text-gray-200 border border-white/20 hover:border-primary/40 hover:text-primary transition-all duration-300"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 y: -2,
-                transition: { duration: 0.2 }
+                transition: { duration: 0.2 },
               }}
               transition={{ delay: 0.4 + i * 0.1 }}
             >
@@ -205,7 +205,7 @@ export default function ProjectCard({
         </motion.div>
 
         {/* Enhanced Action Buttons */}
-        <motion.div 
+        <motion.div
           className="flex gap-3 mt-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -222,8 +222,18 @@ export default function ProjectCard({
                 size="md"
                 className="w-full"
                 icon={
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
                   </svg>
                 }
                 iconPosition="right"
@@ -258,12 +268,16 @@ export default function ProjectCard({
       <motion.div
         className="absolute inset-0 rounded-2xl border border-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         animate={{
-          borderColor: ['rgba(99, 102, 241, 0.2)', 'rgba(139, 92, 246, 0.3)', 'rgba(99, 102, 241, 0.2)'],
+          borderColor: [
+            'rgba(99, 102, 241, 0.2)',
+            'rgba(139, 92, 246, 0.3)',
+            'rgba(99, 102, 241, 0.2)',
+          ],
         }}
         transition={{
           duration: 3,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: 'easeInOut',
         }}
       />
     </motion.article>

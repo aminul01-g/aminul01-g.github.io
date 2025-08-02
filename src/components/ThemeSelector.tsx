@@ -20,7 +20,7 @@ const getThemeColors = (theme: ThemeType) => {
         textPrimary: '#0f172a',
         textSecondary: '#475569',
         border: '#e2e8f0',
-        primary: '#7c3aed'
+        primary: '#7c3aed',
       };
     case 'dark':
       return {
@@ -30,7 +30,7 @@ const getThemeColors = (theme: ThemeType) => {
         textPrimary: '#f8fafc',
         textSecondary: '#cbd5e1',
         border: '#475569',
-        primary: '#a78bfa'
+        primary: '#a78bfa',
       };
     case 'amoled':
       return {
@@ -40,7 +40,7 @@ const getThemeColors = (theme: ThemeType) => {
         textPrimary: '#ffffff',
         textSecondary: '#e0e0e0',
         border: '#2a2a2a',
-        primary: '#00ffe7'
+        primary: '#00ffe7',
       };
     case 'nord':
       return {
@@ -50,7 +50,7 @@ const getThemeColors = (theme: ThemeType) => {
         textPrimary: '#eceff4',
         textSecondary: '#d8dee9',
         border: '#4c566a',
-        primary: '#88c0d0'
+        primary: '#88c0d0',
       };
     case 'solarized':
       return {
@@ -60,7 +60,7 @@ const getThemeColors = (theme: ThemeType) => {
         textPrimary: '#fdf6e3',
         textSecondary: '#eee8d5',
         border: '#586e75',
-        primary: '#b58900'
+        primary: '#b58900',
       };
     case 'high-contrast':
       return {
@@ -70,7 +70,7 @@ const getThemeColors = (theme: ThemeType) => {
         textPrimary: '#000000',
         textSecondary: '#1a1a1a',
         border: '#000000',
-        primary: '#0000ff'
+        primary: '#0000ff',
       };
     default: // system
       return {
@@ -80,47 +80,42 @@ const getThemeColors = (theme: ThemeType) => {
         textPrimary: '#0f172a',
         textSecondary: '#475569',
         border: '#e2e8f0',
-        primary: '#7c3aed'
+        primary: '#7c3aed',
       };
   }
 };
 
 const ThemePreview: React.FC<ThemePreviewProps> = ({ theme, isSelected, onSelect }) => {
   const { availableThemes, currentTheme } = useTheme();
-  const themeConfig = availableThemes.find(t => t.value === theme);
+  const themeConfig = availableThemes.find((t) => t.value === theme);
   const currentColors = getThemeColors(currentTheme);
-  
+
   const getThemeIcon = (themeType: ThemeType) => {
     const iconStyle = { color: currentColors.textPrimary };
     switch (themeType) {
-      case 'system': return <FiMonitor className="w-4 h-4" style={iconStyle} />;
-      case 'light': return <FiSun className="w-4 h-4" style={iconStyle} />;
-      case 'dark': return <FiMoon className="w-4 h-4" style={iconStyle} />;
-      case 'amoled': 
+      case 'system':
+        return <FiMonitor className="w-4 h-4" style={iconStyle} />;
+      case 'light':
+        return <FiSun className="w-4 h-4" style={iconStyle} />;
+      case 'dark':
+        return <FiMoon className="w-4 h-4" style={iconStyle} />;
+      case 'amoled':
         return (
-          <div 
+          <div
             className="w-4 h-4 rounded-full border-2 flex items-center justify-center"
             style={{ backgroundColor: '#000000', borderColor: '#00ffe7' }}
           >
             <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00ffe7' }} />
           </div>
         );
-      case 'nord': 
-        return (
-          <div 
-            className="w-4 h-4 rounded-full"
-            style={{ backgroundColor: '#88c0d0' }}
-          />
-        );
-      case 'solarized': 
-        return (
-          <div 
-            className="w-4 h-4 rounded-full"
-            style={{ backgroundColor: '#b58900' }}
-          />
-        );
-      case 'high-contrast': return <FiEye className="w-4 h-4" style={iconStyle} />;
-      default: return <FiSettings className="w-4 h-4" style={iconStyle} />;
+      case 'nord':
+        return <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#88c0d0' }} />;
+      case 'solarized':
+        return <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#b58900' }} />;
+      case 'high-contrast':
+        return <FiEye className="w-4 h-4" style={iconStyle} />;
+      default:
+        return <FiSettings className="w-4 h-4" style={iconStyle} />;
     }
   };
 
@@ -130,7 +125,7 @@ const ThemePreview: React.FC<ThemePreviewProps> = ({ theme, isSelected, onSelect
       bg: colors.bgPrimary,
       text: colors.textPrimary,
       accent: colors.primary,
-      border: colors.border
+      border: colors.border,
     };
   };
 
@@ -144,38 +139,35 @@ const ThemePreview: React.FC<ThemePreviewProps> = ({ theme, isSelected, onSelect
         backgroundColor: currentColors.bgSecondary,
         borderColor: isSelected ? currentColors.primary : currentColors.border,
         color: currentColors.textPrimary,
-        boxShadow: isSelected ? `0 0 0 2px ${currentColors.primary}30` : 'none'
+        boxShadow: isSelected ? `0 0 0 2px ${currentColors.primary}30` : 'none',
       }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       layout
     >
       {/* Theme Preview */}
-      <div 
+      <div
         className="w-full h-16 rounded-lg mb-3 relative overflow-hidden border-2"
-        style={{ 
+        style={{
           backgroundColor: colors.bg,
-          borderColor: colors.border
+          borderColor: colors.border,
         }}
       >
         {/* Preview Content */}
         <div className="p-2 h-full flex flex-col justify-between">
           <div className="flex items-center gap-1">
-            <div 
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: colors.accent }}
-            />
-            <div 
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: colors.accent }} />
+            <div
               className="w-8 h-1 rounded"
               style={{ backgroundColor: colors.text, opacity: 0.7 }}
             />
           </div>
           <div className="space-y-1">
-            <div 
+            <div
               className="w-12 h-1 rounded"
               style={{ backgroundColor: colors.text, opacity: 0.9 }}
             />
-            <div 
+            <div
               className="w-8 h-1 rounded"
               style={{ backgroundColor: colors.text, opacity: 0.5 }}
             />
@@ -202,17 +194,11 @@ const ThemePreview: React.FC<ThemePreviewProps> = ({ theme, isSelected, onSelect
       <div className="text-center">
         <div className="flex items-center justify-center gap-2 mb-1">
           {getThemeIcon(theme)}
-          <span 
-            className="font-semibold text-sm"
-            style={{ color: currentColors.textPrimary }}
-          >
+          <span className="font-semibold text-sm" style={{ color: currentColors.textPrimary }}>
             {themeConfig?.name || theme}
           </span>
         </div>
-        <p 
-          className="text-xs leading-relaxed"
-          style={{ color: currentColors.textSecondary }}
-        >
+        <p className="text-xs leading-relaxed" style={{ color: currentColors.textSecondary }}>
           {themeConfig?.description || 'Theme description'}
         </p>
       </div>
@@ -251,7 +237,7 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ isOpen, onClose })
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          transition={{ type: "spring", duration: 0.3, damping: 25, stiffness: 300 }}
+          transition={{ type: 'spring', duration: 0.3, damping: 25, stiffness: 300 }}
           className="rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col"
           onClick={(e) => e.stopPropagation()}
           style={{
@@ -259,32 +245,26 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ isOpen, onClose })
             border: `2px solid ${colors.border}`,
             color: colors.textPrimary,
             boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px ${colors.border}`,
-            minHeight: '500px'
+            minHeight: '500px',
           }}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 pb-4 flex-shrink-0">
             <div className="flex items-center gap-4">
-              <div 
+              <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ 
+                style={{
                   background: `linear-gradient(135deg, ${colors.primary}, ${colors.primary}dd)`,
-                  boxShadow: `0 4px 12px ${colors.primary}30`
+                  boxShadow: `0 4px 12px ${colors.primary}30`,
                 }}
               >
                 <FiSettings className="w-6 h-6" style={{ color: colors.bgPrimary }} />
               </div>
               <div>
-                <h2 
-                  className="text-2xl font-bold"
-                  style={{ color: colors.textPrimary }}
-                >
+                <h2 className="text-2xl font-bold" style={{ color: colors.textPrimary }}>
                   Theme Settings
                 </h2>
-                <p 
-                  className="text-sm mt-1"
-                  style={{ color: colors.textSecondary }}
-                >
+                <p className="text-sm mt-1" style={{ color: colors.textSecondary }}>
                   Choose your preferred appearance and experience
                 </p>
               </div>
@@ -295,7 +275,7 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ isOpen, onClose })
               style={{
                 backgroundColor: colors.bgSecondary,
                 color: colors.textPrimary,
-                border: `1px solid ${colors.border}`
+                border: `1px solid ${colors.border}`,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = colors.bgTertiary;
@@ -308,7 +288,12 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ isOpen, onClose })
               aria-label="Close theme selector"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -328,20 +313,12 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ isOpen, onClose })
           </div>
 
           {/* Footer */}
-          <div 
-            className="p-6 pt-4 border-t flex-shrink-0"
-            style={{ borderColor: colors.border }}
-          >
+          <div className="p-6 pt-4 border-t flex-shrink-0" style={{ borderColor: colors.border }}>
             <div className="flex items-center justify-between">
-              <div 
-                className="text-sm"
-                style={{ color: colors.textSecondary }}
-              >
-                Current theme: <span 
-                  className="font-semibold ml-1"
-                  style={{ color: colors.textPrimary }}
-                >
-                  {availableThemes.find(t => t.value === currentTheme)?.name}
+              <div className="text-sm" style={{ color: colors.textSecondary }}>
+                Current theme:{' '}
+                <span className="font-semibold ml-1" style={{ color: colors.textPrimary }}>
+                  {availableThemes.find((t) => t.value === currentTheme)?.name}
                 </span>
               </div>
               <button
@@ -350,7 +327,7 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ isOpen, onClose })
                 style={{
                   backgroundColor: colors.primary,
                   color: colors.bgPrimary,
-                  boxShadow: `0 2px 8px ${colors.primary}40`
+                  boxShadow: `0 2px 8px ${colors.primary}40`,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-1px)';

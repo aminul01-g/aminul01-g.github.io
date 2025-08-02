@@ -25,126 +25,141 @@ interface AIChatbotProps {
 // Knowledge base for the AI assistant
 const knowledgeBase = {
   profile: {
-    name: "Aminul Islam Bhuiyan Amin",
-    role: "AI-driven Computer Science Student",
-    university: "BUBT",
-    interests: ["Deep Learning", "NLP", "LLMs", "Computer Vision"],
-    technologies: ["PyTorch", "TensorFlow", "Hugging Face", "Python", "React", "TypeScript"],
-    currentFocus: "Prompt engineering, multimodal AI, and LangChain-based applications"
+    name: 'Aminul Islam Bhuiyan Amin',
+    role: 'AI-driven Computer Science Student',
+    university: 'BUBT',
+    interests: ['Deep Learning', 'NLP', 'LLMs', 'Computer Vision'],
+    technologies: ['PyTorch', 'TensorFlow', 'Hugging Face', 'Python', 'React', 'TypeScript'],
+    currentFocus: 'Prompt engineering, multimodal AI, and LangChain-based applications',
   },
   skills: [
-    { category: "AI/ML", skills: ["TensorFlow", "PyTorch", "Scikit-learn", "LLMs", "Computer Vision"] },
-    { category: "Programming", skills: ["Python", "TypeScript", "C++", "Java"] },
-    { category: "Data Science", skills: ["Pandas", "NumPy", "Data Analysis", "Data Visualization"] },
-    { category: "Tools & Platforms", skills: ["Docker", "Git", "AWS", "Linux", "MLOps"] }
+    {
+      category: 'AI/ML',
+      skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LLMs', 'Computer Vision'],
+    },
+    { category: 'Programming', skills: ['Python', 'TypeScript', 'C++', 'Java'] },
+    {
+      category: 'Data Science',
+      skills: ['Pandas', 'NumPy', 'Data Analysis', 'Data Visualization'],
+    },
+    { category: 'Tools & Platforms', skills: ['Docker', 'Git', 'AWS', 'Linux', 'MLOps'] },
   ],
   quickReplies: [
-    { text: "Tell me about your projects", action: "projects" },
-    { text: "What are your skills?", action: "skills" },
-    { text: "Show me your blog posts", action: "blog" },
-    { text: "How can I contact you?", action: "contact" },
-    { text: "What's your background?", action: "about" }
-  ]
+    { text: 'Tell me about your projects', action: 'projects' },
+    { text: 'What are your skills?', action: 'skills' },
+    { text: 'Show me your blog posts', action: 'blog' },
+    { text: 'How can I contact you?', action: 'contact' },
+    { text: "What's your background?", action: 'about' },
+  ],
 };
 
 // Simple AI response generator
 const generateAIResponse = (userMessage: string): { text: string; quickReplies?: QuickReply[] } => {
   const message = userMessage.toLowerCase();
-  
+
   // Greeting responses
   if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
     return {
       text: `Hello! 👋 I'm Aminul's AI assistant. I can help you learn about his projects, skills, and experience. What would you like to know?`,
-      quickReplies: knowledgeBase.quickReplies
+      quickReplies: knowledgeBase.quickReplies,
     };
   }
-  
+
   // Projects
   if (message.includes('project') || message.includes('work') || message.includes('portfolio')) {
-    const projectList = projects.map(p => `• ${p.title}: ${p.description.substring(0, 100)}...`).join('\n');
+    const projectList = projects
+      .map((p) => `• ${p.title}: ${p.description.substring(0, 100)}...`)
+      .join('\n');
     return {
       text: `Here are some of Aminul's key projects:\n\n${projectList}\n\nWould you like to know more about any specific project?`,
       quickReplies: [
-        { text: "View all projects", action: "view-projects" },
-        { text: "Latest project", action: "latest-project" }
-      ]
+        { text: 'View all projects', action: 'view-projects' },
+        { text: 'Latest project', action: 'latest-project' },
+      ],
     };
   }
-  
+
   // Skills
-  if (message.includes('skill') || message.includes('technology') || message.includes('tech stack')) {
-    const skillsText = knowledgeBase.skills.map(category => 
-      `**${category.category}**: ${category.skills.join(', ')}`
-    ).join('\n\n');
+  if (
+    message.includes('skill') ||
+    message.includes('technology') ||
+    message.includes('tech stack')
+  ) {
+    const skillsText = knowledgeBase.skills
+      .map((category) => `**${category.category}**: ${category.skills.join(', ')}`)
+      .join('\n\n');
     return {
       text: `Aminul's technical skills include:\n\n${skillsText}\n\nHe's particularly passionate about AI/ML and is currently exploring ${knowledgeBase.profile.currentFocus}.`,
       quickReplies: [
-        { text: "AI/ML expertise", action: "ai-skills" },
-        { text: "Programming languages", action: "programming" }
-      ]
+        { text: 'AI/ML expertise', action: 'ai-skills' },
+        { text: 'Programming languages', action: 'programming' },
+      ],
     };
   }
-  
+
   // Blog
   if (message.includes('blog') || message.includes('article') || message.includes('post')) {
     if (blogPosts.length > 0) {
-      const recentPosts = blogPosts.slice(0, 3).map(post => 
-        `• ${post.title} (${post.date})`
-      ).join('\n');
+      const recentPosts = blogPosts
+        .slice(0, 3)
+        .map((post) => `• ${post.title} (${post.date})`)
+        .join('\n');
       return {
         text: `Here are some recent blog posts:\n\n${recentPosts}\n\nAminul shares insights about AI, machine learning, and software development.`,
         quickReplies: [
-          { text: "Read latest post", action: "latest-blog" },
-          { text: "View all posts", action: "view-blog" }
-        ]
+          { text: 'Read latest post', action: 'latest-blog' },
+          { text: 'View all posts', action: 'view-blog' },
+        ],
       };
     } else {
       return {
-        text: "Aminul is working on some exciting blog posts about AI and machine learning. Stay tuned for updates!",
-        quickReplies: [
-          { text: "Get notified", action: "newsletter" }
-        ]
+        text: 'Aminul is working on some exciting blog posts about AI and machine learning. Stay tuned for updates!',
+        quickReplies: [{ text: 'Get notified', action: 'newsletter' }],
       };
     }
   }
-  
+
   // About/Background
   if (message.includes('about') || message.includes('background') || message.includes('who')) {
     return {
       text: `${knowledgeBase.profile.name} is an ${knowledgeBase.profile.role} at ${knowledgeBase.profile.university}. He's passionate about building intelligent systems and has hands-on experience with ${knowledgeBase.profile.technologies.slice(0, 3).join(', ')}.\n\nCurrently, he's exploring ${knowledgeBase.profile.currentFocus}.`,
       quickReplies: [
-        { text: "View full resume", action: "resume" },
-        { text: "Contact information", action: "contact" }
-      ]
+        { text: 'View full resume', action: 'resume' },
+        { text: 'Contact information', action: 'contact' },
+      ],
     };
   }
-  
+
   // Contact
   if (message.includes('contact') || message.includes('reach') || message.includes('email')) {
     return {
-      text: "You can reach out to Aminul through:\n\n• Email: Contact form on the website\n• LinkedIn: Professional networking\n• GitHub: Code collaboration\n\nFeel free to connect for opportunities, collaborations, or just to chat about AI and technology!",
+      text: 'You can reach out to Aminul through:\n\n• Email: Contact form on the website\n• LinkedIn: Professional networking\n• GitHub: Code collaboration\n\nFeel free to connect for opportunities, collaborations, or just to chat about AI and technology!',
       quickReplies: [
-        { text: "Go to contact form", action: "contact-form" },
-        { text: "View social links", action: "social" }
-      ]
+        { text: 'Go to contact form', action: 'contact-form' },
+        { text: 'View social links', action: 'social' },
+      ],
     };
   }
-  
+
   // AI/ML specific
-  if (message.includes('ai') || message.includes('machine learning') || message.includes('deep learning')) {
+  if (
+    message.includes('ai') ||
+    message.includes('machine learning') ||
+    message.includes('deep learning')
+  ) {
     return {
       text: `Aminul specializes in AI/ML with expertise in:\n\n• Deep Learning frameworks (PyTorch, TensorFlow)\n• Natural Language Processing\n• Large Language Models\n• Computer Vision\n• MLOps and deployment\n\nHe's currently working on prompt engineering and multimodal AI applications.`,
       quickReplies: [
-        { text: "View AI projects", action: "ai-projects" },
-        { text: "Technical skills", action: "skills" }
-      ]
+        { text: 'View AI projects', action: 'ai-projects' },
+        { text: 'Technical skills', action: 'skills' },
+      ],
     };
   }
-  
+
   // Default response
   return {
     text: "I'd be happy to help you learn more about Aminul! You can ask me about his projects, skills, background, or how to get in touch. What interests you most?",
-    quickReplies: knowledgeBase.quickReplies
+    quickReplies: knowledgeBase.quickReplies,
   };
 };
 
@@ -155,7 +170,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -167,7 +182,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
         text: "Hi! 👋 I'm Aminul's AI assistant. I can help you explore his projects, learn about his skills, or answer any questions about his work. How can I help you today?",
         sender: 'bot',
         timestamp: new Date(),
-        type: 'text'
+        type: 'text',
       };
       setMessages([welcomeMessage]);
     }
@@ -193,41 +208,44 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
       text: text.trim(),
       sender: 'user',
       timestamp: new Date(),
-      type: 'text'
+      type: 'text',
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
 
     // Simulate AI thinking time
-    setTimeout(() => {
-      const aiResponse = generateAIResponse(text);
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: aiResponse.text,
-        sender: 'bot',
-        timestamp: new Date(),
-        type: 'text'
-      };
+    setTimeout(
+      () => {
+        const aiResponse = generateAIResponse(text);
+        const botMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: aiResponse.text,
+          sender: 'bot',
+          timestamp: new Date(),
+          type: 'text',
+        };
 
-      setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
+        setMessages((prev) => [...prev, botMessage]);
+        setIsTyping(false);
 
-      // Add quick replies if available
-      if (aiResponse.quickReplies) {
-        setTimeout(() => {
-          const quickReplyMessage: Message = {
-            id: (Date.now() + 2).toString(),
-            text: JSON.stringify(aiResponse.quickReplies),
-            sender: 'bot',
-            timestamp: new Date(),
-            type: 'quick-reply'
-          };
-          setMessages(prev => [...prev, quickReplyMessage]);
-        }, 500);
-      }
-    }, 1000 + Math.random() * 1000);
+        // Add quick replies if available
+        if (aiResponse.quickReplies) {
+          setTimeout(() => {
+            const quickReplyMessage: Message = {
+              id: (Date.now() + 2).toString(),
+              text: JSON.stringify(aiResponse.quickReplies),
+              sender: 'bot',
+              timestamp: new Date(),
+              type: 'quick-reply',
+            };
+            setMessages((prev) => [...prev, quickReplyMessage]);
+          }, 500);
+        }
+      },
+      1000 + Math.random() * 1000
+    );
   };
 
   const handleQuickReply = (reply: QuickReply) => {
@@ -320,7 +338,11 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                   onClick={toggleMinimize}
                   className="p-1 hover:bg-white/20 rounded transition-colors"
                 >
-                  {isMinimized ? <FiMaximize2 className="w-4 h-4" /> : <FiMinimize2 className="w-4 h-4" />}
+                  {isMinimized ? (
+                    <FiMaximize2 className="w-4 h-4" />
+                  ) : (
+                    <FiMinimize2 className="w-4 h-4" />
+                  )}
                 </button>
                 <button
                   onClick={toggleChat}
@@ -357,7 +379,9 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                             ))}
                           </div>
                         ) : (
-                          <div className={`flex gap-3 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                          <div
+                            className={`flex gap-3 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                          >
                             {message.sender === 'bot' && (
                               <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
                                 <FiMessageCircle className="w-4 h-4 text-primary" />
@@ -372,7 +396,10 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                             >
                               <p className="text-sm whitespace-pre-line">{message.text}</p>
                               <div className="text-sm text-gray-400">
-                                {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                {message.timestamp.toLocaleTimeString([], {
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                })}
                                 {message.sender === 'bot' && (
                                   <span className="ml-2">
                                     {message.isTyping ? 'typing...' : 'AI Assistant'}
@@ -390,7 +417,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                         )}
                       </div>
                     ))}
-                    
+
                     {/* Typing indicator */}
                     {isTyping && (
                       <div className="flex gap-3 justify-start">
@@ -400,8 +427,14 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                         <div className="bg-white/10 px-4 py-2 rounded-2xl">
                           <div className="flex gap-1">
                             <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce"></div>
-                            <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                            <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div
+                              className="w-2 h-2 bg-white/60 rounded-full animate-bounce"
+                              style={{ animationDelay: '0.1s' }}
+                            ></div>
+                            <div
+                              className="w-2 h-2 bg-white/60 rounded-full animate-bounce"
+                              style={{ animationDelay: '0.2s' }}
+                            ></div>
                           </div>
                         </div>
                       </div>

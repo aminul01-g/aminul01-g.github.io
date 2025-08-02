@@ -108,7 +108,7 @@ export default function Hero(): React.ReactElement {
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       />
       <motion.div
@@ -121,7 +121,7 @@ export default function Hero(): React.ReactElement {
         transition={{
           duration: 10,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       />
 
@@ -139,10 +139,7 @@ export default function Hero(): React.ReactElement {
           animate="visible"
         >
           {/* Enhanced Profile Image */}
-          <motion.div
-            className="mb-8 relative"
-            variants={itemVariants}
-          >
+          <motion.div className="mb-8 relative" variants={itemVariants}>
             <div className="relative inline-block">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-30"
@@ -153,7 +150,7 @@ export default function Hero(): React.ReactElement {
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 }}
               />
               <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white/20 shadow-glass relative z-10">
@@ -170,7 +167,7 @@ export default function Hero(): React.ReactElement {
                 transition={{
                   duration: 20,
                   repeat: Infinity,
-                  ease: "linear",
+                  ease: 'linear',
                 }}
               />
             </div>
@@ -194,10 +191,7 @@ export default function Hero(): React.ReactElement {
           </motion.h1>
 
           {/* Enhanced Typewriter */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-8"
-          >
+          <motion.div variants={itemVariants} className="mb-8">
             <Typewriter
               words={[profile.title, profile.slogan]}
               className="text-2xl sm:text-3xl lg:text-4xl mb-4 font-semibold text-gray-700 dark:text-gray-200"
@@ -211,15 +205,12 @@ export default function Hero(): React.ReactElement {
             className="text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed"
             variants={itemVariants}
           >
-            AI Engineering Student passionate about building intelligent systems that shape the future. 
-            Let&apos;s connect and create something extraordinary together!
+            AI Engineering Student passionate about building intelligent systems that shape the
+            future. Let&apos;s connect and create something extraordinary together!
           </motion.p>
 
           {/* Enhanced Social Icons */}
-          <motion.div
-            className="flex justify-center gap-4 mb-12"
-            variants={containerVariants}
-          >
+          <motion.div className="flex justify-center gap-4 mb-12" variants={containerVariants}>
             {socialLinks.map((link, index) => (
               <motion.a
                 key={link.label}
@@ -230,10 +221,10 @@ export default function Hero(): React.ReactElement {
                 className="glass-card p-4 rounded-2xl text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-300 hover:shadow-glow group"
                 variants={itemVariants}
                 custom={index}
-                whileHover={{ 
-                  scale: 1.1, 
+                whileHover={{
+                  scale: 1.1,
                   y: -5,
-                  transition: { duration: 0.2 }
+                  transition: { duration: 0.2 },
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -259,8 +250,18 @@ export default function Hero(): React.ReactElement {
                 size="lg"
                 glow
                 icon={
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
                   </svg>
                 }
                 onClick={() => window.open(profile.resume, '_blank')}
@@ -268,15 +269,25 @@ export default function Hero(): React.ReactElement {
                 Download Resume
               </Button>
             )}
-            
+
             <Button
               variant="glass"
               size="lg"
               icon={
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                }
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+              }
               onClick={() => {
                 const contactSection = document.getElementById('contact');
                 contactSection?.scrollIntoView({ behavior: 'smooth' });

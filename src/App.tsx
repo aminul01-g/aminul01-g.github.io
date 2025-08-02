@@ -67,7 +67,7 @@ function AppContent(): React.ReactElement {
       window.removeEventListener('online', handleOnline);
     };
   }, [showToast]);
-  
+
   return (
     <>
       {/* Skip to content link for accessibility - must be first focusable element */}

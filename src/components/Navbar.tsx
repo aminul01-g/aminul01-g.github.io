@@ -151,7 +151,7 @@ export default function Navbar(): React.ReactElement {
               className="w-5 h-0.5 bg-current mb-1 rounded-full"
               variants={{
                 closed: { rotate: 0, y: 0 },
-                open: { rotate: 45, y: 6 }
+                open: { rotate: 45, y: 6 },
               }}
               transition={{ duration: 0.3 }}
             />
@@ -159,7 +159,7 @@ export default function Navbar(): React.ReactElement {
               className="w-5 h-0.5 bg-current mb-1 rounded-full"
               variants={{
                 closed: { opacity: 1 },
-                open: { opacity: 0 }
+                open: { opacity: 0 },
               }}
               transition={{ duration: 0.3 }}
             />
@@ -167,7 +167,7 @@ export default function Navbar(): React.ReactElement {
               className="w-5 h-0.5 bg-current rounded-full"
               variants={{
                 closed: { rotate: 0, y: 0 },
-                open: { rotate: -45, y: -6 }
+                open: { rotate: -45, y: -6 },
               }}
               transition={{ duration: 0.3 }}
             />
@@ -317,7 +317,7 @@ export default function Navbar(): React.ReactElement {
           )}
         </AnimatePresence>
       </div>
-      
+
       {/* Smart Search Modal */}
       <SmartSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </motion.nav>

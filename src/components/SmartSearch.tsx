@@ -52,37 +52,37 @@ interface BlogPost {
 const fuzzyMatch = (pattern: string, text: string): number => {
   const patternLower = pattern.toLowerCase();
   const textLower = text.toLowerCase();
-  
+
   if (textLower.includes(patternLower)) {
     return 1.0; // Exact substring match
   }
-  
+
   let score = 0;
   let patternIndex = 0;
-  
+
   for (let i = 0; i < textLower.length && patternIndex < patternLower.length; i++) {
     if (textLower[i] === patternLower[patternIndex]) {
       score += 1;
       patternIndex++;
     }
   }
-  
+
   return patternIndex === patternLower.length ? score / pattern.length : 0;
 };
 
 const semanticSimilarity = (query: string, text: string): number => {
   const queryWords = query.toLowerCase().split(' ');
   const textWords = text.toLowerCase().split(' ');
-  
+
   let matches = 0;
-  queryWords.forEach(qWord => {
-    textWords.forEach(tWord => {
+  queryWords.forEach((qWord) => {
+    textWords.forEach((tWord) => {
       if (qWord === tWord || qWord.includes(tWord) || tWord.includes(qWord)) {
         matches++;
       }
     });
   });
-  
+
   return matches / Math.max(queryWords.length, textWords.length);
 };
 
@@ -90,24 +90,24 @@ const calculateRelevance = (query: string, item: SearchableItem): number => {
   const title = item.title || item.name || '';
   const description = item.description || item.summary || '';
   const tags = item.tags || item.technologies || [];
-  
+
   const titleScore = fuzzyMatch(query, title) * 3;
   const descScore = fuzzyMatch(query, description) * 2;
   const tagsScore = tags.reduce((acc: number, tag: string) => acc + fuzzyMatch(query, tag), 0);
   const semanticScore = semanticSimilarity(query, `${title} ${description} ${tags.join(' ')}`);
-  
+
   return titleScore + descScore + tagsScore + semanticScore;
 };
 
 const search = (query: string, category: SearchCategory = 'all'): SearchResult[] => {
   if (!query.trim()) return [];
-  
+
   const results: SearchResult[] = [];
   const searchQuery = query.toLowerCase();
-  
+
   // Search projects
   if (category === 'all' || category === 'projects') {
-    projects.forEach(project => {
+    projects.forEach((project) => {
       const score = calculateRelevance(searchQuery, project);
       if (score > 0) {
         results.push({
@@ -117,12 +117,12 @@ const search = (query: string, category: SearchCategory = 'all'): SearchResult[]
           type: 'project',
           url: `/projects/${project.slug}`,
           relevance: score,
-          thumbnail: project.thumbnail
+          thumbnail: project.thumbnail,
         });
       }
     });
   }
-  
+
   // Search blog posts
   if (category === 'all' || category === 'blog') {
     blogPosts.forEach((post: BlogPost) => {
@@ -133,7 +133,7 @@ const search = (query: string, category: SearchCategory = 'all'): SearchResult[]
         slug: post.slug,
         thumbnail: post.thumbnail,
       });
-      
+
       if (score > 0) {
         results.push({
           id: post.slug,
@@ -147,17 +147,17 @@ const search = (query: string, category: SearchCategory = 'all'): SearchResult[]
       }
     });
   }
-  
+
   // Search skills
   if (category === 'all' || category === 'skills') {
-    skillsData.forEach(skill => {
+    skillsData.forEach((skill) => {
       const score = calculateRelevance(searchQuery, {
         title: skill.name,
         name: skill.name,
         description: skill.description,
         tags: [skill.category],
       });
-      
+
       if (score > 0) {
         results.push({
           id: skill.name,
@@ -165,12 +165,12 @@ const search = (query: string, category: SearchCategory = 'all'): SearchResult[]
           description: `${skill.category}: ${skill.description}`,
           type: 'skill',
           url: `/#skills`,
-          relevance: score
+          relevance: score,
         });
       }
     });
   }
-  
+
   return results.sort((a: SearchResult, b: SearchResult) => b.relevance - a.relevance);
 };
 
@@ -180,7 +180,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
   const [selectedFilter, setSelectedFilter] = useState<SearchCategory>('all');
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  
+
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
@@ -214,14 +214,14 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
 
   const generateSuggestions = useMemo(() => {
     if (!query || query.length < 2) return [];
-    
+
     const allTerms = [
-      ...projects.flatMap(p => [p.title, ...p.technologies]),
-      ...blogPosts.map(b => b.title),
-      ...skillsData.map(s => s.name),
-      ...popularSearches
+      ...projects.flatMap((p) => [p.title, ...p.technologies]),
+      ...blogPosts.map((b) => b.title),
+      ...skillsData.map((s) => s.name),
+      ...popularSearches,
     ];
-    
+
     return allTerms
       .filter((term: string) => term.toLowerCase().includes(query.toLowerCase()) && term !== query)
       .slice(0, 5);
@@ -237,28 +237,36 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
 
   const handleSearch = (searchTerm: string) => {
     setQuery(searchTerm);
-    
+
     // Save to recent searches
-    const updated = [searchTerm, ...recentSearches.filter(s => s !== searchTerm)].slice(0, 5);
+    const updated = [searchTerm, ...recentSearches.filter((s) => s !== searchTerm)].slice(0, 5);
     setRecentSearches(updated);
     localStorage.setItem('recentSearches', JSON.stringify(updated));
   };
 
   const getTypeIcon = (type: 'project' | 'blog' | 'skill'): string => {
     switch (type) {
-      case 'project': return '🚀';
-      case 'blog': return '📝';
-      case 'skill': return '⚡';
-      default: return '🔍';
+      case 'project':
+        return '🚀';
+      case 'blog':
+        return '📝';
+      case 'skill':
+        return '⚡';
+      default:
+        return '🔍';
     }
   };
 
   const getTypeColor = (type: 'project' | 'blog' | 'skill'): string => {
     switch (type) {
-      case 'project': return 'text-blue-500';
-      case 'blog': return 'text-green-500';
-      case 'skill': return 'text-purple-500';
-      default: return 'text-gray-500';
+      case 'project':
+        return 'text-blue-500';
+      case 'blog':
+        return 'text-green-500';
+      case 'skill':
+        return 'text-purple-500';
+      default:
+        return 'text-gray-500';
     }
   };
 
@@ -303,7 +311,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                   </button>
                 )}
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <select
                   value={selectedFilter}
@@ -315,7 +323,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                   <option value="blog">Blog</option>
                   <option value="skills">Skills</option>
                 </select>
-                
+
                 <button
                   onClick={onClose}
                   className="p-2 hover:bg-white/10 rounded-lg transition-colors"
@@ -405,7 +413,9 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                               <h4 className="font-medium text-white group-hover:text-primary transition-colors">
                                 {result.title}
                               </h4>
-                              <span className={`text-xs px-2 py-1 rounded-full bg-white/10 ${getTypeColor(result.type)}`}>
+                              <span
+                                className={`text-xs px-2 py-1 rounded-full bg-white/10 ${getTypeColor(result.type)}`}
+                              >
                                 {result.type}
                               </span>
                             </div>

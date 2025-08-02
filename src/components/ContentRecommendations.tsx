@@ -47,24 +47,72 @@ interface ContentRecommendationsProps {
 
 // Skills data for recommendations
 const skillsData = [
-  { id: 'tensorflow', name: 'TensorFlow', category: 'AI/ML', description: 'Deep learning framework for building neural networks', tags: ['AI', 'ML', 'Deep Learning', 'Python'] },
-  { id: 'pytorch', name: 'PyTorch', category: 'AI/ML', description: 'Machine learning library for research and production', tags: ['AI', 'ML', 'Deep Learning', 'Python'] },
-  { id: 'react', name: 'React', category: 'Frontend', description: 'JavaScript library for building user interfaces', tags: ['Frontend', 'JavaScript', 'Web Development'] },
-  { id: 'typescript', name: 'TypeScript', category: 'Programming', description: 'Typed superset of JavaScript', tags: ['Programming', 'JavaScript', 'Web Development'] },
-  { id: 'python', name: 'Python', category: 'Programming', description: 'Versatile programming language for AI and web development', tags: ['Programming', 'AI', 'Data Science'] },
-  { id: 'docker', name: 'Docker', category: 'DevOps', description: 'Containerization platform for application deployment', tags: ['DevOps', 'Cloud', 'Deployment'] },
-  { id: 'aws', name: 'AWS', category: 'Cloud', description: 'Amazon Web Services cloud platform', tags: ['Cloud', 'DevOps', 'Infrastructure'] },
-  { id: 'git', name: 'Git', category: 'Tools', description: 'Version control system for code management', tags: ['Tools', 'Development', 'Collaboration'] },
+  {
+    id: 'tensorflow',
+    name: 'TensorFlow',
+    category: 'AI/ML',
+    description: 'Deep learning framework for building neural networks',
+    tags: ['AI', 'ML', 'Deep Learning', 'Python'],
+  },
+  {
+    id: 'pytorch',
+    name: 'PyTorch',
+    category: 'AI/ML',
+    description: 'Machine learning library for research and production',
+    tags: ['AI', 'ML', 'Deep Learning', 'Python'],
+  },
+  {
+    id: 'react',
+    name: 'React',
+    category: 'Frontend',
+    description: 'JavaScript library for building user interfaces',
+    tags: ['Frontend', 'JavaScript', 'Web Development'],
+  },
+  {
+    id: 'typescript',
+    name: 'TypeScript',
+    category: 'Programming',
+    description: 'Typed superset of JavaScript',
+    tags: ['Programming', 'JavaScript', 'Web Development'],
+  },
+  {
+    id: 'python',
+    name: 'Python',
+    category: 'Programming',
+    description: 'Versatile programming language for AI and web development',
+    tags: ['Programming', 'AI', 'Data Science'],
+  },
+  {
+    id: 'docker',
+    name: 'Docker',
+    category: 'DevOps',
+    description: 'Containerization platform for application deployment',
+    tags: ['DevOps', 'Cloud', 'Deployment'],
+  },
+  {
+    id: 'aws',
+    name: 'AWS',
+    category: 'Cloud',
+    description: 'Amazon Web Services cloud platform',
+    tags: ['Cloud', 'DevOps', 'Infrastructure'],
+  },
+  {
+    id: 'git',
+    name: 'Git',
+    category: 'Tools',
+    description: 'Version control system for code management',
+    tags: ['Tools', 'Development', 'Collaboration'],
+  },
 ];
 
 // Calculate content similarity based on tags
 const calculateSimilarity = (tags1: string[], tags2: string[]): number => {
-  const set1 = new Set(tags1.map(tag => tag.toLowerCase()));
-  const set2 = new Set(tags2.map(tag => tag.toLowerCase()));
-  
-  const intersection = new Set([...set1].filter(x => set2.has(x)));
+  const set1 = new Set(tags1.map((tag) => tag.toLowerCase()));
+  const set2 = new Set(tags2.map((tag) => tag.toLowerCase()));
+
+  const intersection = new Set([...set1].filter((x) => set2.has(x)));
   const union = new Set([...set1, ...set2]);
-  
+
   return intersection.size / union.size; // Jaccard similarity
 };
 
@@ -90,31 +138,33 @@ const generateRecommendations = (
   maxRecommendations: number = 6
 ): ContentItem[] => {
   const recommendations: ContentItem[] = [];
-  
+
   // Get user's preferred tags from interactions
-  const userTagPreferences: Record<string, number> = userInteractions.reduce<Record<string, number>>((acc, interaction) => {
-    interaction.tags.forEach(tag => {
+  const userTagPreferences: Record<string, number> = userInteractions.reduce<
+    Record<string, number>
+  >((acc, interaction) => {
+    interaction.tags.forEach((tag) => {
       acc[tag] = (acc[tag] || 0) + 1;
     });
     return acc;
   }, {});
-  
+
   const preferredTags = Object.entries(userTagPreferences)
     .sort(([, a], [, b]) => b - a)
     .slice(0, 5)
     .map(([tag]) => tag);
-  
+
   const allRelevantTags = [...currentTags, ...preferredTags];
-  
+
   // Recommend projects
-  projects.forEach(project => {
+  projects.forEach((project) => {
     if (project.slug === currentItemId) return;
-    
+
     const similarity = calculateSimilarity(allRelevantTags, project.technologies);
-    const commonTags = allRelevantTags.filter(tag => 
-      project.technologies.some(tech => tech.toLowerCase().includes(tag.toLowerCase()))
+    const commonTags = allRelevantTags.filter((tag) =>
+      project.technologies.some((tech) => tech.toLowerCase().includes(tag.toLowerCase()))
     );
-    
+
     if (similarity > 0.1 || commonTags.length > 0) {
       recommendations.push({
         id: project.slug || project.title.toLowerCase().replace(/\s+/g, '-'),
@@ -125,21 +175,21 @@ const generateRecommendations = (
         tags: project.technologies || [],
         relevanceScore: similarity,
         reason: getRecommendationReason(similarity, commonTags),
-        thumbnail: project.thumbnail
+        thumbnail: project.thumbnail,
       });
     }
   });
-  
+
   // Recommend blog posts
-  blogPosts.forEach(post => {
+  blogPosts.forEach((post) => {
     if (post.slug === currentItemId) return;
-    
+
     const postTags = post.tags || [];
     const similarity = calculateSimilarity(allRelevantTags, postTags);
-    const commonTags = allRelevantTags.filter(tag => 
-      postTags.some(postTag => postTag.toLowerCase().includes(tag.toLowerCase()))
+    const commonTags = allRelevantTags.filter((tag) =>
+      postTags.some((postTag) => postTag.toLowerCase().includes(tag.toLowerCase()))
     );
-    
+
     if (similarity > 0.1 || commonTags.length > 0) {
       recommendations.push({
         id: post.slug,
@@ -149,20 +199,20 @@ const generateRecommendations = (
         url: `/blog/${post.slug}`,
         tags: postTags,
         relevanceScore: similarity,
-        reason: getRecommendationReason(similarity, commonTags)
+        reason: getRecommendationReason(similarity, commonTags),
       });
     }
   });
-  
+
   // Recommend skills
-  skillsData.forEach(skill => {
+  skillsData.forEach((skill) => {
     if (skill.id === currentItemId) return;
-    
+
     const similarity = calculateSimilarity(allRelevantTags, skill.tags);
-    const commonTags = allRelevantTags.filter(tag => 
-      skill.tags.some(skillTag => skillTag.toLowerCase().includes(tag.toLowerCase()))
+    const commonTags = allRelevantTags.filter((tag) =>
+      skill.tags.some((skillTag) => skillTag.toLowerCase().includes(tag.toLowerCase()))
     );
-    
+
     if (similarity > 0.1 || commonTags.length > 0) {
       recommendations.push({
         id: skill.id,
@@ -172,11 +222,11 @@ const generateRecommendations = (
         url: '/#skills',
         tags: skill.tags,
         relevanceScore: similarity,
-        reason: getRecommendationReason(similarity, commonTags)
+        reason: getRecommendationReason(similarity, commonTags),
       });
     }
   });
-  
+
   // Sort by relevance and return top recommendations
   return recommendations
     .sort((a, b) => b.relevanceScore - a.relevanceScore)
@@ -188,7 +238,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
   currentItemType,
   currentTags = [],
   maxRecommendations = 6,
-  className = ''
+  className = '',
 }) => {
   const [userInteractions, setUserInteractions] = useState<UserInteraction[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -200,10 +250,12 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        setUserInteractions(parsed.map((item: UserInteraction) => ({
-          ...item,
-          timestamp: new Date(item.timestamp)
-        })));
+        setUserInteractions(
+          parsed.map((item: UserInteraction) => ({
+            ...item,
+            timestamp: new Date(item.timestamp),
+          }))
+        );
       } catch (error) {
         console.error('Error loading user interactions:', error);
       }
@@ -225,11 +277,11 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
         itemType: currentItemType,
         action: 'view',
         timestamp: new Date(),
-        tags: currentTags
+        tags: currentTags,
       };
-      
-      setUserInteractions(prev => [...prev.slice(-49), interaction]); // Keep last 50 interactions
-      setViewedItems(prev => new Set([...prev, currentItemId]));
+
+      setUserInteractions((prev) => [...prev.slice(-49), interaction]); // Keep last 50 interactions
+      setViewedItems((prev) => new Set([...prev, currentItemId]));
     }
   }, [currentItemId, currentItemType, currentTags]);
 
@@ -250,25 +302,25 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
       itemType: item.type,
       action: 'click',
       timestamp: new Date(),
-      tags: item.tags
+      tags: item.tags,
     };
-    
-    setUserInteractions(prev => [...prev.slice(-49), interaction]);
+
+    setUserInteractions((prev) => [...prev.slice(-49), interaction]);
   };
 
   const handleLike = (item: ContentItem, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const interaction: UserInteraction = {
       itemId: item.id,
       itemType: item.type,
       action: 'like',
       timestamp: new Date(),
-      tags: item.tags
+      tags: item.tags,
     };
-    
-    setUserInteractions(prev => [...prev.slice(-49), interaction]);
+
+    setUserInteractions((prev) => [...prev.slice(-49), interaction]);
   };
 
   const refreshRecommendations = () => {
@@ -280,19 +332,27 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
 
   const getTypeIcon = (type: string): string => {
     switch (type) {
-      case 'project': return '🚀';
-      case 'blog': return '📝';
-      case 'skill': return '⚡';
-      default: return '🔍';
+      case 'project':
+        return '🚀';
+      case 'blog':
+        return '📝';
+      case 'skill':
+        return '⚡';
+      default:
+        return '🔍';
     }
   };
 
   const getTypeColor = (type: string): string => {
     switch (type) {
-      case 'project': return 'text-blue-500';
-      case 'blog': return 'text-green-500';
-      case 'skill': return 'text-purple-500';
-      default: return 'text-gray-500';
+      case 'project':
+        return 'text-blue-500';
+      case 'blog':
+        return 'text-green-500';
+      case 'skill':
+        return 'text-purple-500';
+      default:
+        return 'text-gray-500';
     }
   };
 
@@ -319,7 +379,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
             </p>
           </div>
         </div>
-        
+
         <button
           onClick={refreshRecommendations}
           disabled={isRefreshing}
@@ -342,23 +402,21 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
               transition={{ duration: 0.3, delay: sortedRecommendations.indexOf(item) * 0.1 }}
               className="group"
             >
-              <Link
-                to={item.url}
-                onClick={() => handleItemClick(item)}
-                className="block h-full"
-              >
+              <Link to={item.url} onClick={() => handleItemClick(item)} className="block h-full">
                 <div className="glass-card rounded-2xl p-6 h-full transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-primary/10 dark:border-gray-700">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{getTypeIcon(item.type)}</span>
                       <div>
-                        <span className={`text-xs px-2 py-1 rounded-full bg-white/10 ${getTypeColor(item.type)}`}>
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full bg-white/10 ${getTypeColor(item.type)}`}
+                        >
                           {item.type}
                         </span>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-2">
                       {viewedItems.has(item.id) && (
                         <FiEye className="w-4 h-4 text-gray-400" title="Already viewed" />
@@ -378,31 +436,30 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
                     <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2">
                       {item.title}
                     </h3>
-                    
+
                     <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
                       {item.description}
                     </p>
-                    
+
                     {/* Reason */}
                     <div className="flex items-center gap-2 text-xs text-primary">
                       <FiTrendingUp className="w-3 h-3" />
                       <span>{item.reason}</span>
                     </div>
-                    
+
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1">
-                      {item.tags && item.tags.map((tag: string, tagIndex: number) => (
-                        <span
-                          key={tagIndex}
-                          className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      {item.tags &&
+                        item.tags.map((tag: string, tagIndex: number) => (
+                          <span
+                            key={tagIndex}
+                            className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       {item.tags && item.tags.length > 3 && (
-                        <span className="text-xs text-gray-400">
-                          +{item.tags.length - 3} more
-                        </span>
+                        <span className="text-xs text-gray-400">+{item.tags.length - 3} more</span>
                       )}
                     </div>
                   </div>
@@ -412,7 +469,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                       <span>Relevance: {Math.round(item.relevanceScore * 100)}%</span>
                     </div>
-                    
+
                     <div className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all">
                       <span>Explore</span>
                       <FiArrowRight className="w-4 h-4" />
@@ -434,7 +491,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
           <div className="flex flex-wrap gap-2 text-xs">
             {Object.entries(
               userInteractions.reduce<Record<string, number>>((acc, interaction) => {
-                interaction.tags.forEach(tag => {
+                interaction.tags.forEach((tag) => {
                   acc[tag] = (acc[tag] || 0) + 1;
                 });
                 return acc;
@@ -443,10 +500,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
               .sort(([, a], [, b]) => b - a)
               .slice(0, 5)
               .map(([tag, count]: [string, number]) => (
-                <span
-                  key={tag}
-                  className="px-2 py-1 bg-primary/20 text-primary rounded-full"
-                >
+                <span key={tag} className="px-2 py-1 bg-primary/20 text-primary rounded-full">
                   {tag} ({count})
                 </span>
               ))}
