@@ -156,12 +156,14 @@ export default function Hero(): React.ReactElement {
                   ease: "easeInOut",
                 }}
               />
-              <ImageWithFallback
-                src="/images/optimized/profile.webp"
-                alt={profile.name}
-                className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-white/20 shadow-glass relative z-10"
-                fallbackSrc="/images/profile.jpg"
-              />
+              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white/20 shadow-glass relative z-10">
+                <ImageWithFallback
+                  src="/images/optimized/profile_pic.jpeg"
+                  alt={profile.name}
+                  className="w-full h-full object-cover object-center"
+                  fallbackSrc="/images/optimized/profile_pic.jpeg"
+                />
+              </div>
               <motion.div
                 className="absolute -inset-2 rounded-full border-2 border-primary/30"
                 animate={{ rotate: 360 }}

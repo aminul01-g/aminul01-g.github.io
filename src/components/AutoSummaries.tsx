@@ -110,7 +110,7 @@ const generateSummary = (
       }
       break;
       
-    case 'technical':
+    case 'technical': {
       const techKeywords = keywords.filter(k => 
         ['react', 'typescript', 'python', 'ai', 'ml', 'api', 'database', 'framework', 'library'].some(tech => 
           k.toLowerCase().includes(tech)
@@ -121,7 +121,8 @@ const generateSummary = (
         summary += ` Technologies: ${techKeywords.join(', ')}.`;
       }
       break;
-      
+    }
+ 
     case 'marketing':
       if (contentType === 'project') {
         summary = `🚀 Discover ${title} - an innovative ${keywords[0]} solution that ${importantSentences[0]?.toLowerCase() || 'delivers exceptional results'}. Built with cutting-edge technology for optimal performance.`;
@@ -300,10 +301,11 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {/* Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="summary-type" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Summary Type
                 </label>
                 <select
+                  id="summary-type"
                   value={options.type}
                   onChange={(e) => setOptions(prev => ({ ...prev, type: e.target.value as SummaryOptions['type'] }))}
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
@@ -317,10 +319,11 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
               {/* Length */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="summary-length" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Length
                 </label>
                 <select
+                  id="summary-length"
                   value={options.length}
                   onChange={(e) => setOptions(prev => ({ ...prev, length: e.target.value as SummaryOptions['length'] }))}
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
@@ -333,10 +336,11 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
               {/* Tone */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="summary-tone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Tone
                 </label>
                 <select
+                  id="summary-tone"
                   value={options.tone}
                   onChange={(e) => setOptions(prev => ({ ...prev, tone: e.target.value as SummaryOptions['tone'] }))}
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
@@ -349,11 +353,12 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
               {/* Keywords */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <div className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Options
-                </label>
-                <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                </div>
+                <label htmlFor="include-keywords" className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                   <input
+                    id="include-keywords"
                     type="checkbox"
                     checked={options.includeKeywords}
                     onChange={(e) => setOptions(prev => ({ ...prev, includeKeywords: e.target.checked }))}

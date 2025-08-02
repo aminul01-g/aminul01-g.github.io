@@ -114,7 +114,7 @@ export default function ContactForm(): React.ReactElement {
           Send me a message
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
-          I'd love to hear from you. Send me a message and I'll respond as soon as possible.
+          I&apos;d love to hear from you. Send me a message and I&apos;ll respond as soon as possible.
         </p>
       </motion.div>
 
@@ -317,7 +317,7 @@ export default function ContactForm(): React.ReactElement {
               Message sent successfully!
             </h4>
             <p className="text-green-700 dark:text-green-300 text-sm">
-              Thank you for reaching out. I'll get back to you soon.
+              Thank you for reaching out. I&apos;ll get back to you soon.
             </p>
           </div>
         </motion.div>
