@@ -100,7 +100,7 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
+export function ThemeProvider({ children }: ThemeProviderProps): React.ReactElement {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme') as ThemeType;
@@ -198,7 +198,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
-export function useTheme() {
+export function useTheme(): ThemeContextType {
   const context = useContext(ThemeContext);
   if (context === undefined) {
     throw new Error('useTheme must be used within a ThemeProvider');
