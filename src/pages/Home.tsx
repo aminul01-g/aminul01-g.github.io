@@ -75,7 +75,7 @@ const skillsData = [
         <rect x="4" y="4" width="16" height="16" rx="2" />
       </svg>
     ),
-    skills: ['Python', 'JavaScript', 'TypeScript', 'C++', 'Java'],
+    skills: ['Python','TypeScript', 'C++', 'Java'],
   },
   {
     title: 'Data Science',

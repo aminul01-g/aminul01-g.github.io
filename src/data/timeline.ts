@@ -5,7 +5,7 @@ export const timelineData: TimelineItem[] = [
   {
     id: '1',
     title: 'AI Engineering Student',
-    subtitle: 'University of Information Technology and Sciences',
+    subtitle: 'Bangladesh University of Business and Technology',
     description:
       'Currently pursuing my degree in AI Engineering, focusing on machine learning, deep learning, and artificial intelligence applications. Learning cutting-edge technologies and methodologies.',
     date: '2023 - Present',
@@ -44,10 +44,10 @@ export const timelineData: TimelineItem[] = [
   },
   {
     id: '3',
-    title: 'Data Science Certification',
-    subtitle: 'Coursera & Udemy',
+    title: 'Certification',
+    subtitle: 'Coursera & DeepLearning.ai',
     description:
-      'Completed comprehensive data science and machine learning certifications, covering statistical analysis, data visualization, and predictive modeling techniques.',
+      'Completed comprehensive machine learning and deep learning certifications, covering statistical analysis, data visualization, and predictive modeling techniques.',
     date: '2023',
     type: 'achievement',
     icon: React.createElement(

@@ -5,12 +5,13 @@ import ScrollProgress from './components/ScrollProgress';
 import { AnimatePresence } from 'framer-motion';
 import React, { Suspense, lazy } from 'react';
 import { AccessibilityProvider } from './components/AccessibilityProvider';
-import AccessibilityMenu from './components/AccessibilityMenu';
 import AddToHomeScreenPrompt from './components/AddToHomeScreenPrompt';
 import BackToTopButton from './components/BackToTopButton';
 import NewsletterModal from './components/NewsletterModal';
 import { ToastProvider, useToast } from './components/ToastContext';
 import FloatingActions from './components/FloatingActions';
+import { AIChatbot } from './components/AIChatbot';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -53,7 +54,7 @@ function AnimatedRoutes(): React.ReactElement {
   );
 }
 
-function App(): React.ReactElement {
+function AppContent(): React.ReactElement {
   const { showToast } = useToast();
   React.useEffect(() => {
     const handleOffline = () =>
@@ -66,34 +67,43 @@ function App(): React.ReactElement {
       window.removeEventListener('online', handleOnline);
     };
   }, [showToast]);
+  
   return (
-    <ToastProvider>
-      <AccessibilityProvider>
-        <>
-          {/* Skip to content link for accessibility - must be first focusable element */}
-          <a href="#main-content" className="skip-link" tabIndex={0}>
-            Skip to main content
-          </a>
+    <>
+      {/* Skip to content link for accessibility - must be first focusable element */}
+      <a href="#main-content" className="skip-link" tabIndex={0}>
+        Skip to main content
+      </a>
 
-          <ScrollProgress />
-          <Navbar />
+      <ScrollProgress />
+      <Navbar />
 
-          {/* Main content area should have id="main-content" */}
-          <div id="main-content" tabIndex={-1} className="outline-none">
-            <AnimatedRoutes />
-          </div>
+      {/* Main content area should have id="main-content" */}
+      <div id="main-content" tabIndex={-1} className="outline-none">
+        <AnimatedRoutes />
+      </div>
 
-          <FloatingActions>
-            <BackToTopButton />
-            {/* Contact button removed as per user request */}
-          </FloatingActions>
-          <Footer />
-          <AddToHomeScreenPrompt />
-          <AccessibilityMenu />
-          <NewsletterModal />
-        </>
-      </AccessibilityProvider>
-    </ToastProvider>
+      <FloatingActions>
+        <BackToTopButton />
+        {/* Contact button removed as per user request */}
+      </FloatingActions>
+      <Footer />
+      <AddToHomeScreenPrompt />
+      <NewsletterModal />
+      <AIChatbot />
+    </>
+  );
+}
+
+function App(): React.ReactElement {
+  return (
+    <ThemeProvider>
+      <ToastProvider>
+        <AccessibilityProvider>
+          <AppContent />
+        </AccessibilityProvider>
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
 

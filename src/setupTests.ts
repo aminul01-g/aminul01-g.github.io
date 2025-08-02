@@ -36,10 +36,10 @@ global.window.matchMedia =
     };
   };
 
-if (typeof (global as NodeJS.Global & typeof globalThis).TextEncoder === 'undefined') {
-  (global as NodeJS.Global & typeof globalThis).TextEncoder = TextEncoder;
+if (typeof (global as any).TextEncoder === 'undefined') {
+  (global as any).TextEncoder = TextEncoder;
 }
 
-if (typeof (global as NodeJS.Global & typeof globalThis).TextDecoder === 'undefined') {
-  (global as NodeJS.Global & typeof globalThis).TextDecoder = TextDecoder;
+if (typeof (global as any).TextDecoder === 'undefined') {
+  (global as any).TextDecoder = TextDecoder;
 }

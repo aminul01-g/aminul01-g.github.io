@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Comments from '../components/Comments';
 import { BlogPost, blogPosts } from '../data/blog';
-import BlockContent from '@sanity/block-content-to-react';
+// import BlockContent from '@sanity/block-content-to-react'; // Removed Sanity dependency
 import SocialShare from '../components/SocialShare';
 import FeedbackWidget from '../components/FeedbackWidget';
 import BlogPostSkeleton from '../components/BlogPostSkeleton';
+import { ContentRecommendations } from '../components/ContentRecommendations';
+import { AutoSummaries } from '../components/AutoSummaries';
 
 export default function Post(): React.ReactElement {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = React.useState<BlogPost | null>(null);
-  const [loading, setLoading] = React.useState(true);
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Use mock data instead of Sanity fetch
     const foundPost = blogPosts.find((p) => p.slug === slug);
     setPost(foundPost || null);
@@ -38,115 +40,105 @@ export default function Post(): React.ReactElement {
     );
   }
 
+  // Ensure tags is always an array
+  const postTags = post.tags || [];
+  const postSlug = post.slug || '';
+
   return (
     <>
       <Helmet>
-        <title>
-          {post?.title
-            ? `${post.title} | Blog | Aminul Islam Bhuiyan Amin`
-            : 'Blog Post | Aminul Islam Bhuiyan Amin'}
-        </title>
+        <title>{post.title} | Blog | Aminul Islam Bhuiyan Amin</title>
         <meta
           name="description"
-          content={post?.summary || 'Read this blog post by Aminul Islam Bhuiyan Amin.'}
+          content={post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`}
         />
-        <meta
-          property="og:title"
-          content={
-            post?.title
-              ? `${post.title} | Blog | Aminul Islam Bhuiyan Amin`
-              : 'Blog Post | Aminul Islam Bhuiyan Amin'
-          }
-        />
+        <meta property="og:title" content={`${post.title} | Blog | Aminul Islam Bhuiyan Amin`} />
         <meta
           property="og:description"
-          content={post?.summary || 'Read this blog post by Aminul Islam Bhuiyan Amin.'}
+          content={post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`}
         />
-        <meta property="og:image" content={'https://aminul01-g.github.io/logo512.png'} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://aminul01-g.github.io/blog/${post?.slug || ''}`} />
-        <link rel="canonical" href={`https://aminul01-g.github.io/blog/${post?.slug || ''}`} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post?.title || 'Blog Post',
-            description: post?.summary || 'Read this blog post by Aminul Islam Bhuiyan Amin.',
-            datePublished: post?.date || '',
-            author: {
-              '@type': 'Person',
-              name: 'Aminul Islam Bhuiyan Amin',
-              url: 'https://aminul01-g.github.io',
-            },
-            publisher: {
-              '@type': 'Person',
-              name: 'Aminul Islam Bhuiyan Amin',
-            },
-            url: `https://aminul01-g.github.io/blog/${post?.slug || ''}`,
-            image: 'https://aminul01-g.github.io/logo512.png',
-            mainEntityOfPage: {
-              '@type': 'WebPage',
-              '@id': `https://aminul01-g.github.io/blog/${post?.slug || ''}`,
-            },
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Home',
-                item: 'https://aminul01-g.github.io/',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'Blog',
-                item: 'https://aminul01-g.github.io/blog',
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: post?.title || 'Blog Post',
-                item: `https://aminul01-g.github.io/blog/${post?.slug || ''}`,
-              },
-            ],
-          })}
-        </script>
+        <meta property="og:url" content={`https://aminul01-g.github.io/blog/${postSlug}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta
+          name="twitter:description"
+          content={post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`}
+        />
+        <link rel="canonical" href={`https://aminul01-g.github.io/blog/${postSlug}`} />
       </Helmet>
-      {/* Blog post content */}
-      <article className="prose dark:prose-invert max-w-3xl mx-auto my-8">
-        <h1>{post.title}</h1>
-        <p className="text-gray-500 text-sm mb-2">{post.date}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {(post.tags || []).map((tag) => (
-            <span
-              key={tag}
-              className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
-        {post.body ? (
-          <BlockContent blocks={post.body} projectId={'YOUR_PROJECT_ID'} dataset={'production'} />
-        ) : (
-          <p className="text-gray-600 dark:text-gray-400">
-            Post content not available. The content may be coming soon or is currently unavailable.
-          </p>
-        )}
-      </article>
-      <SocialShare
-        url={`https://aminul01-g.github.io/blog/${post.slug}`}
-        title={post.title}
-        className="mb-8"
-      />
-      {/* Comments section */}
-      <Comments />
-      <FeedbackWidget className="my-8" />
+      
+      <div className="max-w-6xl mx-auto my-12 px-4 space-y-12">
+        {/* Main Blog Post Content */}
+        <article className="prose dark:prose-invert max-w-3xl mx-auto bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl border border-primary/10 dark:border-gray-700 p-8">
+          <h1 className="mb-2">{post.title}</h1>
+          
+          {/* Post Metadata */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm text-gray-500">
+            <span>Published on {post.date || 'an unknown date'}</span>
+            <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
+              {postTags.map((tag: string, index: number) => (
+                <span
+                  key={`${tag}-${index}`}
+                  className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          {/* Post Content */}
+          <div className="prose dark:prose-invert max-w-none">
+            {post.body ? (
+              <div className="text-gray-600 dark:text-gray-400">
+                {/* Content would be rendered here if Sanity was configured */}
+                <p>Post content not available. The content may be coming soon or is currently unavailable.</p>
+              </div>
+            ) : (
+              <p className="text-gray-600 dark:text-gray-400">
+                Post content not available. The content may be coming soon or is currently unavailable.
+              </p>
+            )}
+          </div>
+          
+          {/* Social Sharing */}
+          <SocialShare
+            url={`https://aminul01-g.github.io/blog/${postSlug}`}
+            title={post.title}
+            className="my-8"
+          />
+          
+          <FeedbackWidget className="my-8" />
+        </article>
+
+        {/* AI-Generated Summary */}
+        <section className="max-w-4xl mx-auto">
+          <AutoSummaries
+            content={`${post.summary || post.title} This blog post explores important concepts and insights in technology and development.`}
+            title={post.title}
+            contentType="blog"
+            tags={postTags}
+            className="mb-12"
+          />
+        </section>
+
+        {/* Content Recommendations */}
+        <section className="max-w-6xl mx-auto">
+          <ContentRecommendations
+            currentItemId={postSlug}
+            currentItemType="blog"
+            currentTags={postTags}
+            maxRecommendations={4}
+            className="mb-12"
+          />
+        </section>
+
+        {/* Comments Section */}
+        <section className="max-w-3xl mx-auto">
+          <Comments />
+        </section>
+      </div>
     </>
   );
 }

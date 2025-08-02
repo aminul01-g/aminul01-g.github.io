@@ -1,4 +1,17 @@
-import { PortableTextBlock, PortableTextSpan } from '@sanity/types';
+// Using custom types instead of Sanity types
+export interface PortableTextBlock {
+  _key?: string;
+  _type: string;
+  style?: string;
+  children?: PortableTextSpan[];
+}
+
+export interface PortableTextSpan {
+  _key?: string;
+  _type: string;
+  text: string;
+  marks?: string[];
+}
 
 export interface BlogPost {
   _id: string;

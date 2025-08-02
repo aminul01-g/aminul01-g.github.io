@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, ReactNode, useRef } from 'react';
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
 interface Toast {
-  id: number;
+  id: string;
   message: string;
   type: ToastType;
 }
@@ -16,20 +16,19 @@ const ToastContext = createContext<ToastContextType>({ showToast: () => {} });
 
 export const useToast = (): ToastContextType => useContext(ToastContext);
 
-let toastId = 0;
-
 export const ToastProvider = ({ children }: { children: ReactNode }): React.ReactElement => {
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const toastIdRef = useRef(0);
 
   const showToast = useCallback((message: string, type: ToastType = 'info') => {
-    const id = ++toastId;
+    const id = `toast-${Date.now()}-${++toastIdRef.current}`;
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, 4000);
   }, []);
 
-  const removeToast = (id: number) => {
+  const removeToast = (id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   };
 
@@ -49,10 +48,10 @@ export const ToastProvider = ({ children }: { children: ReactNode }): React.Reac
               ${toast.type === 'warning' ? 'bg-yellow-600 text-gray-900' : ''}
             `}
           >
-            {toast.type === 'success' && <span aria-hidden>✔️</span>}
-            {toast.type === 'error' && <span aria-hidden>❌</span>}
-            {toast.type === 'info' && <span aria-hidden>ℹ️</span>}
-            {toast.type === 'warning' && <span aria-hidden>⚠️</span>}
+            {toast.type === 'success' && <span aria-hidden="true" className="text-green-200">✓</span>}
+            {toast.type === 'error' && <span aria-hidden="true" className="text-red-200">✕</span>}
+            {toast.type === 'info' && <span aria-hidden="true" className="text-blue-200">i</span>}
+            {toast.type === 'warning' && <span aria-hidden="true" className="text-yellow-200">!</span>}
             <span>{toast.message}</span>
             <button
               onClick={() => removeToast(toast.id)}

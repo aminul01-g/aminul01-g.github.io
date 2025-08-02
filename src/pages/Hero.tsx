@@ -5,6 +5,7 @@ import ImageWithFallback from '../components/ImageWithFallback';
 import ParticleBackground from '../components/ParticleBackground';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import ParallaxSection from '../components/ParallaxSection';
+import Button from '../components/Button';
 
 const socialLinks = [
   {
@@ -58,108 +59,132 @@ export default function Hero(): React.ReactElement {
   const { elementRef } = useScrollAnimation();
   const { scrollYProgress } = useScroll();
 
-  // Parallax transforms for background elements
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const orb1Y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const orb2Y = useTransform(scrollYProgress, [0, 1], [0, 30]);
-  const orb3Y = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  // Enhanced parallax transforms
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const orb1Y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const orb2Y = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.04 * i },
-    }),
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
   };
 
   const wordVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    visible: () => ({
+      opacity: 1,
+      y: 0,
+    }),
   };
 
-  const sentence = `Hi, I'm ${profile.name}`;
-  const words = sentence.split(' ');
-
   return (
-    <section
-      ref={elementRef}
-      id="hero"
-      className="relative flex flex-col items-center justify-center min-h-[90vh] text-center px-4 py-20 overflow-hidden"
-    >
-      {/* Particle Background */}
-      <ParticleBackground />
-
-      {/* Animated Gradient Background with Parallax */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Enhanced Background with Gradient Mesh */}
       <motion.div
-        className="absolute inset-0 animated-gradient opacity-20"
+        className="absolute inset-0 gradient-mesh opacity-20"
         style={{ y: backgroundY }}
       />
 
-      {/* Glassmorphism Orbs with Parallax */}
+      {/* Floating Orbs */}
       <motion.div
-        className="absolute inset-0 z-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        aria-hidden
-      >
-        <motion.div
-          className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-primary/30 to-indigo-500/30 rounded-full blur-3xl float"
-          style={{ y: orb1Y }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/30 to-purple-500/30 rounded-full blur-2xl float"
-          style={{ y: orb2Y, animationDelay: '1s' }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 pulse"
-          style={{ y: orb3Y }}
-        />
-      </motion.div>
+        className="absolute top-20 left-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
+        style={{ y: orb1Y }}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
+        style={{ y: orb2Y }}
+        animate={{
+          scale: [1.2, 1, 1.2],
+          opacity: [0.4, 0.2, 0.4],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
-      {/* Main Content with Enhanced Parallax */}
-      <ParallaxSection speed={0.3} className="relative z-10">
+      {/* Particle Background */}
+      <ParticleBackground />
+
+      {/* Main Content */}
+      <ParallaxSection className="relative z-10 w-full">
         <motion.div
-          className="glass-card rounded-3xl p-8 sm:p-12 max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          ref={elementRef as React.RefObject<HTMLDivElement>}
+          className="max-w-6xl mx-auto px-4 text-center"
+          style={{ y: contentY }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          {/* Profile Image with Enhanced Styling */}
+          {/* Enhanced Profile Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-            className="mb-8"
+            className="mb-8 relative"
+            variants={itemVariants}
           >
-            <div className="relative flex justify-center">
-              <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-40 h-40 sm:w-56 sm:h-56 relative">
-                <ImageWithFallback
-                  src="/images/optimized/profile_pic.jpeg"
-                  alt="profile"
-                  className="w-full h-full object-cover mx-auto"
-                  loading="lazy"
-                />
-                {/* Subtle glowing ring effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-indigo-500/10 dark:from-primary/20 dark:to-indigo-500/20 blur-md pointer-events-none" />
-                {/* Enhanced border glow for better visibility */}
-                <div className="absolute inset-0 rounded-full border-2 border-primary/30 dark:border-primary/50 pointer-events-none" />
-              </div>
+            <div className="relative inline-block">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-30"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <ImageWithFallback
+                src="/images/optimized/profile.webp"
+                alt={profile.name}
+                className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-white/20 shadow-glass relative z-10"
+                fallbackSrc="/images/profile.jpg"
+              />
+              <motion.div
+                className="absolute -inset-2 rounded-full border-2 border-primary/30"
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
             </div>
           </motion.div>
 
-          {/* Animated Name */}
+          {/* Enhanced Name with Gradient Text */}
           <motion.h1
-            className="text-4xl sm:text-6xl font-bold mb-6 text-glass relative z-10"
+            className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-6"
             variants={containerVariants}
-            initial="hidden"
-            animate="visible"
           >
-            {words.map((word, index) => (
+            {profile.name.split(' ').map((word, index) => (
               <motion.span
                 key={index}
+                custom={index}
                 variants={wordVariants}
-                className="inline-block mr-2 bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent dark:from-white dark:to-gray-200"
+                className="inline-block mr-4 text-gradient"
               >
                 {word}
               </motion.span>
@@ -168,14 +193,12 @@ export default function Hero(): React.ReactElement {
 
           {/* Enhanced Typewriter */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
+            variants={itemVariants}
             className="mb-8"
           >
             <Typewriter
               words={[profile.title, profile.slogan]}
-              className="text-2xl sm:text-3xl mb-4 font-semibold bg-gradient-to-r from-primary-400 to-indigo-400 bg-clip-text text-transparent dark:from-primary-400 dark:to-indigo-400"
+              className="text-2xl sm:text-3xl lg:text-4xl mb-4 font-semibold text-gray-700 dark:text-gray-200"
               speed={70}
               pause={1200}
             />
@@ -183,21 +206,17 @@ export default function Hero(): React.ReactElement {
 
           {/* Enhanced Description */}
           <motion.p
-            className="text-gray-800 dark:text-gray-200 mb-8 max-w-2xl mx-auto text-lg leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+            className="text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed"
+            variants={itemVariants}
           >
-            AI Engineering Student passionate about building intelligent systems. Let&apos;s connect
-            and create something amazing!
+            AI Engineering Student passionate about building intelligent systems that shape the future. 
+            Let&apos;s connect and create something extraordinary together!
           </motion.p>
 
           {/* Enhanced Social Icons */}
           <motion.div
-            className="flex justify-center gap-6 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
+            className="flex justify-center gap-4 mb-12"
+            variants={containerVariants}
           >
             {socialLinks.map((link, index) => (
               <motion.a
@@ -206,60 +225,94 @@ export default function Hero(): React.ReactElement {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                className="glass-card p-3 rounded-full text-glass dark:text-white hover:text-primary-300 transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                whileHover={{ scale: 1.1 }}
+                className="glass-card p-4 rounded-2xl text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-300 hover:shadow-glow group"
+                variants={itemVariants}
+                custom={index}
+                whileHover={{ 
+                  scale: 1.1, 
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
               >
-                {link.icon}
+                <motion.div
+                  className="group-hover:animate-pulse"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {link.icon}
+                </motion.div>
               </motion.a>
             ))}
           </motion.div>
 
-          {/* Enhanced Call-to-Action Button */}
-          {profile.resume && (
-            <motion.a
-              href={profile.resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-modern inline-flex items-center gap-3 mt-4"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.7 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>View Resume</span>
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
+          {/* Enhanced Call-to-Action Buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            variants={itemVariants}
+          >
+            {profile.resume && (
+              <Button
+                variant="primary"
+                size="lg"
+                glow
+                icon={
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                }
+                onClick={() => window.open(profile.resume, '_blank')}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </motion.a>
-          )}
+                Download Resume
+              </Button>
+            )}
+            
+            <Button
+              variant="glass"
+              size="lg"
+              icon={
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                }
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                contactSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Let&apos;s Talk
+            </Button>
+          </motion.div>
         </motion.div>
       </ParallaxSection>
 
-      {/* Scroll Indicator */}
+      {/* Enhanced Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.7 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
       >
-        <div className="w-6 h-10 border-2 border-black/30 dark:border-white/30 rounded-full flex justify-center">
-          <motion.div
-            className="w-1 h-3 bg-black/60 dark:bg-white/60 rounded-full mt-2"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        </div>
+        <motion.div
+          className="glass-card p-3 rounded-full cursor-pointer hover:shadow-glow transition-all duration-300"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => {
+            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+          }}
+        >
+          <motion.svg
+            className="w-6 h-6 text-gray-600 dark:text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </motion.svg>
+        </motion.div>
       </motion.div>
     </section>
   );

@@ -62,6 +62,7 @@ export const AccessibilityProvider = ({
       setIsHighContrast(savedHighContrast === 'true');
     }
 
+    // Cleanup function
     return () => {
       mediaQuery.removeEventListener('change', handleReducedMotionChange);
       highContrastQuery.removeEventListener('change', handleHighContrastChange);

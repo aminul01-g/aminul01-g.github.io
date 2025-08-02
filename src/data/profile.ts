@@ -10,6 +10,8 @@ export interface Profile {
   leetcode?: string;
   behance?: string;
   telegram?: string;
+  email?: string;
+  location?: string;
 }
 
 export const profile: Profile = {
@@ -24,4 +26,6 @@ export const profile: Profile = {
   leetcode: 'https://leetcode.com/u/aminul01-lc/',
   behance: 'https://behance.net/aminul01g',
   telegram: 'https://t.me/aminul01g',
+  email: 'aminulamin0001@gmail.com', // Add your email
+  location: 'Mirpur,Dhaka, Bangladesh', // Add your location
 };

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["dom", "dom.iterable", "esnext"], // ✅ include DOM types
+    "lib": ["dom", "dom.iterable", "esnext"], 
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -13,8 +13,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx", // ✅ for React 17+ (or use "react" for <17)
-    "types": ["react", "react-dom"] // ✅ explicitly include React types
+    "jsx": "react-jsx", 
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "jest"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }

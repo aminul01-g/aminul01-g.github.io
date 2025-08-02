@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Button from './Button';
 
 interface FormData {
   name: string;
@@ -8,6 +9,38 @@ interface FormData {
   message: string;
   website?: string; // Honeypot field
 }
+
+const inputVariants = {
+  focus: {
+    scale: 1.02,
+    transition: { duration: 0.2 }
+  },
+  blur: {
+    scale: 1,
+    transition: { duration: 0.2 }
+  }
+};
+
+const formVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const fieldVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
+  }
+};
 
 export default function ContactForm(): React.ReactElement {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,13 +98,26 @@ export default function ContactForm(): React.ReactElement {
   };
 
   return (
-    <form
-      className="contact-form space-y-4 glass-card rounded-2xl p-8 flex flex-col justify-center h-full backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg"
+    <motion.form
+      className="glass-card rounded-2xl p-8 space-y-6 backdrop-blur-enhanced border border-white/20 dark:border-gray-700/30 shadow-xl"
       onSubmit={handleSubmit(onSubmit)}
       autoComplete="off"
       noValidate
       aria-label="Contact form"
+      variants={formVariants}
+      initial="hidden"
+      animate="visible"
     >
+      {/* Header */}
+      <motion.div variants={fieldVariants}>
+        <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
+          Send me a message
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300">
+          I'd love to hear from you. Send me a message and I'll respond as soon as possible.
+        </p>
+      </motion.div>
+
       {/* Honeypot field for spam protection */}
       <input
         type="text"
@@ -83,7 +129,8 @@ export default function ContactForm(): React.ReactElement {
         name="website"
       />
 
-      <div className="space-y-2">
+      {/* Name Field */}
+      <motion.div className="space-y-2" variants={fieldVariants}>
         <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-white">
           Name{' '}
           <span className="text-red-500" aria-label="required">
@@ -93,10 +140,12 @@ export default function ContactForm(): React.ReactElement {
         <motion.input
           id="name"
           type="text"
-          placeholder="Your Name"
-          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner transition-all duration-200 ${
-            errors.name ? 'ring-2 ring-red-400 bg-red-50 dark:bg-red-900/20' : ''
-          }`}
+          placeholder="Your full name"
+          className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 ${
+            errors.name 
+              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20' 
+              : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
+          } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
           {...register('name', {
             required: 'Name is required.',
             minLength: { value: 2, message: 'Name should be at least 2 characters.' },
@@ -104,8 +153,8 @@ export default function ContactForm(): React.ReactElement {
           })}
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? 'name-error' : 'name-help'}
-          whileFocus={{ scale: 1.01, boxShadow: '0 0 0 2px #6366f1' }}
-          whileHover={{ scale: 1.005 }}
+          variants={inputVariants}
+          whileFocus="focus"
           disabled={isSubmitting}
           name="name"
         />
@@ -115,13 +164,13 @@ export default function ContactForm(): React.ReactElement {
         {errors.name && (
           <motion.span
             id="name-error"
-            className="text-xs text-red-500 flex items-center gap-1"
+            className="text-sm text-red-500 flex items-center gap-2"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
           >
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
@@ -131,9 +180,10 @@ export default function ContactForm(): React.ReactElement {
             {errors.name.message}
           </motion.span>
         )}
-      </div>
+      </motion.div>
 
-      <div className="space-y-2">
+      {/* Email Field */}
+      <motion.div className="space-y-2" variants={fieldVariants}>
         <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-white">
           Email{' '}
           <span className="text-red-500" aria-label="required">
@@ -143,10 +193,12 @@ export default function ContactForm(): React.ReactElement {
         <motion.input
           id="email"
           type="email"
-          placeholder="your-email@gmail.com"
-          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner transition-all duration-200 ${
-            errors.email ? 'ring-2 ring-red-400 bg-red-50 dark:bg-red-900/20' : ''
-          }`}
+          placeholder="your.email@example.com"
+          className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 ${
+            errors.email 
+              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20' 
+              : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
+          } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
           {...register('email', {
             required: 'Email is required.',
             pattern: {
@@ -156,8 +208,8 @@ export default function ContactForm(): React.ReactElement {
           })}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? 'email-error' : 'email-help'}
-          whileFocus={{ scale: 1.01, boxShadow: '0 0 0 2px #6366f1' }}
-          whileHover={{ scale: 1.005 }}
+          variants={inputVariants}
+          whileFocus="focus"
           disabled={isSubmitting}
           name="email"
         />
@@ -167,13 +219,13 @@ export default function ContactForm(): React.ReactElement {
         {errors.email && (
           <motion.span
             id="email-error"
-            className="text-xs text-red-500 flex items-center gap-1"
+            className="text-sm text-red-500 flex items-center gap-2"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
           >
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
@@ -183,13 +235,11 @@ export default function ContactForm(): React.ReactElement {
             {errors.email.message}
           </motion.span>
         )}
-      </div>
+      </motion.div>
 
-      <div className="space-y-2">
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-gray-800 dark:text-white"
-        >
+      {/* Message Field */}
+      <motion.div className="space-y-2" variants={fieldVariants}>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-800 dark:text-white">
           Message{' '}
           <span className="text-red-500" aria-label="required">
             *
@@ -198,10 +248,12 @@ export default function ContactForm(): React.ReactElement {
         <motion.textarea
           id="message"
           rows={5}
-          placeholder="Your Message"
-          className={`w-full border-none p-3 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300/30 shadow-inner resize-none transition-all duration-200 ${
-            errors.message ? 'ring-2 ring-red-400 bg-red-50 dark:bg-red-900/20' : ''
-          }`}
+          placeholder="Tell me about your project, ideas, or just say hello..."
+          className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none ${
+            errors.message 
+              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20' 
+              : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
+          } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
           {...register('message', {
             required: 'Message is required.',
             minLength: { value: 10, message: 'Message should be at least 10 characters.' },
@@ -209,8 +261,8 @@ export default function ContactForm(): React.ReactElement {
           })}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? 'message-error' : 'message-help'}
-          whileFocus={{ scale: 1.005, boxShadow: '0 0 0 2px #6366f1' }}
-          whileHover={{ scale: 1.002 }}
+          variants={inputVariants}
+          whileFocus="focus"
           disabled={isSubmitting}
           name="message"
         />
@@ -220,13 +272,13 @@ export default function ContactForm(): React.ReactElement {
         {errors.message && (
           <motion.span
             id="message-error"
-            className="text-xs text-red-500 flex items-center gap-1"
+            className="text-sm text-red-500 flex items-center gap-2"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
           >
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
@@ -236,98 +288,121 @@ export default function ContactForm(): React.ReactElement {
             {errors.message.message}
           </motion.span>
         )}
-      </div>
+      </motion.div>
 
       {/* Submit Status Messages */}
       {submitStatus === 'success' && (
         <motion.div
-          className="p-3 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg flex items-center gap-2"
+          className="glass-card p-4 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center gap-3"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           role="alert"
           aria-live="polite"
         >
-          <svg
-            className="w-5 h-5 text-green-600 dark:text-green-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span className="text-green-800 dark:text-green-200 text-sm font-medium">
-            Message sent successfully! I&apos;ll get back to you soon.
-          </span>
+          <div className="flex-shrink-0">
+            <svg
+              className="w-6 h-6 text-green-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+          <div>
+            <h4 className="text-green-800 dark:text-green-200 font-medium">
+              Message sent successfully!
+            </h4>
+            <p className="text-green-700 dark:text-green-300 text-sm">
+              Thank you for reaching out. I'll get back to you soon.
+            </p>
+          </div>
         </motion.div>
       )}
 
       {submitStatus === 'error' && (
         <motion.div
-          className="p-3 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg flex items-center gap-2"
+          className="glass-card p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           role="alert"
           aria-live="polite"
         >
-          <svg
-            className="w-5 h-5 text-red-600 dark:text-red-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span className="text-red-800 dark:text-red-200 text-sm font-medium">
-            Failed to send message. Please try again or contact me directly.
-          </span>
+          <div className="flex-shrink-0">
+            <svg
+              className="w-6 h-6 text-red-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+          <div>
+            <h4 className="text-red-800 dark:text-red-200 font-medium">
+              Failed to send message
+            </h4>
+            <p className="text-red-700 dark:text-red-300 text-sm">
+              Please try again or contact me directly via email.
+            </p>
+          </div>
         </motion.div>
       )}
 
-      <motion.button
-        type="submit"
-        disabled={isSubmitting}
-        className={`w-full py-3 px-6 rounded-xl text-white font-semibold transition-all duration-300 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400/40 flex items-center justify-center gap-2 mt-2 shadow-lg ${
-          isSubmitting
-            ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
-            : 'bg-gradient-to-r from-primary to-indigo-500 hover:from-primary-600 hover:to-indigo-600'
-        }`}
-        whileHover={!isSubmitting ? { scale: 1.02 } : {}}
-        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-      >
-        {isSubmitting ? (
-          <>
-            <motion.div
-              className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-            />
-            Sending...
-          </>
-        ) : (
-          <>
-            Send Message
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+      {/* Submit Button */}
+      <motion.div variants={fieldVariants}>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full"
+          size="lg"
+          glow={!isSubmitting}
+        >
+          {isSubmitting ? (
+            <>
+              <motion.div
+                className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
               />
-            </svg>
-          </>
-        )}
-      </motion.button>
-    </form>
+              Sending...
+            </>
+          ) : (
+            <>
+              Send Message
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                />
+              </svg>
+            </>
+          )}
+        </Button>
+      </motion.div>
+
+      {/* Additional Info */}
+      <motion.div 
+        className="text-center pt-4 border-t border-white/10"
+        variants={fieldVariants}
+      >
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Your information is secure and will never be shared with third parties.
+        </p>
+      </motion.div>
+    </motion.form>
   );
 }

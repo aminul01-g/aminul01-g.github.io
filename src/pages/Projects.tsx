@@ -1,5 +1,6 @@
 import React from 'react';
-import { projects, Project } from '../data/projects';
+import { projects } from '../data/projects';
+import type { Project } from '../data/projects.d';
 import ProjectCard from '../components/ProjectCard';
 import ProjectCardSkeleton from '../components/ProjectCardSkeleton';
 import ProjectFilterBar from '../components/ProjectFilterBar';
@@ -126,11 +127,7 @@ export default function Projects(): React.ReactElement {
     amount: 0.01,
     margin: '0px 0px -100px 0px',
   });
-  // Debug: log inView state
-  React.useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('Projects isInView:', isInView);
-  }, [isInView]);
+  // Debug removed for production
 
   return (
     <>
