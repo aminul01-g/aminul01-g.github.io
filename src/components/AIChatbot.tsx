@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMessageCircle, FiX, FiSend, FiMinimize2, FiMaximize2 } from 'react-icons/fi';
@@ -24,7 +23,8 @@ const knowledgeBase = {
     name: 'Aminul Islam Bhuiyan Amin',
     role: 'AI-driven Computer Science Student',
     university: 'BUBT',
-    about: "AI-driven Computer Science student at BUBT, deeply passionate about building intelligent systems. Interests lie in Deep Learning, NLP, and LLMs — with hands-on experience using PyTorch, TensorFlow, and Hugging Face. Currently exploring prompt engineering, multimodal AI, and LangChain-based applications.",
+    about:
+      'AI-driven Computer Science student at BUBT, deeply passionate about building intelligent systems. Interests lie in Deep Learning, NLP, and LLMs — with hands-on experience using PyTorch, TensorFlow, and Hugging Face. Currently exploring prompt engineering, multimodal AI, and LangChain-based applications.',
   },
   quickReplies: [
     { text: 'Tell me about your projects', action: 'projects' },
@@ -80,27 +80,43 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
     const message = userMessage.toLowerCase();
 
     // Fuzzy matching helper
-    const matches = (keywords: string[]) => keywords.some(k => message.includes(k));
+    const matches = (keywords: string[]) => keywords.some((k) => message.includes(k));
 
     // Project related queries
     if (matches(['project', 'work', 'build', 'made', 'portfolio', 'app'])) {
       return {
-        text: `I've built some cool things! Here are a few highlights:\n\n${projects.slice(0, 3).map(p => `• ${p.title}`).join('\n')}`,
+        text: `I've built some cool things! Here are a few highlights:\n\n${projects
+          .slice(0, 3)
+          .map((p) => `• ${p.title}`)
+          .join('\n')}`,
         quickReplies: [
           { text: 'View all projects', action: 'projects' },
-          { text: 'Tell me about skills', action: 'skills' }
-        ]
+          { text: 'Tell me about skills', action: 'skills' },
+        ],
       };
     }
 
     // Skills/Stack related queries
-    if (matches(['skill', 'tech', 'stack', 'language', 'program', 'code', 'react', 'python', 'learn', 'expert'])) {
+    if (
+      matches([
+        'skill',
+        'tech',
+        'stack',
+        'language',
+        'program',
+        'code',
+        'react',
+        'python',
+        'learn',
+        'expert',
+      ])
+    ) {
       return {
-        text: "My technical toolkit includes:\n• Languages: Python, TypeScript, JavaScript\n• Frameworks: React, PyTorch, TensorFlow\n• Focus: Deep Learning, NLP, & Web Development",
+        text: 'My technical toolkit includes:\n• Languages: Python, TypeScript, JavaScript\n• Frameworks: React, PyTorch, TensorFlow\n• Focus: Deep Learning, NLP, & Web Development',
         quickReplies: [
           { text: 'See my projects', action: 'projects' },
-          { text: 'Contact me', action: 'contact' }
-        ]
+          { text: 'Contact me', action: 'contact' },
+        ],
       };
     }
 
@@ -108,15 +124,15 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
     if (matches(['contact', 'email', 'hire', 'reach', 'touch', 'message', 'talk'])) {
       return {
         text: "I'd love to connect! You can reach me via email or LinkedIn. Check out the footer for direct links!",
-        quickReplies: [{ text: 'Back to start', action: 'about' }]
+        quickReplies: [{ text: 'Back to start', action: 'about' }],
       };
     }
 
     // Blog related queries
     if (matches(['blog', 'article', 'read', 'write', 'post', 'news'])) {
       return {
-        text: "I write about AI and Tech. You can read my latest deep dives on the Blog page.",
-        quickReplies: [{ text: 'Go to Blog', action: 'blog' }]
+        text: 'I write about AI and Tech. You can read my latest deep dives on the Blog page.',
+        quickReplies: [{ text: 'Go to Blog', action: 'blog' }],
       };
     }
 
@@ -126,14 +142,14 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
         text: "Hi! I'm Aminul Islam Bhuiyan Amin, an AI-driven Computer Science student at BUBT. I love building intelligent systems. How can I help?",
         quickReplies: [
           { text: 'What are your skills?', action: 'skills' },
-          { text: 'Show me projects', action: 'projects' }
-        ]
+          { text: 'Show me projects', action: 'projects' },
+        ],
       };
     }
 
     return {
       text: "I'm not sure about that, but I can tell you about my projects, skills, or background. What interests you?",
-      quickReplies: knowledgeBase.quickReplies
+      quickReplies: knowledgeBase.quickReplies,
     };
   };
 
@@ -169,13 +185,16 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
       setMessages((prev) => [...prev, botMessage]);
 
       if (response.quickReplies) {
-        setMessages((prev) => [...prev, {
-          id: (Date.now() + 2).toString(),
-          text: JSON.stringify(response.quickReplies),
-          sender: 'bot',
-          timestamp: new Date(),
-          type: 'quick-reply'
-        }]);
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: (Date.now() + 2).toString(),
+            text: JSON.stringify(response.quickReplies),
+            sender: 'bot',
+            timestamp: new Date(),
+            type: 'quick-reply',
+          },
+        ]);
       }
     }, 1000);
   };
@@ -200,7 +219,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
               y: 0,
               scale: 1,
               height: isMinimized ? 'auto' : '500px',
-              width: isMinimized ? '300px' : '350px'
+              width: isMinimized ? '300px' : '350px',
             }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className={`fixed bottom-24 right-6 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700 flex flex-col ${className}`}
@@ -215,9 +234,13 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                 <button
                   onClick={() => setIsMinimized(!isMinimized)}
                   className="p-1 hover:bg-white/20 rounded-full transition-colors"
-                  aria-label={isMinimized ? "Maximize chat" : "Minimize chat"}
+                  aria-label={isMinimized ? 'Maximize chat' : 'Minimize chat'}
                 >
-                  {isMinimized ? <FiMaximize2 className="w-4 h-4" /> : <FiMinimize2 className="w-4 h-4" />}
+                  {isMinimized ? (
+                    <FiMaximize2 className="w-4 h-4" />
+                  ) : (
+                    <FiMinimize2 className="w-4 h-4" />
+                  )}
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -240,26 +263,32 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                     >
                       {msg.type === 'quick-reply' ? (
                         <div className="flex flex-wrap gap-2 max-w-[85%]">
-                          {JSON.parse(msg.text).map((reply: { text: string; action: string }, idx: number) => (
-                            <button
-                              key={idx}
-                              onClick={() => handleQuickReply(reply.action)}
-                              className="text-xs bg-white dark:bg-gray-800 text-primary border border-primary/20 px-3 py-1.5 rounded-full hover:bg-primary/5 transition-colors shadow-sm"
-                            >
-                              {reply.text}
-                            </button>
-                          ))}
+                          {JSON.parse(msg.text).map(
+                            (reply: { text: string; action: string }, idx: number) => (
+                              <button
+                                key={idx}
+                                onClick={() => handleQuickReply(reply.action)}
+                                className="text-xs bg-white dark:bg-gray-800 text-primary border border-primary/20 px-3 py-1.5 rounded-full hover:bg-primary/5 transition-colors shadow-sm"
+                              >
+                                {reply.text}
+                              </button>
+                            )
+                          )}
                         </div>
                       ) : (
                         <div
-                          className={`max-w-[80%] p-3 rounded-2xl ${msg.sender === 'user'
-                            ? 'bg-primary text-white rounded-br-none'
-                            : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700'
-                            }`}
+                          className={`max-w-[80%] p-3 rounded-2xl ${
+                            msg.sender === 'user'
+                              ? 'bg-primary text-white rounded-br-none'
+                              : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700'
+                          }`}
                         >
                           <p className="text-sm whitespace-pre-line">{msg.text}</p>
                           <span className="text-[10px] opacity-70 mt-1 block">
-                            {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            {msg.timestamp.toLocaleTimeString([], {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
                           </span>
                         </div>
                       )}
@@ -331,9 +360,10 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 p-4 rounded-full shadow-2xl z-50 transition-colors ${isOpen ? 'bg-gray-800 text-white' : 'btn text-white'
-          }`}
-        aria-label={isOpen ? "Close chat assistant" : "Open chat assistant"}
+        className={`fixed bottom-6 right-6 p-4 rounded-full shadow-2xl z-50 transition-colors ${
+          isOpen ? 'bg-gray-800 text-white' : 'btn text-white'
+        }`}
+        aria-label={isOpen ? 'Close chat assistant' : 'Open chat assistant'}
       >
         {isOpen ? <FiX className="w-6 h-6" /> : <FiMessageCircle className="w-6 h-6" />}
       </motion.button>

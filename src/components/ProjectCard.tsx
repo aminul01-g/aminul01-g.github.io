@@ -41,10 +41,10 @@ export default function ProjectCard({
   const [isHovered, setIsHovered] = useState(false);
 
   // Auto-slide logic: When hovered or in view? User said "when a user will look at the card"
-  // Let's interpret this as "when hovered" -> start timer. 
+  // Let's interpret this as "when hovered" -> start timer.
   // OR "when in view" -> start timer.
   // "Thumbneal will show for some time then it will automatically silde to the video slide"
-  // I'll make it trigger on hover to be less intrusive, or I can use a simpler 
+  // I'll make it trigger on hover to be less intrusive, or I can use a simpler
   // "preview on hover" logic.
   // BUT the user specifically asked for "slide 1... slide 2... automatically slide".
   // Let's do it on Hover for now, as constant auto-sliding of multiple cards is bad UX.

@@ -85,7 +85,8 @@ export default function ProjectDetails(): React.ReactElement {
           ))}
         </div>
         {/* Dynamic Image/Emoji Rendering */}
-        {project.thumbnail && (project.thumbnail.startsWith('http') || project.thumbnail.startsWith('/')) ? (
+        {project.thumbnail &&
+        (project.thumbnail.startsWith('http') || project.thumbnail.startsWith('/')) ? (
           <ImageWithFallback
             src={project.thumbnail}
             alt={`${project.title} thumbnail`}
@@ -130,9 +131,9 @@ export default function ProjectDetails(): React.ReactElement {
                 About this Project
               </h3>
               <p className="text-gray-700 dark:text-gray-300">
-                This project demonstrates key concepts in {project.tags[0] || 'software development'}.
-                Check out the source code on GitHub to explore the implementation details,
-                data pipelines, and model architectures used.
+                This project demonstrates key concepts in{' '}
+                {project.tags[0] || 'software development'}. Check out the source code on GitHub to
+                explore the implementation details, data pipelines, and model architectures used.
               </p>
             </div>
           )}

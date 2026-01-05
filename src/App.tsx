@@ -12,7 +12,9 @@ import { ToastProvider, useToast } from './components/ToastContext';
 import FloatingActions from './components/FloatingActions';
 import { ThemeProvider } from './contexts/ThemeContext';
 
-const AIChatbot = lazy(() => import('./components/AIChatbot').then(module => ({ default: module.AIChatbot })));
+const AIChatbot = lazy(() =>
+  import('./components/AIChatbot').then((module) => ({ default: module.AIChatbot }))
+);
 
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
