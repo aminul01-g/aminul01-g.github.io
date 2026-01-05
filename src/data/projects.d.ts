@@ -13,6 +13,7 @@ export interface Project {
   highlights?: string[];
   challenges?: string[];
   results?: string[];
+  videoUrl?: string;
 }
 
 export const projects: Project[];

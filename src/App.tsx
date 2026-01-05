@@ -10,8 +10,9 @@ import BackToTopButton from './components/BackToTopButton';
 import NewsletterModal from './components/NewsletterModal';
 import { ToastProvider, useToast } from './components/ToastContext';
 import FloatingActions from './components/FloatingActions';
-import { AIChatbot } from './components/AIChatbot';
 import { ThemeProvider } from './contexts/ThemeContext';
+
+const AIChatbot = lazy(() => import('./components/AIChatbot').then(module => ({ default: module.AIChatbot })));
 
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -90,7 +91,9 @@ function AppContent(): React.ReactElement {
       <Footer />
       <AddToHomeScreenPrompt />
       <NewsletterModal />
-      <AIChatbot />
+      <Suspense fallback={null}>
+        <AIChatbot />
+      </Suspense>
     </>
   );
 }

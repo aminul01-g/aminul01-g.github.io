@@ -155,10 +155,10 @@ export default function Hero(): React.ReactElement {
               />
               <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white/20 shadow-glass relative z-10">
                 <ImageWithFallback
-                  src="/images/optimized/profile_pic.jpeg"
+                  src="/images/optimized/profile_pic.webp"
                   alt={profile.name}
                   className="w-full h-full object-cover object-center"
-                  fallbackSrc="/images/optimized/profile_pic.jpeg"
+                  fallbackSrc="/images/optimized/profile_pic.webp"
                 />
               </div>
               <motion.div

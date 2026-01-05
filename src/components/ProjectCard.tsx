@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ImageWithFallback from './ImageWithFallback';
 import { Link } from 'react-router-dom';
 import { useAnalytics } from '../hooks/useAnalytics';
 import Button from './Button';
+import React, { useState, useEffect } from 'react';
 
 export interface ProjectCardProps {
   title: string;
@@ -10,6 +11,7 @@ export interface ProjectCardProps {
   tags: string[];
   github: string;
   thumbnail?: string;
+  videoUrl?: string;
 }
 
 // Enhanced project icons with better visual representation
@@ -30,10 +32,35 @@ export default function ProjectCard({
   tags,
   github,
   thumbnail,
+  videoUrl,
 }: ProjectCardProps): React.ReactElement {
   const logo = thumbnail || projectIcons[title] || '📦';
   const isEmoji = !thumbnail?.startsWith('http') && (!!projectIcons[title] || logo.length <= 2);
   const { trackProjectView, trackEvent } = useAnalytics();
+  const [showVideo, setShowVideo] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto-slide logic: When hovered or in view? User said "when a user will look at the card"
+  // Let's interpret this as "when hovered" -> start timer. 
+  // OR "when in view" -> start timer.
+  // "Thumbneal will show for some time then it will automatically silde to the video slide"
+  // I'll make it trigger on hover to be less intrusive, or I can use a simpler 
+  // "preview on hover" logic.
+  // BUT the user specifically asked for "slide 1... slide 2... automatically slide".
+  // Let's do it on Hover for now, as constant auto-sliding of multiple cards is bad UX.
+  // Actually, let's use a visibility check so it feels "automatic when looked at".
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isHovered && videoUrl) {
+      timer = setTimeout(() => {
+        setShowVideo(true);
+      }, 300); // 0.3s delay before showing video
+    } else {
+      setShowVideo(false);
+    }
+    return () => clearTimeout(timer);
+  }, [isHovered, videoUrl]);
 
   const handleViewDetails = () => {
     trackProjectView(title);
@@ -50,6 +77,8 @@ export default function ProjectCard({
       role="article"
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       whileHover={{
         y: -8,
         scale: 1.02,
@@ -63,90 +92,85 @@ export default function ProjectCard({
       viewport={{ once: true, margin: '-50px' }}
     >
       {/* Enhanced Project Image/Icon */}
+      {/* Enhanced Project Media Slider */}
       <div className="relative w-full h-48 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 overflow-hidden">
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {isEmoji ? (
+        <AnimatePresence mode="wait">
+          {!showVideo || !videoUrl ? (
             <motion.div
-              className="text-6xl filter drop-shadow-lg"
-              whileHover={{
-                scale: 1.2,
-                rotate: [0, -5, 5, 0],
-                transition: { duration: 0.5 },
-              }}
-              animate={{
-                y: [0, -5, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
+              key="thumbnail"
+              className="absolute inset-0 flex items-center justify-center cursor-pointer"
+              initial={{ x: 0, opacity: 1 }}
+              exit={{ x: '-100%', opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              onClick={() => videoUrl && setShowVideo(true)}
             >
-              {logo}
+              {isEmoji ? (
+                <motion.div
+                  className="text-6xl filter drop-shadow-lg"
+                  whileHover={{
+                    scale: 1.2,
+                    rotate: [0, -5, 5, 0],
+                    transition: { duration: 0.5 },
+                  }}
+                  animate={{
+                    y: [0, -5, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  {logo}
+                </motion.div>
+              ) : (
+                <ImageWithFallback
+                  src={logo}
+                  alt={`${title} thumbnail`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+              )}
+              {/* Enhanced gradient overlays for thumbnail */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+              />
+              {/* Floating particles for thumbnail */}
+              <div className="absolute inset-0 pointer-events-none">
+                <motion.div
+                  className="absolute top-4 right-4 w-2 h-2 bg-primary/50 rounded-full"
+                  animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <motion.div
+                  className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-secondary/50 rounded-full"
+                  animate={{ y: [0, -8, 0], opacity: [0.3, 0.8, 0.3] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                />
+              </div>
             </motion.div>
           ) : (
-            <ImageWithFallback
-              src={logo}
-              alt={`${title} thumbnail`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
+            <motion.div
+              key="video"
+              className="absolute inset-0 bg-black"
+              initial={{ x: '100%', opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <video
+                src={videoUrl}
+                className="w-full h-full object-cover"
+                controls
+                playsInline
+                controlsList="nodownload"
+              >
+                <track kind="captions" />
+              </video>
+            </motion.div>
           )}
-        </motion.div>
-
-        {/* Enhanced gradient overlays */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-        />
-
-        {/* Animated glow effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          animate={{
-            opacity: [0, 0.3, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-
-        {/* Floating particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div
-            className="absolute top-4 right-4 w-2 h-2 bg-primary/50 rounded-full"
-            animate={{
-              y: [0, -10, 0],
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-          <motion.div
-            className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-secondary/50 rounded-full"
-            animate={{
-              y: [0, -8, 0],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: 0.5,
-            }}
-          />
-        </div>
+        </AnimatePresence>
       </div>
 
       {/* Enhanced Content Section */}

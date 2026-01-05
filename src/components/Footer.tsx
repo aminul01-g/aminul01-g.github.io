@@ -44,7 +44,7 @@ export default function Footer(): React.ReactElement {
 
   return (
     <motion.footer
-      className="relative glass-card backdrop-blur-enhanced border-t border-white/10 mt-20"
+      className="relative z-30 glass-card backdrop-blur-enhanced border-t border-white/10 mt-20"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}

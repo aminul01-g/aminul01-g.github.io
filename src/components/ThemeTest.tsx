@@ -11,7 +11,7 @@ export default function ThemeTest(): React.ReactElement {
         <div className="flex justify-center">
           <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-32 h-32">
             <img
-              src="/images/optimized/profile_pic.jpeg"
+              src="/images/optimized/profile_pic.webp"
               alt="Profile Test"
               className="w-full h-full object-cover mx-auto"
             />

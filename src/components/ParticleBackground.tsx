@@ -33,7 +33,11 @@ const ParticleBackground: React.FC = () => {
     // Initialize particles
     const initParticles = () => {
       particlesRef.current = [];
-      const particleCount = Math.min(50, Math.floor(window.innerWidth / 20));
+      const isMobile = window.innerWidth < 768;
+      // Drastically reduce particles on mobile for performance
+      const particleCount = isMobile
+        ? Math.min(15, Math.floor(window.innerWidth / 60))
+        : Math.min(40, Math.floor(window.innerWidth / 30));
 
       for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({

@@ -258,7 +258,7 @@ export default function Home(): React.ReactElement {
               <div className="flex flex-col items-center gap-6 mb-8">
                 <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-20 h-20">
                   <ImageWithFallback
-                    src="/images/optimized/profile_pic.jpeg"
+                    src="/images/optimized/profile_pic.webp"
                     alt="Profile"
                     className="w-full h-full object-cover mx-auto"
                     loading="lazy"
@@ -392,16 +392,19 @@ export default function Home(): React.ReactElement {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              {projects.slice(0, 3).map((project) => (
-                <motion.div
-                  key={project.title}
-                  variants={fadeInUp}
-                  className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.02] backdrop-blur-md"
-                  data-testid="project-card"
-                >
-                  <ProjectCard {...project} />
-                </motion.div>
-              ))}
+              {projects
+                .filter((p) => p.featured)
+                .slice(0, 3)
+                .map((project) => (
+                  <motion.div
+                    key={project.title}
+                    variants={fadeInUp}
+                    className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.02] backdrop-blur-md"
+                    data-testid="project-card"
+                  >
+                    <ProjectCard {...project} />
+                  </motion.div>
+                ))}
             </motion.div>
 
             <div className="text-center">

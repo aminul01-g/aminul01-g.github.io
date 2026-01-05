@@ -84,27 +84,60 @@ export default function ProjectDetails(): React.ReactElement {
             </span>
           ))}
         </div>
-        <ImageWithFallback
-          src={project.thumbnail || '📁'}
-          alt={`${project.title} thumbnail`}
-          className="w-full max-w-md rounded-lg mb-6 mx-auto"
-          loading="lazy"
-        />
-        <p className="text-lg text-gray-700 dark:text-gray-200 mb-6">{project.description}</p>
+        {/* Dynamic Image/Emoji Rendering */}
+        {project.thumbnail && (project.thumbnail.startsWith('http') || project.thumbnail.startsWith('/')) ? (
+          <ImageWithFallback
+            src={project.thumbnail}
+            alt={`${project.title} thumbnail`}
+            className="w-full max-w-md rounded-lg mb-6 mx-auto shadow-lg"
+            loading="lazy"
+          />
+        ) : (
+          <div className="text-9xl text-center mb-8 animate-bounce-slow">
+            {project.thumbnail || '📁'}
+          </div>
+        )}
+
+        <p className="text-lg text-gray-700 dark:text-gray-200 mb-6 leading-relaxed">
+          {project.description}
+        </p>
+
         <SocialShare
           url={`https://aminul01-g.github.io/projects/${slug}`}
           title={project.title}
           className="mb-8"
         />
-        {/* Placeholder for case study/extended details */}
+
+        {/* Dynamic Project Details Section */}
         <div className="prose dark:prose-invert max-w-none mb-8">
-          <h2>Case Study</h2>
-          <p>
-            This section can include a detailed write-up, screenshots, challenges, and outcomes for{' '}
-            <strong>{project.title}</strong>. You can expand this with markdown or rich content as
-            needed.
-          </p>
+          {project.highlights && project.highlights.length > 0 && (
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Highlights</h2>
+              <ul className="list-disc pl-5 space-y-2">
+                {project.highlights.map((highlight, index) => (
+                  <li key={index} className="text-gray-700 dark:text-gray-300">
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Fallback if no specific details are available */}
+          {(!project.highlights || project.highlights.length === 0) && (
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
+              <h3 className="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">
+                About this Project
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                This project demonstrates key concepts in {project.tags[0] || 'software development'}.
+                Check out the source code on GitHub to explore the implementation details,
+                data pipelines, and model architectures used.
+              </p>
+            </div>
+          )}
         </div>
+
         <div className="flex gap-4">
           <a
             href={project.github}

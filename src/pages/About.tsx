@@ -30,11 +30,10 @@ const GlassBg = () => (
   <div
     aria-hidden
     className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-indigo-100/60 via-white/60 to-purple-200/60 dark:from-gray-900/80 dark:via-indigo-950/60 dark:to-gray-900/80 backdrop-blur-2xl animate-bgFade"
-    style={{ minHeight: '100vh' }}
   />
 );
 
-const profilePic = '/images/optimized/profile_pic.jpeg';
+const profilePic = '/images/optimized/profile_pic.webp';
 
 export default function About(): React.ReactElement {
   // Project cards data must be inside the function, before return
@@ -93,7 +92,7 @@ export default function About(): React.ReactElement {
   // handleContactClick removed as it was unused
 
   return (
-    <div className="relative min-h-screen pb-12 overflow-x-hidden z-10">
+    <div className="relative min-h-screen pb-32 overflow-x-hidden z-10">
       <Helmet>
         <title>About | Aminul Islam Bhuiyan Amin</title>
         <meta
@@ -529,56 +528,141 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp"
+          className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           📜 Certifications
         </motion.h2>
-        <div className="grid gap-10 md:grid-cols-2">
-          {/* Certifications */}
-          <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {/* Certificate Cards */}
+          <motion.a
+            href="https://ostad.app/share/certificate/c33905-md-aminul-islam-bhuiyan-amin"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -5 }}
+            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <FaCheckCircle className="text-2xl text-green-500" />
-            <div>
-              <div className="font-semibold dark:text-gray-100">
-                IBM Machine Learning Professional Certificate – Rav Ahuja (Coursera){' '}
-              </div>
+            <div className="relative overflow-hidden">
+              <img
+                src="/images/certificates/ostad-ai-bootcamp.png"
+                alt="AI Engineering Bootcamp Certificate"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
-          >
-            <FaCheckCircle className="text-2xl text-yellow-500" />
-            <div>
-              <div className="font-semibold dark:text-gray-100">
-                IBM Applied AI Professional Certificate – In Progress
-              </div>
+            <div className="p-4">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+                AI Engineering Bootcamp
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Ostad</p>
             </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+          </motion.a>
+
+          <motion.a
+            href="https://www.coursera.org/account/accomplishments/specialization/HCCYS47OIV8Y"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -5 }}
+            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <FaCheckCircle className="text-2xl text-yellow-500" />
-            <div>
-              <div className="font-semibold dark:text-gray-100">
-                Deep Learning Specialization – Andrew Ng (Coursera) – In Progress{' '}
-              </div>
+            <div className="relative overflow-hidden">
+              <img
+                src="/images/certificates/ibm-ml-certificate.png"
+                alt="IBM Machine Learning Professional Certificate"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+            <div className="p-4">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+                Machine Learning Professional
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">IBM (Coursera)</p>
+            </div>
+          </motion.a>
+
+          <motion.a
+            href="https://www.coursera.org/account/accomplishments/verify/WU5WQ7J3TGBI"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -5 }}
+            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <FaCheckCircle className="text-2xl text-yellow-500" />
-            <div>
-              <div className="font-semibold dark:text-gray-100">
-                Google Cloud ML Engineer – In Progress
-              </div>
+            <div className="relative overflow-hidden">
+              <img
+                src="/images/certificates/coursera-deep-learning.png"
+                alt="Neural Networks and Deep Learning Certificate"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+            <div className="p-4">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+                Neural Networks & Deep Learning
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">DeepLearning.AI (Coursera)</p>
+            </div>
+          </motion.a>
+
+          <motion.a
+            href="https://courses.cognitiveclass.ai/certificates/0bfe1618a2f141dbbc2ac87a2f628ef0"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -5 }}
+            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="relative overflow-hidden">
+              <img
+                src="/images/certificates/ibm-sql-databases.png"
+                alt="SQL and Relational Databases Certificate"
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+            <div className="p-4">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+                SQL and Relational Databases
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">IBM (Cognitive Class)</p>
+            </div>
+          </motion.a>
+
+          <motion.div
+            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="relative overflow-hidden">
+              <img
+                src="/images/certificates/bubt-data-analytics.png"
+                alt="Data Analytics Certificate"
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+                Data Analytics (Python)
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">BUBT-TAFE</p>
             </div>
           </motion.div>
         </div>
@@ -717,7 +801,7 @@ export default function About(): React.ReactElement {
 
       {/* Let's Connect Section restored to About page */}
       <motion.section
-        className="max-w-2xl mx-auto text-center mt-64 z-20 relative"
+        className="max-w-2xl mx-auto text-center mt-32 mb-16 z-20 relative"
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >

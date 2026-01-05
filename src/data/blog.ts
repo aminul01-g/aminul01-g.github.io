@@ -1878,4 +1878,79 @@ export const blogPosts: BlogPost[] = [
       'prompt-engineering'
     ),
   },
+  {
+    _id: '4',
+    _createdAt: '2025-12-10T12:00:00Z',
+    slug: 'building-rag-chatbot-langgraph',
+    title: '🔗 Building a Production-Ready RAG Chatbot with LangGraph and Pinecone',
+    date: '2025-12-10',
+    summary:
+      'A deep dive into building a sophisticated RAG (Retrieval-Augmented Generation) chatbot that intelligently routes between document search and web search. Learn about LangGraph workflow orchestration, vector databases, and deployment strategies.',
+    tags: ['RAG', 'LangGraph', 'LLM', 'VectorDB', 'Production'],
+    body: makeKeyedBlocks(
+      [
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: 'Retrieval-Augmented Generation (RAG) has become essential for building intelligent chatbots. I recently deployed a production-ready RAG system using LangGraph and Pinecone. Here is everything I learned.',
+            },
+          ],
+        },
+      ],
+      'rag-chatbot'
+    ),
+  },
+  {
+    _id: '5',
+    _createdAt: '2025-12-15T12:00:00Z',
+    slug: 'fine-tuning-llms-practical-guide',
+    title: '🎯 Fine-Tuning LLMs: A Practical Guide with LoRA',
+    date: '2025-12-15',
+    summary:
+      'Learn how to fine-tune large language models effectively using LoRA and QLoRA. This guide covers dataset preparation, hyperparameter tuning, and cost optimization strategies for small teams.',
+    tags: ['LLM', 'FineTuning', 'LoRA', 'AI'],
+    body: makeKeyedBlocks(
+      [
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: 'Fine-tuning LLMs with LoRA makes it possible for individuals and small teams to create specialized models without massive budgets. Here is my practical guide.',
+            },
+          ],
+        },
+      ],
+      'fine-tuning'
+    ),
+  },
+  {
+    _id: '6',
+    _createdAt: '2025-12-20T12:00:00Z',
+    slug: 'deploying-ai-models-production',
+    title: '🚀 Deploying AI Models to Production: Real-World Lessons',
+    date: '2025-12-20',
+    summary:
+      'Moving from notebooks to production is challenging. Learn about Docker containerization, FastAPI deployment, monitoring with Prometheus, and cost management strategies for ML systems.',
+    tags: ['MLOps', 'Production', 'Docker', 'Deployment'],
+    body: makeKeyedBlocks(
+      [
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: 'Deploying AI to production is where most projects stumble. After deploying several models, I have learned that infrastructure matters as much as the model itself.',
+            },
+          ],
+        },
+      ],
+      'deployment'
+    ),
+  },
 ];
