@@ -21,7 +21,6 @@ import { timelineData } from '../data/timeline';
 import { countersData } from '../data/counters';
 import { Helmet } from 'react-helmet-async';
 
-const ResumeModal = lazy(() => import('../components/ResumeModal'));
 const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
 const AnimatedCounters = lazy(() => import('../components/AnimatedCounters'));
 
@@ -37,7 +36,6 @@ const profilePic = '/images/optimized/profile_pic.webp';
 
 export default function About(): React.ReactElement {
   // Project cards data must be inside the function, before return
-  const [resumeOpen, setResumeOpen] = React.useState(false);
   const projectData = [
     {
       icon: FaPython,
@@ -214,10 +212,27 @@ export default function About(): React.ReactElement {
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>*/}
             {/* Add resume link if available */}
-            {/* <a href="[resume-link]" className="btn inline-flex items-center gap-2 group" target="_blank" rel="noopener noreferrer">
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn inline-flex items-center gap-2 group"
+            >
               View Resume
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a> */}
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
           </div>
         </div>
         <div className="flex-1 flex justify-center md:justify-end animate-fadeInUp delay-300 relative z-10">
@@ -683,7 +698,7 @@ export default function About(): React.ReactElement {
             <FaAward className="text-2xl text-primary dark:text-indigo-300" />
             <div>
               <div className="font-semibold dark:text-gray-100">
-                Runner-Up – BUBT Programming Contest, 2023
+                Runner-Up – BIUCPC & ICPC Programming Contest. 2023, 2025
               </div>
             </div>
           </motion.div>
@@ -815,9 +830,11 @@ export default function About(): React.ReactElement {
         <p className="mb-6 text-gray-700 dark:text-gray-200">
           Interested in collaborating, hiring, or just want to chat about AI? Reach out.
         </p>
-        <button
+        <a
+          href={profile.resume}
+          target="_blank"
+          rel="noopener noreferrer"
           className="btn bg-gradient-to-r from-primary to-indigo-500 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"
-          onClick={() => setResumeOpen(true)}
           aria-label="View Resume"
         >
           <svg
@@ -830,22 +847,7 @@ export default function About(): React.ReactElement {
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
           View Resume
-        </button>
-        <Suspense
-          fallback={
-            <div className="flex justify-center items-center min-h-[10vh] text-lg">
-              Loading Resume Modal...
-            </div>
-          }
-        >
-          {resumeOpen && (
-            <ResumeModal
-              open={resumeOpen}
-              onClose={() => setResumeOpen(false)}
-              resumeUrl={profile.resume || '/resume.pdf'}
-            />
-          )}
-        </Suspense>
+        </a>
         <motion.a
           whileHover={{ scale: 1.07 }}
           href="https://linkedin.com/in/aminulai"

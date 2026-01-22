@@ -16,7 +16,7 @@ const achievements = [
   },
   {
     title: 'Hackathon',
-    description: 'Trying to take a place in the BUBT AI Hackathon 2024.',
+    description: 'Participated in Hacktasyne, a 10-hour hackathon Tech Fusion Fest 2025.',
     icon: '🥇',
   },
 ];

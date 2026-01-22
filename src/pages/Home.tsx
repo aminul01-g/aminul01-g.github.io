@@ -60,7 +60,7 @@ const skillsData = [
         />
       </svg>
     ),
-    skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LLMs', 'Computer Vision'],
+    skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LangChain', 'LangGraph', 'CrewAI', 'LLMs', 'Computer Vision'],
   },
   {
     title: 'Programming',
@@ -75,7 +75,7 @@ const skillsData = [
         <rect x="4" y="4" width="16" height="16" rx="2" />
       </svg>
     ),
-    skills: ['Python', 'TypeScript', 'C++', 'Java'],
+    skills: ['Python', 'TypeScript', 'C', 'C++', 'Java'],
   },
   {
     title: 'Data Science',
@@ -125,6 +125,23 @@ export default function Home(): React.ReactElement {
 
   // Track page view
   usePageTracking('/', 'Home');
+
+  // Auto-download resume on first visit
+  React.useEffect(() => {
+    const hasDownloaded = localStorage.getItem('hasDownloadedResume');
+    if (!hasDownloaded) {
+      // Create hidden link and trigger click
+      const link = document.createElement('a');
+      link.href = '/resume.pdf';
+      link.download = 'Aminul_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Set flag to prevent future downloads
+      localStorage.setItem('hasDownloadedResume', 'true');
+    }
+  }, []);
 
   return (
     <>
