@@ -14,7 +14,12 @@ export const projects: Project[] = [
     featured: true,
     date: '2025-12-25',
     role: 'AI Engineer',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    videoUrl: 'https://drive.google.com/file/d/1fQf4VwsC1ImUJouLbATtax5mKs9WIzl1/view?usp=sharing',
+    caseStudy: {
+      problem: 'Enterprise users struggle to find specific information within large internal document repositories, and traditional keyword search often fails to capture semantic meaning or context.',
+      solution: 'Architected a RAG pipeline using LangGraph for orchestration and Pinecone for vector storage. Implemented a hybrid search router that dynamically delegates between document retrieval and Tavily web search based on query complexity.',
+      impact: 'Reduced information retrieval time by 60% and improved answer accuracy by 40% compared to keyword-based baseline. The system now supports multi-turn conversations with context spread across different domains.',
+    },
   },
   {
     title: 'Krishi Bondhu',

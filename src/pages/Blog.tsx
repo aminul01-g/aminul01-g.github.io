@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost, blogPosts } from '../data/blog';
+import { calculateReadingTime } from '../utils/readingTime';
 
 export default function Blog(): React.ReactElement {
   const [posts, setPosts] = React.useState<BlogPost[]>([]);
@@ -17,13 +18,16 @@ export default function Blog(): React.ReactElement {
   }, []);
 
   const allTags = Array.from(new Set(posts.flatMap((post) => post.tags || [])));
-  const filteredPosts = posts.filter((post) => {
-    const matchesTag = filter ? (post.tags || []).includes(filter) : true;
-    const matchesSearch = search
-      ? (post.title + post.summary).toLowerCase().includes(search.toLowerCase())
-      : true;
-    return matchesTag && matchesSearch;
-  });
+  const filteredPosts = React.useMemo(() => {
+    return posts.filter((post) => {
+      const matchesTag = filter ? (post.tags || []).includes(filter) : true;
+      const searchContent = (post.title + ' ' + (post.summary || '')).toLowerCase();
+      const matchesSearch = search
+        ? searchContent.includes(search.toLowerCase())
+        : true;
+      return matchesTag && matchesSearch;
+    });
+  }, [posts, filter, search]);
 
   return (
     <>
@@ -135,9 +139,22 @@ export default function Blog(): React.ReactElement {
         />
         <div className="grid gap-8 md:grid-cols-2 relative z-10">
           {filteredPosts.length === 0 ? (
-            <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8">
-              <p className="text-lg mb-4">No blog posts available yet.</p>
-              <p className="text-sm">
+            <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-12 flex flex-col items-center">
+              <svg
+                className="w-16 h-16 text-gray-400 mb-4 opacity-50"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                />
+              </svg>
+              <p className="text-xl font-semibold mb-2">No blog posts found</p>
+              <p className="text-sm max-w-md">
                 New articles and insights will be published here soon. Stay tuned!
               </p>
             </div>
@@ -177,7 +194,11 @@ export default function Blog(): React.ReactElement {
                         {post.title}
                       </h3>
                     </div>
-                    <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">{post.date}</p>
+                    <div className="flex items-center gap-3 text-sm text-gray-500 mb-2 dark:text-gray-400">
+                      <span>{post.date}</span>
+                      <span>•</span>
+                      <span>{calculateReadingTime(post.body)}</span>
+                    </div>
                     <div className="flex flex-wrap gap-2 mb-2">
                       {(post.tags || []).map((tag) => (
                         <span

@@ -36,20 +36,27 @@ const AddToHomeScreenPrompt: React.FC = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 shadow-lg rounded-lg px-6 py-4 flex items-center gap-4 z-50 border border-primary">
-      <span className="font-semibold text-primary">Install this app for a better experience!</span>
+    <div className="fixed bottom-4 right-4 bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-4 flex flex-col gap-3 z-50 border border-gray-100 dark:border-gray-700 max-w-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex justify-between items-start gap-4">
+        <div>
+          <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Install App</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-300">Install for a better experience!</p>
+        </div>
+        <button
+          onClick={() => setVisible(false)}
+          className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1"
+          aria-label="Dismiss"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <button
         onClick={handleInstall}
-        className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-700 transition"
+        className="w-full bg-primary hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-xl transition-colors text-sm"
       >
         Add to Home Screen
-      </button>
-      <button
-        onClick={() => setVisible(false)}
-        className="ml-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-        aria-label="Dismiss add to home screen prompt"
-      >
-        ×
       </button>
     </div>
   );

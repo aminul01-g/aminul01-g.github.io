@@ -3,6 +3,7 @@ import Hero from './Hero';
 import ParallaxBackground from '../components/ParallaxBackground';
 import { projects } from '../data/projects';
 import { blogPosts } from '../data/blog';
+import { calculateReadingTime } from '../utils/readingTime';
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
@@ -126,22 +127,7 @@ export default function Home(): React.ReactElement {
   // Track page view
   usePageTracking('/', 'Home');
 
-  // Auto-download resume on first visit
-  React.useEffect(() => {
-    const hasDownloaded = localStorage.getItem('hasDownloadedResume');
-    if (!hasDownloaded) {
-      // Create hidden link and trigger click
-      const link = document.createElement('a');
-      link.href = '/resume.pdf';
-      link.download = 'Aminul_Resume.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      // Set flag to prevent future downloads
-      localStorage.setItem('hasDownloadedResume', 'true');
-    }
-  }, []);
+  // Auto-download resume removed for better UX
 
   return (
     <>
@@ -273,7 +259,7 @@ export default function Home(): React.ReactElement {
               className="text-center mb-12"
             >
               <div className="flex flex-col items-center gap-6 mb-8">
-                <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-20 h-20">
+                <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-20 h-20 transition-transform duration-500 hover:scale-105">
                   <ImageWithFallback
                     src="/images/optimized/profile_pic.webp"
                     alt="Profile"
@@ -403,7 +389,7 @@ export default function Home(): React.ReactElement {
             </motion.div>
 
             <motion.div
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12"
+              className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12"
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -493,9 +479,11 @@ export default function Home(): React.ReactElement {
                           <h3 className="text-lg font-semibold text-primary mb-2 dark:text-primary flex items-center gap-2">
                             {post.title}
                           </h3>
-                          <p className="text-sm text-gray-500 mb-3 dark:text-gray-400">
-                            {post.date}
-                          </p>
+                          <div className="flex items-center gap-3 text-sm text-gray-500 mb-3 dark:text-gray-400">
+                            <span>{post.date}</span>
+                            <span>•</span>
+                            <span>{calculateReadingTime(post.body)}</span>
+                          </div>
                           <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
                         </Link>
                       </motion.div>

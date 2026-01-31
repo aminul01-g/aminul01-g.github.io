@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMessageCircle, FiX, FiSend, FiMinimize2, FiMaximize2 } from 'react-icons/fi';
+import { useLocation } from 'react-router-dom';
+import { FiMessageCircle, FiX, FiSend, FiMinimize2, FiMaximize2, FiMic, FiMicOff, FiVolume2, FiVolumeX } from 'react-icons/fi';
 import { projects } from '../data/projects';
 import Button from './Button';
 
@@ -35,6 +36,21 @@ const knowledgeBase = {
   ],
 };
 
+// Basic type definitions for Web Speech API
+interface SpeechRecognitionEvent {
+  results: {
+    [index: number]: {
+      [index: number]: {
+        transcript: string;
+      };
+    };
+  };
+}
+
+interface SpeechRecognitionErrorEvent {
+  error: string;
+}
+
 export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -44,28 +60,126 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  // Voice Mode State
+  const [isListening, setIsListening] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognitionRef = useRef<any>(null); 
+
+  // Initialize Speech Recognition
+  useEffect(() => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-US';
+
+      recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
+        const transcript = event.results[0][0].transcript;
+        setInputValue(transcript);
+        handleSendMessage(transcript); // Auto-send on voice end
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
+        console.error('Speech recognition error', event.error);
+        setIsListening(false);
+      };
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  const toggleVoiceInput = () => {
+    if (!recognitionRef.current) {
+      alert('Voice input is not supported in this browser.');
+      return;
+    }
+
+    if (isListening) {
+      recognitionRef.current.stop();
+    } else {
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const speakResponse = (text: string) => {
+    if (!voiceEnabled || !('speechSynthesis' in window)) return;
+    
+    // Cancel current speech
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Try to find a good English voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(v => v.name.includes('Google US English')) || voices.find(v => v.lang === 'en-US');
+    if (preferredVoice) utterance.voice = preferredVoice;
+    
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    window.speechSynthesis.speak(utterance);
+  };
 
   // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isOpen]);
 
-  // Initial greeting
+  const location = useLocation();
+
+  // Context-aware initialization
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setIsTyping(true);
+      
+      let greeting = "Hi! I'm Aminul's AI Assistant. How can I help you today?";
+      let suggestions = knowledgeBase.quickReplies;
+
+      // Project Context
+      if (location.pathname.startsWith('/projects/') && location.pathname.length > 10) {
+        greeting = "I see checking out one of my projects! I can explain the architecture, tech stack, or key challenges provided in this project.";
+        suggestions = [
+          { text: 'Explain Architecture', action: 'project_arch' },
+          { text: 'Tech Stack?', action: 'project_stack' },
+          ...knowledgeBase.quickReplies.slice(0, 3)
+        ];
+      }
+      // Blog Context
+      else if (location.pathname.startsWith('/blog')) {
+        greeting = "Looking for technical insights? I can recommend articles or summarize my writing topics.";
+        suggestions = [
+          { text: 'Latest Articles', action: 'blog' },
+          { text: 'Topics', action: 'skills' },
+          ...knowledgeBase.quickReplies.slice(0, 3)
+        ];
+      }
+      // Contact Context
+      else if (location.pathname === '/contact') {
+        greeting = "Want to get in touch? I can help you find the best channel to reach Aminul.";
+        suggestions = [
+          { text: 'Email', action: 'contact' },
+          { text: 'LinkedIn', action: 'contact' },
+        ];
+      }
+
       setTimeout(() => {
         setMessages([
           {
             id: 'init-1',
-            text: "Hi! I'm Aminul's AI Assistant. How can I help you today?",
+            text: greeting,
             sender: 'bot',
             timestamp: new Date(),
             type: 'text',
           },
           {
             id: 'init-2',
-            text: JSON.stringify(knowledgeBase.quickReplies),
+            text: JSON.stringify(suggestions),
             sender: 'bot',
             timestamp: new Date(),
             type: 'quick-reply',
@@ -74,13 +188,46 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
         setIsTyping(false);
       }, 1000);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, location.pathname]);
 
   const generateResponse = (userMessage: string) => {
     const message = userMessage.toLowerCase();
 
     // Fuzzy matching helper
     const matches = (keywords: string[]) => keywords.some((k) => message.includes(k));
+
+    // Context-Aware: Project Details
+    if (location.pathname.startsWith('/projects/') && location.pathname.length > 10) {
+      const slug = location.pathname.split('/').pop();
+      const currentProject = projects.find(
+        (p) => p.title.replace(/\s+/g, '-').toLowerCase() === slug
+      );
+
+      if (currentProject) {
+        if (matches(['stack', 'tech', 'built', 'language', 'framework'])) {
+          return {
+            text: `This project is built with: ${currentProject.tags.join(', ')}. It leverages these technologies to solve the core problem efficiently.`,
+            quickReplies: [
+              { text: 'Key challenges?', action: 'project_challenges' },
+              { text: 'Architecture?', action: 'project_arch' },
+              { text: 'Back to all projects', action: 'projects' }
+            ],
+          };
+        }
+        if (matches(['architecture', 'design', 'structure', 'how', 'arch'])) {
+           return {
+            text: `The architecture focuses on ${currentProject.tags[0]} principles. ${currentProject.description.split('.')[0]}. Check the GitHub repo for the full system diagram!`,
+             quickReplies: [{ text: 'View Code', action: 'contact' }] // Placeholder action
+           }
+        }
+        if (matches(['challenge', 'problem', 'difficult'])) {
+           return {
+             text: `One key challenge was optimizing performance and ensuring scalability. ` + (currentProject.highlights?.[0] || ''),
+             quickReplies: [{ text: 'Tech Stack', action: 'project_stack' }]
+           }
+        }
+      }
+    }
 
     // Project related queries
     if (matches(['project', 'work', 'build', 'made', 'portfolio', 'app'])) {
@@ -183,6 +330,9 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
 
       setIsTyping(false);
       setMessages((prev) => [...prev, botMessage]);
+      
+      // Voice Output
+      speakResponse(response.text);
 
       if (response.quickReplies) {
         setMessages((prev) => [
@@ -206,6 +356,10 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
     if (action === 'blog') handleSendMessage('Show me blog posts');
     if (action === 'contact') handleSendMessage('How can I contact you?');
     if (action === 'about') handleSendMessage("What's your background?");
+    
+    // Context specific
+    if (action === 'project_stack') handleSendMessage('What technologies are used in this project?');
+    if (action === 'project_arch') handleSendMessage('How was this project built?');
   };
 
   return (
@@ -310,16 +464,43 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
 
                 {/* Input Area */}
                 <div className="p-3 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-                  <div className="flex gap-2">
-                    <input
-                      ref={inputRef}
-                      type="text"
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
-                      placeholder="Type a message..."
-                      className="flex-1 bg-gray-100 dark:bg-gray-900 border-0 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50"
-                    />
+                  <div className="flex gap-2 items-end">
+                    <div className="relative flex-1">
+                      <input
+                        ref={inputRef}
+                        type="text"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
+                        placeholder={isListening ? 'Listening...' : "Type a message..."}
+                        className={`w-full bg-gray-100 dark:bg-gray-900 border-0 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 ${isListening ? 'animate-pulse ring-2 ring-red-500/50' : ''}`}
+                      />
+                      {/* Voice Indicator Pulse */}
+                      <AnimatePresence>
+                        {isListening && (
+                          <motion.span
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1.2, opacity: 0.5 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            transition={{ repeat: Infinity, duration: 1 }}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 bg-red-500 rounded-full"
+                          />
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    {/* Voice Input Button */}
+                    <Button
+                      onClick={toggleVoiceInput}
+                      className={`!p-2 !rounded-xl aspect-square flex items-center justify-center transition-colors ${
+                        isListening ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
+                      }`}
+                      aria-label="Toggle voice input"
+                      variant="ghost"
+                    >
+                      {isListening ? <FiMicOff className="w-4 h-4" /> : <FiMic className="w-4 h-4" />}
+                    </Button>
+
                     <Button
                       onClick={() => handleSendMessage(inputValue)}
                       className="!p-2 !rounded-xl aspect-square flex items-center justify-center"
@@ -328,6 +509,17 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                     >
                       <FiSend className="w-4 h-4" />
                     </Button>
+                  </div>
+                  
+                  {/* Voice Options */}
+                  <div className="flex justify-end mt-2">
+                     <button 
+                       onClick={() => setVoiceEnabled(!voiceEnabled)}
+                       className={`flex items-center gap-1.5 text-[10px] font-medium transition-colors ${voiceEnabled ? 'text-primary' : 'text-gray-400'}`}
+                     >
+                       {voiceEnabled ? <FiVolume2 className="w-3 h-3" /> : <FiVolumeX className="w-3 h-3" />}
+                       {voiceEnabled ? 'Voice Response On' : 'Voice Response Off'}
+                     </button>
                   </div>
                 </div>
               </>

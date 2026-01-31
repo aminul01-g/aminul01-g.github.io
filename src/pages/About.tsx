@@ -23,6 +23,7 @@ import { Helmet } from 'react-helmet-async';
 
 const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
 const AnimatedCounters = lazy(() => import('../components/AnimatedCounters'));
+const SkillNetwork = lazy(() => import('../components/SkillNetwork'));
 
 // Modern glassmorphism background effect
 const GlassBg = () => (
@@ -236,7 +237,7 @@ export default function About(): React.ReactElement {
           </div>
         </div>
         <div className="flex-1 flex justify-center md:justify-end animate-fadeInUp delay-300 relative z-10">
-          <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative mx-auto">
+          <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative mx-auto transition-transform duration-500 hover:scale-105">
             <ImageWithFallback
               src={profilePic}
               alt="Profile"
@@ -343,6 +344,14 @@ export default function About(): React.ReactElement {
         >
           🛠 Technical Skills
         </motion.h2>
+
+        {/* Interactive Skill Network */}
+        <div className="mb-12 animate-fadeInUp">
+          <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading Network...</div>}>
+            <SkillNetwork />
+          </Suspense>
+        </div>
+
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
           {/* Skill tags with glass, hover, and fade-in, plus progress bars */}
           {[

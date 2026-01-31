@@ -74,7 +74,9 @@ export default function ImageWithFallback({
         onLoad={handleLoad}
         onError={handleError}
         decoding="async"
-        fetchPriority={priority ? 'high' : 'auto'}
+        // @ts-expect-error: fetchpriority is valid but missing from types
+        // eslint-disable-next-line react/no-unknown-property
+        fetchpriority={priority ? 'high' : 'auto'}
         aria-hidden={hasError}
       />
       {/* Screen reader text for loading state */}

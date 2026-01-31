@@ -6,6 +6,7 @@ import ParticleBackground from '../components/ParticleBackground';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import ParallaxSection from '../components/ParallaxSection';
 import Button from '../components/Button';
+import TerminalOverlay from '../components/TerminalOverlay';
 
 const socialLinks = [
   {
@@ -127,6 +128,9 @@ export default function Hero(): React.ReactElement {
 
       {/* Particle Background */}
       <ParticleBackground />
+
+      {/* AI Terminal Overlay */}
+      <TerminalOverlay />
 
       {/* Main Content */}
       <ParallaxSection className="relative z-10 w-full">

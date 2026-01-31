@@ -14,6 +14,11 @@ export interface Project {
   challenges?: string[];
   results?: string[];
   videoUrl?: string;
+  caseStudy?: {
+    problem: string;
+    solution: string;
+    impact: string;
+  };
 }
 
 export const projects: Project[];

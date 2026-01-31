@@ -3,6 +3,7 @@ import ImageWithFallback from './ImageWithFallback';
 import { Link } from 'react-router-dom';
 import { useAnalytics } from '../hooks/useAnalytics';
 import Button from './Button';
+import ProjectPlaceholder from './ProjectPlaceholder';
 import React, { useState, useEffect } from 'react';
 
 export interface ProjectCardProps {
@@ -14,18 +15,6 @@ export interface ProjectCardProps {
   videoUrl?: string;
 }
 
-// Enhanced project icons with better visual representation
-const projectIcons: Record<string, string> = {
-  aiStudyAssistant: '🤖',
-  LearnML: '📚',
-  'Predictive Modeling of Ames Housing Data': '🏠',
-  'titanic-survival-app': '🚢',
-  'Diabetes-Detection-System': '🏥',
-  Learn_AI_Engineering: '🧠',
-  'linux-tools': '🐧',
-  pythonProjects: '🐍',
-};
-
 export default function ProjectCard({
   title,
   description,
@@ -34,8 +23,6 @@ export default function ProjectCard({
   thumbnail,
   videoUrl,
 }: ProjectCardProps): React.ReactElement {
-  const logo = thumbnail || projectIcons[title] || '📦';
-  const isEmoji = !thumbnail?.startsWith('http') && (!!projectIcons[title] || logo.length <= 2);
   const { trackProjectView, trackEvent } = useAnalytics();
   const [showVideo, setShowVideo] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -104,31 +91,17 @@ export default function ProjectCard({
               transition={{ duration: 0.5 }}
               onClick={() => videoUrl && setShowVideo(true)}
             >
-              {isEmoji ? (
-                <motion.div
-                  className="text-6xl filter drop-shadow-lg"
-                  whileHover={{
-                    scale: 1.2,
-                    rotate: [0, -5, 5, 0],
-                    transition: { duration: 0.5 },
-                  }}
-                  animate={{
-                    y: [0, -5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                >
-                  {logo}
-                </motion.div>
-              ) : (
+              {thumbnail && thumbnail.startsWith('/') ? (
                 <ImageWithFallback
-                  src={logo}
+                  src={thumbnail}
                   alt={`${title} thumbnail`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
+                />
+              ) : (
+                <ProjectPlaceholder
+                  title={title}
+                  className="w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               )}
               {/* Enhanced gradient overlays for thumbnail */}
@@ -159,15 +132,32 @@ export default function ProjectCard({
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <video
-                src={videoUrl}
-                className="w-full h-full object-cover"
-                controls
-                playsInline
-                controlsList="nodownload"
-              >
-                <track kind="captions" />
-              </video>
+              {videoUrl.includes('drive.google.com') ? (
+                <iframe
+                  src={videoUrl.replace('/view', '/preview')}
+                  className="w-full h-full object-cover"
+                  allow="autoplay"
+                  title={`${title} video`}
+                />
+              ) : videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ? (
+                <iframe
+                  src={videoUrl.replace('watch?v=', 'embed/').replace('youtu.be/', 'www.youtube.com/embed/')}
+                  className="w-full h-full object-cover"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={`${title} video`}
+                />
+              ) : (
+                <video
+                  src={videoUrl}
+                  className="w-full h-full object-cover"
+                  controls
+                  playsInline
+                  controlsList="nodownload"
+                >
+                  <track kind="captions" />
+                </video>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

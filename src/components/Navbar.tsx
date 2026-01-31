@@ -69,18 +69,18 @@ export default function Navbar(): React.ReactElement {
 
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    setMenuOpen(false);
     if (location.pathname !== '/') {
       navigate('/');
       // Wait for navigation to complete before scrolling
       setTimeout(() => {
         const el = document.getElementById('contact');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 200);
+      }, 500);
     } else {
       const el = document.getElementById('contact');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
-    setMenuOpen(false);
   };
 
   const handleMenuToggle = () => {
@@ -246,7 +246,7 @@ export default function Navbar(): React.ReactElement {
             <motion.div
               ref={menuRef}
               id="mobile-menu"
-              className="absolute top-full left-0 w-full glass-card backdrop-blur-enhanced border-t border-white/10 sm:hidden shadow-glass"
+              className="absolute top-full left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 sm:hidden shadow-2xl z-50 h-[calc(100vh-80px)] overflow-y-auto"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -254,7 +254,7 @@ export default function Navbar(): React.ReactElement {
               role="menu"
               aria-label="Mobile navigation menu"
             >
-              <div className="p-4 space-y-2">
+              <div className="p-4 space-y-2 flex flex-col h-full pb-20">
                 {/* Mobile Search Button */}
                 <motion.div
                   initial={{ x: -20, opacity: 0 }}

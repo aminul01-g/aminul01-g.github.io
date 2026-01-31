@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { Helmet } from 'react-helmet-async';
 import ImageWithFallback from '../components/ImageWithFallback';
+import ProjectPlaceholder from '../components/ProjectPlaceholder';
 import SocialShare from '../components/SocialShare';
 import FeedbackWidget from '../components/FeedbackWidget';
 
@@ -94,9 +95,10 @@ export default function ProjectDetails(): React.ReactElement {
             loading="lazy"
           />
         ) : (
-          <div className="text-9xl text-center mb-8 animate-bounce-slow">
-            {project.thumbnail || '📁'}
-          </div>
+          <ProjectPlaceholder
+            title={project.title}
+            className="w-full max-w-md h-64 rounded-lg mb-6 mx-auto shadow-lg"
+          />
         )}
 
         <p className="text-lg text-gray-700 dark:text-gray-200 mb-6 leading-relaxed">
@@ -108,6 +110,30 @@ export default function ProjectDetails(): React.ReactElement {
           title={project.title}
           className="mb-8"
         />
+
+        {/* Case Study Section */}
+        {project.caseStudy && (
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              { title: 'The Problem', icon: '🎯', text: project.caseStudy.problem, color: 'text-red-500' },
+              { title: 'The Solution', icon: '💡', text: project.caseStudy.solution, color: 'text-yellow-500' },
+              { title: 'The Impact', icon: '🚀', text: project.caseStudy.impact, color: 'text-green-500' },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-100 dark:border-gray-700 backdrop-blur-sm hover:transform hover:-translate-y-1 transition duration-300"
+              >
+                <div className={`text-3xl mb-3 ${item.color}`}>{item.icon}</div>
+                <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Dynamic Project Details Section */}
         <div className="prose dark:prose-invert max-w-none mb-8">

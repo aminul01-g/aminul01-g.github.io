@@ -22,6 +22,7 @@ export interface BlogPost {
   summary: string;
   tags?: string[];
   body: PortableTextBlock[];
+  markdownBody?: string;
 }
 
 // Define a type for input blocks that omits _key
@@ -44,6 +45,48 @@ function makeKeyedBlocks(blocks: InputBlock[], blockPrefix: string): PortableTex
 
 export const blogPosts: BlogPost[] = [
   {
+    _id: 'interactive-demo-1',
+    _createdAt: '2025-06-25T12:00:00Z',
+    slug: 'interactive-react-in-markdown',
+    title: '✨ Interactive Blog Demo: React Components in Markdown',
+    date: '2025-06-25',
+    summary: 'This post demonstrates the new MDX-like capabilities of the blog engine. We can now embed interactive React counters, buttons, and live code demos directly inside blog posts.',
+    tags: ['React', 'MDX', 'Demo'],
+    body: [], // Empty legacy body
+    markdownBody: `
+# Interactive Content Demo
+
+Welcome to the future of this blog! 🚀
+Instead of just reading static text, you can now interact with React components directly inside the post.
+
+## Why is this cool?
+1. **Live Demos**: Show, don't just tell.
+2. **Better Engagement**: Interactive elements keep readers interested.
+3. **Seamless Integration**: Write in Markdown, power with React.
+
+## The Interactive Demo
+
+Below is a meaningful React component running live:
+
+\`\`\`interactive
+<Counter />
+\`\`\`
+
+### How it works
+The block above is just a simple code block in markdown, intercepted by our custom renderer.
+
+\`\`\`jsx
+// The code behind the magic
+<div className="p-6 bg-white rounded-xl shadow-lg">
+  <div className="text-4xl font-bold">{count}</div>
+  <button onClick={() => setCount(count + 1)}>+</button>
+</div>
+\`\`\`
+
+Stay tuned for more interactive tutorials!
+    `
+  },
+  {
     _id: '1',
     _createdAt: '2025-06-15T12:00:00Z',
     slug: 'getting-started-with-ai',
@@ -60,17 +103,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "When I first started my journey into artificial intelligence, I was overwhelmed by the sheer amount of information available. Everywhere I looked, there were courses, tutorials, and resources claiming to be the 'best way to learn AI.' After months of trial and error, I've finally found a path that works for me, and I want to share it with you.",
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h2',
-          children: [
-            {
-              _type: 'span',
-              text: 'Why I Started Learning AI',
+              text: "Artificial Intelligence (AI) is no longer a futuristic concept reserved for research labs and sci-fi movies—it’s shaping how we work, learn, and interact with technology every single day. From recommendation systems and voice assistants to medical diagnosis and autonomous systems, AI is everywhere.",
             },
           ],
         },
@@ -80,7 +113,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The decision to dive into AI wasn't made lightly. I was working as a software engineer, building traditional web applications, when I started noticing how AI was transforming every industry. From healthcare to finance, from education to entertainment, AI was becoming the driving force behind innovation.",
+              text: "But this wasn’t always obvious to me.",
             },
           ],
         },
@@ -90,7 +123,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'I realized that to stay relevant in the tech industry, I needed to understand and work with AI. But more than that, I was genuinely curious about how machines could learn and make decisions. The idea of creating systems that could think, learn, and adapt fascinated me.',
+              text: "This blog post is a reflection on my journey into AI—how I started as a complete beginner, the challenges I faced, the skills I built along the way, and how those early steps shaped my path toward becoming an AI Engineer. If you’re someone standing at the starting line, unsure where or how to begin, this story is for you.",
             },
           ],
         },
@@ -100,7 +133,107 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'My Learning Roadmap',
+              text: '🌱 The Beginning: Curiosity Without Direction',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Like many beginners, my initial exposure to AI came through buzzwords—machine learning, deep learning, neural networks. I was fascinated, but also overwhelmed. Online tutorials promised quick mastery, yet most skipped the fundamentals, leaving me confused rather than confident.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "At that stage, I didn’t know:",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• What AI really meant in practice",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• How much math or programming was required",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• Whether AI was even realistic for someone like me",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "What I did have was curiosity—and that turned out to be enough to begin.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧱 Building the Foundation: Skills Before Models',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "One of the biggest lessons I learned early was this:",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'blockquote',
+          children: [
+            {
+              _type: 'span',
+              text: "AI is built on fundamentals, not magic.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Before touching any advanced models, I focused on strengthening my base.",
             },
           ],
         },
@@ -110,7 +243,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Phase 1: Foundations (Months 1-2)',
+              text: '1. Programming (Python First)',
             },
           ],
         },
@@ -120,7 +253,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'I started with the fundamentals:',
+              text: "Python became my primary language due to its simplicity and massive AI ecosystem. I learned:",
             },
           ],
         },
@@ -130,7 +263,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Mathematics: Linear algebra, calculus, and statistics',
+              text: "• Variables, loops, functions\n• Data structures\n• Writing clean, readable code",
             },
           ],
         },
@@ -140,17 +273,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Python programming: Data structures, libraries (NumPy, Pandas)',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Basic machine learning concepts: Supervised vs unsupervised learning',
+              text: "This phase was crucial—without programming fluency, AI concepts remain abstract.",
             },
           ],
         },
@@ -160,7 +283,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Phase 2: Machine Learning (Months 3-4)',
+              text: '2. Mathematics (The Silent Backbone)',
             },
           ],
         },
@@ -170,7 +293,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'This is where things got exciting. I focused on:',
+              text: "Instead of avoiding math, I faced it head-on:",
             },
           ],
         },
@@ -180,7 +303,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Scikit-learn for traditional ML algorithms',
+              text: "• Linear algebra for understanding vectors and matrices\n• Probability and statistics for data and predictions\n• Basic calculus to grasp how models learn",
             },
           ],
         },
@@ -190,67 +313,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Understanding different algorithms: Decision trees, random forests, SVM',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Model evaluation and validation techniques',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: 'Phase 3: Deep Learning (Months 5-6)',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'The deep learning phase was challenging but rewarding:',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Neural networks fundamentals',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• TensorFlow and PyTorch frameworks',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Computer vision and natural language processing',
+              text: "I didn’t aim for perfection—just conceptual clarity.",
             },
           ],
         },
@@ -260,7 +323,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Key Resources That Helped Me',
+              text: '🤖 Entering Machine Learning: From Theory to Practice',
             },
           ],
         },
@@ -270,7 +333,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. Coursera Machine Learning Course by Andrew Ng',
+              text: "Once my foundations were solid, I moved into Machine Learning (ML)—where data meets algorithms. I learned how machines:",
             },
           ],
         },
@@ -280,7 +343,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Fast.ai Practical Deep Learning for Coders',
+              text: "• Learn patterns from data\n• Make predictions\n• Improve through optimization",
             },
           ],
         },
@@ -290,7 +353,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Hands-On Machine Learning with Scikit-Learn & TensorFlow',
+              text: "Some of the first models I worked with included:",
             },
           ],
         },
@@ -300,7 +363,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '4. Kaggle competitions for practical experience',
+              text: "• Linear and logistic regression\n• Decision trees\n• K-Nearest Neighbors",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Seeing a model learn from data for the first time was a turning point—it made AI feel real.",
             },
           ],
         },
@@ -310,7 +383,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'The Mindset That Made the Difference',
+              text: '🧠 Deep Learning: Teaching Machines to “See” and “Think”',
             },
           ],
         },
@@ -320,7 +393,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Learning AI isn't just about memorizing algorithms or mastering frameworks. It's about developing a mindset that embraces:",
+              text: "The real excitement began when I stepped into Deep Learning. Neural networks unlocked the ability to:",
             },
           ],
         },
@@ -330,7 +403,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Continuous learning: The field evolves rapidly',
+              text: "• Recognize handwritten digits\n• Classify images\n• Understand sequences and patterns",
             },
           ],
         },
@@ -340,27 +413,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Experimentation: Try different approaches and learn from failures',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Practical application: Build projects, not just study theory',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Community engagement: Learn from others and share knowledge',
+              text: "Using frameworks like PyTorch, I built and trained neural networks from scratch. Debugging models, tuning parameters, and watching accuracy improve taught me patience, discipline, and problem-solving at a deeper level.",
             },
           ],
         },
@@ -370,7 +423,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Where I Am Now',
+              text: '🚀 Moving Toward Engineering: AI Beyond Notebooks',
             },
           ],
         },
@@ -380,7 +433,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Today, I'm working on AI projects that combine my software engineering background with my newfound AI skills. I'm building intelligent systems that can understand user behavior, predict outcomes, and provide personalized experiences.",
+              text: "Learning models wasn’t enough. To think like an AI Engineer, I had to think about systems, not just algorithms. That meant learning:",
             },
           ],
         },
@@ -390,7 +443,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The journey hasn't been easy, but it's been incredibly rewarding. Every day, I'm learning something new, and every project teaches me something different about how AI can solve real-world problems.",
+              text: "• How to structure AI projects\n• How to deploy models\n• How to optimize performance\n• How AI systems behave in real-world environments",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "I began focusing on model efficiency, lightweight architectures, and practical applications over theoretical perfection. This shift—from learning AI to engineering AI solutions—was a major milestone.",
             },
           ],
         },
@@ -400,7 +463,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Advice for Beginners',
+              text: '🔄 Challenges I Faced (And Still Face)',
             },
           ],
         },
@@ -410,7 +473,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "If you're just starting your AI journey, here are my top recommendations:",
+              text: "The journey wasn’t smooth—and it still isn’t. Some of the toughest challenges included:",
             },
           ],
         },
@@ -420,7 +483,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "1. Start with the basics - don't rush into complex topics",
+              text: "• Imposter syndrome\n• Too many resources, too little clarity\n• Debugging models that failed silently\n• Balancing theory with hands-on practice",
             },
           ],
         },
@@ -430,7 +493,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Build projects from day one - theory without practice is useless',
+              text: "But each challenge reinforced an important truth: Struggle is not a sign of failure—it’s a sign of growth.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '📚 Lessons That Shaped My Journey',
             },
           ],
         },
@@ -440,7 +513,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Join communities - Reddit, Discord, local meetups',
+              text: "Looking back, a few principles made all the difference:",
             },
           ],
         },
@@ -450,7 +523,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "4. Don't compare yourself to others - everyone learns at their own pace",
+              text: "• Consistency beats intensity\n• Build projects, even small ones\n• Understand before optimizing\n• Learn by explaining to others\n• AI is a marathon, not a sprint",
             },
           ],
         },
@@ -460,7 +533,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '5. Stay curious and keep experimenting',
+              text: "These lessons continue to guide my learning today.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🌍 Why I Chose AI Engineering',
             },
           ],
         },
@@ -470,7 +553,57 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Remember, the AI field is vast, and there's no single 'right way' to learn it. Find what works for you, stay consistent, and don't be afraid to make mistakes. They're often the best teachers.",
+              text: "AI Engineering sits at the intersection of software development, data science, and real-world problem solving. It’s not just about making models accurate—it’s about making them usable, scalable, and impactful. That challenge is what excites me the most.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🎯 Final Thoughts: To Those Just Starting Out',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "If you’re a beginner wondering whether AI is “too hard,” let me say this:",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "You don’t need to be a genius.\nYou don’t need to know everything.\nYou just need to start—and keep going.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Every expert in AI was once confused, stuck, and unsure. What separates them is not talent, but persistence. This journey—from beginner to engineer—is still ongoing for me. And that’s the best part.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Thanks for reading. If you’re exploring AI, building projects, or carving your own path into this field—welcome. You’re exactly where you need to be.",
             },
           ],
         },
@@ -495,7 +628,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "After months of learning AI theory and working through tutorials, I decided it was time to build something real. I wanted to create a project that would not only help me practice my skills but also solve a genuine problem in my daily life. That's how my Smart Study Assistant was born.",
+              text: "Every AI engineer remembers their first real project—the one that turns theory into something tangible. For me, that milestone was building a Smart Study Assistant using Python. It wasn’t just a project; it was the moment AI stopped being “something I was learning” and became “something I was building.”",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "In this post, I’ll walk through the motivation, design decisions, technical stack, challenges, and lessons I learned while developing my first end-to-end AI application.",
             },
           ],
         },
@@ -505,7 +648,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'The Problem I Wanted to Solve',
+              text: '🎯 Why a Smart Study Assistant?',
             },
           ],
         },
@@ -515,7 +658,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'As someone constantly learning new technologies and concepts, I found myself struggling with:',
+              text: "As a student navigating multiple subjects, deadlines, and learning resources, I noticed a recurring problem: Studying lacked structure, personalization, and feedback.",
             },
           ],
         },
@@ -525,7 +668,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Organizing my study materials and notes',
+              text: "Most tools were either static (to-do lists, notes), overwhelming (too many features), or completely non-intelligent.",
             },
           ],
         },
@@ -535,27 +678,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Creating summaries of long articles and papers',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Getting quick answers to questions without searching through multiple sources',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Maintaining a structured learning schedule',
+              text: "I wanted to build something that could assist with daily study planning, track progress intelligently, provide adaptive learning support, and feel like a personal academic companion. That idea became the Smart Study Assistant.",
             },
           ],
         },
@@ -565,7 +688,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Planning the Project',
+              text: '🧠 Project Vision',
             },
           ],
         },
@@ -575,7 +698,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'I broke down the project into manageable components:',
+              text: "The goal was simple but ambitious: Create an AI-powered assistant that helps students study smarter, not harder.",
             },
           ],
         },
@@ -595,7 +718,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. Document processing and summarization',
+              text: "• User authentication system\n• Study session tracking\n• Task and goal management\n• Quiz and self-assessment support\n• Basic AI-driven recommendations\n• Clean and intuitive user interface",
             },
           ],
         },
@@ -605,27 +728,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Question-answering system',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '3. Task organization and scheduling',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '4. Natural language interaction',
+              text: "Instead of chasing complexity, I focused on building a complete, usable system.",
             },
           ],
         },
@@ -635,7 +738,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Technology Stack',
+              text: '🛠️ Tech Stack & Tools',
             },
           ],
         },
@@ -645,7 +748,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'I chose technologies that would allow me to focus on AI implementation rather than infrastructure:',
+              text: "I deliberately chose tools that are widely used in real-world AI systems:",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Programming Language',
             },
           ],
         },
@@ -655,7 +768,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Python 3.9+ for the core application',
+              text: "Python – for its simplicity, flexibility, and AI ecosystem",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Core Libraries & Concepts',
             },
           ],
         },
@@ -665,7 +788,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• OpenAI GPT-3.5 for text generation and summarization',
+              text: "• Data handling and logic processing\n• Basic ML concepts for recommendations\n• Modular code architecture",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 System Design',
             },
           ],
         },
@@ -675,7 +808,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• SQLite for local data storage',
+              text: "• Separation of logic, data, and interface\n• Scalable structure for future features\n• Clean and readable codebase",
             },
           ],
         },
@@ -685,17 +818,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Streamlit for the web interface',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• NLTK and spaCy for text processing',
+              text: "This project helped me understand how AI fits into software engineering, not just notebooks.",
             },
           ],
         },
@@ -705,7 +828,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Building the Core Components',
+              text: '🧩 How the System Works',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "At a high level, the Smart Study Assistant operates in three layers:",
             },
           ],
         },
@@ -715,7 +848,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. Document Processor',
+              text: '1. User Interaction Layer',
             },
           ],
         },
@@ -725,47 +858,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'The first component I built was a document processor that could:',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Extract text from PDFs, Word documents, and plain text files',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Clean and preprocess the text',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Generate summaries using GPT-3.5',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Store processed documents in the database',
+              text: "• Handles login and user input\n• Displays study data and progress\n• Ensures a smooth user experience",
             },
           ],
         },
@@ -775,7 +868,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Question-Answering System',
+              text: '2. Logic & AI Layer',
             },
           ],
         },
@@ -785,37 +878,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'This was the most challenging part. I implemented:',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Semantic search using sentence transformers',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Context retrieval from stored documents',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Answer generation using GPT-3.5 with retrieved context',
+              text: "• Tracks study patterns\n• Analyzes completed tasks\n• Generates simple recommendations\n• Supports quiz evaluation",
             },
           ],
         },
@@ -825,7 +888,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Task Organizer',
+              text: '3. Data Management Layer',
             },
           ],
         },
@@ -835,7 +898,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'A simple but effective task management system:',
+              text: "• Stores user data securely\n• Tracks history and performance\n• Enables personalized insights",
             },
           ],
         },
@@ -845,27 +908,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Natural language task creation',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Priority-based scheduling',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Progress tracking and reminders',
+              text: "This layered approach made the system easier to debug, scale, and extend.",
             },
           ],
         },
@@ -875,7 +918,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'What Went Wrong (And How I Fixed It)',
+              text: '🚧 Challenges I Faced',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Building my first AI project wasn’t easy—and that’s what made it valuable.",
             },
           ],
         },
@@ -885,7 +938,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. API Rate Limits',
+              text: '🔸 Designing Before Coding',
             },
           ],
         },
@@ -895,17 +948,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Problem: I hit OpenAI API rate limits during development.',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Solution: Implemented request caching and batch processing.',
+              text: "I initially jumped into coding too fast. I learned the hard way that poor design leads to messy systems.",
             },
           ],
         },
@@ -915,7 +958,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Memory Issues',
+              text: '🔸 Handling Real User Data',
             },
           ],
         },
@@ -925,17 +968,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Problem: Large documents caused memory overflow.',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Solution: Implemented document chunking and streaming processing.',
+              text: "Unlike toy datasets, user data is unpredictable. I had to handle missing inputs, edge cases, and inconsistent study behavior.",
             },
           ],
         },
@@ -945,7 +978,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Response Quality',
+              text: '🔸 Balancing AI and Simplicity',
             },
           ],
         },
@@ -955,17 +988,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Problem: Initial responses were too generic.',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Solution: Improved prompt engineering and context retrieval.',
+              text: "Not everything needs deep learning. Choosing simple, explainable logic over complex models improved reliability and clarity.",
             },
           ],
         },
@@ -975,7 +998,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Key Learnings',
+              text: '💡 Key Lessons Learned',
             },
           ],
         },
@@ -985,7 +1008,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "1. Start Simple: Don't try to build everything at once",
+              text: "This project taught me lessons no tutorial ever could:",
             },
           ],
         },
@@ -995,7 +1018,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Test Early: Validate your assumptions with real data',
+              text: "• AI projects are software projects first\n• Clean architecture matters more than fancy models\n• Small features done well beat complex features done poorly\n• Debugging is where real learning happens\n• Building for users changes how you think as an engineer",
             },
           ],
         },
@@ -1005,17 +1028,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Monitor Performance: Track API usage and response times',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '4. User Feedback: The best features came from actual usage',
+              text: "Most importantly, I learned how to finish a project.",
             },
           ],
         },
@@ -1025,7 +1038,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Current State and Future Plans',
+              text: '🚀 How This Project Shaped My AI Journey',
             },
           ],
         },
@@ -1035,7 +1048,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'The study assistant is now functional and helps me with:',
+              text: "The Smart Study Assistant marked a shift in my mindset: From learner → builder, from theory → application, from curiosity → confidence.",
             },
           ],
         },
@@ -1045,7 +1058,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Processing research papers and articles',
+              text: "It gave me hands-on experience with AI system design, confidence to tackle larger projects, and a strong foundation for advanced AI engineering concepts.",
             },
           ],
         },
@@ -1055,57 +1068,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Answering questions about my study materials',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Organizing my learning schedule',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Future improvements include:',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Multi-modal support (images, audio)',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Collaborative features for study groups',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Integration with calendar and productivity tools',
+              text: "This project became the base upon which I now build more advanced, scalable AI systems.",
             },
           ],
         },
@@ -1115,7 +1078,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'How You Can Build Something Similar',
+              text: '🔮 What’s Next?',
             },
           ],
         },
@@ -1125,7 +1088,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "If you want to build your own AI project, here's a step-by-step approach:",
+              text: "Future improvements I envision include:\n• Personalized learning recommendations\n• NLP-based doubt solving\n• Adaptive quizzes\n• Analytics-driven progress insights\n• Deployment as a web or mobile app",
             },
           ],
         },
@@ -1135,7 +1098,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. Identify a real problem you face daily',
+              text: "The journey doesn’t stop—it evolves.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🏁 Final Thoughts',
             },
           ],
         },
@@ -1145,7 +1118,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Research existing solutions and identify gaps',
+              text: "Your first AI project doesn’t have to be revolutionary. It just has to be finished, functional, and thoughtfully built.",
             },
           ],
         },
@@ -1155,7 +1128,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Start with a minimal viable product (MVP)',
+              text: "The Smart Study Assistant was my first step into applied AI—and it proved that with the right mindset, building intelligent systems is absolutely achievable.",
             },
           ],
         },
@@ -1165,7 +1138,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '4. Use existing AI APIs to avoid reinventing the wheel',
+              text: "If you’re starting your own AI journey: build something useful, learn from the struggle, and keep going.",
             },
           ],
         },
@@ -1175,22 +1148,12 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '5. Iterate based on your own usage and feedback',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: "The key is to start building something that solves your own problems. This ensures you'll actually use it, which means you'll keep improving it. And that's how you learn the most.",
+              text: "Thanks for reading. More projects, insights, and deep dives coming soon 🚀",
             },
           ],
         },
       ],
-      'ai-project'
+      'first-ai-project'
     ),
   },
   {
@@ -1210,7 +1173,27 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In the rapidly evolving landscape of artificial intelligence, a new skill has emerged as one of the most valuable: prompt engineering. While it might sound like technical jargon, prompt engineering is essentially the art and science of communicating effectively with AI systems. And in today's world, where AI assistants like ChatGPT, Claude, and others are becoming ubiquitous, mastering this skill can give you a significant advantage.",
+              text: "As AI assistants become more capable and widely adopted, a new skill has quietly emerged at the center of human–AI interaction: Prompt Engineering.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Unlike traditional programming, where logic is explicitly coded, modern AI systems—especially large language models—respond to instructions written in natural language. The quality of those instructions often determines the quality of the output.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This is where prompt engineering comes in.",
             },
           ],
         },
@@ -1220,7 +1203,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'What Is Prompt Engineering?',
+              text: '🧠 Understanding Prompt Engineering',
             },
           ],
         },
@@ -1230,7 +1213,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Prompt engineering is the practice of designing and optimizing the inputs (prompts) given to AI language models to achieve desired outputs. Think of it as learning to speak the language that AI systems understand best.',
+              text: "Prompt engineering is the practice of designing, structuring, and refining inputs (prompts) given to AI models in order to produce accurate, reliable, and useful outputs.",
             },
           ],
         },
@@ -1240,7 +1223,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Just as learning to code allows you to communicate with computers, learning prompt engineering allows you to communicate effectively with AI systems. The better your prompts, the more useful and accurate the AI responses will be.',
+              text: "In simple terms: A prompt is to an AI model what a specification is to a software system.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "A vague prompt leads to vague results. A well-crafted prompt can unlock surprisingly precise and intelligent behavior.",
             },
           ],
         },
@@ -1250,17 +1243,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Why Prompt Engineering Matters',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: '1. Better Results',
+              text: '🔍 Why Prompt Engineering Exists',
             },
           ],
         },
@@ -1270,7 +1253,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'A well-crafted prompt can mean the difference between getting a generic, unhelpful response and receiving a detailed, actionable answer. For example:',
+              text: "Large language models do not “understand” intent the way humans do. They predict responses based on patterns learned from data. Prompt engineering helps bridge the gap between human intent and model interpretation.",
             },
           ],
         },
@@ -1280,57 +1263,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Poor prompt: "Tell me about Python"',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Good prompt: "I\'m a beginner programmer who wants to learn Python for data analysis. Can you provide a 3-month learning roadmap with specific resources and projects to build?"',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: '2. Increased Productivity',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'With effective prompt engineering, you can automate tasks that would otherwise take hours. From writing emails to analyzing data to creating content, the right prompts can save you significant time.',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: '3. Competitive Advantage',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'As AI becomes more integrated into workplaces, those who can effectively use AI tools will have a significant advantage. Prompt engineering is becoming a core skill in many industries.',
+              text: "By providing clearer context, constraints, and examples, we guide the model toward better reasoning and more relevant outputs.",
             },
           ],
         },
@@ -1340,7 +1273,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Core Principles of Effective Prompting',
+              text: '🤖 Why Prompt Engineering Matters Today',
             },
           ],
         },
@@ -1350,7 +1283,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. Be Specific and Clear',
+              text: '1. AI Assistants Are Everywhere',
             },
           ],
         },
@@ -1360,17 +1293,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Vague prompts lead to vague answers. The more specific you are about what you want, the better the results.',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Example: Instead of "Write a blog post," try "Write a 500-word blog post about the benefits of remote work for software developers, targeting an audience of tech professionals."',
+              text: "From coding copilots and chatbots to research tools and customer support agents, AI assistants now influence real-world decisions. Poor prompts can lead to hallucinated answers, inconsistent behavior, and misleading outputs. Good prompt engineering improves reliability and trust.",
             },
           ],
         },
@@ -1380,7 +1303,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Provide Context',
+              text: '2. It Multiplies Model Capability',
             },
           ],
         },
@@ -1390,7 +1313,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Give the AI enough background information to understand your situation and provide relevant advice.',
+              text: "Prompt engineering doesn’t change the model—it changes how much of the model’s intelligence you can access.",
             },
           ],
         },
@@ -1400,7 +1323,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Example: "I\'m a junior developer with 2 years of experience in JavaScript. I want to transition to Python for machine learning. What should I focus on first?"',
+              text: "With the same AI system: A weak prompt gives a generic response. A strong prompt produces structured, domain-specific insight. This makes prompt engineering a high-leverage skill.",
             },
           ],
         },
@@ -1410,7 +1333,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Use Role-Playing',
+              text: '3. It Reduces the Need for Fine-Tuning',
             },
           ],
         },
@@ -1420,37 +1343,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Ask the AI to adopt a specific role or perspective to get more targeted responses.',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Example: "Act as a senior software architect and review this code for potential improvements and security issues."',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: '4. Iterate and Refine',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: 'Rarely will your first prompt be perfect. Learn to iterate based on the responses you get.',
+              text: "While fine-tuning models is powerful, it’s expensive and complex. In many cases, well-designed prompts can achieve comparable results without retraining the model. This is especially important for startups, individual developers, and rapid prototyping.",
             },
           ],
         },
@@ -1460,17 +1353,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Advanced Prompting Techniques',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: '1. Chain-of-Thought Prompting',
+              text: '🧱 Key Elements of an Effective Prompt',
             },
           ],
         },
@@ -1480,7 +1363,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Ask the AI to show its reasoning process step by step.',
+              text: "A strong prompt usually contains one or more of the following:",
             },
           ],
         },
@@ -1490,17 +1373,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Example: "Solve this math problem step by step, explaining your reasoning at each stage."',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: '2. Few-Shot Learning',
+              text: "🔹 Clear Role Definition: Assigning the AI a role improves focus. “Act as an experienced software architect…”",
             },
           ],
         },
@@ -1510,7 +1383,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Provide examples of the desired output format.',
+              text: "🔹 Context: Providing background reduces ambiguity. “This is for a beginner-level AI portfolio project…”",
             },
           ],
         },
@@ -1520,17 +1393,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Example: "Here are some examples of good email subject lines: [examples]. Now write a subject line for an email about [topic]."',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: '3. Temperature and Creativity Control',
+              text: "🔹 Constraints: Limits help guide output format and depth. “Explain in under 300 words using bullet points.”",
             },
           ],
         },
@@ -1540,7 +1403,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Understand how to control the creativity vs. consistency of AI responses.',
+              text: "🔹 Examples (Few-Shot Prompting): Showing examples helps models infer patterns. Input → Output pairs",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "🔹 Step-by-Step Reasoning: Encouraging structured thinking improves accuracy. “Break the solution into logical steps.”",
             },
           ],
         },
@@ -1550,7 +1423,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Common Prompt Engineering Mistakes',
+              text: '🧠 Prompt Engineering vs Traditional Programming',
             },
           ],
         },
@@ -1560,7 +1433,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. Being too vague or generic',
+              text: "Traditional Programming: Explicit logic, Deterministic output, Code syntax, Compiled & executed.",
             },
           ],
         },
@@ -1570,7 +1443,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '2. Not providing enough context',
+              text: "Prompt Engineering: Implicit guidance, Probabilistic output, Natural language, Interpreted by model.",
             },
           ],
         },
@@ -1580,27 +1453,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '3. Expecting the AI to read your mind',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '4. Not iterating on failed attempts',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '5. Ignoring the importance of testing and validation',
+              text: "Prompt engineering doesn’t replace programming—it complements it.",
             },
           ],
         },
@@ -1610,17 +1463,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Practical Applications',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: 'Content Creation',
+              text: '⚠️ Common Mistakes Beginners Make',
             },
           ],
         },
@@ -1630,7 +1473,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Writing blog posts and articles',
+              text: "• Writing overly vague prompts\n• Asking multiple unrelated questions at once\n• Ignoring output constraints\n• Expecting perfect results on the first try",
             },
           ],
         },
@@ -1640,97 +1483,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Creating marketing copy',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Generating social media content',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: 'Programming and Development',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Code review and debugging',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Documentation writing',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Learning new programming concepts',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'h3',
-          children: [
-            {
-              _type: 'span',
-              text: 'Business and Productivity',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Email drafting and communication',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Data analysis and insights',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '• Project planning and organization',
+              text: "Prompt engineering is iterative. Refinement is part of the process.",
             },
           ],
         },
@@ -1740,7 +1493,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Getting Started with Prompt Engineering',
+              text: '🌍 Real-World Applications',
             },
           ],
         },
@@ -1750,47 +1503,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '1. Start with simple, everyday tasks',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '2. Practice with different AI tools (ChatGPT, Claude, Bard)',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '3. Study successful prompts and understand why they work',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '4. Join communities and share your experiences',
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: '5. Keep a prompt library of your most effective prompts',
+              text: "Prompt engineering is already shaping AI tutoring systems, code generation tools, chatbots, virtual agents, research summarization, and content generation workflows. In many systems, the prompt is the product logic.",
             },
           ],
         },
@@ -1800,7 +1513,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'The Future of Prompt Engineering',
+              text: '🚀 Why Prompt Engineering Is a Core Skill for the Future',
             },
           ],
         },
@@ -1810,7 +1523,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "As AI systems become more sophisticated, prompt engineering will evolve as well. We're already seeing:",
+              text: "As AI models become more powerful, the bottleneck is shifting from computation to communication. Knowing how to talk to AI systems effectively will be as important as knowing how to code.",
             },
           ],
         },
@@ -1820,7 +1533,17 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• More intuitive AI interfaces',
+              text: "For AI engineers, prompt engineering enables faster prototyping, better system behavior, and more controllable AI outputs. It’s not a shortcut—it’s a new interface paradigm.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🏁 Final Thoughts',
             },
           ],
         },
@@ -1830,7 +1553,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Specialized prompt engineering tools',
+              text: "Prompt engineering represents a fundamental shift in how humans interact with intelligent systems. It transforms natural language into a powerful tool for controlling complex AI behavior.",
             },
           ],
         },
@@ -1840,7 +1563,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Integration with existing workflows',
+              text: "In the age of AI assistants, the question is no longer “Can the model do this?” but rather “Can I ask the right way?”",
             },
           ],
         },
@@ -1850,7 +1573,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: '• Automated prompt optimization',
+              text: "Mastering that skill is what makes prompt engineering matter.",
             },
           ],
         },
@@ -1860,17 +1583,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The key is to start learning now, as this skill will only become more valuable over time. Whether you're a developer, writer, business professional, or student, understanding how to effectively communicate with AI systems will be a crucial skill in the coming years.",
-            },
-          ],
-        },
-        {
-          _type: 'block',
-          style: 'normal',
-          children: [
-            {
-              _type: 'span',
-              text: "Remember, prompt engineering is not just about getting better responses from AI—it's about learning to think more clearly and communicate more effectively. These are skills that will serve you well in any field.",
+              text: "Thanks for reading. More insights on AI, engineering, and intelligent systems coming soon 🚀",
             },
           ],
         },
@@ -1895,7 +1608,457 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Retrieval-Augmented Generation (RAG) has become essential for building intelligent chatbots. I recently deployed a production-ready RAG system using LangGraph and Pinecone. Here is everything I learned.',
+              text: "Large Language Models (LLMs) are powerful—but on their own, they are incomplete. They hallucinate, lack domain-specific knowledge, and operate without access to private or up-to-date data.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "To solve this, modern AI systems increasingly rely on Retrieval-Augmented Generation (RAG).",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "In this post, I’ll walk through how I designed and built a production-ready RAG chatbot using LangGraph for orchestration and Pinecone for vector search—focusing not just on what I built, but why each architectural decision matters.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧠 Why RAG Is Essential for Real-World LLM Systems',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "LLMs generate responses based on training data—but: They cannot access proprietary documents, they struggle with factual consistency, and they fail silently when knowledge is missing.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "RAG addresses this by retrieving relevant context from external knowledge sources and injecting that context into the generation step. This transforms LLMs from language generators into knowledge-grounded systems.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧱 System Architecture Overview',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "The chatbot is designed as a modular, production-grade pipeline, not a monolithic script.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: 'Core Components',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• Document ingestion & embedding pipeline\\n• Vector database (Pinecone)\\n• LLM reasoning and response generation\\n• Stateful orchestration with LangGraph\\n• Failure handling and control flow",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Each component can be scaled, tested, and improved independently.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🔄 Why LangGraph?',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Traditional chain-based pipelines break down in complex workflows. LangGraph enables: Stateful execution, conditional branching, looping and retries, and human-in-the-loop flows.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "In other words, it allows LLM systems to behave like real applications, not linear demos.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "LangGraph was used to: Control query → retrieve → generate → validate flow, handle fallback logic when retrieval fails, and maintain conversational state.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '📚 Knowledge Storage with Pinecone',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Pinecone serves as the system’s long-term memory. Why Pinecone? Low-latency vector similarity search, horizontal scalability, and production-grade reliability.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: 'Data Flow',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• Documents are chunked\\n• Each chunk is embedded\\n• Embeddings are stored with metadata\\n• User queries retrieve top-k relevant chunks",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This ensures responses are grounded in verifiable source material.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🤖 RAG Pipeline in Action',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "The request lifecycle looks like this:",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "1. User submits a query\\n2. Query is embedded\\n3. Pinecone retrieves relevant context\\n4. Context is injected into the prompt\\n5. LLM generates a grounded response\\n6. Output is validated and returned",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "If retrieval confidence is low, the system triggers fallback logic instead of hallucinating.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🛡️ Production Considerations',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Building a demo is easy. Building a system is not. Key production concerns addressed:",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• Prompt size management\\n• Latency optimization\\n• Error handling and retries\\n• Logging and observability\\n• Deterministic system behavior",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "These considerations separate prototypes from deployable systems.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🚧 Challenges and Trade-Offs',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Chunk Size vs Context Quality',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Smaller chunks improve recall but reduce coherence. Finding the balance required experimentation.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Retrieval Quality',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Embedding choice and metadata filtering had a significant impact on output quality.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 System Complexity',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "LangGraph adds structure—but also requires disciplined design.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Each trade-off reinforced the importance of engineering judgment.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🌍 Why This Project Matters',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This project reflects how modern AI systems are actually built in production: LLMs as components, not monoliths; external knowledge as first-class citizens; control flow as critical infrastructure.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "It also demonstrates skills beyond model usage: System design, tool orchestration, and reliability thinking.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🔮 What’s Next?',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Planned improvements include: Hybrid search (keyword + vector), feedback-driven retrieval tuning, streaming responses, and multi-agent extensions.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This system is a foundation, not a finish line.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🏁 Final Thoughts',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Retrieval-Augmented Generation is not a trend—it’s a necessity. As LLMs move into production environments, engineering discipline matters more than model size. Tools like LangGraph and Pinecone make it possible to build AI systems that are not only powerful, but reliable, explainable, and scalable.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This project was a key step in my journey toward building real-world AI infrastructure—and many more are ahead.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Thanks for reading. More deep dives into AI engineering, LLM systems, and production design coming soon 🚀",
             },
           ],
         },
@@ -1920,7 +2083,417 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Fine-tuning LLMs with LoRA makes it possible for individuals and small teams to create specialized models without massive budgets. Here is my practical guide.',
+              text: "Large Language Models (LLMs) are incredibly capable out of the box—but in many real-world applications, general intelligence is not enough. We often need models that speak a specific domain language, follow consistent formats, or behave according to strict constraints.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "That’s where fine-tuning comes in.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "In this post, I’ll walk through parameter-efficient fine-tuning using LoRA (Low-Rank Adaptation)—why it matters, how it works, and how I approached it in practice.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧠 Why Fine-Tune an LLM?',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Prompt engineering can take you far, but it has limits. Fine-tuning becomes valuable when: Prompts grow too long or fragile, behavior must be consistent across sessions, domain knowledge is narrow but critical, and latency and cost matter.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Instead of repeatedly instructing a model, fine-tuning helps it internalize patterns.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '⚙️ The Problem with Full Fine-Tuning',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Traditional fine-tuning updates all model parameters, which leads to: Massive GPU memory requirements, long training times, risk of catastrophic forgetting, and difficulty maintaining multiple task variants.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "For most teams, full fine-tuning is simply impractical.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧩 Enter LoRA (Low-Rank Adaptation)',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "LoRA offers a smarter alternative. Instead of updating the full weight matrices, LoRA freezes the base model, injects small, trainable low-rank matrices, and updates only these adapters during training.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This dramatically reduces trainable parameters, memory usage, and compute cost while preserving most of the model’s original knowledge.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🏗️ How LoRA Works (Conceptually)',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "At a high level: Pretrained weights remain frozen, low-rank matrices approximate weight updates, only adapter parameters are trained, and adapters can be merged or swapped.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This makes LoRA ideal for domain adaptation, instruction tuning, and multi-task experimentation.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🛠️ Practical Fine-Tuning Setup',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Model Selection',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Open-weight LLMs suitable for fine-tuning. Balance between size, performance, and hardware limits.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Dataset Preparation',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "High-quality, task-specific examples. Clear input–output structure. Noise reduction over dataset size. Data quality mattered far more than quantity.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Training Configuration',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Key considerations included: Rank (r) selection, target layers (attention projections), learning rate stability, and gradient accumulation. Each choice involved trade-offs between speed, memory, and performance.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '📈 Evaluation & Observations',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "After fine-tuning: The model followed instructions more reliably, output formats became consistent, and domain-specific responses improved significantly.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Interestingly, LoRA preserved general reasoning ability while sharpening task focus.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🚧 Challenges I Encountered',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "🔸 Overfitting on Small Datasets: LoRA makes training easy—but overfitting easier too.\\n🔸 Hyperparameter Sensitivity: Small changes in rank or learning rate had noticeable effects.\\n🔸 Evaluation Complexity: Measuring improvement required qualitative and task-specific metrics.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "These challenges reinforced the importance of controlled experimentation.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧠 Fine-Tuning vs Prompt Engineering',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Prompt Engineering: Fast iteration, No training cost, Fragile prompts, Runtime overhead.\\nLoRA Fine-Tuning: Stable behavior, Training required, Robust outputs, Lower inference cost.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "In practice, the two work best together.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🌍 When LoRA Is the Right Choice',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "LoRA shines when: You need repeatable, structured outputs, the task is narrow but critical, hardware resources are limited, and multiple task variants are required.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "It enables customization without sacrificing scalability.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🔮 What’s Next?',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Future directions include: Multi-adapter routing, LoRA + RAG hybrid systems, adapter-based continual learning, and quantized LoRA for edge deployment.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "The ecosystem is evolving fast—and LoRA is a core building block.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🏁 Final Thoughts',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Fine-tuning is not about making models “smarter.” It’s about making them more useful.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "LoRA lowers the barrier to entry, allowing engineers to adapt powerful LLMs efficiently and responsibly. For anyone building production AI systems, understanding parameter-efficient fine-tuning is no longer optional—it’s essential.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This project marked an important step in my journey toward practical LLM engineering.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Thanks for reading. More hands-on AI engineering insights coming soon 🚀",
             },
           ],
         },
@@ -1945,7 +2518,417 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: 'Deploying AI to production is where most projects stumble. After deploying several models, I have learned that infrastructure matters as much as the model itself.',
+              text: "Training an AI model is only half the job. In real-world systems, the true challenge begins after the model achieves good metrics.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Deployment is where assumptions break, edge cases appear, and engineering discipline matters most. In this post, I’ll share the practical lessons I learned while deploying AI models to production, focusing on what actually makes systems reliable, scalable, and maintainable.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧠 From Notebook to Production System',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "In development, models live in notebooks: Clean datasets, controlled environments, and one-off execution. Production environments are different: Unpredictable inputs, latency constraints, resource limits, and continuous usage.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Bridging this gap requires rethinking the model as part of a system, not a standalone artifact.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🧱 Designing for Deployment Early',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "One of the biggest mistakes beginners make is treating deployment as an afterthought.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Key design decisions I learned to make early: Input/output schemas, versioned models, stateless inference logic, and clear separation between model and application code.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "These choices reduced friction later and enabled smoother iteration.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🛠️ Deployment Architecture Overview',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "A typical production setup involved:",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• A trained and serialized model\\n• An inference service (API-based)\\n• Input validation and preprocessing\\n• Logging and monitoring layers\\n• CI/CD hooks for updates",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This architecture ensured the model could be served, updated, and observed reliably.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '⚙️ Performance & Optimization Lessons',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Latency Matters More Than Accuracy',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "A slightly less accurate model that responds faster often wins in production.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Batch vs Real-Time Inference',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Choosing the right inference mode had major cost and performance implications.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h3',
+          children: [
+            {
+              _type: 'span',
+              text: '🔹 Resource Constraints',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "CPU, memory, and concurrency limits shaped model selection and optimization.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🛡️ Reliability & Monitoring',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "A deployed model without monitoring is a black box. Critical signals I learned to track: Request latency, error rates, input distribution drift, and output anomalies.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Observability turned silent failures into actionable insights.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🚧 Common Failure Modes',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Some of the most frequent issues included: Unexpected input formats, dependency mismatches, model version confusion, and silent performance degradation.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Each failure reinforced the need for defensive engineering.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🔄 Model Updates & Versioning',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Production models evolve. Key practices: Explicit model versioning, backward-compatible APIs, rollback strategies, and canary deployments.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "These practices minimized risk while enabling continuous improvement.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🌍 AI Deployment Is a Team Sport',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Successful deployment requires collaboration across: Data science, Backend engineering, DevOps, and Product teams. Clear interfaces and shared responsibility made the system sustainable.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '💡 Lessons That Changed My Perspective',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "• Models are products, not experiments\\n• Simplicity beats complexity in production\\n• Monitoring is not optional\\n• Deployment skill separates engineers from researchers",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "These lessons reshaped how I approach every AI project.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🔮 What’s Next?',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Future improvements I plan to explore: Automated retraining pipelines, drift-aware retraining triggers, scalable inference infrastructure, and edge and on-device deployment.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Production is not a destination—it’s a continuous process.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'h2',
+          children: [
+            {
+              _type: 'span',
+              text: '🏁 Final Thoughts',
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Deploying AI models to production is where theory meets reality. It demands not just ML knowledge, but strong software engineering, system design, and operational thinking.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "For anyone serious about building real-world AI systems, mastering deployment is not optional—it’s essential.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "This experience marked a major step in my growth as an AI Engineer.",
+            },
+          ],
+        },
+        {
+          _type: 'block',
+          style: 'normal',
+          children: [
+            {
+              _type: 'span',
+              text: "Thanks for reading. More real-world AI engineering insights coming soon 🚀",
             },
           ],
         },
