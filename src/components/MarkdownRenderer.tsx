@@ -15,8 +15,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   return (
     <ReactMarkdown
       components={{
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-        code({ node, inline, className, children, ...props }: any) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        code({ inline, className, children, ...props }: any) {
           const match = /language-(\w+)/.exec(className || '');
           const lang = match ? match[1] : '';
 

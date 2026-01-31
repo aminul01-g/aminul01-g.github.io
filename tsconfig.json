@@ -18,7 +18,8 @@
       "node",
       "react",
       "react-dom",
-      "jest"
+      "jest",
+      "react-syntax-highlighter"
     ],
     "typeRoots": [
       "./node_modules/@types",
