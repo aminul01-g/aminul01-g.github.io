@@ -93,7 +93,7 @@ export default function Post(): React.ReactElement {
       <div className="max-w-7xl mx-auto my-12 px-4 lg:grid lg:grid-cols-[1fr_300px] gap-12 items-start">
         {/* Main Content Column */}
         <div className="space-y-12 min-w-0">
-          <article className="prose dark:prose-invert max-w-none bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl border border-primary/10 dark:border-gray-700 p-8">
+          <article className="prose prose-invert max-w-none GlassCard rounded-2xl p-8">
             <h1 className="mb-2">{post.title}</h1>
 
             {/* Post Metadata */}
@@ -107,7 +107,7 @@ export default function Post(): React.ReactElement {
                 {postTags.map((tag: string, index: number) => (
                   <span
                     key={`${tag}-${index}`}
-                    className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded"
+                    className="bg-white/[0.06] text-[#8b5cf6] text-xs px-2 py-1 rounded"
                   >
                     {tag}
                   </span>
@@ -236,7 +236,7 @@ export default function Post(): React.ReactElement {
 
         {/* Sidebar Column */}
         <aside className="hidden lg:block sticky top-24 self-start space-y-8">
-          <div className="bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl border border-primary/10 dark:border-gray-700 p-6 backdrop-blur-md">
+          <div className="GlassCard rounded-2xl p-6">
             <h4 className="font-bold text-lg mb-4 text-primary border-b border-primary/10 pb-2">
               Table of Contents
             </h4>

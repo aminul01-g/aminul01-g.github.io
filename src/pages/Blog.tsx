@@ -107,27 +107,16 @@ export default function Blog(): React.ReactElement {
       </Helmet>
       <motion.section
         id="blog"
-        className="relative max-w-5xl mx-auto p-8 bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp transition-all duration-300 mb-16 overflow-hidden"
+        className="relative max-w-5xl mx-auto p-8 GlassCard rounded-3xl animate-fadeInUp transition-all duration-300 mb-16 overflow-hidden mt-8"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7 }}
       >
-        {/* Animated Gradient Background */}
-        <motion.div
-          className="absolute inset-0 z-0 pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          aria-hidden
-        >
-          <div className="absolute -top-32 -left-32 w-96 h-96 themed-gradient-1 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 right-0 w-80 h-80 themed-gradient-2 rounded-full blur-2xl animate-pulse" />
-        </motion.div>
-        <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 relative z-10">
+        <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] relative z-10">
           Blog
         </h2>
-        <p className="text-center text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto relative z-10">
+        <p className="text-center text-white/50 mb-8 max-w-2xl mx-auto relative z-10">
           Insights, tutorials, and stories from my journey in tech, AI, and creative coding. Explore
           my thoughts, discoveries, and lessons learned along the way.
         </p>
@@ -139,7 +128,7 @@ export default function Blog(): React.ReactElement {
         />
         <div className="grid gap-8 md:grid-cols-2 relative z-10">
           {filteredPosts.length === 0 ? (
-            <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-12 flex flex-col items-center">
+            <div className="col-span-full text-center text-white/40 py-12 flex flex-col items-center">
               <svg
                 className="w-16 h-16 text-gray-400 mb-4 opacity-50"
                 fill="none"
@@ -162,7 +151,7 @@ export default function Blog(): React.ReactElement {
             filteredPosts.map((post: BlogPost, i: number) => (
               <BlogCardTiltWrapper key={post.slug}>
                 <motion.div
-                  className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.03] backdrop-blur-md group focus-within:ring-2 focus-within:ring-primary"
+                  className="GlassCard rounded-2xl p-6 flex flex-col items-start transition-all duration-300 hover:scale-[1.03] group focus-within:ring-2 focus-within:ring-purple-500/40"
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.12, delay: i * 0.06 }}
@@ -194,7 +183,7 @@ export default function Blog(): React.ReactElement {
                         {post.title}
                       </h3>
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-gray-500 mb-2 dark:text-gray-400">
+                    <div className="flex items-center gap-3 text-sm text-white/40 mb-2">
                       <span>{post.date}</span>
                       <span>•</span>
                       <span>{calculateReadingTime(post.body)}</span>
@@ -203,13 +192,13 @@ export default function Blog(): React.ReactElement {
                       {(post.tags || []).map((tag) => (
                         <span
                           key={tag}
-                          className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded"
+                          className="bg-white/[0.06] text-[#8b5cf6] text-xs px-2 py-1 rounded"
                         >
                           #{tag}
                         </span>
                       ))}
                     </div>
-                    <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
+                    <p className="text-white/60">{post.summary}</p>
                   </Link>
                 </motion.div>
               </BlogCardTiltWrapper>

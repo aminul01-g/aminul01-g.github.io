@@ -99,7 +99,7 @@ export default function ContactForm(): React.ReactElement {
 
   return (
     <motion.form
-      className="glass-card rounded-2xl p-8 space-y-6 backdrop-blur-enhanced border border-white/20 dark:border-gray-700/30 shadow-xl"
+      className="GlassCard rounded-2xl p-8 space-y-6"
       onSubmit={handleSubmit(onSubmit)}
       autoComplete="off"
       noValidate
@@ -110,10 +110,10 @@ export default function ContactForm(): React.ReactElement {
     >
       {/* Header */}
       <motion.div variants={fieldVariants}>
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
+        <h2 className="text-2xl font-semibold text-white mb-2">
           Send me a message
         </h2>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-white/50">
           I&apos;d love to hear from you. Send me a message and I&apos;ll respond as soon as
           possible.
         </p>
@@ -132,9 +132,9 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Name Field */}
       <motion.div className="space-y-2" variants={fieldVariants}>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-white">
+        <label htmlFor="name" className="block text-sm font-medium text-white/80">
           Name{' '}
-          <span className="text-red-500" aria-label="required">
+          <span className="text-red-400" aria-label="required">
             *
           </span>
         </label>
@@ -142,11 +142,11 @@ export default function ContactForm(): React.ReactElement {
           id="name"
           type="text"
           placeholder="Your full name"
-          className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 ${
+          className={`w-full p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-white/40 ${
             errors.name
-              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20'
-              : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
-          } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
+              ? 'border-red-400/50 bg-red-900/10'
+              : 'border-white/12 bg-white/[0.03]'
+          } text-white placeholder-white/30`}
           {...register('name', {
             required: 'Name is required.',
             minLength: { value: 2, message: 'Name should be at least 2 characters.' },
@@ -185,9 +185,9 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Email Field */}
       <motion.div className="space-y-2" variants={fieldVariants}>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-white">
+        <label htmlFor="email" className="block text-sm font-medium text-white/80">
           Email{' '}
-          <span className="text-red-500" aria-label="required">
+          <span className="text-red-400" aria-label="required">
             *
           </span>
         </label>
@@ -195,11 +195,11 @@ export default function ContactForm(): React.ReactElement {
           id="email"
           type="email"
           placeholder="your.email@example.com"
-          className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 ${
+          className={`w-full p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-white/40 ${
             errors.email
-              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20'
-              : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
-          } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
+              ? 'border-red-400/50 bg-red-900/10'
+              : 'border-white/12 bg-white/[0.03]'
+          } text-white placeholder-white/30`}
           {...register('email', {
             required: 'Email is required.',
             pattern: {
@@ -242,10 +242,10 @@ export default function ContactForm(): React.ReactElement {
       <motion.div className="space-y-2" variants={fieldVariants}>
         <label
           htmlFor="message"
-          className="block text-sm font-medium text-gray-800 dark:text-white"
+          className="block text-sm font-medium text-white/80"
         >
           Message{' '}
-          <span className="text-red-500" aria-label="required">
+          <span className="text-red-400" aria-label="required">
             *
           </span>
         </label>
@@ -253,11 +253,11 @@ export default function ContactForm(): React.ReactElement {
           id="message"
           rows={5}
           placeholder="Tell me about your project, ideas, or just say hello..."
-          className={`w-full p-4 rounded-xl glass-input backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none ${
+          className={`w-full p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-white/40 resize-none ${
             errors.message
-              ? 'border-red-400 bg-red-50/50 dark:bg-red-900/20'
-              : 'border-white/20 dark:border-gray-600/30 bg-white/50 dark:bg-gray-800/50'
-          } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
+              ? 'border-red-400/50 bg-red-900/10'
+              : 'border-white/12 bg-white/[0.03]'
+          } text-white placeholder-white/30`}
           {...register('message', {
             required: 'Message is required.',
             minLength: { value: 10, message: 'Message should be at least 10 characters.' },
@@ -390,7 +390,7 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Additional Info */}
       <motion.div className="text-center pt-4 border-t border-white/10" variants={fieldVariants}>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-white/30">
           Your information is secure and will never be shared with third parties.
         </p>
       </motion.div>

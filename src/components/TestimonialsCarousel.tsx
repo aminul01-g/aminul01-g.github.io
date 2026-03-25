@@ -124,7 +124,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
           {/* Navigation Buttons */}
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 text-gray-800 dark:text-white p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 glass-card hover:bg-white hover:bg-white/10 text-gray-800 dark:text-white p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
             aria-label="Previous testimonial"
             aria-controls="testimonials-carousel"
           >
@@ -141,7 +141,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
 
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 text-gray-800 dark:text-white p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 glass-card hover:bg-white hover:bg-white/10 text-gray-800 dark:text-white p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
             aria-label="Next testimonial"
             aria-controls="testimonials-carousel"
           >
@@ -165,7 +165,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
-                className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 p-8 md:p-12"
+                className="glass-card rounded-2xl glass-card border border-primary/10 dark:border-gray-700 p-8 md:p-12"
                 id="testimonials-carousel"
                 role="group"
                 aria-roledescription="slide"

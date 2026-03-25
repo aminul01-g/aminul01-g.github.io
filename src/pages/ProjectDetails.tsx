@@ -12,7 +12,7 @@ export default function ProjectDetails(): React.ReactElement {
 
   if (!project) {
     return (
-      <div className="max-w-2xl mx-auto my-16 p-8 bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-lg text-center">
+      <div className="max-w-2xl mx-auto my-16 p-8 GlassCard rounded-2xl text-center">
         <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
         <p className="mb-6">Sorry, we couldn&apos;t find that project.</p>
         <Link to="/projects" className="text-primary underline">
@@ -73,13 +73,13 @@ export default function ProjectDetails(): React.ReactElement {
           })}
         </script>
       </Helmet>
-      <section className="max-w-3xl mx-auto my-12 p-8 bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl border border-primary/10 dark:border-gray-700">
+      <section className="max-w-3xl mx-auto my-12 p-8 GlassCard rounded-2xl">
         <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 text-xs px-2 py-1 rounded"
+              className="bg-white/[0.06] text-[#8b5cf6] text-xs px-2 py-1 rounded"
             >
               #{tag}
             </span>
@@ -121,7 +121,7 @@ export default function ProjectDetails(): React.ReactElement {
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-100 dark:border-gray-700 backdrop-blur-sm hover:transform hover:-translate-y-1 transition duration-300"
+                className="GlassCard p-6 rounded-xl hover:transform hover:-translate-y-1 transition duration-300"
               >
                 <div className={`text-3xl mb-3 ${item.color}`}>{item.icon}</div>
                 <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">
@@ -152,11 +152,11 @@ export default function ProjectDetails(): React.ReactElement {
 
           {/* Fallback if no specific details are available */}
           {(!project.highlights || project.highlights.length === 0) && (
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
-              <h3 className="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">
+            <div className="GlassCard p-6 rounded-xl">
+              <h3 className="text-lg font-semibold text-[#8b5cf6] mb-2">
                 About this Project
               </h3>
-              <p className="text-gray-700 dark:text-gray-300">
+              <p className="text-white/60">
                 This project demonstrates key concepts in{' '}
                 {project.tags[0] || 'software development'}. Check out the source code on GitHub to
                 explore the implementation details, data pipelines, and model architectures used.
@@ -170,13 +170,13 @@ export default function ProjectDetails(): React.ReactElement {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-600 transition"
+            className="bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300"
           >
             View on GitHub
           </a>
           <Link
             to="/projects"
-            className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+            className="GlassCard px-6 py-3 rounded-2xl font-semibold text-white/80 hover:text-white hover:border-white/25 transition-all duration-300"
           >
             Back to Projects
           </Link>

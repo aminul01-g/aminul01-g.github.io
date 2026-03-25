@@ -54,6 +54,15 @@ const socialLinks = [
       </svg>
     ),
   },
+  {
+    href: profile.huggingface,
+    label: 'Hugging Face',
+    icon: (
+      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 6.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm3 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM8.5 13h7a.5.5 0 0 1 .5.5c0 2.21-1.79 4-4 4s-4-1.79-4-4a.5.5 0 0 1 .5-.5z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Hero(): React.ReactElement {
@@ -61,9 +70,6 @@ export default function Hero(): React.ReactElement {
   const { scrollYProgress } = useScroll();
 
   // Enhanced parallax transforms
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const orb1Y = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const orb2Y = useTransform(scrollYProgress, [0, 1], [0, 50]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   // Animation variants
@@ -92,39 +98,9 @@ export default function Hero(): React.ReactElement {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Enhanced Background with Gradient Mesh */}
-      <motion.div
-        className="absolute inset-0 gradient-mesh opacity-20"
-        style={{ y: backgroundY }}
-      />
-
-      {/* Floating Orbs */}
-      <motion.div
-        className="absolute top-20 left-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
-        style={{ y: orb1Y }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
-        style={{ y: orb2Y }}
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.4, 0.2, 0.4],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      {/* Local background orbs and gradient-mesh removed. 
+          Home page now relies entirely on the global FixedBackground in App.tsx 
+          for a unified Liquid Glass aesthetic across all routes. */}
 
       {/* Particle Background */}
       <ParticleBackground />

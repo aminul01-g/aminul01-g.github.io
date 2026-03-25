@@ -1,4 +1,4 @@
-import { forwardRef, Fragment, isValidElement } from 'react';
+import { forwardRef, Fragment, isValidElement, useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -27,29 +27,11 @@ function filterValidChildren(children: React.ReactNode): React.ReactNode {
   return null;
 }
 
-// List of props to omit for Framer Motion
 const OMIT_PROPS = [
-  'form',
-  'formAction',
-  'formEncType',
-  'formMethod',
-  'formNoValidate',
-  'formTarget',
-  'onDrag',
-  'onDragEnd',
-  'onDragEnter',
-  'onDragExit',
-  'onDragLeave',
-  'onDragOver',
-  'onDragStart',
-  'onDrop',
-  'onDragCapture',
-  'onDragEndCapture',
-  'onDragEnterCapture',
-  'onDragExitCapture',
-  'onDragLeaveCapture',
-  'onDragOverCapture',
-  'onDragStartCapture',
+  'form', 'formAction', 'formEncType', 'formMethod', 'formNoValidate', 'formTarget',
+  'onDrag', 'onDragEnd', 'onDragEnter', 'onDragExit', 'onDragLeave', 'onDragOver',
+  'onDragStart', 'onDrop', 'onDragCapture', 'onDragEndCapture', 'onDragEnterCapture',
+  'onDragExitCapture', 'onDragLeaveCapture', 'onDragOverCapture', 'onDragStartCapture',
   'onDropCapture',
 ];
 
@@ -79,56 +61,68 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const baseClasses =
-      'btn relative inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none overflow-hidden';
+    const [ripples, setRipples] = useState<{ x: number; y: number; id: number }[]>([]);
 
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const id = Date.now();
+      setRipples((prev) => [...prev, { x, y, id }]);
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== id));
+      }, 600);
+      if (props.onClick) props.onClick(e);
+    };
+
+    const baseClasses =
+      'relative inline-flex items-center justify-center font-semibold rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden cursor-pointer';
+
+    /* ===== REFRACTIVE GLASS BUTTON VARIANTS ===== */
     const variantClasses = {
       primary:
-        'bg-gradient-to-r from-primary to-indigo-500 hover:from-primary-600 hover:to-indigo-600 text-white shadow-medium hover:shadow-hard',
+        'bg-gradient-to-r from-[#4F46E5] via-[#7C3AED] to-[#8B5CF6] text-white border border-white/20 shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:shadow-[0_0_40px_rgba(124,58,237,0.6),0_0_80px_rgba(124,58,237,0.2)] hover:border-white/40',
       secondary:
-        'bg-gradient-to-r from-secondary to-pink-500 hover:from-secondary-600 hover:to-pink-600 text-white shadow-medium hover:shadow-hard',
+        'bg-gradient-to-r from-[#EC4899] via-[#DB2777] to-[#BE185D] text-white border border-white/20 shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:shadow-[0_0_40px_rgba(236,72,153,0.5)]',
       outline:
-        'border-2 border-primary/50 text-primary hover:bg-primary hover:text-white hover:border-primary shadow-soft hover:shadow-medium backdrop-blur-sm',
+        'bg-transparent border border-white/20 text-white/90 backdrop-blur-xl hover:bg-white/[0.06] hover:border-white/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]',
       ghost:
-        'text-primary hover:bg-primary/10 hover:backdrop-blur-sm shadow-none hover:shadow-soft',
+        'bg-transparent text-white/80 hover:bg-white/[0.06] hover:text-white border border-transparent hover:border-white/10',
       glass:
-        'glass-card text-gray-700 dark:text-gray-200 hover:text-primary shadow-glass hover:shadow-glass border-gradient',
+        'bg-white/[0.03] backdrop-blur-2xl border border-white/12 text-white/90 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.06] hover:border-white/25 hover:shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(139,92,246,0.1)]',
     };
 
     const sizeClasses = {
-      sm: 'px-4 py-2 text-sm min-h-[36px] min-w-[36px] rounded-lg',
-      md: 'px-6 py-3 text-base min-h-[44px] min-w-[44px] rounded-xl',
-      lg: 'px-8 py-4 text-lg min-h-[52px] min-w-[52px] rounded-2xl',
+      sm: 'px-4 py-2 text-sm min-h-[36px]',
+      md: 'px-6 py-3 text-base min-h-[44px]',
+      lg: 'px-8 py-4 text-lg min-h-[52px]',
     };
 
-    const glowClass = glow ? 'glow-primary' : '';
     const isDisabled = disabled || loading;
     const safeProps = filterProps(props);
 
     return (
       <motion.button
         ref={ref}
-        className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${glowClass} ${className}`}
+        className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${glow ? 'animate-pulse' : ''} ${className}`}
         disabled={isDisabled}
-        whileHover={!isDisabled ? { scale: 1.02, y: -2, transition: { duration: 0.2 } } : {}}
-        whileTap={!isDisabled ? { scale: 0.98, y: 0, transition: { duration: 0.1 } } : {}}
+        whileHover={!isDisabled ? { scale: 1.03, y: -3, transition: { type: 'spring', stiffness: 400, damping: 15 } } : {}}
+        whileTap={!isDisabled ? { scale: 0.97, y: 0, transition: { duration: 0.1 } } : {}}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.3,
-          ease: 'easeInOut',
-        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
         aria-disabled={isDisabled}
         aria-busy={loading}
         {...safeProps}
+        onClick={handleClick}
       >
-        {/* Shimmer effect */}
+        {/* Refractive shimmer sweep */}
         {!isDisabled && (
           <motion.div
-            className="absolute inset-0 -top-1 -bottom-1 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-            initial={{ x: '-100%' }}
-            whileHover={{ x: '100%' }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 pointer-events-none"
+            initial={{ x: '-200%' }}
+            whileHover={{ x: '200%' }}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
           />
         )}
 
@@ -142,36 +136,31 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
 
         {!loading && icon && iconPosition === 'left' && (
-          <motion.span
-            className="mr-2"
-            aria-hidden="true"
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            {icon}
-          </motion.span>
+          <span className="mr-2" aria-hidden="true">{icon}</span>
         )}
 
-        <motion.span
-          className={loading ? 'sr-only' : 'relative z-10'}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
+        <span className={loading ? 'sr-only' : 'relative z-10'}>
           {filterValidChildren(children)}
-        </motion.span>
+        </span>
+
+        {/* Liquid Ripples */}
+        {ripples.map((ripple) => (
+          <span
+            key={ripple.id}
+            className="absolute rounded-full pointer-events-none bg-white/30"
+            style={{
+              left: ripple.x,
+              top: ripple.y,
+              width: 20,
+              height: 20,
+              transform: 'translate(-50%, -50%)',
+              animation: 'ripple 0.6s linear',
+            }}
+          />
+        ))}
 
         {!loading && icon && iconPosition === 'right' && (
-          <motion.span
-            className="ml-2"
-            aria-hidden="true"
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            {icon}
-          </motion.span>
+          <span className="ml-2" aria-hidden="true">{icon}</span>
         )}
       </motion.button>
     );

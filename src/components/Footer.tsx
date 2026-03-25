@@ -29,6 +29,15 @@ const socialLinks = [
       </svg>
     ),
   },
+  {
+    href: profile.huggingface,
+    label: 'Hugging Face',
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 6.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm3 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM8.5 13h7a.5.5 0 0 1 .5.5c0 2.21-1.79 4-4 4s-4-1.79-4-4a.5.5 0 0 1 .5-.5z" />
+      </svg>
+    ),
+  },
 ];
 
 const quickLinks = [
@@ -65,7 +74,7 @@ export default function Footer(): React.ReactElement {
             <h3 className="text-2xl font-display font-bold text-gradient mb-4">
               Md Aminul Islam Bhuiyan Amin
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+            <p className="text-white/50 mb-4 leading-relaxed">
               AI Engineering Student passionate about building intelligent systems that shape the
               future.
             </p>
@@ -77,7 +86,7 @@ export default function Footer(): React.ReactElement {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="glass-card p-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-300 hover:shadow-glow"
+                  className="glass-card p-3 rounded-xl text-white/60 hover:text-[#8b5cf6] transition-all duration-300 hover:shadow-glow"
                   whileHover={{
                     scale: 1.1,
                     y: -2,
@@ -101,7 +110,7 @@ export default function Footer(): React.ReactElement {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+            <h4 className="text-lg font-semibold text-white mb-4">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -114,7 +123,7 @@ export default function Footer(): React.ReactElement {
                 >
                   <a
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 hover:underline"
+                    className="text-white/50 hover:text-[#8b5cf6] transition-colors duration-300 hover:underline"
                   >
                     {link.label}
                   </a>
@@ -130,10 +139,10 @@ export default function Footer(): React.ReactElement {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+            <h4 className="text-lg font-semibold text-white mb-4">
               Get In Touch
             </h4>
-            <div className="space-y-2 text-gray-600 dark:text-gray-300">
+            <div className="space-y-2 text-white/50">
               <p className="flex items-center justify-center md:justify-end gap-2">
                 <svg
                   className="w-4 h-4"
@@ -150,7 +159,7 @@ export default function Footer(): React.ReactElement {
                 </svg>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="hover:text-primary transition-colors duration-300"
+                  className="hover:text-[#8b5cf6] transition-colors duration-300"
                 >
                   {profile.email}
                 </a>
@@ -189,7 +198,7 @@ export default function Footer(): React.ReactElement {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <motion.p
-              className="text-sm text-gray-500 dark:text-gray-400"
+              className="text-sm text-white/40"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -205,14 +214,14 @@ export default function Footer(): React.ReactElement {
             >
               <a
                 href="/accessibility-statement.html"
-                className="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors duration-300"
+                className="text-white/40 hover:text-[#8b5cf6] transition-colors duration-300"
               >
                 Accessibility Statement
               </a>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
+              <span className="text-white/20">•</span>
               <a
                 href="/privacy-policy.html"
-                className="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors duration-300"
+                className="text-white/40 hover:text-[#8b5cf6] transition-colors duration-300"
               >
                 Privacy Policy
               </a>
@@ -222,7 +231,7 @@ export default function Footer(): React.ReactElement {
 
         {/* Back to Top Button */}
         <motion.button
-          className="absolute -top-6 right-8 glass-card p-3 rounded-full text-gray-600 dark:text-gray-300 hover:text-primary hover:shadow-glow transition-all duration-300"
+          className="absolute -top-6 right-8 glass-card p-3 rounded-full text-white/50 hover:text-[#8b5cf6] hover:shadow-glow transition-all duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           whileHover={{
             scale: 1.1,

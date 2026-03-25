@@ -68,15 +68,11 @@ export default function Contact(): React.ReactElement {
   return (
     <section
       id="contact"
-      className="contact-section py-16 bg-gradient-to-br from-blue-50/60 via-white/80 to-purple-100/60 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden"
+      className="py-16 pb-24 relative z-10 overflow-hidden"
     >
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-purple-400/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-purple-400/30 to-blue-400/10 rounded-full blur-2xl"></div>
-      </div>
       <div className="max-w-5xl mx-auto px-4 relative z-10">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-10 contact-title drop-shadow-lg"
+          className="text-3xl md:text-4xl font-bold text-center mb-10 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -84,10 +80,10 @@ export default function Contact(): React.ReactElement {
         >
           Let&apos;s Connect
         </motion.h2>
-        <div className="grid md:grid-cols-2 gap-8 items-start contact-grid">
+        <div className="grid md:grid-cols-2 gap-8 items-start">
           {/* Contact Info Cards */}
           <motion.div
-            className="contact-card space-y-6 flex flex-col justify-stretch h-full"
+            className="space-y-6 flex flex-col justify-stretch h-full"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
@@ -102,7 +98,7 @@ export default function Contact(): React.ReactElement {
                 target={info.label === 'Location' ? '_blank' : undefined}
                 rel={info.label === 'Location' ? 'noopener noreferrer' : undefined}
                 key={info.label}
-                className="flex items-center glass-card rounded-2xl p-6 min-h-[90px] h-full transition-all duration-300 hover:scale-[1.025] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-400/40 cursor-pointer group backdrop-blur-md border border-white/30 dark:border-gray-700/60 shadow-lg"
+                className="group flex items-center GlassCard p-6 min-h-[90px] h-full transition-all duration-300 hover:scale-[1.02] cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500/40"
                 style={{ textDecoration: 'none' }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -111,10 +107,10 @@ export default function Contact(): React.ReactElement {
               >
                 {info.icon}
                 <div>
-                  <div className="font-semibold text-gray-800 dark:text-white text-base mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <div className="font-semibold text-white/90 text-base mb-1 group-hover:text-[#8b5cf6] transition-colors">
                     {info.label}
                   </div>
-                  <div className="text-gray-500 dark:text-gray-300 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <div className="text-white/50 text-sm group-hover:text-[#8b5cf6] transition-colors">
                     {info.value}
                   </div>
                 </div>

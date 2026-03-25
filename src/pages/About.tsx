@@ -25,13 +25,7 @@ const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline
 const AnimatedCounters = lazy(() => import('../components/AnimatedCounters'));
 const SkillNetwork = lazy(() => import('../components/SkillNetwork'));
 
-// Modern glassmorphism background effect
-const GlassBg = () => (
-  <div
-    aria-hidden
-    className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-indigo-100/60 via-white/60 to-purple-200/60 dark:from-gray-900/80 dark:via-indigo-950/60 dark:to-gray-900/80 backdrop-blur-2xl animate-bgFade"
-  />
-);
+// GlassBg removed — FixedBackground is now global in App.tsx
 
 const profilePic = '/images/optimized/profile_pic.webp';
 
@@ -135,8 +129,7 @@ export default function About(): React.ReactElement {
           })}
         </script>
       </Helmet>
-      <GlassBg />
-      {/* Hero Banner with animated background and CTA */}
+      {/* Hero Banner */}
       <motion.section
         className="relative z-20 w-full flex flex-col md:flex-row items-center justify-between px-6 sm:px-12 pt-20 pb-16 max-w-6xl mx-auto mb-16 overflow-hidden"
         animate={{ opacity: 1, y: 0 }}
@@ -154,12 +147,12 @@ export default function About(): React.ReactElement {
           <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/20 to-indigo-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-spin-slow" />
         </motion.div>
         <div className="flex-1 text-center md:text-left mb-10 md:mb-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 drop-shadow-lg dark:from-primary dark:to-indigo-400 animate-fadeInUp">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] animate-fadeInUp text-center md:text-left">
             Md Aminul Islam Bhuiyan Amin
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-6 justify-center md:justify-start">
-            <span className="inline-flex items-center gap-2 text-xl font-semibold text-primary dark:text-indigo-300 animate-fadeInUp delay-100">
-              <FaUserGraduate className="text-primary dark:text-indigo-300" />
+            <span className="inline-flex items-center gap-2 text-xl font-semibold text-gray-200 animate-fadeInUp delay-100">
+              <FaUserGraduate className="text-gray-200" />
               AI Engineer & Computer Science and Engineering Student
             </span>
           </div>
@@ -237,7 +230,7 @@ export default function About(): React.ReactElement {
           </div>
         </div>
         <div className="flex-1 flex justify-center md:justify-end animate-fadeInUp delay-300 relative z-10">
-          <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative mx-auto transition-transform duration-500 hover:scale-105">
+          <div className="GlassCard rounded-full shadow-2xl overflow-hidden w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center relative mx-auto transition-transform duration-500 hover:scale-105">
             <ImageWithFallback
               src={profilePic}
               alt="Profile"
@@ -252,29 +245,26 @@ export default function About(): React.ReactElement {
         </div>
       </motion.section>
 
-      {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
-
-      {/* Professional Summary Block - Modernized */}
+      {/* Professional Summary */}
       <motion.div
-        className="relative z-20 max-w-2xl mx-auto bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl p-8 sm:p-10 mb-20 flex flex-col items-center border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        className="relative z-20 max-w-2xl mx-auto GlassCard rounded-3xl shadow-2xl p-8 sm:p-10 mb-20 flex flex-col items-center animate-fadeInUp mt-16"
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         aria-label="Professional summary"
       >
         <motion.h2
-          className="text-3xl sm:text-4xl font-extrabold mb-4 text-primary flex items-center gap-2 drop-shadow dark:text-indigo-300 animate-fadeInUp text-center"
+          className="text-3xl sm:text-4xl font-extrabold mb-4 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] flex items-center gap-2 animate-fadeInUp text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           🧠 Summary
         </motion.h2>
         <div className="mb-4">
-          <span className="inline-block bg-primary/10 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold px-4 py-2 rounded-full text-lg shadow-sm animate-fadeInUp">
+          <span className="inline-block bg-white/10 text-white border border-white/20 font-bold px-4 py-2 rounded-full text-lg shadow-sm animate-fadeInUp">
             Empowering the future with AI & Intelligent Systems
           </span>
         </div>
-        <p className="text-gray-700 text-lg text-center mb-2 dark:text-gray-200 animate-fadeInUp delay-100">
+        <p className="text-white/70 text-lg text-center mb-2 animate-fadeInUp delay-100">
           I&apos;m a passionate and driven Computer Science and Engineering undergraduate at
           Bangladesh University of Business & Technology (BUBT), focused on
           <span className="inline-flex items-center gap-1 font-semibold text-primary dark:text-indigo-300 ml-1">
@@ -315,7 +305,7 @@ export default function About(): React.ReactElement {
             Linux
           </span>
         </div>
-        <p className="text-gray-700 text-lg text-center dark:text-gray-200 animate-fadeInUp delay-200">
+        <p className="text-white/70 text-lg text-center animate-fadeInUp delay-200">
           With a strong foundation in
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">Python</span>,
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">PyTorch</span>, and
@@ -328,17 +318,14 @@ export default function About(): React.ReactElement {
         </p>
       </motion.div>
 
-      {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
-
-      {/* Skills & Tools Section - Modernized */}
+      {/* Skills & Tools Section */}
       <motion.section
-        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 GlassCard rounded-3xl animate-fadeInUp mt-16"
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp"
+          className="text-4xl font-extrabold mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -366,11 +353,11 @@ export default function About(): React.ReactElement {
           ].map((skill, i) => (
             <motion.div
               key={skill.label}
-              whileHover={{ scale: 1.13, boxShadow: '0 4px 32px #a78bfa33' }}
+              whileHover={{ scale: 1.02 }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.08, delay: i * 0.03 }}
-              className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-center transition-transform duration-150 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp group"
+              className="GlassCard p-6 flex flex-col items-center cursor-pointer animate-fadeInUp group"
               tabIndex={0}
             >
               {skill.icon && (
@@ -378,9 +365,9 @@ export default function About(): React.ReactElement {
               )}
               <span className="font-semibold dark:text-gray-100 text-base mb-2">{skill.label}</span>
               {/* Progress bar */}
-              <div className="w-full h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden mb-1">
+              <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-1">
                 <div
-                  className="h-2 bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 rounded-full"
+                  className="h-2 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] rounded-full"
                   style={{ width: `${skill.level}%` }}
                 ></div>
               </div>
@@ -401,24 +388,21 @@ export default function About(): React.ReactElement {
         <InteractiveTimeline items={timelineData} />
       </Suspense>
 
-      {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
-
-      {/* Education & Experience - Modernized */}
+      {/* Education & Experience */}
       <motion.section
-        className="max-w-5xl mx-auto mb-16 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp relative mt-32 z-20"
+        className="max-w-5xl mx-auto mb-16 px-4 py-12 GlassCard rounded-3xl animate-fadeInUp relative mt-16 z-20"
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-8 text-primary drop-shadow dark:text-indigo-300 text-center"
+          className="text-4xl font-extrabold mb-8 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           🎓 Education
         </motion.h2>
         <motion.div
-          className="glass-card rounded-2xl p-7 mb-10 flex items-center gap-5 shadow-lg border border-white/30 dark:border-gray-700/60 backdrop-blur-md hover:scale-[1.025] hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-all duration-300"
+          className="GlassCard p-7 mb-10 flex items-center gap-5 transition-all duration-300 hover:scale-[1.02]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -455,7 +439,7 @@ export default function About(): React.ReactElement {
           </div>
         </motion.div>
         <motion.h2
-          className="text-4xl font-extrabold mb-8 text-primary drop-shadow dark:text-indigo-300 text-center"
+          className="text-4xl font-extrabold mb-8 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -463,7 +447,7 @@ export default function About(): React.ReactElement {
           💼 Experience
         </motion.h2>
         <motion.div
-          className="glass-card rounded-2xl p-7 mb-4 shadow-lg border border-white/30 dark:border-gray-700/60 backdrop-blur-md hover:scale-[1.025] hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-all duration-300"
+          className="GlassCard p-7 mb-4 flex flex-col transition-all duration-300 hover:scale-[1.02]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -495,17 +479,14 @@ export default function About(): React.ReactElement {
           </ul>
         </motion.div>
       </motion.section>
-      {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
-
-      {/* Projects & AI Engineering Experience - Modernized */}
+      {/* Projects & AI Engineering Experience */}
       <motion.section
-        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 GlassCard rounded-3xl animate-fadeInUp mt-16"
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp"
+          className="text-4xl font-extrabold mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -515,11 +496,11 @@ export default function About(): React.ReactElement {
           {projectData.map((proj, i) => (
             <motion.div
               key={proj.label}
-              whileHover={{ scale: 1.08, boxShadow: '0 4px 32px #a78bfa33' }}
+              whileHover={{ scale: 1.02 }}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.08, delay: i * 0.04 }}
-              className="relative rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-7 flex items-start gap-4 transition-transform duration-150 cursor-pointer overflow-hidden backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp group"
+              className="relative GlassCard p-7 flex items-start gap-4 transition-all duration-300 cursor-pointer animate-fadeInUp group"
               tabIndex={0}
             >
               <div className="absolute left-4 top-4">
@@ -542,17 +523,14 @@ export default function About(): React.ReactElement {
         </div>
       </motion.section>
 
-      {/* Section Divider */}
-      <div className="h-8 w-full bg-gradient-to-b from-transparent via-purple-100/40 to-transparent dark:via-indigo-900/30 mb-12" />
-
-      {/* Certifications & Achievements - Modernized */}
+      {/* Certifications & Achievements */}
       <motion.section
-        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 rounded-3xl bg-white/80 dark:bg-gray-900/80 shadow-2xl border border-primary/10 dark:border-gray-700 backdrop-blur-xl animate-fadeInUp mt-32"
+        className="relative z-20 max-w-5xl mx-auto mb-20 px-4 py-12 GlassCard rounded-3xl animate-fadeInUp mt-16"
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp text-center"
+          className="text-4xl font-extrabold mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -564,8 +542,8 @@ export default function About(): React.ReactElement {
             href="https://ostad.app/share/certificate/c33905-md-aminul-islam-bhuiyan-amin"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            whileHover={{ scale: 1.02 }}
+            className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -591,8 +569,8 @@ export default function About(): React.ReactElement {
             href="https://www.coursera.org/account/accomplishments/specialization/HCCYS47OIV8Y"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            whileHover={{ scale: 1.02 }}
+            className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -618,8 +596,8 @@ export default function About(): React.ReactElement {
             href="https://www.coursera.org/account/accomplishments/verify/WU5WQ7J3TGBI"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            whileHover={{ scale: 1.02 }}
+            className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -645,8 +623,8 @@ export default function About(): React.ReactElement {
             href="https://courses.cognitiveclass.ai/certificates/0bfe1618a2f141dbbc2ac87a2f628ef0"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-2xl hover:shadow-primary/20 dark:hover:shadow-indigo-500/20"
+            whileHover={{ scale: 1.02 }}
+            className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -669,7 +647,7 @@ export default function About(): React.ReactElement {
           </motion.a>
 
           <motion.div
-            className="group rounded-2xl bg-white dark:bg-gray-800 border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden"
+            className="group rounded-2xl glass-card border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -691,7 +669,7 @@ export default function About(): React.ReactElement {
           </motion.div>
         </div>
         <motion.h2
-          className="text-4xl font-extrabold mt-16 mb-10 text-primary drop-shadow dark:text-indigo-300 animate-fadeInUp"
+          className="text-4xl font-extrabold mt-16 mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -701,8 +679,8 @@ export default function About(): React.ReactElement {
         <div className="grid gap-10 md:grid-cols-2">
           {/* Awards & Extracurriculars */}
           <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+            whileHover={{ scale: 1.02 }}
+            className="GlassCard p-6 flex items-center gap-4 transition-all duration-300 cursor-pointer animate-fadeInUp"
           >
             <FaAward className="text-2xl text-primary dark:text-indigo-300" />
             <div>
@@ -712,8 +690,8 @@ export default function About(): React.ReactElement {
             </div>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+            whileHover={{ scale: 1.02 }}
+            className="GlassCard p-6 flex items-center gap-4 transition-all duration-300 cursor-pointer animate-fadeInUp"
           >
             <FaRobot className="text-2xl text-primary dark:text-indigo-300" />
             <div>
@@ -721,8 +699,8 @@ export default function About(): React.ReactElement {
             </div>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+            whileHover={{ scale: 1.02 }}
+            className="GlassCard p-6 flex items-center gap-4 transition-all duration-300 cursor-pointer animate-fadeInUp"
           >
             <FaUserGraduate className="text-2xl text-primary dark:text-indigo-300" />
             <div>
@@ -732,8 +710,8 @@ export default function About(): React.ReactElement {
             </div>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.07, boxShadow: '0 4px 32px #a78bfa33' }}
-            className="rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex items-center gap-4 transition-transform duration-200 cursor-pointer backdrop-blur-md hover:bg-primary/10 dark:hover:bg-indigo-900/30 animate-fadeInUp"
+            whileHover={{ scale: 1.02 }}
+            className="GlassCard p-6 flex items-center gap-4 transition-all duration-300 cursor-pointer animate-fadeInUp"
           >
             <FaGithub className="text-2xl text-primary dark:text-indigo-300" />
             <div>
@@ -755,7 +733,7 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-3xl font-extrabold mb-8 text-primary drop-shadow dark:text-indigo-300 text-center"
+          className="text-3xl font-extrabold mb-8 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -830,7 +808,7 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-2xl font-bold mb-4 text-primary dark:text-indigo-300"
+          className="text-3xl font-extrabold mb-4 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >

@@ -204,20 +204,20 @@ export default function Projects(): React.ReactElement {
       <motion.section
         ref={sectionRef}
         id="projects"
-        className="w-full min-h-screen px-2 sm:px-4 py-6 sm:py-8 bg-white dark:bg-black"
+        className="w-full min-h-screen px-2 sm:px-4 py-6 sm:py-8 pb-24 relative z-10"
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.7 }}
       >
         <div className="flex flex-col items-center justify-center gap-2 mb-8">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 dark:from-primary dark:to-indigo-300 drop-shadow-lg">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
             <span className="inline-block align-middle">🚀</span> Projects
           </h2>
-          <p className="text-center text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-medium">
+          <p className="text-center text-lg text-white/60 max-w-2xl mx-auto font-medium">
             A showcase of my favorite projects, spanning{' '}
-            <span className="text-primary font-semibold">AI</span>,{' '}
-            <span className="text-indigo-500 font-semibold">data science</span>, and{' '}
-            <span className="text-pink-500 font-semibold">full-stack development</span>.
+            <span className="text-[#8b5cf6] font-semibold">AI</span>,{' '}
+            <span className="text-[#4F46E5] font-semibold">data science</span>, and{' '}
+            <span className="text-[#EC4899] font-semibold">full-stack development</span>.
             <br className="hidden sm:block" /> Each project reflects my passion for building
             intelligent, impactful solutions.
           </p>
@@ -240,7 +240,7 @@ export default function Projects(): React.ReactElement {
         {/* Results Summary */}
         {!loading && (
           <motion.div
-            className="mb-6 text-center text-sm text-gray-600 dark:text-gray-400"
+            className="mb-6 text-center text-sm text-white/40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -267,12 +267,12 @@ export default function Projects(): React.ReactElement {
           {loading ? (
             Array.from({ length: 6 }).map((_, i) => <ProjectCardSkeleton key={i} />)
           ) : projects.length === 0 ? (
-            <div className="col-span-full text-center text-red-500 dark:text-red-400 py-8 font-bold text-lg">
+            <div className="col-span-full text-center text-red-400 py-8 font-bold text-lg">
               No projects loaded. Please check your data source.
             </div>
           ) : filteredAndSortedProjects.length === 0 ? (
             <motion.div
-              className="col-span-full text-center text-gray-500 dark:text-gray-400 py-8 text-lg"
+              className="col-span-full text-center text-white/40 py-8 text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -296,7 +296,7 @@ export default function Projects(): React.ReactElement {
             </motion.div>
           ) : (
             filteredAndSortedProjects.map((project: Project, i: number) => (
-              <motion.div key={i} variants={item} className="h-full" data-testid="project-card">
+              <motion.div key={i} variants={item} className="h-full GlassCard rounded-[24px] p-1" data-testid="project-card">
                 <ProjectCard {...project} />
               </motion.div>
             ))

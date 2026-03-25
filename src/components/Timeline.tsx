@@ -37,7 +37,7 @@ export default function Timeline(): React.ReactElement {
             <span className="absolute -left-3 flex items-center justify-center w-6 h-6 bg-primary rounded-full ring-8 ring-white dark:ring-gray-900 text-white font-bold">
               {item.year.slice(2)}
             </span>
-            <div className="glass-card bg-white/80 dark:bg-gray-900/80 border border-primary/10 dark:border-gray-700 rounded-xl shadow-lg p-6 mb-2">
+            <div className="glass-card border border-primary/10 dark:border-gray-700 rounded-xl shadow-lg p-6 mb-2">
               <h3 className="text-lg font-semibold text-primary dark:text-indigo-300">
                 {item.title}
               </h3>

@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import Hero from './Hero';
-import ParallaxBackground from '../components/ParallaxBackground';
 import { projects } from '../data/projects';
 import { blogPosts } from '../data/blog';
 import { calculateReadingTime } from '../utils/readingTime';
@@ -8,15 +7,19 @@ import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import { motion } from 'framer-motion';
-// import Contact from './Contact';
-// import Testimonials from '../components/Testimonials';
 import ImageWithFallback from '../components/ImageWithFallback';
-// import Achievements from '../components/Achievements';
 import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
 import useScrollTrigger from '../hooks/useScrollTrigger';
 import { Helmet } from 'react-helmet-async';
 import { usePageTracking } from '../hooks/useAnalytics';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
+import { FaRobot, FaCode, FaChartBar, FaTools } from 'react-icons/fa';
+import {
+  SiTensorflow, SiPytorch, SiScikitlearn, SiPython, SiTypescript, SiC, SiCplusplus,
+  SiPandas, SiNumpy, SiDocker, SiGit, SiAmazonaws, SiLinux
+} from 'react-icons/si';
+import { timelineData } from '../data/timeline';
+import InteractiveTimeline from '../components/InteractiveTimeline';
 
 // Remove Testimonials lazy import
 const Achievements = lazy(() => import('../components/Achievements'));
@@ -46,75 +49,49 @@ const staggerContainer = {
 const skillsData = [
   {
     title: 'AI/ML',
-    icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm0-14a6 6 0 100 12 6 6 0 000-12z"
-        />
-      </svg>
-    ),
-    skills: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'LangChain', 'LangGraph', 'CrewAI', 'LLMs', 'Computer Vision'],
+    icon: <FaRobot className="w-6 h-6" />,
+    skills: [
+      { name: 'TensorFlow', icon: <SiTensorflow className="text-orange-500" /> },
+      { name: 'PyTorch', icon: <SiPytorch className="text-red-500" /> },
+      { name: 'Scikit-learn', icon: <SiScikitlearn className="text-blue-500" /> },
+      { name: 'LangChain', icon: <span className="text-green-600 font-bold px-1">🦜</span> },
+      { name: 'LangGraph', icon: <span className="text-blue-600 font-bold px-1">🕸️</span> },
+      { name: 'CrewAI', icon: <span className="text-yellow-600 font-bold px-1">🚣</span> },
+      { name: 'LLMs', icon: <span className="text-purple-500 font-bold px-1">🧠</span> },
+      { name: 'Computer Vision', icon: <span className="text-indigo-500 font-bold px-1">👁️</span> }
+    ],
   },
   {
     title: 'Programming',
-    icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <rect x="4" y="4" width="16" height="16" rx="2" />
-      </svg>
-    ),
-    skills: ['Python', 'TypeScript', 'C', 'C++', 'Java'],
+    icon: <FaCode className="w-6 h-6" />,
+    skills: [
+      { name: 'Python', icon: <SiPython className="text-blue-500" /> },
+      { name: 'TypeScript', icon: <SiTypescript className="text-blue-600" /> },
+      { name: 'C', icon: <SiC className="text-blue-400" /> },
+      { name: 'C++', icon: <SiCplusplus className="text-blue-500" /> },
+      { name: 'Java', icon: <FaCode className="text-red-500" /> }
+    ],
   },
   {
     title: 'Data Science',
-    icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"
-        />
-      </svg>
-    ),
-    skills: ['Pandas', 'NumPy', 'Data Analysis', 'Data Visualization'],
+    icon: <FaChartBar className="w-6 h-6" />,
+    skills: [
+      { name: 'Pandas', icon: <SiPandas className="text-blue-900 dark:text-blue-400" /> },
+      { name: 'NumPy', icon: <SiNumpy className="text-blue-500" /> },
+      { name: 'Data Analysis', icon: <FaChartBar className="text-green-500" /> },
+      { name: 'Data Visualization', icon: <FaChartBar className="text-purple-500" /> }
+    ],
   },
   {
     title: 'Tools & Platforms',
-    icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3 7v4a1 1 0 001 1h3m10-5v4a1 1 0 01-1 1h-3m-4 4v4a1 1 0 001 1h3m10-5v4a1 1 0 01-1 1h-3"
-        />
-      </svg>
-    ),
-    skills: ['Docker', 'Git', 'AWS', 'Linux', 'MLOps'],
+    icon: <FaTools className="w-6 h-6" />,
+    skills: [
+      { name: 'Docker', icon: <SiDocker className="text-blue-500" /> },
+      { name: 'Git', icon: <SiGit className="text-orange-500" /> },
+      { name: 'AWS', icon: <SiAmazonaws className="text-yellow-500" /> },
+      { name: 'Linux', icon: <SiLinux className="text-gray-700 dark:text-gray-300" /> },
+      { name: 'MLOps', icon: <FaTools className="text-gray-500" /> }
+    ],
   },
 ];
 
@@ -215,39 +192,12 @@ export default function Home(): React.ReactElement {
           })}
         </script>
       </Helmet>
-      <ParallaxBackground
-        layers={[
-          {
-            className: 'bg-gradient-to-tr from-blue-200/30 to-indigo-200/20',
-            speed: 0.08,
-            style: {
-              top: '-10%',
-              left: '-10%',
-              width: '120vw',
-              height: '40vh',
-              borderRadius: '50%',
-              filter: 'blur(60px)',
-            },
-          },
-          {
-            className: 'bg-gradient-to-br from-pink-200/20 to-purple-200/20',
-            speed: 0.15,
-            style: {
-              bottom: '-10%',
-              right: '-10%',
-              width: '100vw',
-              height: '30vh',
-              borderRadius: '50%',
-              filter: 'blur(80px)',
-            },
-          },
-        ]}
-      >
+      <div className="relative z-10 w-full min-h-screen pb-24">
         {/* Hero Section */}
         <Hero />
 
         {/* About Section */}
-        <section className="py-20 px-4">
+        <section className="bento-card">
           <div className="max-w-4xl mx-auto">
             <motion.div
               ref={aboutTrigger.ref}
@@ -259,7 +209,7 @@ export default function Home(): React.ReactElement {
               className="text-center mb-12"
             >
               <div className="flex flex-col items-center gap-6 mb-8">
-                <div className="profile-image-container rounded-full shadow-2xl profile-image-border bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-20 h-20 transition-transform duration-500 hover:scale-105">
+                <div className="GlassCard rounded-full shadow-2xl overflow-hidden flex items-center justify-center mx-auto w-20 h-20 transition-transform duration-500 hover:scale-105">
                   <ImageWithFallback
                     src="/images/optimized/profile_pic.webp"
                     alt="Profile"
@@ -317,7 +267,7 @@ export default function Home(): React.ReactElement {
         </Suspense>
 
         {/* Skills Section */}
-        <section className="py-20 px-4">
+        <section className="bento-card">
           <div className="max-w-6xl mx-auto">
             <motion.div
               ref={skillsTrigger.ref}
@@ -347,7 +297,7 @@ export default function Home(): React.ReactElement {
                 <motion.div
                   key={skill.title}
                   variants={fadeInUp}
-                  className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-8 text-left relative overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] backdrop-blur-md"
+                  className="GlassCard rounded-2xl p-8 text-left relative overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
                 >
                   <div className="mb-4 flex items-center gap-3">
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-indigo-500 text-white text-2xl shadow-lg">
@@ -357,9 +307,12 @@ export default function Home(): React.ReactElement {
                       {skill.title}
                     </span>
                   </div>
-                  <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-base">
+                  <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-base">
                     {skill.skills.map((item) => (
-                      <li key={item}>{item}</li>
+                      <li key={item.name} className="flex items-center gap-3">
+                        <span className="text-xl flex-shrink-0">{item.icon}</span>
+                        <span className="font-medium">{item.name}</span>
+                      </li>
                     ))}
                   </ul>
                 </motion.div>
@@ -368,8 +321,17 @@ export default function Home(): React.ReactElement {
           </div>
         </section>
 
+        {/* Experience & Education Section */}
+        <section className="bento-card">
+          <InteractiveTimeline
+            items={timelineData}
+            title="Experience & Education"
+            subtitle="A brief journey of my academic and professional career"
+          />
+        </section>
+
         {/* Projects Section */}
-        <section className="py-20 px-4">
+        <section className="bento-card">
           <div className="max-w-6xl mx-auto">
             <motion.div
               ref={projectsTrigger.ref}
@@ -402,7 +364,7 @@ export default function Home(): React.ReactElement {
                   <motion.div
                     key={project.title}
                     variants={fadeInUp}
-                    className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.02] backdrop-blur-md"
+                    className="GlassCard rounded-2xl p-6 flex flex-col items-start transition-all duration-300 hover:scale-[1.02]"
                     data-testid="project-card"
                   >
                     <ProjectCard {...project} />
@@ -434,7 +396,7 @@ export default function Home(): React.ReactElement {
         </section>
 
         {/* Blog Section */}
-        <section className="py-20 px-4">
+        <section className="bento-card">
           <div className="max-w-6xl mx-auto">
             <motion.div
               ref={blogTrigger.ref}
@@ -470,7 +432,7 @@ export default function Home(): React.ReactElement {
                     <BlogCardTiltWrapper key={post.slug}>
                       <motion.div
                         variants={fadeInUp}
-                        className="glass-card rounded-2xl bg-white/70 dark:bg-gray-900/70 border border-primary/10 dark:border-gray-700 shadow-lg p-6 flex flex-col items-start transition-all duration-300 hover:shadow-xl hover:scale-[1.02] backdrop-blur-md"
+                        className="GlassCard rounded-2xl p-6 flex flex-col items-start transition-all duration-300 hover:scale-[1.02]"
                       >
                         <Link
                           to={`/blog/${post.slug}`}
@@ -529,7 +491,7 @@ export default function Home(): React.ReactElement {
         >
           <Contact />
         </Suspense>
-      </ParallaxBackground>
+      </div>
     </>
   );
 }

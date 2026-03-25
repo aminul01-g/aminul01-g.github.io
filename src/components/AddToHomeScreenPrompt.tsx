@@ -36,7 +36,7 @@ const AddToHomeScreenPrompt: React.FC = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-4 flex flex-col gap-3 z-50 border border-gray-100 dark:border-gray-700 max-w-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="fixed bottom-4 right-4 glass-card shadow-xl rounded-2xl p-4 flex flex-col gap-3 z-50 border border-gray-100 dark:border-gray-700 max-w-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-start gap-4">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Install App</h3>

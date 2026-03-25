@@ -50,7 +50,7 @@ export default function ImageWithFallback({
       )}
       {/* Error state */}
       {hasError && (
-        <div className="absolute inset-0 bg-gray-100 dark:bg-gray-800 flex items-center justify-center rounded">
+        <div className="absolute inset-0 glass-card flex items-center justify-center rounded">
           <svg
             className="w-8 h-8 text-gray-400"
             fill="none"

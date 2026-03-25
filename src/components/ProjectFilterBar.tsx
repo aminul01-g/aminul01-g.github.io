@@ -75,7 +75,7 @@ export default function ProjectFilterBar({
           placeholder="Search projects by title, description, or technology..."
           value={filterState.search}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border border-primary/20 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+          className="w-full px-4 py-3 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
           aria-label="Search projects"
           whileFocus={{ scale: 1.02 }}
         />
@@ -104,7 +104,7 @@ export default function ProjectFilterBar({
               const [sortBy, sortOrder] = e.target.value.split('-');
               handleSortChange(sortBy as FilterState['sortBy'], sortOrder as 'asc' | 'desc');
             }}
-            className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+            className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
           >
             <option value="name-asc">Name A-Z</option>
             <option value="name-desc">Name Z-A</option>
@@ -115,7 +115,7 @@ export default function ProjectFilterBar({
         {/* Advanced Filters Toggle */}
         <motion.button
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white hover:bg-primary/5 dark:hover:bg-gray-800 transition-all"
+          className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white hover:bg-primary/5 hover:bg-white/10 transition-all"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

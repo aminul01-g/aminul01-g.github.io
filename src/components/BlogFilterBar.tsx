@@ -22,7 +22,7 @@ export default function BlogFilterBar({
           setSearch(e.target.value);
           onSearch(e.target.value);
         }}
-        className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+        className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
         aria-label="Search blog posts"
       />
       <span className="ml-4 text-sm text-gray-500 dark:text-gray-400">Filter by tag:</span>

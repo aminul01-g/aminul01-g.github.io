@@ -36,6 +36,11 @@ export const projects: Project[] = [
     role: 'Full Stack Developer',
     videoUrl:
       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    caseStudy: {
+      problem: 'Farmers lack access to real-time, localized agricultural advice, leading to suboptimal crop yield and poor disease management in crops.',
+      solution: 'Developed an AI-powered farmer assistant web app integrating LLMs for contextual advice, disease detection models, and a responsive React frontend.',
+      impact: 'Won recognition at BUBT Tech Fusion Fest 2025. Empowered early testers with instant actionable farming advice and high-accuracy disease diagnostics from crop images.',
+    },
   },
   {
     title: 'University Management System',
@@ -52,6 +57,11 @@ export const projects: Project[] = [
     role: 'Backend Developer',
     videoUrl:
       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    caseStudy: {
+      problem: 'Manual university administration processes were time-consuming and prone to errors, making it difficult to track students, courses, and grades efficiently.',
+      solution: 'Built a robust console-based Java application with a structured MySQL database using JDBC, supporting CRUD operations for students, teachers, and courses.',
+      impact: 'Streamlined university record management, eliminating data duplication and reducing query times by over 80%. Achieved a perfect score in the Advanced Programming course.',
+    },
   },
   {
     title: 'Multi-Tool Medical AI',

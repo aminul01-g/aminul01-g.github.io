@@ -34,9 +34,9 @@ export default function Testimonials(): React.ReactElement {
         {testimonials.map((t, i) => (
           <figure
             key={i}
-            className="glass-card rounded-2xl p-6 shadow-lg border border-primary/10 dark:border-gray-700 backdrop-blur-md flex flex-col items-center text-center transition-all duration-300 hover:shadow-2xl hover:scale-[1.05] hover:border-primary/40 hover:ring-2 hover:ring-primary/30 bg-white/70 dark:bg-gray-900/70 relative overflow-hidden group"
+            className="glass-card rounded-2xl p-6 shadow-lg border border-primary/10 dark:border-gray-700 backdrop-blur-md flex flex-col items-center text-center transition-all duration-300 hover:shadow-2xl hover:scale-[1.05] hover:border-primary/40 hover:ring-2 hover:ring-primary/30 glass-card relative overflow-hidden group"
           >
-            <div className="rounded-full shadow-2xl border-2 border-primary ring-2 ring-primary/20 bg-white dark:bg-gray-800 overflow-hidden flex items-center justify-center mx-auto w-16 h-16 mb-4">
+            <div className="rounded-full shadow-2xl border-2 border-primary ring-2 ring-primary/20 glass-card overflow-hidden flex items-center justify-center mx-auto w-16 h-16 mb-4">
               <ImageWithFallback
                 src={t.avatar}
                 alt={t.name}

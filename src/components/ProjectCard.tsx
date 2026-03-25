@@ -13,6 +13,11 @@ export interface ProjectCardProps {
   github: string;
   thumbnail?: string;
   videoUrl?: string;
+  caseStudy?: {
+    problem: string;
+    solution: string;
+    impact: string;
+  };
 }
 
 export default function ProjectCard({
@@ -22,6 +27,7 @@ export default function ProjectCard({
   github,
   thumbnail,
   videoUrl,
+  caseStudy,
 }: ProjectCardProps): React.ReactElement {
   const { trackProjectView, trackEvent } = useAnalytics();
   const [showVideo, setShowVideo] = useState(false);
@@ -67,9 +73,9 @@ export default function ProjectCard({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{
-        y: -8,
+        y: -10,
         scale: 1.02,
-        transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+        transition: { type: 'spring', stiffness: 300, damping: 20 },
       }}
       transition={{
         duration: 0.6,
@@ -182,6 +188,24 @@ export default function ProjectCard({
         >
           {description}
         </motion.p>
+
+        {/* Impact Snippet if Case Study is available */}
+        {caseStudy && (
+          <motion.div
+            className="mb-5 bg-gradient-to-r from-primary/10 to-indigo-500/10 border border-primary/20 rounded-lg p-3"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+          >
+            <div className="flex items-start gap-2">
+              <span className="text-xl">🚀</span>
+              <div>
+                <span className="font-semibold text-primary text-sm block mb-0.5">Key Impact</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">{caseStudy.impact}</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Enhanced Tags with better animations */}
         <motion.div

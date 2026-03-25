@@ -35,7 +35,7 @@ const FeedbackWidget: React.FC<{ className?: string }> = ({ className = '' }) =>
   return (
     <form
       onSubmit={handleSubmit}
-      className={`rounded-lg bg-white dark:bg-gray-900/30 p-4 shadow-md flex flex-col items-center gap-3 ${className}`}
+      className={`rounded-lg glass-card p-4 shadow-md flex flex-col items-center gap-3 ${className}`}
       aria-label="Feedback form"
     >
       <span className="font-semibold text-primary">Was this page helpful?</span>

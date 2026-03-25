@@ -7,10 +7,9 @@ import React, { Suspense, lazy } from 'react';
 import { AccessibilityProvider } from './components/AccessibilityProvider';
 import AddToHomeScreenPrompt from './components/AddToHomeScreenPrompt';
 import BackToTopButton from './components/BackToTopButton';
-import NewsletterModal from './components/NewsletterModal';
 import { ToastProvider, useToast } from './components/ToastContext';
 import FloatingActions from './components/FloatingActions';
-import { ThemeProvider } from './contexts/ThemeContext';
+import FixedBackground from './components/FixedBackground';
 
 const AIChatbot = lazy(() =>
   import('./components/AIChatbot').then((module) => ({ default: module.AIChatbot }))
@@ -78,6 +77,7 @@ function AppContent(): React.ReactElement {
         Skip to main content
       </a>
 
+      <FixedBackground />
       <ScrollProgress />
       <Navbar />
 
@@ -88,27 +88,23 @@ function AppContent(): React.ReactElement {
 
       <FloatingActions>
         <BackToTopButton />
-        {/* Contact button removed as per user request */}
+        <Suspense fallback={null}>
+          <AIChatbot />
+        </Suspense>
       </FloatingActions>
       <Footer />
       <AddToHomeScreenPrompt />
-      <NewsletterModal />
-      <Suspense fallback={null}>
-        <AIChatbot />
-      </Suspense>
     </>
   );
 }
 
 function App(): React.ReactElement {
   return (
-    <ThemeProvider>
-      <ToastProvider>
-        <AccessibilityProvider>
-          <AppContent />
-        </AccessibilityProvider>
-      </ToastProvider>
-    </ThemeProvider>
+    <ToastProvider>
+      <AccessibilityProvider>
+        <AppContent />
+      </AccessibilityProvider>
+    </ToastProvider>
   );
 }
 
