@@ -11,7 +11,7 @@ const encoded = (str: string) => encodeURIComponent(str);
 const SocialShare: React.FC<SocialShareProps> = ({ url, title, className = '' }) => {
   return (
     <div className={`flex gap-3 items-center ${className}`} aria-label="Share this page">
-      <span className="text-sm text-gray-500 dark:text-gray-400">Share:</span>
+      <span className="text-sm text-[var(--theme-text-primary)] text-opacity-60">Share:</span>
       <a
         href={`https://twitter.com/intent/tweet?url=${encoded(url)}&text=${encoded(title)}`}
         target="_blank"

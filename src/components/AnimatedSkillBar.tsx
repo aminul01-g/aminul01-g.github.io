@@ -29,7 +29,7 @@ const AnimatedSkillBar: React.FC<AnimatedSkillBarProps> = ({ skill, index }) => 
           {skill.icon && <div className="w-6 h-6 text-primary">{skill.icon}</div>}
           <span className="text-white font-medium">{skill.name}</span>
         </div>
-        <span className="text-gray-300 text-sm">{skill.level}%</span>
+        <span className="text-[var(--theme-text-primary)] text-opacity-80 text-sm">{skill.level}%</span>
       </div>
 
       <div className="relative h-3 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
@@ -85,7 +85,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-indigo-400 bg-clip-text text-transparent">
             {title}
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">{subtitle}</p>
+          <p className="text-[var(--theme-text-primary)] text-opacity-80 text-lg max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

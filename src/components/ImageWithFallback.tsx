@@ -52,7 +52,7 @@ export default function ImageWithFallback({
       {hasError && (
         <div className="absolute inset-0 glass-card flex items-center justify-center rounded">
           <svg
-            className="w-8 h-8 text-gray-400"
+            className="w-8 h-8 text-[var(--theme-text-primary)] text-opacity-70"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

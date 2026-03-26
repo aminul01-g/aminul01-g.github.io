@@ -74,7 +74,7 @@ export default function Footer(): React.ReactElement {
             <h3 className="text-2xl font-display font-bold text-gradient mb-4">
               Md Aminul Islam Bhuiyan Amin
             </h3>
-            <p className="text-white/50 mb-4 leading-relaxed">
+            <p className="text-[var(--theme-text-primary)] text-opacity-[0.50] mb-4 leading-relaxed">
               AI Engineering Student passionate about building intelligent systems that shape the
               future.
             </p>
@@ -86,7 +86,7 @@ export default function Footer(): React.ReactElement {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="glass-card p-3 rounded-xl text-white/60 hover:text-[#8b5cf6] transition-all duration-300 hover:shadow-glow"
+                  className="glass-card p-3 rounded-xl text-[var(--theme-text-primary)] text-opacity-[0.60] hover:text-[#8b5cf6] transition-all duration-300 hover:shadow-glow"
                   whileHover={{
                     scale: 1.1,
                     y: -2,
@@ -123,7 +123,7 @@ export default function Footer(): React.ReactElement {
                 >
                   <a
                     href={link.href}
-                    className="text-white/50 hover:text-[#8b5cf6] transition-colors duration-300 hover:underline"
+                    className="text-[var(--theme-text-primary)] text-opacity-[0.50] hover:text-[#8b5cf6] transition-colors duration-300 hover:underline"
                   >
                     {link.label}
                   </a>
@@ -142,7 +142,7 @@ export default function Footer(): React.ReactElement {
             <h4 className="text-lg font-semibold text-white mb-4">
               Get In Touch
             </h4>
-            <div className="space-y-2 text-white/50">
+            <div className="space-y-2 text-[var(--theme-text-primary)] text-opacity-[0.50]">
               <p className="flex items-center justify-center md:justify-end gap-2">
                 <svg
                   className="w-4 h-4"
@@ -198,7 +198,7 @@ export default function Footer(): React.ReactElement {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <motion.p
-              className="text-sm text-white/40"
+              className="text-sm text-[var(--theme-text-primary)] text-opacity-[0.40]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -214,14 +214,14 @@ export default function Footer(): React.ReactElement {
             >
               <a
                 href="/accessibility-statement.html"
-                className="text-white/40 hover:text-[#8b5cf6] transition-colors duration-300"
+                className="text-[var(--theme-text-primary)] text-opacity-[0.40] hover:text-[#8b5cf6] transition-colors duration-300"
               >
                 Accessibility Statement
               </a>
-              <span className="text-white/20">•</span>
+              <span className="text-[var(--theme-text-primary)] text-opacity-[0.20]">•</span>
               <a
                 href="/privacy-policy.html"
-                className="text-white/40 hover:text-[#8b5cf6] transition-colors duration-300"
+                className="text-[var(--theme-text-primary)] text-opacity-[0.40] hover:text-[#8b5cf6] transition-colors duration-300"
               >
                 Privacy Policy
               </a>
@@ -231,7 +231,7 @@ export default function Footer(): React.ReactElement {
 
         {/* Back to Top Button */}
         <motion.button
-          className="absolute -top-6 right-8 glass-card p-3 rounded-full text-white/50 hover:text-[#8b5cf6] hover:shadow-glow transition-all duration-300"
+          className="absolute -top-6 right-8 glass-card p-3 rounded-full text-[var(--theme-text-primary)] text-opacity-[0.50] hover:text-[#8b5cf6] hover:shadow-glow transition-all duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           whileHover={{
             scale: 1.1,

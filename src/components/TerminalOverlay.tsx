@@ -54,11 +54,11 @@ export default function TerminalOverlay(): React.ReactElement {
           <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
           <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
         </div>
-        <div className="flex-1 text-center text-gray-400 text-[10px]">ai_engineer_terminal</div>
+        <div className="flex-1 text-center text-[var(--theme-text-primary)] text-opacity-70 text-[10px]">ai_engineer_terminal</div>
       </div>
 
       {/* Terminal Body */}
-      <div className="p-4 h-32 text-gray-300 flex flex-col justify-end">
+      <div className="p-4 h-32 text-[var(--theme-text-primary)] text-opacity-80 flex flex-col justify-end">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentCmdIndex}
@@ -83,7 +83,7 @@ export default function TerminalOverlay(): React.ReactElement {
               <motion.div
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-gray-400 pl-4 border-l-2 border-gray-700 ml-1"
+                className="text-[var(--theme-text-primary)] text-opacity-70 pl-4 border-l-2 border-gray-700 ml-1"
               >
                 {commands[currentCmdIndex].output}
               </motion.div>

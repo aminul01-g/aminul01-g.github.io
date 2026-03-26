@@ -41,10 +41,10 @@ export default function Timeline(): React.ReactElement {
               <h3 className="text-lg font-semibold text-primary dark:text-indigo-300">
                 {item.title}
               </h3>
-              <span className="block text-sm text-gray-500 dark:text-gray-400 mb-1">
+              <span className="block text-sm text-[var(--theme-text-primary)] text-opacity-60 mb-1">
                 {item.org}
               </span>
-              <p className="text-gray-700 dark:text-gray-200">{item.desc}</p>
+              <p className="text-[var(--theme-text-primary)]">{item.desc}</p>
             </div>
           </li>
         ))}

@@ -172,7 +172,7 @@ export default function ProjectCard({
       {/* Enhanced Content Section */}
       <div className="flex-1 p-6 relative z-10 flex flex-col">
         <motion.h3
-          className="text-xl font-display font-bold text-gray-800 dark:text-white mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300"
+          className="text-xl font-display font-bold text-[var(--theme-text-primary)] mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -181,7 +181,7 @@ export default function ProjectCard({
         </motion.h3>
 
         <motion.p
-          className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 leading-relaxed flex-grow"
+          className="text-[var(--theme-text-primary)] text-opacity-80 mb-6 line-clamp-3 leading-relaxed flex-grow"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -201,7 +201,7 @@ export default function ProjectCard({
               <span className="text-xl">🚀</span>
               <div>
                 <span className="font-semibold text-primary text-sm block mb-0.5">Key Impact</span>
-                <span className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">{caseStudy.impact}</span>
+                <span className="text-sm text-[var(--theme-text-primary)] line-clamp-2">{caseStudy.impact}</span>
               </div>
             </div>
           </motion.div>
@@ -217,7 +217,7 @@ export default function ProjectCard({
           {tags.slice(0, 4).map((tag, i) => (
             <motion.span
               key={i}
-              className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-gray-700 dark:text-gray-200 border border-white/20 hover:border-primary/40 hover:text-primary transition-all duration-300"
+              className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-[var(--theme-text-primary)] border border-white/20 hover:border-primary/40 hover:text-primary transition-all duration-300"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               whileHover={{
@@ -232,7 +232,7 @@ export default function ProjectCard({
           ))}
           {tags.length > 4 && (
             <motion.span
-              className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-gray-500 dark:text-gray-400 border border-white/10"
+              className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-[var(--theme-text-primary)] text-opacity-60 border border-white/10"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}

@@ -5,8 +5,8 @@ const NotFound: React.FC = () => (
     <h1 className="text-8xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#EC4899] drop-shadow-lg">
       404
     </h1>
-    <h2 className="text-2xl font-semibold mb-2 text-white/90">Page Not Found</h2>
-    <p className="mb-6 text-lg text-white/50">
+    <h2 className="text-2xl font-semibold mb-2 text-[var(--theme-text-primary)] text-opacity-[0.90]">Page Not Found</h2>
+    <p className="mb-6 text-lg text-[var(--theme-text-primary)] text-opacity-[0.50]">
       Sorry, the page you are looking for does not exist.
     </p>
     <Link

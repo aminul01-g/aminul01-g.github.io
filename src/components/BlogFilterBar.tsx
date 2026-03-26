@@ -22,10 +22,10 @@ export default function BlogFilterBar({
           setSearch(e.target.value);
           onSearch(e.target.value);
         }}
-        className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+        className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-[var(--theme-text-primary)] focus:outline-none focus:ring-2 focus:ring-primary"
         aria-label="Search blog posts"
       />
-      <span className="ml-4 text-sm text-gray-500 dark:text-gray-400">Filter by tag:</span>
+      <span className="ml-4 text-sm text-[var(--theme-text-primary)] text-opacity-60">Filter by tag:</span>
       <div className="flex gap-2 flex-wrap">
         <button
           className={`px-3 py-1 rounded-full font-semibold text-xs transition-all ${!activeTag ? 'bg-primary text-white dark:bg-indigo-700' : 'bg-primary/10 dark:bg-indigo-900/30 text-primary dark:text-indigo-300 hover:bg-primary/20 dark:hover:bg-indigo-900/50'}`}

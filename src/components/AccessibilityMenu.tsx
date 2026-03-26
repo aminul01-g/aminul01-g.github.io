@@ -70,13 +70,13 @@ export default function AccessibilityMenu(): React.ReactElement {
               Accessibility Controls
             </h2>
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg font-semibold text-[var(--theme-text-primary)] mb-4">
                 Accessibility Settings
               </h3>
 
               {/* Font Size Control */}
               <div>
-                <span className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <span className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2">
                   Font Size
                 </span>
                 <div className="flex gap-2">
@@ -88,7 +88,7 @@ export default function AccessibilityMenu(): React.ReactElement {
                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         fontSize === size
                           ? 'bg-primary text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          : 'bg-gray-100 dark:bg-gray-700 text-[var(--theme-text-primary)] hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                       aria-pressed={fontSize === size}
                     >
@@ -100,7 +100,7 @@ export default function AccessibilityMenu(): React.ReactElement {
 
               {/* High Contrast Toggle */}
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <span className="text-sm font-medium text-[var(--theme-text-primary)]">
                   High Contrast
                 </span>
                 <button
@@ -123,10 +123,10 @@ export default function AccessibilityMenu(): React.ReactElement {
 
               {/* Keyboard Shortcuts Info */}
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">
+                <h4 className="text-sm font-medium text-[var(--theme-text-primary)] mb-2">
                   Keyboard Shortcuts
                 </h4>
-                <div className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                <div className="text-xs text-[var(--theme-text-primary)] text-opacity-70 space-y-1">
                   <div>• Tab: Navigate through elements</div>
                   <div>• Enter/Space: Activate buttons</div>
                   <div>• Arrow keys: Navigate carousels</div>
@@ -137,7 +137,7 @@ export default function AccessibilityMenu(): React.ReactElement {
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full mt-4 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full mt-4 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-[var(--theme-text-primary)] rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 Close
               </button>

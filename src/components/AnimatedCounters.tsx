@@ -64,7 +64,7 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-indigo-400 bg-clip-text text-transparent">
             {title}
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto">{subtitle}</p>
+          <p className="text-[var(--theme-text-primary)] text-lg max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         {/* Counters Grid */}
@@ -93,7 +93,7 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
 
               {/* Counter Value */}
               <motion.div
-                className="text-4xl sm:text-5xl font-bold text-glass dark:text-white mb-2"
+                className="text-4xl sm:text-5xl font-bold text-glass text-[var(--theme-text-primary)] mb-2"
                 initial={{ scale: 0.5 }}
                 whileInView={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
@@ -105,7 +105,7 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
               </motion.div>
 
               {/* Label */}
-              <p className="text-gray-600 dark:text-gray-400 font-medium">{counter.label}</p>
+              <p className="text-[var(--theme-text-primary)] text-opacity-70 font-medium">{counter.label}</p>
 
               {/* Animated Border */}
               <motion.div
@@ -129,15 +129,15 @@ const AnimatedCounters: React.FC<AnimatedCountersProps> = ({
         >
           <div className="glass-card p-6 rounded-xl text-center">
             <div className="text-2xl font-bold text-primary mb-2">99%</div>
-            <div className="text-gray-600 dark:text-gray-400">Client Satisfaction</div>
+            <div className="text-[var(--theme-text-primary)] text-opacity-70">Client Satisfaction</div>
           </div>
           <div className="glass-card p-6 rounded-xl text-center">
             <div className="text-2xl font-bold text-primary mb-2">24/7</div>
-            <div className="text-gray-600 dark:text-gray-400">Support Available</div>
+            <div className="text-[var(--theme-text-primary)] text-opacity-70">Support Available</div>
           </div>
           <div className="glass-card p-6 rounded-xl text-center">
             <div className="text-2xl font-bold text-primary mb-2">100%</div>
-            <div className="text-gray-600 dark:text-gray-400">Project Success Rate</div>
+            <div className="text-[var(--theme-text-primary)] text-opacity-70">Project Success Rate</div>
           </div>
         </motion.div>
       </div>

@@ -116,7 +116,7 @@ export default function Blog(): React.ReactElement {
         <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] relative z-10">
           Blog
         </h2>
-        <p className="text-center text-white/50 mb-8 max-w-2xl mx-auto relative z-10">
+        <p className="text-center text-[var(--theme-text-primary)] text-opacity-[0.50] mb-8 max-w-2xl mx-auto relative z-10">
           Insights, tutorials, and stories from my journey in tech, AI, and creative coding. Explore
           my thoughts, discoveries, and lessons learned along the way.
         </p>
@@ -128,9 +128,9 @@ export default function Blog(): React.ReactElement {
         />
         <div className="grid gap-8 md:grid-cols-2 relative z-10">
           {filteredPosts.length === 0 ? (
-            <div className="col-span-full text-center text-white/40 py-12 flex flex-col items-center">
+            <div className="col-span-full text-center text-[var(--theme-text-primary)] text-opacity-[0.40] py-12 flex flex-col items-center">
               <svg
-                className="w-16 h-16 text-gray-400 mb-4 opacity-50"
+                className="w-16 h-16 text-[var(--theme-text-primary)] text-opacity-70 mb-4 opacity-50"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -183,7 +183,7 @@ export default function Blog(): React.ReactElement {
                         {post.title}
                       </h3>
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-white/40 mb-2">
+                    <div className="flex items-center gap-3 text-sm text-[var(--theme-text-primary)] text-opacity-[0.40] mb-2">
                       <span>{post.date}</span>
                       <span>•</span>
                       <span>{calculateReadingTime(post.body)}</span>
@@ -198,7 +198,7 @@ export default function Blog(): React.ReactElement {
                         </span>
                       ))}
                     </div>
-                    <p className="text-white/60">{post.summary}</p>
+                    <p className="text-[var(--theme-text-primary)] text-opacity-[0.60]">{post.summary}</p>
                   </Link>
                 </motion.div>
               </BlogCardTiltWrapper>

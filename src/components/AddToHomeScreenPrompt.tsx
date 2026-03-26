@@ -36,15 +36,15 @@ const AddToHomeScreenPrompt: React.FC = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 glass-card shadow-xl rounded-2xl p-4 flex flex-col gap-3 z-50 border border-gray-100 dark:border-gray-700 max-w-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-card shadow-xl rounded-2xl p-4 flex flex-col gap-3 z-50 border border-gray-100 dark:border-gray-700 max-w-sm animate-in fade-in duration-500">
       <div className="flex justify-between items-start gap-4">
         <div>
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Install App</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300">Install for a better experience!</p>
+          <h3 className="font-semibold text-[var(--theme-text-primary)] mb-1">Install App</h3>
+          <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">Install for a better experience!</p>
         </div>
         <button
           onClick={() => setVisible(false)}
-          className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1"
+          className="text-[var(--theme-text-primary)] text-opacity-70 hover:text-[var(--theme-text-primary)] text-opacity-60 dark:hover:text-[var(--theme-text-primary)] text-opacity-90 transition-colors p-1"
           aria-label="Dismiss"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

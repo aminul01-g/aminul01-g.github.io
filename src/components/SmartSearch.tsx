@@ -266,7 +266,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
       case 'skill':
         return 'text-purple-500';
       default:
-        return 'text-gray-500';
+        return 'text-[var(--theme-text-primary)] text-opacity-60';
     }
   };
 
@@ -293,7 +293,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
           <div className="p-6 border-b border-white/10">
             <div className="flex items-center gap-4">
               <div className="relative flex-1">
-                <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--theme-text-primary)] text-opacity-70 w-5 h-5" />
                 <input
                   ref={searchInputRef}
                   type="text"
@@ -305,7 +305,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                 {query && (
                   <button
                     onClick={() => setQuery('')}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[var(--theme-text-primary)] text-opacity-70 hover:text-white"
                   >
                     <FiX className="w-5 h-5" />
                   </button>
@@ -328,7 +328,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                   onClick={onClose}
                   className="p-2 hover:bg-white/10 rounded-lg transition-colors"
                 >
-                  <FiX className="w-5 h-5 text-gray-400" />
+                  <FiX className="w-5 h-5 text-[var(--theme-text-primary)] text-opacity-70" />
                 </button>
               </div>
             </div>
@@ -341,7 +341,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                 {/* Recent Searches */}
                 {recentSearches.length > 0 && (
                   <div>
-                    <h3 className="text-sm font-medium text-gray-400 mb-3">Recent Searches</h3>
+                    <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70 mb-3">Recent Searches</h3>
                     <div className="flex flex-wrap gap-2">
                       {recentSearches.map((search, index) => (
                         <button
@@ -358,7 +358,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
 
                 {/* Popular Searches */}
                 <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70 mb-3 flex items-center gap-2">
                     <FiClock className="w-4 h-4" />
                     Popular Searches
                   </h3>
@@ -380,7 +380,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                 {/* Suggestions */}
                 {suggestions.length > 0 && (
                   <div className="mb-4">
-                    <h3 className="text-sm font-medium text-gray-400 mb-2">Suggestions</h3>
+                    <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70 mb-2">Suggestions</h3>
                     <div className="flex flex-wrap gap-2">
                       {suggestions.map((suggestion, index) => (
                         <button
@@ -398,7 +398,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                 {/* Results */}
                 {results.length > 0 && (
                   <div className="space-y-3">
-                    <h3 className="text-sm font-medium text-gray-400">
+                    <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70">
                       {results.length} result{results.length !== 1 ? 's' : ''} found
                     </h3>
                     {results.map((result, index) => (
@@ -419,7 +419,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                                 {result.type}
                               </span>
                             </div>
-                            <p className="text-sm text-gray-400 line-clamp-2 mb-2">
+                            <p className="text-sm text-[var(--theme-text-primary)] text-opacity-70 line-clamp-2 mb-2">
                               {result.description}
                             </p>
                           </div>
@@ -434,7 +434,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                   <div className="text-center py-8">
                     <div className="text-4xl mb-4">🔍</div>
                     <h3 className="text-lg font-medium text-white mb-2">No results found</h3>
-                    <p className="text-gray-400">
+                    <p className="text-[var(--theme-text-primary)] text-opacity-70">
                       Try adjusting your search terms or browse popular searches above.
                     </p>
                   </div>

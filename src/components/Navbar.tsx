@@ -120,7 +120,7 @@ export default function Navbar(): React.ReactElement {
             </Link>
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+              className="p-1.5 sm:p-2 text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
               title="Search projects, blog posts, and skills"
               aria-label="Open search"
             >
@@ -183,7 +183,7 @@ export default function Navbar(): React.ReactElement {
                   className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50 group ${
                     location.pathname === link.to
                       ? 'text-primary bg-primary/10 shadow-glow'
-                      : 'text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-primary/5'
+                      : 'text-[var(--theme-text-primary)] hover:text-primary hover:bg-primary/5'
                   }`}
                   aria-current={location.pathname === link.to ? 'page' : undefined}
                 >
@@ -214,7 +214,7 @@ export default function Navbar(): React.ReactElement {
             >
               <a
                 href="/#contact"
-                className="relative px-4 py-2 rounded-xl font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-primary/5 transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50 group"
+                className="relative px-4 py-2 rounded-xl font-medium text-[var(--theme-text-primary)] hover:text-primary hover:bg-primary/5 transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50 group"
                 onClick={handleContactClick}
                 aria-label="Go to contact section"
               >
@@ -283,7 +283,7 @@ export default function Navbar(): React.ReactElement {
                     className={`block py-3 px-4 rounded-xl font-medium transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50 ${
                       location.pathname === link.to
                         ? 'text-primary bg-primary/10 shadow-glow'
-                        : 'text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-primary/5'
+                        : 'text-[var(--theme-text-primary)] hover:text-primary hover:bg-primary/5'
                     }`}
                     onClick={() => setMenuOpen(false)}
                     aria-current={location.pathname === link.to ? 'page' : undefined}
@@ -302,7 +302,7 @@ export default function Navbar(): React.ReactElement {
               >
                 <a
                   href="/#contact"
-                  className="block py-3 px-4 rounded-xl font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-primary/5 transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="block py-3 px-4 rounded-xl font-medium text-[var(--theme-text-primary)] hover:text-primary hover:bg-primary/5 transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50"
                   onClick={handleContactClick}
                   aria-label="Go to contact section"
                 >

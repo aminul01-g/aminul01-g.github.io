@@ -86,7 +86,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
     return Array.from({ length: 5 }, (_, i) => (
       <svg
         key={i}
-        className={`w-4 h-4 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+        className={`w-4 h-4 ${i < rating ? 'text-yellow-400' : 'text-[var(--theme-text-primary)] text-opacity-80'}`}
         fill="currentColor"
         viewBox="0 0 20 20"
         aria-hidden="true"
@@ -106,7 +106,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
           >
             What People Say
           </h2>
-          <p className="text-gray-500 dark:text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-[var(--theme-text-primary)] text-opacity-70 text-lg max-w-2xl mx-auto">
             Testimonials from colleagues, professors, and industry professionals
           </p>
         </div>
@@ -124,7 +124,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
           {/* Navigation Buttons */}
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 glass-card hover:bg-white hover:bg-white/10 text-gray-800 dark:text-white p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 glass-card hover:bg-white hover:bg-white/10 text-[var(--theme-text-primary)] p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
             aria-label="Previous testimonial"
             aria-controls="testimonials-carousel"
           >
@@ -141,7 +141,7 @@ export default function TestimonialsCarousel(): React.ReactElement {
 
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 glass-card hover:bg-white hover:bg-white/10 text-gray-800 dark:text-white p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 glass-card hover:bg-white hover:bg-white/10 text-[var(--theme-text-primary)] p-3 rounded-full shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
             aria-label="Next testimonial"
             aria-controls="testimonials-carousel"
           >
@@ -191,17 +191,17 @@ export default function TestimonialsCarousel(): React.ReactElement {
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 italic leading-relaxed max-w-4xl">
+                  <blockquote className="text-lg md:text-xl text-[var(--theme-text-primary)] mb-8 italic leading-relaxed max-w-4xl">
                     &ldquo;{testimonials[currentIndex].content}&rdquo;
                   </blockquote>
 
                   {/* Author Info */}
                   <div className="text-center">
                     <cite className="not-italic">
-                      <div className="font-semibold text-gray-900 dark:text-white text-lg">
+                      <div className="font-semibold text-[var(--theme-text-primary)] text-lg">
                         {testimonials[currentIndex].name}
                       </div>
-                      <div className="text-gray-600 dark:text-gray-300 text-sm">
+                      <div className="text-[var(--theme-text-primary)] text-opacity-80 text-sm">
                         {testimonials[currentIndex].role} at {testimonials[currentIndex].company}
                       </div>
                     </cite>

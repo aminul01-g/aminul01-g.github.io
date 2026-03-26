@@ -310,7 +310,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
       case 'marketing':
         return 'text-purple-500';
       default:
-        return 'text-gray-500';
+        return 'text-[var(--theme-text-primary)] text-opacity-60';
     }
   };
 
@@ -329,17 +329,17 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
         <div className="flex items-center gap-3">
           <FiZap className="w-6 h-6 text-primary" />
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-2xl font-bold text-[var(--theme-text-primary)]">
               AI-Generated Summary
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">Intelligent summaries powered by AI</p>
+            <p className="text-[var(--theme-text-primary)] text-opacity-70">Intelligent summaries powered by AI</p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className="p-2 text-gray-500 hover:text-primary transition-colors"
+            className="p-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors"
             title="Summary settings"
           >
             <FiSettings className="w-5 h-5" />
@@ -365,7 +365,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
             exit={{ opacity: 0, height: 0 }}
             className="glass-card rounded-xl p-6 border border-primary/10"
           >
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-lg font-semibold text-[var(--theme-text-primary)] mb-4">
               Summary Settings
             </h3>
 
@@ -374,7 +374,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
               <div>
                 <label
                   htmlFor="summary-type"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
                 >
                   Summary Type
                 </label>
@@ -387,7 +387,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                       type: e.target.value as SummaryOptions['type'],
                     }))
                   }
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-[var(--theme-text-primary)] text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="brief">Brief Overview</option>
                   <option value="detailed">Detailed Summary</option>
@@ -400,7 +400,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
               <div>
                 <label
                   htmlFor="summary-length"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
                 >
                   Length
                 </label>
@@ -413,7 +413,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                       length: e.target.value as SummaryOptions['length'],
                     }))
                   }
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-[var(--theme-text-primary)] text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="short">Short (1-2 sentences)</option>
                   <option value="medium">Medium (2-3 sentences)</option>
@@ -425,7 +425,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
               <div>
                 <label
                   htmlFor="summary-tone"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
                 >
                   Tone
                 </label>
@@ -438,7 +438,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                       tone: e.target.value as SummaryOptions['tone'],
                     }))
                   }
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-[var(--theme-text-primary)] text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="professional">Professional</option>
                   <option value="casual">Casual</option>
@@ -448,12 +448,12 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
               {/* Keywords */}
               <div>
-                <div className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <div className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2">
                   Options
                 </div>
                 <label
                   htmlFor="include-keywords"
-                  className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"
+                  className="flex items-center gap-2 text-sm text-[var(--theme-text-primary)]"
                 >
                   <input
                     id="include-keywords"
@@ -485,11 +485,11 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                   >
                     {currentSummary.type}
                   </span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-[var(--theme-text-primary)] text-opacity-60">
                     {currentSummary.length} • {currentSummary.tone}
                   </span>
                 </div>
-                <div className="flex items-center gap-4 mt-1 text-xs text-gray-500">
+                <div className="flex items-center gap-4 mt-1 text-xs text-[var(--theme-text-primary)] text-opacity-60">
                   <span className="flex items-center gap-1">
                     <FiBookOpen className="w-3 h-3" />
                     {currentSummary.readingTime} min read
@@ -506,7 +506,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
 
             <button
               onClick={() => copyToClipboard(currentSummary)}
-              className="flex items-center gap-2 px-3 py-1 text-sm text-gray-500 hover:text-primary transition-colors"
+              className="flex items-center gap-2 px-3 py-1 text-sm text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors"
             >
               {copiedId === currentSummary.id ? (
                 <>
@@ -522,14 +522,14 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
             </button>
           </div>
 
-          <p className="text-gray-900 dark:text-white leading-relaxed mb-4">
+          <p className="text-[var(--theme-text-primary)] leading-relaxed mb-4">
             {currentSummary.content}
           </p>
 
           {/* Keywords */}
           {currentSummary.keywords.length > 0 && (
             <div className="space-y-2">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Key Topics:</h4>
+              <h4 className="text-sm font-medium text-[var(--theme-text-primary)]">Key Topics:</h4>
               <div className="flex flex-wrap gap-2">
                 {currentSummary.keywords.map((keyword, index) => (
                   <span
@@ -551,10 +551,10 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
             <div>
-              <h3 className="font-medium text-gray-900 dark:text-white">
+              <h3 className="font-medium text-[var(--theme-text-primary)]">
                 Generating AI Summary...
               </h3>
-              <p className="text-sm text-gray-500">Analyzing content and extracting key insights</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-60">Analyzing content and extracting key insights</p>
             </div>
           </div>
 
@@ -569,7 +569,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
       {/* Previous Summaries */}
       {summaries.length > 1 && (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-[var(--theme-text-primary)]">
             Previous Summaries
           </h3>
 
@@ -590,14 +590,14 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                     >
                       {summary.type}
                     </span>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-[var(--theme-text-primary)] text-opacity-60">
                       {summary.timestamp.toLocaleTimeString()}
                     </span>
                   </div>
 
                   <button
                     onClick={() => copyToClipboard(summary)}
-                    className="text-gray-400 hover:text-primary transition-colors"
+                    className="text-[var(--theme-text-primary)] text-opacity-70 hover:text-primary transition-colors"
                   >
                     {copiedId === summary.id ? (
                       <FiCheck className="w-4 h-4" />
@@ -607,7 +607,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                   </button>
                 </div>
 
-                <p className="text-sm text-gray-700 dark:text-gray-300">{summary.content}</p>
+                <p className="text-sm text-[var(--theme-text-primary)]">{summary.content}</p>
               </motion.div>
             ))}
           </div>

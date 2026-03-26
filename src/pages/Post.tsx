@@ -32,7 +32,7 @@ export default function Post(): React.ReactElement {
     return (
       <div className="max-w-3xl mx-auto p-8 text-center">
         <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-[var(--theme-text-primary)] text-opacity-70 mb-4">
           This blog post is not available. It may be coming soon or has been removed.
         </p>
         <a href="/blog" className="text-primary hover:underline">
@@ -97,7 +97,7 @@ export default function Post(): React.ReactElement {
             <h1 className="mb-2">{post.title}</h1>
 
             {/* Post Metadata */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm text-gray-500">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm text-[var(--theme-text-primary)] text-opacity-60">
               <div className="flex items-center gap-3">
                 <span>Published on {post.date || 'an unknown date'}</span>
                 <span>•</span>
@@ -120,7 +120,7 @@ export default function Post(): React.ReactElement {
               {post.markdownBody ? (
                   <MarkdownRenderer content={post.markdownBody} />
               ) : post.body && post.body.length > 0 ? (
-                <div className="text-gray-800 dark:text-gray-200">
+                <div className="text-[var(--theme-text-primary)]">
                   {post.body.map((block: PortableTextBlock, index: number) => {
                     const key = block._key || `block-${index}`;
 
@@ -190,7 +190,7 @@ export default function Post(): React.ReactElement {
                   })}
                 </div>
               ) : (
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-[var(--theme-text-primary)] text-opacity-70">
                   Post content not available. The content may be coming soon or is currently unavailable.
                 </p>
               )}
@@ -241,14 +241,14 @@ export default function Post(): React.ReactElement {
               Table of Contents
             </h4>
             {headings.length === 0 ? (
-              <p className="text-sm text-gray-500">No headings available.</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-60">No headings available.</p>
             ) : (
               <nav className="flex flex-col space-y-3">
                 {headings.map((heading, idx) => (
                   <a
                     key={idx}
                     href={`#${heading.id}`}
-                    className={`text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors line-clamp-2 ${heading.level === 'h3' ? 'pl-4 border-l-2 border-primary/20' : ''
+                    className={`text-sm text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary dark:hover:text-primary transition-colors line-clamp-2 ${heading.level === 'h3' ? 'pl-4 border-l-2 border-primary/20' : ''
                       }`}
                   >
                     {heading.text}

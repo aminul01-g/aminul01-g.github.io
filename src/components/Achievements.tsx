@@ -38,7 +38,7 @@ export default function Achievements(): React.ReactElement {
               <h3 className="text-xl font-semibold mb-1 text-primary dark:text-indigo-300">
                 {a.title}
               </h3>
-              <p className="text-gray-700 dark:text-gray-200">{a.description}</p>
+              <p className="text-[var(--theme-text-primary)]">{a.description}</p>
             </div>
           </div>
         ))}

@@ -101,7 +101,7 @@ export default function ProjectDetails(): React.ReactElement {
           />
         )}
 
-        <p className="text-lg text-gray-700 dark:text-gray-200 mb-6 leading-relaxed">
+        <p className="text-lg text-[var(--theme-text-primary)] mb-6 leading-relaxed">
           {project.description}
         </p>
 
@@ -124,10 +124,10 @@ export default function ProjectDetails(): React.ReactElement {
                 className="GlassCard p-6 rounded-xl hover:transform hover:-translate-y-1 transition duration-300"
               >
                 <div className={`text-3xl mb-3 ${item.color}`}>{item.icon}</div>
-                <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">
+                <h3 className="text-lg font-bold mb-2 text-[var(--theme-text-primary)]">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                <p className="text-[var(--theme-text-primary)] text-opacity-80 text-sm leading-relaxed">
                   {item.text}
                 </p>
               </div>
@@ -139,10 +139,10 @@ export default function ProjectDetails(): React.ReactElement {
         <div className="prose dark:prose-invert max-w-none mb-8">
           {project.highlights && project.highlights.length > 0 && (
             <div className="mb-6">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Highlights</h2>
+              <h2 className="text-2xl font-bold mb-4 text-[var(--theme-text-primary)]">Highlights</h2>
               <ul className="list-disc pl-5 space-y-2">
                 {project.highlights.map((highlight, index) => (
-                  <li key={index} className="text-gray-700 dark:text-gray-300">
+                  <li key={index} className="text-[var(--theme-text-primary)]">
                     {highlight}
                   </li>
                 ))}
@@ -156,7 +156,7 @@ export default function ProjectDetails(): React.ReactElement {
               <h3 className="text-lg font-semibold text-[#8b5cf6] mb-2">
                 About this Project
               </h3>
-              <p className="text-white/60">
+              <p className="text-[var(--theme-text-primary)] text-opacity-[0.60]">
                 This project demonstrates key concepts in{' '}
                 {project.tags[0] || 'software development'}. Check out the source code on GitHub to
                 explore the implementation details, data pipelines, and model architectures used.
@@ -176,7 +176,7 @@ export default function ProjectDetails(): React.ReactElement {
           </a>
           <Link
             to="/projects"
-            className="GlassCard px-6 py-3 rounded-2xl font-semibold text-white/80 hover:text-white hover:border-white/25 transition-all duration-300"
+            className="GlassCard px-6 py-3 rounded-2xl font-semibold text-[var(--theme-text-primary)] text-opacity-[0.80] hover:text-white hover:border-white/25 transition-all duration-300"
           >
             Back to Projects
           </Link>

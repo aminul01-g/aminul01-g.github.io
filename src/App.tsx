@@ -10,6 +10,9 @@ import BackToTopButton from './components/BackToTopButton';
 import { ToastProvider, useToast } from './components/ToastContext';
 import FloatingActions from './components/FloatingActions';
 import FixedBackground from './components/FixedBackground';
+import { ThemeProvider } from './components/ThemeContext';
+import ThemeToggle from './components/ThemeToggle';
+import SparkleCursor from './components/SparkleCursor';
 
 const AIChatbot = lazy(() =>
   import('./components/AIChatbot').then((module) => ({ default: module.AIChatbot }))
@@ -78,6 +81,8 @@ function AppContent(): React.ReactElement {
       </a>
 
       <FixedBackground />
+      <SparkleCursor />
+      <ThemeToggle />
       <ScrollProgress />
       <Navbar />
 
@@ -100,11 +105,13 @@ function AppContent(): React.ReactElement {
 
 function App(): React.ReactElement {
   return (
-    <ToastProvider>
-      <AccessibilityProvider>
-        <AppContent />
-      </AccessibilityProvider>
-    </ToastProvider>
+    <ThemeProvider>
+      <ToastProvider>
+        <AccessibilityProvider>
+          <AppContent />
+        </AccessibilityProvider>
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
 

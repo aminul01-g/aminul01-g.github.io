@@ -174,7 +174,7 @@ export default function Hero(): React.ReactElement {
           <motion.div variants={itemVariants} className="mb-8">
             <Typewriter
               words={[profile.title, profile.slogan]}
-              className="text-2xl sm:text-3xl lg:text-4xl mb-4 font-semibold text-gray-700 dark:text-gray-200"
+              className="text-2xl sm:text-3xl lg:text-4xl mb-4 font-semibold text-[var(--theme-text-primary)]"
               speed={70}
               pause={1200}
             />
@@ -182,7 +182,7 @@ export default function Hero(): React.ReactElement {
 
           {/* Enhanced Description */}
           <motion.p
-            className="text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed"
+            className="text-[var(--theme-text-primary)] text-opacity-80 mb-12 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed"
             variants={itemVariants}
           >
             AI Engineering Student passionate about building intelligent systems that shape the
@@ -198,7 +198,7 @@ export default function Hero(): React.ReactElement {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                className="glass-card p-4 rounded-2xl text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-300 hover:shadow-glow group"
+                className="glass-card p-4 rounded-2xl text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary transition-all duration-300 hover:shadow-glow group"
                 variants={itemVariants}
                 custom={index}
                 whileHover={{
@@ -295,7 +295,7 @@ export default function Hero(): React.ReactElement {
           }}
         >
           <motion.svg
-            className="w-6 h-6 text-gray-600 dark:text-gray-300"
+            className="w-6 h-6 text-[var(--theme-text-primary)] text-opacity-80"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"

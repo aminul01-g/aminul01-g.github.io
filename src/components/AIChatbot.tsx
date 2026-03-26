@@ -434,7 +434,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                           className={`max-w-[80%] p-3 rounded-2xl ${
                             msg.sender === 'user'
                               ? 'bg-primary text-white rounded-br-none'
-                              : 'glass-card text-gray-800 dark:text-gray-200 rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700'
+                              : 'glass-card text-[var(--theme-text-primary)] rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700'
                           }`}
                         >
                           <p className="text-sm whitespace-pre-line">{msg.text}</p>
@@ -493,7 +493,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                     <Button
                       onClick={toggleVoiceInput}
                       className={`!p-2 !rounded-xl aspect-square flex items-center justify-center transition-colors ${
-                        isListening ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
+                        isListening ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-[var(--theme-text-primary)] text-opacity-60'
                       }`}
                       aria-label="Toggle voice input"
                       variant="ghost"
@@ -515,7 +515,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                   <div className="flex justify-end mt-2">
                      <button 
                        onClick={() => setVoiceEnabled(!voiceEnabled)}
-                       className={`flex items-center gap-1.5 text-[10px] font-medium transition-colors ${voiceEnabled ? 'text-primary' : 'text-gray-400'}`}
+                       className={`flex items-center gap-1.5 text-[10px] font-medium transition-colors ${voiceEnabled ? 'text-primary' : 'text-[var(--theme-text-primary)] text-opacity-70'}`}
                      >
                        {voiceEnabled ? <FiVolume2 className="w-3 h-3" /> : <FiVolumeX className="w-3 h-3" />}
                        {voiceEnabled ? 'Voice Response On' : 'Voice Response Off'}
@@ -537,10 +537,10 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
             exit={{ opacity: 0, x: 10, scale: 0.9 }}
             className="fixed bottom-8 right-20 sm:right-24 z-[70] pointer-events-none"
           >
-            <div className="glass-card text-gray-800 dark:text-gray-200 px-4 py-2 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 flex items-center gap-2">
-              <span className="text-sm font-medium whitespace-nowrap">Need help? 👋</span>
+            <div className="glass-card px-4 py-2 rounded-xl flex items-center gap-2">
+              <span className="text-sm font-medium whitespace-nowrap text-[var(--theme-text-primary)]">Need help? 👋</span>
               {/* Arrow */}
-              <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 glass-card border-t border-r border-gray-100 dark:border-gray-700 transform rotate-45" />
+              <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 glass-card transform rotate-45" />
             </div>
           </motion.div>
         )}
@@ -551,10 +551,10 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`p-3.5 sm:p-4 rounded-[28px] sm:rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.4)] border border-white/20 transition-all duration-300 backdrop-blur-[15px] ${
-          isOpen ? 'bg-gray-800 text-white' : 'bg-gradient-to-tr from-[#ec4899] to-[#8b5cf6] text-white hover:from-[#f472b6] hover:to-[#a78bfa]'
+        className={`p-3.5 sm:p-4 rounded-[28px] sm:rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.4)] border transition-all duration-300 backdrop-blur-[15px] z-[60] ${
+          isOpen ? 'bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--theme-text-primary)]' : 'bg-gradient-to-tr from-[#ec4899] to-[#8b5cf6] border-white/20 text-white hover:from-[#f472b6] hover:to-[#a78bfa]'
         }`}
-        style={{ backdropFilter: 'blur(15px)' }}
+        style={{ backdropFilter: 'var(--glass-blur)' }}
         aria-label={isOpen ? 'Close chat assistant' : 'Open chat assistant'}
       >
         {isOpen ? <FiX className="w-5 h-5 sm:w-6 sm:h-6" /> : <FiMessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />}

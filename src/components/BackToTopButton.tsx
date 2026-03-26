@@ -20,10 +20,10 @@ const BackToTopButton: React.FC = () => {
   return (
     <button
       onClick={handleClick}
-      className="bg-white/5 backdrop-blur-[15px] text-white rounded-full p-2.5 sm:p-3 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary transition border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+      className="glass-card text-[var(--theme-text-primary)] rounded-full p-2.5 sm:p-3 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 z-50 flex items-center justify-center border border-[var(--glass-border)]"
       aria-label="Back to top"
       tabIndex={0}
-      style={{ backdropFilter: 'blur(15px)' }}
+      style={{ backdropFilter: 'var(--glass-blur)' }}
     >
       <svg
         className="w-4 h-4 sm:w-5 sm:h-5"

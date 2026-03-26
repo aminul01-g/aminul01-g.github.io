@@ -352,7 +352,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
       case 'skill':
         return 'text-purple-500';
       default:
-        return 'text-gray-500';
+        return 'text-[var(--theme-text-primary)] text-opacity-60';
     }
   };
 
@@ -371,10 +371,10 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
         <div className="flex items-center gap-3">
           <FiStar className="w-6 h-6 text-primary" />
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-2xl font-bold text-[var(--theme-text-primary)]">
               Recommended for You
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-[var(--theme-text-primary)] text-opacity-70">
               Based on your interests and browsing history
             </p>
           </div>
@@ -383,7 +383,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
         <button
           onClick={refreshRecommendations}
           disabled={isRefreshing}
-          className="p-2 text-gray-500 hover:text-primary transition-colors disabled:opacity-50"
+          className="p-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors disabled:opacity-50"
           title="Refresh recommendations"
         >
           <FiRefreshCw className={`w-5 h-5 ${isRefreshing ? 'animate-spin' : ''}`} />
@@ -419,11 +419,11 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
 
                     <div className="flex items-center gap-2">
                       {viewedItems.has(item.id) && (
-                        <FiEye className="w-4 h-4 text-gray-400" title="Already viewed" />
+                        <FiEye className="w-4 h-4 text-[var(--theme-text-primary)] text-opacity-70" title="Already viewed" />
                       )}
                       <button
                         onClick={(e) => handleLike(item, e)}
-                        className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                        className="p-1 text-[var(--theme-text-primary)] text-opacity-70 hover:text-red-500 transition-colors"
                         title="Like this recommendation"
                       >
                         <FiHeart className="w-4 h-4" />
@@ -433,11 +433,11 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
 
                   {/* Content */}
                   <div className="space-y-3">
-                    <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2">
+                    <h3 className="font-semibold text-[var(--theme-text-primary)] group-hover:text-primary transition-colors line-clamp-2">
                       {item.title}
                     </h3>
 
-                    <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                    <p className="text-sm text-[var(--theme-text-primary)] text-opacity-70 line-clamp-3">
                       {item.description}
                     </p>
 
@@ -459,14 +459,14 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
                           </span>
                         ))}
                       {item.tags && item.tags.length > 3 && (
-                        <span className="text-xs text-gray-400">+{item.tags.length - 3} more</span>
+                        <span className="text-xs text-[var(--theme-text-primary)] text-opacity-70">+{item.tags.length - 3} more</span>
                       )}
                     </div>
                   </div>
 
                   {/* Footer */}
                   <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <div className="flex items-center gap-2 text-xs text-[var(--theme-text-primary)] text-opacity-60">
                       <span>Relevance: {Math.round(item.relevanceScore * 100)}%</span>
                     </div>
 
@@ -485,7 +485,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
       {/* User Insights */}
       {userInteractions.length > 0 && (
         <div className="mt-8 p-4 bg-primary/5 rounded-xl border border-primary/10">
-          <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-2">
+          <h3 className="text-sm font-medium text-[var(--theme-text-primary)] mb-2">
             Your Activity Insights
           </h3>
           <div className="flex flex-wrap gap-2 text-xs">

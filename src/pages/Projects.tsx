@@ -210,10 +210,10 @@ export default function Projects(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <div className="flex flex-col items-center justify-center gap-2 mb-8">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight text-[var(--theme-text-primary)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
             <span className="inline-block align-middle">🚀</span> Projects
           </h2>
-          <p className="text-center text-lg text-white/60 max-w-2xl mx-auto font-medium">
+          <p className="text-center text-lg text-[var(--theme-text-primary)] text-opacity-[0.60] max-w-2xl mx-auto font-medium">
             A showcase of my favorite projects, spanning{' '}
             <span className="text-[#8b5cf6] font-semibold">AI</span>,{' '}
             <span className="text-[#4F46E5] font-semibold">data science</span>, and{' '}
@@ -240,7 +240,7 @@ export default function Projects(): React.ReactElement {
         {/* Results Summary */}
         {!loading && (
           <motion.div
-            className="mb-6 text-center text-sm text-white/40"
+            className="mb-6 text-center text-sm text-[var(--theme-text-primary)] text-opacity-[0.40]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -272,13 +272,13 @@ export default function Projects(): React.ReactElement {
             </div>
           ) : filteredAndSortedProjects.length === 0 ? (
             <motion.div
-              className="col-span-full text-center text-white/40 py-8 text-lg"
+              className="col-span-full text-center text-[var(--theme-text-primary)] text-opacity-[0.40] py-8 text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="mb-4">
                 <svg
-                  className="w-16 h-16 mx-auto text-gray-400 mb-4"
+                  className="w-16 h-16 mx-auto text-[var(--theme-text-primary)] text-opacity-70 mb-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -291,7 +291,7 @@ export default function Projects(): React.ReactElement {
                   />
                 </svg>
                 <p className="text-xl font-semibold mb-2">No projects found</p>
-                <p className="text-gray-500">Try adjusting your search or filters</p>
+                <p className="text-[var(--theme-text-primary)] text-opacity-60">Try adjusting your search or filters</p>
               </div>
             </motion.div>
           ) : (

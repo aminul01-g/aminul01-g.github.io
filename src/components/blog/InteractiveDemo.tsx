@@ -5,7 +5,7 @@ export const InteractiveCounter = () => {
 
   return (
     <div className="p-6 glass-card rounded-xl border-2 border-primary/20 shadow-lg text-center my-8 max-w-sm mx-auto">
-      <h3 className="text-lg font-bold mb-4 text-gray-800 dark:text-white">Interactive Demo</h3>
+      <h3 className="text-lg font-bold mb-4 text-[var(--theme-text-primary)]">Interactive Demo</h3>
       <div className="text-4xl font-mono font-bold text-primary mb-6">{count}</div>
       <div className="flex gap-2 justify-center">
         <button
@@ -21,7 +21,7 @@ export const InteractiveCounter = () => {
           + Check It Out
         </button>
       </div>
-      <p className="mt-4 text-xs text-gray-500">
+      <p className="mt-4 text-xs text-[var(--theme-text-primary)] text-opacity-60">
         This is a real React component running inside the blog post!
       </p>
     </div>

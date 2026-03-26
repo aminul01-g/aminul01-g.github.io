@@ -111,7 +111,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-primary">{title}</h2>
-          <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto">{subtitle}</p>
+          <p className="text-[var(--theme-text-primary)] text-lg max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         {/* Timeline */}
@@ -146,7 +146,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                       >
                         {getTypeIcon(item.type)}
                       </div>
-                      <span className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                      <span className="text-xs font-medium text-[var(--theme-text-primary)] text-opacity-70 uppercase tracking-wide">
                         {item.type}
                       </span>
                     </div>
@@ -157,15 +157,15 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     </p>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-glass dark:text-white mb-2">
+                    <h3 className="text-xl font-bold text-glass text-[var(--theme-text-primary)] mb-2">
                       {item.title}
                     </h3>
 
                     {/* Subtitle */}
-                    <p className="text-lg text-gray-600 dark:text-gray-300 mb-3">{item.subtitle}</p>
+                    <p className="text-lg text-[var(--theme-text-primary)] text-opacity-80 mb-3">{item.subtitle}</p>
 
                     {/* Description */}
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    <p className="text-[var(--theme-text-primary)] leading-relaxed mb-4">
                       {item.description}
                     </p>
 
@@ -175,7 +175,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                         {item.tags.map((tag, tagIndex) => (
                           <span
                             key={tagIndex}
-                            className="px-3 py-1 text-xs font-medium rounded-full bg-white/30 dark:bg-white/10 text-glass dark:text-white border border-black/10 dark:border-white/20"
+                            className="px-3 py-1 text-xs font-medium rounded-full bg-white/30 dark:bg-white/10 text-glass text-[var(--theme-text-primary)] border border-black/10 dark:border-white/20"
                           >
                             #{tag}
                           </span>

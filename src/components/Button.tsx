@@ -85,11 +85,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       secondary:
         'bg-gradient-to-r from-[#EC4899] via-[#DB2777] to-[#BE185D] text-white border border-white/20 shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:shadow-[0_0_40px_rgba(236,72,153,0.5)]',
       outline:
-        'bg-transparent border border-white/20 text-white/90 backdrop-blur-xl hover:bg-white/[0.06] hover:border-white/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]',
+        'bg-transparent border border-white/20 text-[var(--theme-text-primary)] text-opacity-[0.90] backdrop-blur-xl hover:bg-white/[0.06] hover:border-white/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]',
       ghost:
-        'bg-transparent text-white/80 hover:bg-white/[0.06] hover:text-white border border-transparent hover:border-white/10',
+        'bg-transparent text-[var(--theme-text-primary)] text-opacity-[0.80] hover:bg-white/[0.06] hover:text-white border border-transparent hover:border-white/10',
       glass:
-        'bg-white/[0.03] backdrop-blur-2xl border border-white/12 text-white/90 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.06] hover:border-white/25 hover:shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(139,92,246,0.1)]',
+        'bg-white/[0.03] backdrop-blur-2xl border border-white/12 text-[var(--theme-text-primary)] text-opacity-[0.90] shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.06] hover:border-white/25 hover:shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(139,92,246,0.1)]',
     };
 
     const sizeClasses = {

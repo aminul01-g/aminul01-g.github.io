@@ -89,8 +89,8 @@ const skillsData = [
       { name: 'Docker', icon: <SiDocker className="text-blue-500" /> },
       { name: 'Git', icon: <SiGit className="text-orange-500" /> },
       { name: 'AWS', icon: <SiAmazonaws className="text-yellow-500" /> },
-      { name: 'Linux', icon: <SiLinux className="text-gray-700 dark:text-gray-300" /> },
-      { name: 'MLOps', icon: <FaTools className="text-gray-500" /> }
+      { name: 'Linux', icon: <SiLinux className="text-[var(--theme-text-primary)]" /> },
+      { name: 'MLOps', icon: <FaTools className="text-[var(--theme-text-primary)] text-opacity-60" /> }
     ],
   },
 ];
@@ -226,7 +226,7 @@ export default function Home(): React.ReactElement {
                 </h2>
               </div>
               <motion.p
-                className="text-gray-700 dark:text-gray-200 mb-8 whitespace-pre-line text-lg leading-relaxed max-w-3xl mx-auto"
+                className="text-[var(--theme-text-primary)] mb-8 whitespace-pre-line text-lg leading-relaxed max-w-3xl mx-auto"
                 style={{ opacity: aboutTrigger.opacity, y: aboutTrigger.y }}
               >
                 {aboutSummary}
@@ -281,7 +281,7 @@ export default function Home(): React.ReactElement {
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">
                 Skills & Expertise
               </h2>
-              <p className="text-gray-500 dark:text-gray-300 text-lg max-w-2xl mx-auto">
+              <p className="text-[var(--theme-text-primary)] text-opacity-70 text-lg max-w-2xl mx-auto">
                 Leveraging cutting-edge technologies to build innovative solutions
               </p>
             </motion.div>
@@ -303,11 +303,11 @@ export default function Home(): React.ReactElement {
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-indigo-500 text-white text-2xl shadow-lg">
                       {skill.icon}
                     </span>
-                    <span className="font-bold text-lg text-gray-900 dark:text-white">
+                    <span className="font-bold text-lg text-[var(--theme-text-primary)]">
                       {skill.title}
                     </span>
                   </div>
-                  <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-base">
+                  <ul className="space-y-3 text-[var(--theme-text-primary)] text-base">
                     {skill.skills.map((item) => (
                       <li key={item.name} className="flex items-center gap-3">
                         <span className="text-xl flex-shrink-0">{item.icon}</span>
@@ -345,7 +345,7 @@ export default function Home(): React.ReactElement {
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">
                 Featured Projects
               </h2>
-              <p className="text-gray-500 dark:text-gray-300 text-lg max-w-2xl mx-auto">
+              <p className="text-[var(--theme-text-primary)] text-opacity-70 text-lg max-w-2xl mx-auto">
                 Showcasing my latest work and innovative solutions
               </p>
             </motion.div>
@@ -410,13 +410,13 @@ export default function Home(): React.ReactElement {
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">
                 Recent Blog Posts
               </h2>
-              <p className="text-gray-500 dark:text-gray-300 text-lg max-w-2xl mx-auto">
+              <p className="text-[var(--theme-text-primary)] text-opacity-70 text-lg max-w-2xl mx-auto">
                 Sharing insights and knowledge from my journey
               </p>
             </motion.div>
 
             {blogPosts.length === 0 ? (
-              <div className="text-center text-gray-500 dark:text-gray-400 py-12">
+              <div className="text-center text-[var(--theme-text-primary)] text-opacity-60 py-12">
                 <p className="text-lg">No posts yet. Stay tuned!</p>
               </div>
             ) : (
@@ -441,12 +441,12 @@ export default function Home(): React.ReactElement {
                           <h3 className="text-lg font-semibold text-primary mb-2 dark:text-primary flex items-center gap-2">
                             {post.title}
                           </h3>
-                          <div className="flex items-center gap-3 text-sm text-gray-500 mb-3 dark:text-gray-400">
+                          <div className="flex items-center gap-3 text-sm text-[var(--theme-text-primary)] text-opacity-60 mb-3 ">
                             <span>{post.date}</span>
                             <span>•</span>
                             <span>{calculateReadingTime(post.body)}</span>
                           </div>
-                          <p className="text-gray-700 dark:text-gray-200">{post.summary}</p>
+                          <p className="text-[var(--theme-text-primary)]">{post.summary}</p>
                         </Link>
                       </motion.div>
                     </BlogCardTiltWrapper>

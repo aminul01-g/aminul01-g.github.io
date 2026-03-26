@@ -76,7 +76,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
           transition={{ delay: 0.2 }}
         >
           <svg
-            className="w-5 h-5 text-gray-400"
+            className="w-5 h-5 text-[var(--theme-text-primary)] text-opacity-70"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -101,7 +101,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
         {searchTerm && (
           <motion.button
             onClick={() => setSearchTerm('')}
-            className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-white transition-colors duration-200"
+            className="absolute inset-y-0 right-0 pr-4 flex items-center text-[var(--theme-text-primary)] text-opacity-70 hover:text-white transition-colors duration-200"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.1 }}
@@ -147,7 +147,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
       )}
 
       {/* Results Summary */}
-      <div className="flex items-center justify-between text-sm text-gray-300">
+      <div className="flex items-center justify-between text-sm text-[var(--theme-text-primary)] text-opacity-80">
         <span>
           {filteredPosts.length} of {posts.length} posts
         </span>

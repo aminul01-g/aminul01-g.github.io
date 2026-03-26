@@ -44,13 +44,13 @@ export default function Testimonials(): React.ReactElement {
                 loading="lazy"
               />
             </div>
-            <blockquote className="text-lg text-gray-700 dark:text-gray-200 mb-3">
+            <blockquote className="text-lg text-[var(--theme-text-primary)] mb-3">
               “{t.quote}”
             </blockquote>
             <figcaption className="text-primary dark:text-indigo-300 font-semibold">
               {t.name}
             </figcaption>
-            <span className="text-xs text-gray-500 dark:text-gray-400">{t.title}</span>
+            <span className="text-xs text-[var(--theme-text-primary)] text-opacity-60">{t.title}</span>
             <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 to-indigo-400/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
           </figure>
         ))}

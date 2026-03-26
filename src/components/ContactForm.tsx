@@ -113,7 +113,7 @@ export default function ContactForm(): React.ReactElement {
         <h2 className="text-2xl font-semibold text-white mb-2">
           Send me a message
         </h2>
-        <p className="text-white/50">
+        <p className="text-[var(--theme-text-primary)] text-opacity-[0.50]">
           I&apos;d love to hear from you. Send me a message and I&apos;ll respond as soon as
           possible.
         </p>
@@ -132,7 +132,7 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Name Field */}
       <motion.div className="space-y-2" variants={fieldVariants}>
-        <label htmlFor="name" className="block text-sm font-medium text-white/80">
+        <label htmlFor="name" className="block text-sm font-medium text-[var(--theme-text-primary)] text-opacity-[0.80]">
           Name{' '}
           <span className="text-red-400" aria-label="required">
             *
@@ -185,7 +185,7 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Email Field */}
       <motion.div className="space-y-2" variants={fieldVariants}>
-        <label htmlFor="email" className="block text-sm font-medium text-white/80">
+        <label htmlFor="email" className="block text-sm font-medium text-[var(--theme-text-primary)] text-opacity-[0.80]">
           Email{' '}
           <span className="text-red-400" aria-label="required">
             *
@@ -242,7 +242,7 @@ export default function ContactForm(): React.ReactElement {
       <motion.div className="space-y-2" variants={fieldVariants}>
         <label
           htmlFor="message"
-          className="block text-sm font-medium text-white/80"
+          className="block text-sm font-medium text-[var(--theme-text-primary)] text-opacity-[0.80]"
         >
           Message{' '}
           <span className="text-red-400" aria-label="required">
@@ -390,7 +390,7 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Additional Info */}
       <motion.div className="text-center pt-4 border-t border-white/10" variants={fieldVariants}>
-        <p className="text-sm text-white/30">
+        <p className="text-sm text-[var(--theme-text-primary)] text-opacity-[0.30]">
           Your information is secure and will never be shared with third parties.
         </p>
       </motion.div>

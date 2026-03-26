@@ -75,12 +75,12 @@ export default function ProjectFilterBar({
           placeholder="Search projects by title, description, or technology..."
           value={filterState.search}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+          className="w-full px-4 py-3 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-[var(--theme-text-primary)] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
           aria-label="Search projects"
           whileFocus={{ scale: 1.02 }}
         />
         <svg
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[var(--theme-text-primary)] text-opacity-70"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -104,7 +104,7 @@ export default function ProjectFilterBar({
               const [sortBy, sortOrder] = e.target.value.split('-');
               handleSortChange(sortBy as FilterState['sortBy'], sortOrder as 'asc' | 'desc');
             }}
-            className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+            className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-[var(--theme-text-primary)] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
           >
             <option value="name-asc">Name A-Z</option>
             <option value="name-desc">Name Z-A</option>
@@ -115,7 +115,7 @@ export default function ProjectFilterBar({
         {/* Advanced Filters Toggle */}
         <motion.button
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-gray-900 dark:text-white hover:bg-primary/5 hover:bg-white/10 transition-all"
+          className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-[var(--theme-text-primary)] hover:bg-primary/5 hover:bg-white/10 transition-all"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -149,7 +149,7 @@ export default function ProjectFilterBar({
           >
             {/* Tag Filters */}
             <div>
-              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <h3 className="text-sm font-medium text-[var(--theme-text-primary)] mb-2">
                 Filter by Technology ({filterState.selectedTags.length} selected)
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -181,7 +181,7 @@ export default function ProjectFilterBar({
                 animate={{ opacity: 1, y: 0 }}
                 className="flex flex-wrap gap-2 items-center"
               >
-                <span className="text-sm text-gray-600 dark:text-gray-400">Active filters:</span>
+                <span className="text-sm text-[var(--theme-text-primary)] text-opacity-70">Active filters:</span>
                 {filterState.selectedTags.map((tag) => (
                   <motion.span
                     key={tag}

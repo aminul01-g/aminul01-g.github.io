@@ -82,7 +82,7 @@ export default function SkillNetwork(): React.ReactElement {
 
   return (
     <div className="relative w-full aspect-[4/3] md:aspect-[16/9] bg-gray-900/50 rounded-2xl border border-gray-700 backdrop-blur-sm overflow-hidden select-none">
-      <div className="absolute inset-0 flex items-center justify-center text-gray-700/20 font-bold text-9xl pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center text-[var(--theme-text-primary)]/20 font-bold text-9xl pointer-events-none">
         TECH
       </div>
       
@@ -169,7 +169,7 @@ export default function SkillNetwork(): React.ReactElement {
       })}
 
       {/* Instructions Overlay */}
-      <div className="absolute bottom-4 left-4 text-xs text-gray-400">
+      <div className="absolute bottom-4 left-4 text-xs text-[var(--theme-text-primary)] text-opacity-70">
         Hover over a node to explore connections.
       </div>
     </div>

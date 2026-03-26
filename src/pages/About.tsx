@@ -147,12 +147,12 @@ export default function About(): React.ReactElement {
           <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/20 to-indigo-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-spin-slow" />
         </motion.div>
         <div className="flex-1 text-center md:text-left mb-10 md:mb-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] animate-fadeInUp text-center md:text-left">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 text-[var(--theme-text-primary)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] animate-fadeInUp text-center md:text-left">
             Md Aminul Islam Bhuiyan Amin
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-6 justify-center md:justify-start">
-            <span className="inline-flex items-center gap-2 text-xl font-semibold text-gray-200 animate-fadeInUp delay-100">
-              <FaUserGraduate className="text-gray-200" />
+            <span className="inline-flex items-center gap-2 text-xl font-semibold text-[var(--theme-text-primary)] text-opacity-90 animate-fadeInUp delay-100">
+              <FaUserGraduate className="text-[var(--theme-text-primary)] text-opacity-90" />
               AI Engineer & Computer Science and Engineering Student
             </span>
           </div>
@@ -161,7 +161,7 @@ export default function About(): React.ReactElement {
               href="https://github.com/aminul01-g"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+              className="inline-flex items-center gap-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors  dark:hover:text-primary"
             >
               <FaGithub />
               GitHub
@@ -170,7 +170,7 @@ export default function About(): React.ReactElement {
               href="https://linkedin.com/in/aminulai"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+              className="inline-flex items-center gap-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors  dark:hover:text-primary"
             >
               <FaLinkedin />
               LinkedIn
@@ -179,7 +179,7 @@ export default function About(): React.ReactElement {
               href="https://leetcode.com/u/aminul01-lc/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+              className="inline-flex items-center gap-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors  dark:hover:text-primary"
             >
               <span className="text-yellow-500">LC</span>LeetCode
             </a>
@@ -187,7 +187,7 @@ export default function About(): React.ReactElement {
               href="https://behance.net/aminul01g"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+              className="inline-flex items-center gap-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors  dark:hover:text-primary"
             >
               <span className="text-blue-500">Bē</span>Behance
             </a>
@@ -195,7 +195,7 @@ export default function About(): React.ReactElement {
               href="https://t.me/aminul01g"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+              className="inline-flex items-center gap-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors  dark:hover:text-primary"
             >
               <span className="text-blue-400">TG</span>Telegram
             </a>
@@ -253,7 +253,7 @@ export default function About(): React.ReactElement {
         aria-label="Professional summary"
       >
         <motion.h2
-          className="text-3xl sm:text-4xl font-extrabold mb-4 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] flex items-center gap-2 animate-fadeInUp text-center"
+          className="text-3xl sm:text-4xl font-extrabold mb-4 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] flex items-center gap-2 animate-fadeInUp text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -264,7 +264,7 @@ export default function About(): React.ReactElement {
             Empowering the future with AI & Intelligent Systems
           </span>
         </div>
-        <p className="text-white/70 text-lg text-center mb-2 animate-fadeInUp delay-100">
+        <p className="text-[var(--theme-text-primary)] text-opacity-[0.70] text-lg text-center mb-2 animate-fadeInUp delay-100">
           I&apos;m a passionate and driven Computer Science and Engineering undergraduate at
           Bangladesh University of Business & Technology (BUBT), focused on
           <span className="inline-flex items-center gap-1 font-semibold text-primary dark:text-indigo-300 ml-1">
@@ -305,7 +305,7 @@ export default function About(): React.ReactElement {
             Linux
           </span>
         </div>
-        <p className="text-white/70 text-lg text-center animate-fadeInUp delay-200">
+        <p className="text-[var(--theme-text-primary)] text-opacity-[0.70] text-lg text-center animate-fadeInUp delay-200">
           With a strong foundation in
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">Python</span>,
           <span className="text-primary font-semibold dark:text-indigo-300 ml-1">PyTorch</span>, and
@@ -325,7 +325,7 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
+          className="text-4xl font-extrabold mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -363,7 +363,7 @@ export default function About(): React.ReactElement {
               {skill.icon && (
                 <skill.icon className="text-4xl text-primary dark:text-indigo-300 mb-2" />
               )}
-              <span className="font-semibold dark:text-gray-100 text-base mb-2">{skill.label}</span>
+              <span className="font-semibold  text-base mb-2">{skill.label}</span>
               {/* Progress bar */}
               <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-1">
                 <div
@@ -371,7 +371,7 @@ export default function About(): React.ReactElement {
                   style={{ width: `${skill.level}%` }}
                 ></div>
               </div>
-              <span className="text-xs text-gray-500 dark:text-gray-400">{skill.level}%</span>
+              <span className="text-xs text-[var(--theme-text-primary)] text-opacity-60">{skill.level}%</span>
             </motion.div>
           ))}
         </div>
@@ -395,7 +395,7 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-8 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
+          className="text-4xl font-extrabold mb-8 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -422,24 +422,24 @@ export default function About(): React.ReactElement {
             />
           </a>
           <div>
-            <div className="font-semibold text-lg dark:text-gray-100">
+            <div className="font-semibold text-lg ">
               B.Sc. in Computer Science & Engineering
             </div>
             <a
               href="https://bubt.edu.bd/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-300 underline hover:text-primary transition-colors"
+              className="text-[var(--theme-text-primary)] text-opacity-80 underline hover:text-primary transition-colors"
             >
               Bangladesh University of Business & Technology (BUBT)
             </a>
-            <div className="text-gray-500 text-sm dark:text-gray-400">
+            <div className="text-[var(--theme-text-primary)] text-opacity-60 text-sm ">
               Expected Graduation: September 2027
             </div>
           </div>
         </motion.div>
         <motion.h2
-          className="text-4xl font-extrabold mb-8 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
+          className="text-4xl font-extrabold mb-8 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -457,12 +457,12 @@ export default function About(): React.ReactElement {
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-purple-400/30 to-blue-400/20 shadow-inner">
               <FaAward className="text-2xl text-primary dark:text-indigo-300" />
             </div>
-            <span className="font-semibold text-lg dark:text-gray-100">Data Analyst</span>
-            <span className="text-gray-500 text-sm dark:text-gray-400">
+            <span className="font-semibold text-lg ">Data Analyst</span>
+            <span className="text-[var(--theme-text-primary)] text-opacity-60 text-sm ">
               Intelligent Image Management Inc. (IIMI), Dhaka — June 2024–Present
             </span>
           </div>
-          <ul className="list-disc list-inside text-gray-700 ml-2 dark:text-gray-200">
+          <ul className="list-disc list-inside text-[var(--theme-text-primary)] ml-2 ">
             <li>
               Analyzed large datasets to{' '}
               <span className="text-indigo-500 font-semibold dark:text-indigo-300">
@@ -486,7 +486,7 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
+          className="text-4xl font-extrabold mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -507,10 +507,10 @@ export default function About(): React.ReactElement {
                 <proj.icon className="text-2xl text-indigo-400 dark:text-indigo-300 opacity-80" />
               </div>
               <div className="pl-10">
-                <div className="font-semibold mb-1 dark:text-gray-100 text-lg flex items-center gap-2">
+                <div className="font-semibold mb-1  text-lg flex items-center gap-2">
                   {proj.label}
                 </div>
-                <ul className="list-disc list-inside text-gray-700 ml-2 text-sm dark:text-gray-200">
+                <ul className="list-disc list-inside text-[var(--theme-text-primary)] ml-2 text-sm ">
                   <li>
                     {proj.desc}
                     <span className={proj.stackColor}>{proj.stack}</span>
@@ -530,7 +530,7 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center"
+          className="text-4xl font-extrabold mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -558,10 +558,10 @@ export default function About(): React.ReactElement {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+              <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 AI Engineering Bootcamp
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Ostad</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">Ostad</p>
             </div>
           </motion.a>
 
@@ -585,10 +585,10 @@ export default function About(): React.ReactElement {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+              <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 Machine Learning Professional
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">IBM (Coursera)</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">IBM (Coursera)</p>
             </div>
           </motion.a>
 
@@ -612,10 +612,10 @@ export default function About(): React.ReactElement {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+              <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 Neural Networks & Deep Learning
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">DeepLearning.AI (Coursera)</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">DeepLearning.AI (Coursera)</p>
             </div>
           </motion.a>
 
@@ -639,10 +639,10 @@ export default function About(): React.ReactElement {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+              <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 SQL and Relational Databases
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">IBM (Cognitive Class)</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">IBM (Cognitive Class)</p>
             </div>
           </motion.a>
 
@@ -661,15 +661,15 @@ export default function About(): React.ReactElement {
               />
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+              <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 Data Analytics (Python)
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">BUBT-TAFE</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">BUBT-TAFE</p>
             </div>
           </motion.div>
         </div>
         <motion.h2
-          className="text-4xl font-extrabold mt-16 mb-10 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
+          className="text-4xl font-extrabold mt-16 mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -684,7 +684,7 @@ export default function About(): React.ReactElement {
           >
             <FaAward className="text-2xl text-primary dark:text-indigo-300" />
             <div>
-              <div className="font-semibold dark:text-gray-100">
+              <div className="font-semibold ">
                 Runner-Up – BIUCPC & ICPC Programming Contest. 2023, 2025
               </div>
             </div>
@@ -695,7 +695,7 @@ export default function About(): React.ReactElement {
           >
             <FaRobot className="text-2xl text-primary dark:text-indigo-300" />
             <div>
-              <div className="font-semibold dark:text-gray-100">Member – BUBT AI Club</div>
+              <div className="font-semibold ">Member – BUBT AI Club</div>
             </div>
           </motion.div>
           <motion.div
@@ -704,7 +704,7 @@ export default function About(): React.ReactElement {
           >
             <FaUserGraduate className="text-2xl text-primary dark:text-indigo-300" />
             <div>
-              <div className="font-semibold dark:text-gray-100">
+              <div className="font-semibold ">
                 Volunteered mentoring high school students in Python & ML basics
               </div>
             </div>
@@ -715,7 +715,7 @@ export default function About(): React.ReactElement {
           >
             <FaGithub className="text-2xl text-primary dark:text-indigo-300" />
             <div>
-              <div className="font-semibold dark:text-gray-100">
+              <div className="font-semibold ">
                 Active contributor to AI-related forums and GitHub discussions
               </div>
             </div>
@@ -733,7 +733,7 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-3xl font-extrabold mb-8 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
+          className="text-3xl font-extrabold mb-8 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -808,13 +808,13 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-3xl font-extrabold mb-4 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+          className="text-3xl font-extrabold mb-4 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           Let&apos;s Connect!
         </motion.h2>
-        <p className="mb-6 text-gray-700 dark:text-gray-200">
+        <p className="mb-6 text-[var(--theme-text-primary)]">
           Interested in collaborating, hiring, or just want to chat about AI? Reach out.
         </p>
         <a

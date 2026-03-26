@@ -45,7 +45,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }): React.Reac
               ${toast.type === 'success' ? 'bg-green-600' : ''}
               ${toast.type === 'error' ? 'bg-red-600' : ''}
               ${toast.type === 'info' ? 'bg-blue-600' : ''}
-              ${toast.type === 'warning' ? 'bg-yellow-600 text-gray-900' : ''}
+              ${toast.type === 'warning' ? 'bg-yellow-600 text-[var(--theme-text-primary)]' : ''}
             `}
           >
             {toast.type === 'success' && (
@@ -71,7 +71,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }): React.Reac
             <span>{toast.message}</span>
             <button
               onClick={() => removeToast(toast.id)}
-              className="ml-2 text-white/80 hover:text-white focus:outline-none"
+              className="ml-2 text-[var(--theme-text-primary)] text-opacity-[0.80] hover:text-white focus:outline-none"
               aria-label="Dismiss notification"
             >
               ×
