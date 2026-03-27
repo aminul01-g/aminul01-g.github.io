@@ -75,10 +75,7 @@ function AppContent(): React.ReactElement {
 
   return (
     <>
-      {/* Skip to content link for accessibility - must be first focusable element */}
-      <a href="#main-content" className="skip-link" tabIndex={0}>
-        Skip to main content
-      </a>
+
 
       <FixedBackground />
       <SparkleCursor />

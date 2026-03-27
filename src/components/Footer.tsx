@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { profile } from '../data/profile';
 
 const socialLinks = [
@@ -121,12 +122,24 @@ export default function Footer(): React.ReactElement {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 >
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href.startsWith('/#') ? '/' : link.href}
                     className="text-[var(--theme-text-primary)] text-opacity-[0.50] hover:text-[#8b5cf6] transition-colors duration-300 hover:underline"
+                    onClick={() => {
+                      if (link.href.startsWith('/#')) {
+                        setTimeout(() => {
+                          const element = document.getElementById(link.href.replace('/#', ''));
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }, 100);
+                      } else {
+                        window.scrollTo(0, 0);
+                      }
+                    }}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>

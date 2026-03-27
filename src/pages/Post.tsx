@@ -3,6 +3,25 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Comments from '../components/Comments';
 import { BlogPost, blogPosts, PortableTextBlock, PortableTextSpan } from '../data/blog';
+
+class LocalSlugger {
+  private counts: Record<string, number> = {};
+  slug(value: string): string {
+    const slug = value
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    if (this.counts[slug]) {
+      this.counts[slug]++;
+      return `${slug}-${this.counts[slug] - 1}`;
+    } else {
+      this.counts[slug] = 1;
+      return slug;
+    }
+  }
+}
 import { calculateReadingTime } from '../utils/readingTime';
 // import BlockContent from '@sanity/block-content-to-react'; // Removed Sanity dependency
 import SocialShare from '../components/SocialShare';
@@ -47,18 +66,31 @@ export default function Post(): React.ReactElement {
   const postSlug = post.slug || '';
 
   // Generate TOC
-  const slugify = (text: string) =>
-    text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-');
+  const slugger = new LocalSlugger();
+  let headings: { text: string; id: string; level: string }[] = [];
 
-  const headings =
-    post.body?.filter((block) => block.style === 'h2' || block.style === 'h3').map((block) => ({
-      text: block.children?.map((c) => c.text).join('') || '',
-      id: slugify(block.children?.map((c) => c.text).join('') || ''),
-      level: block.style,
-    })) || [];
+  if (post.markdownBody) {
+    const regex = /^(#{2,3})\s+(.+)$/gm;
+    let match;
+    while ((match = regex.exec(post.markdownBody)) !== null) {
+      const level = match[1] === '##' ? 'h2' : 'h3';
+      const text = match[2].trim().replace(/[*_~`]/g, '');
+      headings.push({
+        text,
+        id: slugger.slug(text),
+        level,
+      });
+    }
+  } else if (post.body) {
+    headings = post.body.filter((block) => block.style === 'h2' || block.style === 'h3').map((block) => {
+      const text = block.children?.map((c) => c.text).join('') || '';
+      return {
+        text,
+        id: slugger.slug(text),
+        level: block.style || 'h2',
+      };
+    });
+  }
 
   return (
     <>
@@ -121,26 +153,28 @@ export default function Post(): React.ReactElement {
                   <MarkdownRenderer content={post.markdownBody} />
               ) : post.body && post.body.length > 0 ? (
                 <div className="text-[var(--theme-text-primary)]">
-                  {post.body.map((block: PortableTextBlock, index: number) => {
-                    const key = block._key || `block-${index}`;
+                  {(() => {
+                    const renderSlugger = new LocalSlugger();
+                    return post.body.map((block: PortableTextBlock, index: number) => {
+                      const key = block._key || `block-${index}`;
 
-                    // Helper to render children
-                    const renderChildren = () => (
-                      <>
-                        {block.children?.map((child: PortableTextSpan, childIndex: number) => (
-                          // Handle newlines in text for simple bullet points behavior
-                          child.text.split('\n').map((line: string, lineIndex: number) => (
-                            <React.Fragment key={`${key}-child-${childIndex}-line-${lineIndex}`}>
-                              {lineIndex > 0 && <br />}
-                              {line}
-                            </React.Fragment>
-                          ))
-                        ))}
-                      </>
-                    );
+                      // Helper to render children
+                      const renderChildren = () => (
+                        <>
+                          {block.children?.map((child: PortableTextSpan, childIndex: number) => (
+                            // Handle newlines in text for simple bullet points behavior
+                            child.text.split('\n').map((line: string, lineIndex: number) => (
+                              <React.Fragment key={`${key}-child-${childIndex}-line-${lineIndex}`}>
+                                {lineIndex > 0 && <br />}
+                                {line}
+                              </React.Fragment>
+                            ))
+                          ))}
+                        </>
+                      );
 
-                    const text = block.children?.map((c: PortableTextSpan) => c.text).join('') || '';
-                    const id = slugify(text);
+                      const text = block.children?.map((c: PortableTextSpan) => c.text).join('') || '';
+                      const id = renderSlugger.slug(text);
 
                     switch (block.style) {
                       case 'h1':
@@ -148,7 +182,14 @@ export default function Post(): React.ReactElement {
                       case 'h2':
                         return (
                           <h2 key={key} id={id} className="text-2xl font-bold mt-8 mb-4 scroll-mt-24 group">
-                            <a href={`#${id}`} className="no-underline hover:underline decoration-primary">
+                            <a 
+                              href={`#${id}`} 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                              }}
+                              className="no-underline hover:underline decoration-primary cursor-pointer"
+                            >
                               {renderChildren()}
                               <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity">
                                 #
@@ -159,7 +200,14 @@ export default function Post(): React.ReactElement {
                       case 'h3':
                         return (
                           <h3 key={key} id={id} className="text-xl font-semibold mt-6 mb-3 scroll-mt-24 group">
-                            <a href={`#${id}`} className="no-underline hover:underline decoration-primary">
+                            <a 
+                              href={`#${id}`} 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                              }}
+                              className="no-underline hover:underline decoration-primary cursor-pointer"
+                            >
                               {renderChildren()}
                               <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity text-sm">
                                 #
@@ -187,7 +235,8 @@ export default function Post(): React.ReactElement {
                         return <p key={key} className="mb-4 leading-relaxed">{renderChildren()}</p>;
                       }
                     }
-                  })}
+                  });
+                })()}
                 </div>
               ) : (
                 <p className="text-[var(--theme-text-primary)] text-opacity-70">
@@ -245,14 +294,17 @@ export default function Post(): React.ReactElement {
             ) : (
               <nav className="flex flex-col space-y-3">
                 {headings.map((heading, idx) => (
-                  <a
+                  <button
                     key={idx}
-                    href={`#${heading.id}`}
-                    className={`text-sm text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary dark:hover:text-primary transition-colors line-clamp-2 ${heading.level === 'h3' ? 'pl-4 border-l-2 border-primary/20' : ''
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className={`text-left text-sm text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary dark:hover:text-primary transition-colors line-clamp-2 ${heading.level === 'h3' ? 'pl-4 border-l-2 border-primary/20' : ''
                       }`}
                   >
                     {heading.text}
-                  </a>
+                  </button>
                 ))}
               </nav>
             )}

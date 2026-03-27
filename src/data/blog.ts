@@ -44,48 +44,7 @@ function makeKeyedBlocks(blocks: InputBlock[], blockPrefix: string): PortableTex
 }
 
 export const blogPosts: BlogPost[] = [
-  {
-    _id: 'interactive-demo-1',
-    _createdAt: '2025-06-25T12:00:00Z',
-    slug: 'interactive-react-in-markdown',
-    title: '✨ Interactive Blog Demo: React Components in Markdown',
-    date: '2025-06-25',
-    summary: 'This post demonstrates the new MDX-like capabilities of the blog engine. We can now embed interactive React counters, buttons, and live code demos directly inside blog posts.',
-    tags: ['React', 'MDX', 'Demo'],
-    body: [], // Empty legacy body
-    markdownBody: `
-# Interactive Content Demo
 
-Welcome to the future of this blog! 🚀
-Instead of just reading static text, you can now interact with React components directly inside the post.
-
-## Why is this cool?
-1. **Live Demos**: Show, don't just tell.
-2. **Better Engagement**: Interactive elements keep readers interested.
-3. **Seamless Integration**: Write in Markdown, power with React.
-
-## The Interactive Demo
-
-Below is a meaningful React component running live:
-
-\`\`\`interactive
-<Counter />
-\`\`\`
-
-### How it works
-The block above is just a simple code block in markdown, intercepted by our custom renderer.
-
-\`\`\`jsx
-// The code behind the magic
-<div className="p-6 bg-white rounded-xl shadow-lg">
-  <div className="text-4xl font-bold">{count}</div>
-  <button onClick={() => setCount(count + 1)}>+</button>
-</div>
-\`\`\`
-
-Stay tuned for more interactive tutorials!
-    `
-  },
   {
     _id: '1',
     _createdAt: '2025-06-15T12:00:00Z',

@@ -15,32 +15,32 @@ export interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Dr. Sarah Chen',
+    name: 'Ahmed Shafkat',
     role: 'AI Research Lead',
-    company: 'TechCorp',
+    company: 'BUBT University',
     content:
       "Aminul's expertise in machine learning and his innovative approach to problem-solving have been invaluable to our team. His work on our NLP project exceeded expectations.",
-    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+    avatar: '/images/testimonials/Ahmed_Shafkat.jpeg',
     rating: 5,
   },
   {
     id: 2,
-    name: 'Prof. Michael Rodriguez',
+    name: 'Prof. Dr. ABM Shawkat Ali',
     role: 'Computer Science Professor',
     company: 'BUBT University',
     content:
       "Aminul is one of the most dedicated students I've had the pleasure to teach. His passion for AI and commitment to excellence is truly remarkable.",
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    avatar: '/images/testimonials/Prof_Dr_ABM_Shawkat_Ali.jpg',
     rating: 5,
   },
   {
     id: 3,
-    name: 'Alex Thompson',
-    role: 'Senior Developer',
-    company: 'InnovateTech',
+    name: 'Tahmid Rahman',
+    role: 'AI Engineer',
+    company: 'iBusinessFormula',
     content:
       'Working with Aminul on our deep learning project was a great experience. His technical skills and collaborative spirit made him an excellent team member.',
-    avatar: 'https://randomuser.me/api/portraits/men/65.jpg',
+    avatar: '/images/testimonials/Tahmid_Rahman.jpeg',
     rating: 5,
   },
 ];
