@@ -72,7 +72,7 @@ export default function FixedBackground(): React.ReactElement {
           >
             {/* Lavender Pearl Blob */}
             <motion.div
-              className="absolute top-[-5%] left-[-5%] w-[65%] h-[65%] rounded-full bg-[#ddd6fe] opacity-40 blur-[80px]"
+              className="absolute top-[-5%] left-[-5%] w-[65%] h-[65%] rounded-full bg-violet-300 opacity-80 blur-[100px]"
               animate={{
                 x: [0, 60, -30, 0],
                 y: [0, 40, -40, 0],
@@ -83,7 +83,7 @@ export default function FixedBackground(): React.ReactElement {
             
             {/* Soft Mint Blob */}
             <motion.div
-              className="absolute bottom-[5%] right-[-5%] w-[55%] h-[55%] rounded-full bg-[#a7f3d0] opacity-30 blur-[80px]"
+              className="absolute bottom-[5%] right-[-5%] w-[55%] h-[55%] rounded-full bg-emerald-300 opacity-70 blur-[100px]"
               animate={{
                 x: [0, -50, 25, 0],
                 y: [0, -30, 50, 0],
@@ -94,7 +94,7 @@ export default function FixedBackground(): React.ReactElement {
 
             {/* Sky Blue Blob */}
             <motion.div
-              className="absolute top-1/3 left-1/3 w-[50%] h-[50%] rounded-full bg-[#bae6fd] opacity-35 blur-[80px]"
+              className="absolute top-1/3 left-1/3 w-[50%] h-[50%] rounded-full bg-sky-300 opacity-75 blur-[100px]"
               animate={{
                 x: [0, 40, -40, 0],
                 y: [0, -50, 30, 0],

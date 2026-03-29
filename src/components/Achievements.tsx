@@ -17,9 +17,10 @@ const achievements = [
     icon: '📄',
   },
   {
-    title: 'Open Source Contributor',
-    description: 'Contributed to Hugging Face Transformers and LangChain.',
-    icon: '🌐',
+    title: 'ICPC Regionalist',
+    description: 'Demonstrated advanced algorithmic problem-solving and teamwork skills by successfully competing in the prestigious International Collegiate Programming Contest (ICPC). Recognized for intense analytical thinking and competitive programming proficiency under pressure.',
+    icon: '💻',
+    image: '/images/certificates/2023-icpc.png',
   },
   {
     title: 'Hackathon Excellence',
