@@ -16,7 +16,7 @@ const AIChatbot = lazy(() =>
   import('./components/AIChatbot').then((module) => ({ default: module.AIChatbot }))
 );
 
-const Home = lazy(() => import('./pages/Home'));
+import Home from './pages/Home';
 const Projects = lazy(() => import('./pages/Projects'));
 const Blog = lazy(() => import('./pages/Blog'));
 const About = lazy(() => import('./pages/About'));

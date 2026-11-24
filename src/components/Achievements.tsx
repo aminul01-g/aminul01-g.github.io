@@ -68,7 +68,7 @@ export default function Achievements(): React.ReactElement {
                 <ImageWithFallback
                   src={a.image}
                   alt={`${a.title} Certificate`}
-                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                  className="aspect-[16/10] w-full overflow-hidden hover:scale-105 transition-transform duration-500"
                 />
               </div>
             )}

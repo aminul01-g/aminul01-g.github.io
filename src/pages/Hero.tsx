@@ -63,14 +63,14 @@ export default function Hero(): React.ReactElement {
               {profile.title}
             </motion.p>
 
-            <motion.div className="mt-3 min-h-[2.6rem]">
+            <div className="mt-3 min-h-[6rem] sm:min-h-[3rem]">
               <Typewriter
                 words={[profile.slogan, 'Turning research into working software.']}
                 className="text-xl font-medium text-[var(--theme-text-primary)] sm:text-2xl"
                 speed={55}
                 pause={2200}
               />
-            </motion.div>
+            </div>
 
             <motion.p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--theme-text-primary)] opacity-75 sm:text-lg">
               I build intelligent systems with Python, PyTorch and TensorFlow — and care about
