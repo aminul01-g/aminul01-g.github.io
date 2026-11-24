@@ -36,6 +36,15 @@ const AddToHomeScreenPrompt: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!visible) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setVisible(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [visible]);
+
   const handleInstall = async () => {
     if (!deferredPrompt) return;
     await deferredPrompt.prompt();
@@ -49,6 +58,8 @@ const AddToHomeScreenPrompt: React.FC = () => {
   return (
     <aside
       aria-label="Install app"
+      role="dialog"
+      aria-modal="false"
       className="glass-card fixed bottom-28 right-4 z-40 w-[min(19rem,calc(100vw-2rem))] rounded-2xl p-4 shadow-glow sm:right-6"
     >
       <button
@@ -57,7 +68,14 @@ const AddToHomeScreenPrompt: React.FC = () => {
         className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-lg opacity-60 transition hover:opacity-100"
         aria-label="Dismiss install prompt"
       >
-        <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+        <svg
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
       </button>

@@ -215,9 +215,9 @@ export default function Projects(): React.ReactElement {
           </h2>
           <p className="text-center text-lg text-[var(--theme-text-primary)] text-opacity-[0.60] max-w-2xl mx-auto font-medium">
             A showcase of my favorite projects, spanning{' '}
-            <span className="text-[#8b5cf6] font-semibold">AI</span>,{' '}
-            <span className="text-[#4F46E5] font-semibold">data science</span>, and{' '}
-            <span className="text-[#EC4899] font-semibold">full-stack development</span>.
+            <span className="text-[var(--link)] font-semibold">AI</span>,{' '}
+            <span className="text-[var(--accent)] font-semibold">data science</span>, and{' '}
+            <span className="text-[var(--accent-2)] font-semibold">full-stack development</span>.
             <br className="hidden sm:block" /> Each project reflects my passion for building
             intelligent, impactful solutions.
           </p>
@@ -291,12 +291,19 @@ export default function Projects(): React.ReactElement {
                   />
                 </svg>
                 <p className="text-xl font-semibold mb-2">No projects found</p>
-                <p className="text-[var(--theme-text-primary)] text-opacity-60">Try adjusting your search or filters</p>
+                <p className="text-[var(--theme-text-primary)] text-opacity-60">
+                  Try adjusting your search or filters
+                </p>
               </div>
             </motion.div>
           ) : (
             filteredAndSortedProjects.map((project: Project, i: number) => (
-              <motion.div key={i} variants={item} className="h-full GlassCard rounded-[24px] p-1" data-testid="project-card">
+              <motion.div
+                key={i}
+                variants={item}
+                className="h-full GlassCard rounded-[24px] p-1"
+                data-testid="project-card"
+              >
                 <ProjectCard {...project} />
               </motion.div>
             ))

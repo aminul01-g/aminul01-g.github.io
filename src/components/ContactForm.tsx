@@ -110,7 +110,7 @@ export default function ContactForm(): React.ReactElement {
     >
       {/* Header */}
       <motion.div variants={fieldVariants}>
-        <h2 className="text-2xl font-semibold text-white mb-2">
+        <h2 className="text-2xl font-semibold text-[var(--theme-text-primary)] mb-2">
           Send me a message
         </h2>
         <p className="text-[var(--theme-text-primary)] text-opacity-[0.50]">
@@ -132,7 +132,10 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Name Field */}
       <motion.div className="space-y-2" variants={fieldVariants}>
-        <label htmlFor="name" className="block text-sm font-medium text-[var(--theme-text-primary)] text-opacity-[0.80]">
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium text-[var(--theme-text-primary)] text-opacity-[0.80]"
+        >
           Name{' '}
           <span className="text-red-400" aria-label="required">
             *
@@ -143,10 +146,8 @@ export default function ContactForm(): React.ReactElement {
           type="text"
           placeholder="Your full name"
           className={`w-full p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-white/40 ${
-            errors.name
-              ? 'border-red-400/50 bg-red-900/10'
-              : 'border-white/12 bg-white/[0.03]'
-          } text-white placeholder-white/30`}
+            errors.name ? 'border-red-400/50 bg-red-900/10' : 'border-white/12 bg-white/[0.03]'
+          } text-[var(--theme-text-primary)]`}
           {...register('name', {
             required: 'Name is required.',
             minLength: { value: 2, message: 'Name should be at least 2 characters.' },
@@ -185,7 +186,10 @@ export default function ContactForm(): React.ReactElement {
 
       {/* Email Field */}
       <motion.div className="space-y-2" variants={fieldVariants}>
-        <label htmlFor="email" className="block text-sm font-medium text-[var(--theme-text-primary)] text-opacity-[0.80]">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-[var(--theme-text-primary)] text-opacity-[0.80]"
+        >
           Email{' '}
           <span className="text-red-400" aria-label="required">
             *
@@ -196,10 +200,8 @@ export default function ContactForm(): React.ReactElement {
           type="email"
           placeholder="your.email@example.com"
           className={`w-full p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-white/40 ${
-            errors.email
-              ? 'border-red-400/50 bg-red-900/10'
-              : 'border-white/12 bg-white/[0.03]'
-          } text-white placeholder-white/30`}
+            errors.email ? 'border-red-400/50 bg-red-900/10' : 'border-white/12 bg-white/[0.03]'
+          } text-[var(--theme-text-primary)]`}
           {...register('email', {
             required: 'Email is required.',
             pattern: {
@@ -254,10 +256,8 @@ export default function ContactForm(): React.ReactElement {
           rows={5}
           placeholder="Tell me about your project, ideas, or just say hello..."
           className={`w-full p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-white/40 resize-none ${
-            errors.message
-              ? 'border-red-400/50 bg-red-900/10'
-              : 'border-white/12 bg-white/[0.03]'
-          } text-white placeholder-white/30`}
+            errors.message ? 'border-red-400/50 bg-red-900/10' : 'border-white/12 bg-white/[0.03]'
+          } text-[var(--theme-text-primary)]`}
           {...register('message', {
             required: 'Message is required.',
             minLength: { value: 10, message: 'Message should be at least 10 characters.' },

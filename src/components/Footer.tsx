@@ -87,7 +87,7 @@ export default function Footer(): React.ReactElement {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="glass-card p-3 rounded-xl text-[var(--theme-text-primary)] text-opacity-[0.60] hover:text-[#8b5cf6] transition-all duration-300 hover:shadow-glow"
+                  className="glass-card p-3 rounded-xl text-[var(--theme-text-primary)] text-opacity-[0.60] hover:text-[var(--link)] transition-all duration-300 hover:shadow-glow"
                   whileHover={{
                     scale: 1.1,
                     y: -2,
@@ -111,9 +111,7 @@ export default function Footer(): React.ReactElement {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-semibold text-white mb-4">
-              Quick Links
-            </h4>
+            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <motion.li
@@ -124,7 +122,7 @@ export default function Footer(): React.ReactElement {
                 >
                   <Link
                     to={link.href.startsWith('/#') ? '/' : link.href}
-                    className="text-[var(--theme-text-primary)] text-opacity-[0.50] hover:text-[#8b5cf6] transition-colors duration-300 hover:underline"
+                    className="text-[var(--theme-text-primary)] text-opacity-[0.50] hover:text-[var(--link)] transition-colors duration-300 hover:underline"
                     onClick={() => {
                       if (link.href.startsWith('/#')) {
                         setTimeout(() => {
@@ -152,9 +150,7 @@ export default function Footer(): React.ReactElement {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-semibold text-white mb-4">
-              Get In Touch
-            </h4>
+            <h4 className="text-lg font-semibold text-white mb-4">Get In Touch</h4>
             <div className="space-y-2 text-[var(--theme-text-primary)] text-opacity-[0.50]">
               <p className="flex items-center justify-center md:justify-end gap-2">
                 <svg
@@ -172,7 +168,7 @@ export default function Footer(): React.ReactElement {
                 </svg>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="hover:text-[#8b5cf6] transition-colors duration-300"
+                  className="hover:text-[var(--link)] transition-colors duration-300"
                 >
                   {profile.email}
                 </a>
@@ -211,7 +207,7 @@ export default function Footer(): React.ReactElement {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <motion.p
-              className="text-sm text-[var(--theme-text-primary)] text-opacity-[0.40]"
+              className="text-sm text-[var(--theme-text-primary)] text-opacity-[0.65]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -227,14 +223,14 @@ export default function Footer(): React.ReactElement {
             >
               <a
                 href="/accessibility-statement.html"
-                className="text-[var(--theme-text-primary)] text-opacity-[0.40] hover:text-[#8b5cf6] transition-colors duration-300"
+                className="text-[var(--theme-text-primary)] text-opacity-[0.65] hover:text-[var(--link)] transition-colors duration-300"
               >
                 Accessibility Statement
               </a>
               <span className="text-[var(--theme-text-primary)] text-opacity-[0.20]">•</span>
               <a
                 href="/privacy-policy.html"
-                className="text-[var(--theme-text-primary)] text-opacity-[0.40] hover:text-[#8b5cf6] transition-colors duration-300"
+                className="text-[var(--theme-text-primary)] text-opacity-[0.65] hover:text-[var(--link)] transition-colors duration-300"
               >
                 Privacy Policy
               </a>
@@ -244,7 +240,7 @@ export default function Footer(): React.ReactElement {
 
         {/* Back to Top Button */}
         <motion.button
-          className="absolute -top-6 right-8 glass-card p-3 rounded-full text-[var(--theme-text-primary)] text-opacity-[0.50] hover:text-[#8b5cf6] hover:shadow-glow transition-all duration-300"
+          className="absolute -top-6 right-8 glass-card p-3 rounded-full text-[var(--theme-text-primary)] text-opacity-[0.50] hover:text-[var(--link)] hover:shadow-glow transition-all duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           whileHover={{
             scale: 1.1,

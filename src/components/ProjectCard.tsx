@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import ImageWithFallback from './ImageWithFallback';
-import { Link } from 'react-router-dom';
+import LinkButton from './LinkButton';
 import { useAnalytics } from '../hooks/useAnalytics';
 import Button from './Button';
 import ProjectPlaceholder from './ProjectPlaceholder';
@@ -10,7 +10,7 @@ export interface ProjectCardProps {
   title: string;
   description: string;
   tags: string[];
-  github: string;
+  github?: string;
   thumbnail?: string;
   videoUrl?: string;
   caseStudy?: {
@@ -147,7 +147,9 @@ export default function ProjectCard({
                 />
               ) : videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ? (
                 <iframe
-                  src={videoUrl.replace('watch?v=', 'embed/').replace('youtu.be/', 'www.youtube.com/embed/')}
+                  src={videoUrl
+                    .replace('watch?v=', 'embed/')
+                    .replace('youtu.be/', 'www.youtube.com/embed/')}
                   className="w-full h-full object-cover"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -201,7 +203,9 @@ export default function ProjectCard({
               <span className="text-xl">🚀</span>
               <div>
                 <span className="font-semibold text-primary text-sm block mb-0.5">Key Impact</span>
-                <span className="text-sm text-[var(--theme-text-primary)] line-clamp-2">{caseStudy.impact}</span>
+                <span className="text-sm text-[var(--theme-text-primary)] line-clamp-2">
+                  {caseStudy.impact}
+                </span>
               </div>
             </div>
           </motion.div>
@@ -250,55 +254,49 @@ export default function ProjectCard({
           transition={{ delay: 0.5 }}
         >
           <div className="flex-1">
-            <Link
+            <LinkButton
               to={`/projects/${encodeURIComponent(title.replace(/\s+/g, '-').toLowerCase())}`}
               onClick={handleViewDetails}
-              className="block w-full"
+              className="w-full"
             >
+              View Details
+              <svg
+                className="w-4 h-4 ml-2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </LinkButton>
+          </div>
+
+          {github && (
+            <div className="flex-1">
               <Button
-                variant="primary"
+                variant="glass"
                 size="md"
                 className="w-full"
                 icon={
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.091-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.579.688.481C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
                   </svg>
                 }
-                iconPosition="right"
+                onClick={() => {
+                  if (github) window.open(github, '_blank', 'noopener,noreferrer');
+                  handleGitHubClick();
+                }}
               >
-                View Details
+                GitHub
               </Button>
-            </Link>
-          </div>
-
-          <div className="flex-1">
-            <Button
-              variant="glass"
-              size="md"
-              className="w-full"
-              icon={
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.091-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.579.688.481C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
-                </svg>
-              }
-              onClick={() => {
-                window.open(github, '_blank');
-                handleGitHubClick();
-              }}
-            >
-              GitHub
-            </Button>
-          </div>
+            </div>
+          )}
         </motion.div>
       </div>
 

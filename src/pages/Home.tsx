@@ -5,7 +5,7 @@ import { blogPosts } from '../data/blog';
 import { calculateReadingTime } from '../utils/readingTime';
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
-import Button from '../components/Button';
+import LinkButton from '../components/LinkButton';
 import { motion } from 'framer-motion';
 import ImageWithFallback from '../components/ImageWithFallback';
 import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
@@ -14,8 +14,19 @@ import { Helmet } from 'react-helmet-async';
 import { usePageTracking } from '../hooks/useAnalytics';
 import { FaRobot, FaCode, FaChartBar, FaTools } from 'react-icons/fa';
 import {
-  SiTensorflow, SiPytorch, SiScikitlearn, SiPython, SiTypescript, SiC, SiCplusplus,
-  SiPandas, SiNumpy, SiDocker, SiGit, SiAmazonaws, SiLinux
+  SiTensorflow,
+  SiPytorch,
+  SiScikitlearn,
+  SiPython,
+  SiTypescript,
+  SiC,
+  SiCplusplus,
+  SiPandas,
+  SiNumpy,
+  SiDocker,
+  SiGit,
+  SiAmazonaws,
+  SiLinux,
 } from 'react-icons/si';
 import { timelineData } from '../data/timeline';
 import InteractiveTimeline from '../components/InteractiveTimeline';
@@ -57,7 +68,7 @@ const skillsData = [
       { name: 'LangGraph', icon: <span className="text-blue-600 font-bold px-1">🕸️</span> },
       { name: 'CrewAI', icon: <span className="text-yellow-600 font-bold px-1">🚣</span> },
       { name: 'LLMs', icon: <span className="text-purple-500 font-bold px-1">🧠</span> },
-      { name: 'Computer Vision', icon: <span className="text-indigo-500 font-bold px-1">👁️</span> }
+      { name: 'Computer Vision', icon: <span className="text-indigo-500 font-bold px-1">👁️</span> },
     ],
   },
   {
@@ -68,7 +79,7 @@ const skillsData = [
       { name: 'TypeScript', icon: <SiTypescript className="text-blue-600" /> },
       { name: 'C', icon: <SiC className="text-blue-400" /> },
       { name: 'C++', icon: <SiCplusplus className="text-blue-500" /> },
-      { name: 'Java', icon: <FaCode className="text-red-500" /> }
+      { name: 'Java', icon: <FaCode className="text-red-500" /> },
     ],
   },
   {
@@ -78,7 +89,7 @@ const skillsData = [
       { name: 'Pandas', icon: <SiPandas className="text-blue-900 dark:text-blue-400" /> },
       { name: 'NumPy', icon: <SiNumpy className="text-blue-500" /> },
       { name: 'Data Analysis', icon: <FaChartBar className="text-green-500" /> },
-      { name: 'Data Visualization', icon: <FaChartBar className="text-purple-500" /> }
+      { name: 'Data Visualization', icon: <FaChartBar className="text-purple-500" /> },
     ],
   },
   {
@@ -89,7 +100,10 @@ const skillsData = [
       { name: 'Git', icon: <SiGit className="text-orange-500" /> },
       { name: 'AWS', icon: <SiAmazonaws className="text-yellow-500" /> },
       { name: 'Linux', icon: <SiLinux className="text-[var(--theme-text-primary)]" /> },
-      { name: 'MLOps', icon: <FaTools className="text-[var(--theme-text-primary)] text-opacity-60" /> }
+      {
+        name: 'MLOps',
+        icon: <FaTools className="text-[var(--theme-text-primary)] text-opacity-60" />,
+      },
     ],
   },
 ];
@@ -184,9 +198,9 @@ export default function Home(): React.ReactElement {
             name: ['Home', 'About', 'Projects', 'Blog'],
             url: [
               'https://aminul01-g.github.io/',
-              'https://aminul01-g.github.io/about',
-              'https://aminul01-g.github.io/projects',
-              'https://aminul01-g.github.io/blog',
+              'https://aminul01-g.github.io/#/about',
+              'https://aminul01-g.github.io/#/projects',
+              'https://aminul01-g.github.io/#/blog',
             ],
           })}
         </script>
@@ -231,24 +245,22 @@ export default function Home(): React.ReactElement {
                 {aboutSummary}
               </motion.p>
               <motion.div style={{ opacity: aboutTrigger.opacity, y: aboutTrigger.y }}>
-                <Link to="/about" className="inline-flex items-center gap-2 group">
-                  <Button className="inline-flex items-center gap-2 group">
-                    Read More
-                    <svg
-                      className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </Button>
-                </Link>
+                <LinkButton to="/about" className="inline-flex items-center gap-2 group">
+                  Read More
+                  <svg
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </LinkButton>
               </motion.div>
             </motion.div>
           </div>
@@ -372,24 +384,18 @@ export default function Home(): React.ReactElement {
             </motion.div>
 
             <div className="text-center">
-              <Link to="/projects">
-                <Button className="inline-flex items-center gap-2">
-                  See All Projects
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </Button>
-              </Link>
+              <LinkButton to="/projects" className="inline-flex items-center gap-2">
+                See All Projects
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </LinkButton>
             </div>
           </div>
         </section>
@@ -453,24 +459,22 @@ export default function Home(): React.ReactElement {
                 </motion.div>
 
                 <div className="text-center">
-                  <Link to="/blog">
-                    <Button className="inline-flex items-center gap-2">
-                      See All Posts
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </Button>
-                  </Link>
+                  <LinkButton to="/blog" className="inline-flex items-center gap-2">
+                    See All Posts
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </LinkButton>
                 </div>
               </>
             )}
