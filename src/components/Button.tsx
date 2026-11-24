@@ -28,10 +28,27 @@ function filterValidChildren(children: React.ReactNode): React.ReactNode {
 }
 
 const OMIT_PROPS = [
-  'form', 'formAction', 'formEncType', 'formMethod', 'formNoValidate', 'formTarget',
-  'onDrag', 'onDragEnd', 'onDragEnter', 'onDragExit', 'onDragLeave', 'onDragOver',
-  'onDragStart', 'onDrop', 'onDragCapture', 'onDragEndCapture', 'onDragEnterCapture',
-  'onDragExitCapture', 'onDragLeaveCapture', 'onDragOverCapture', 'onDragStartCapture',
+  'form',
+  'formAction',
+  'formEncType',
+  'formMethod',
+  'formNoValidate',
+  'formTarget',
+  'onDrag',
+  'onDragEnd',
+  'onDragEnter',
+  'onDragExit',
+  'onDragLeave',
+  'onDragOver',
+  'onDragStart',
+  'onDrop',
+  'onDragCapture',
+  'onDragEndCapture',
+  'onDragEnterCapture',
+  'onDragExitCapture',
+  'onDragLeaveCapture',
+  'onDragOverCapture',
+  'onDragStartCapture',
   'onDropCapture',
 ];
 
@@ -106,7 +123,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${glow ? 'animate-pulse' : ''} ${className}`}
         disabled={isDisabled}
-        whileHover={!isDisabled ? { scale: 1.03, y: -3, transition: { type: 'spring', stiffness: 400, damping: 15 } } : {}}
+        whileHover={
+          !isDisabled
+            ? { scale: 1.03, y: -3, transition: { type: 'spring', stiffness: 400, damping: 15 } }
+            : {}
+        }
         whileTap={!isDisabled ? { scale: 0.97, y: 0, transition: { duration: 0.1 } } : {}}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -136,7 +157,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
 
         {!loading && icon && iconPosition === 'left' && (
-          <span className="mr-2" aria-hidden="true">{icon}</span>
+          <span className="mr-2" aria-hidden="true">
+            {icon}
+          </span>
         )}
 
         <span className={loading ? 'sr-only' : 'relative z-10'}>
@@ -160,7 +183,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ))}
 
         {!loading && icon && iconPosition === 'right' && (
-          <span className="ml-2" aria-hidden="true">{icon}</span>
+          <span className="ml-2" aria-hidden="true">
+            {icon}
+          </span>
         )}
       </motion.button>
     );

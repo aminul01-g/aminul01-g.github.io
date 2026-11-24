@@ -1,13 +1,13 @@
-import ReactFlow, {
+import {
+  ReactFlow,
   MiniMap,
   Controls,
   Background,
   useNodesState,
   useEdgesState,
-  Node,
-  Edge,
   Position,
 } from 'reactflow';
+import type { Node, Edge } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 // Type for skill tree node

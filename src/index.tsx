@@ -5,17 +5,19 @@ import App from './App';
 import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import * as Sentry from '@sentry/react';
-import { browserTracingIntegration } from '@sentry/react';
-
-// Initialize Sentry (replace the dsn with your real one to enable)
-Sentry.init({
-  dsn: process.env.REACT_APP_SENTRY_DSN || '', // Set your DSN in .env
-  integrations: [browserTracingIntegration()],
-  tracesSampleRate: 0.2, // Adjust for performance monitoring
-  environment: process.env.NODE_ENV,
-  enabled: Boolean(process.env.REACT_APP_SENTRY_DSN), // Only enable if DSN is set
-});
+// Sentry is only loaded when a DSN is configured, keeping it out of the
+// initial bundle for deployments that do not use error monitoring.
+const sentryDsn = process.env.REACT_APP_SENTRY_DSN;
+if (sentryDsn) {
+  import('@sentry/react').then((Sentry) => {
+    Sentry.init({
+      dsn: sentryDsn,
+      integrations: [Sentry.browserTracingIntegration()],
+      tracesSampleRate: 0.2,
+      environment: process.env.NODE_ENV,
+    });
+  });
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

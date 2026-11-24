@@ -332,7 +332,9 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
             <h2 className="text-2xl font-bold text-[var(--theme-text-primary)]">
               AI-Generated Summary
             </h2>
-            <p className="text-[var(--theme-text-primary)] text-opacity-70">Intelligent summaries powered by AI</p>
+            <p className="text-[var(--theme-text-primary)] text-opacity-70">
+              Intelligent summaries powered by AI
+            </p>
           </div>
         </div>
 
@@ -554,7 +556,9 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
               <h3 className="font-medium text-[var(--theme-text-primary)]">
                 Generating AI Summary...
               </h3>
-              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-60">Analyzing content and extracting key insights</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-60">
+                Analyzing content and extracting key insights
+              </p>
             </div>
           </div>
 

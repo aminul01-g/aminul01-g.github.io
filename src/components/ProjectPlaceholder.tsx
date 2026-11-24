@@ -50,7 +50,9 @@ export default function ProjectPlaceholder({
             <path d="M0 40L40 0H20L0 20M40 40V20L20 40" stroke="white" strokeWidth="2" />
           )}
           {pattern === 2 && <path d="M40 0H0V40" stroke="white" strokeWidth="2" fill="none" />}
-          {pattern === 3 && <circle cx="20" cy="20" r="10" stroke="white" strokeWidth="2" fill="none" />}
+          {pattern === 3 && (
+            <circle cx="20" cy="20" r="10" stroke="white" strokeWidth="2" fill="none" />
+          )}
         </pattern>
         <rect width="100%" height="100%" fill={`url(#pattern-${hash})`} />
       </svg>

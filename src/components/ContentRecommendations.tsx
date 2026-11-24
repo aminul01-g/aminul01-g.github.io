@@ -419,7 +419,10 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
 
                     <div className="flex items-center gap-2">
                       {viewedItems.has(item.id) && (
-                        <FiEye className="w-4 h-4 text-[var(--theme-text-primary)] text-opacity-70" title="Already viewed" />
+                        <FiEye
+                          className="w-4 h-4 text-[var(--theme-text-primary)] text-opacity-70"
+                          title="Already viewed"
+                        />
                       )}
                       <button
                         onClick={(e) => handleLike(item, e)}
@@ -459,7 +462,9 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
                           </span>
                         ))}
                       {item.tags && item.tags.length > 3 && (
-                        <span className="text-xs text-[var(--theme-text-primary)] text-opacity-70">+{item.tags.length - 3} more</span>
+                        <span className="text-xs text-[var(--theme-text-primary)] text-opacity-70">
+                          +{item.tags.length - 3} more
+                        </span>
                       )}
                     </div>
                   </div>

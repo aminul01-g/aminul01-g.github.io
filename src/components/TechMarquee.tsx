@@ -6,10 +6,8 @@ interface TechMarqueeProps {
 export default function TechMarquee({ items }: TechMarqueeProps): React.ReactElement {
   const row = [...items, ...items];
   return (
-    <div
-      className="relative z-10 overflow-hidden border-y border-[var(--hairline)] bg-[var(--surface)] py-4"
-      aria-label={`Technologies: ${items.join(', ')}`}
-    >
+    <div className="relative z-10 overflow-hidden border-y border-[var(--hairline)] bg-[var(--surface)] py-4">
+      <span className="sr-only">Technologies: {items.join(', ')}</span>
       <div className="marquee-track flex w-max gap-10 whitespace-nowrap px-5">
         {row.map((item, i) => (
           <span

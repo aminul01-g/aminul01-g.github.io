@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const InteractiveCounter = () => {
+export const InteractiveCounter = (): React.ReactElement => {
   const [count, setCount] = useState(0);
 
   return (

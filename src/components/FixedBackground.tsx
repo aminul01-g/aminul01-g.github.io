@@ -7,11 +7,11 @@ export default function FixedBackground(): React.ReactElement {
   const isDark = theme === 'dark';
 
   return (
-    <div 
+    <div
       className="fixed inset-0 min-h-screen w-full overflow-hidden transition-colors duration-1000 ease-in-out"
-      style={{ 
+      style={{
         zIndex: -10,
-        backgroundColor: isDark ? '#0A0A0A' : '#fafafa'
+        backgroundColor: isDark ? '#0A0A0A' : '#fafafa',
       }}
     >
       <AnimatePresence>
@@ -38,7 +38,7 @@ export default function FixedBackground(): React.ReactElement {
               }}
               transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
             />
-            
+
             <motion.div
               className="absolute bottom-20 right-[10%] w-96 h-96 bg-secondary/20 rounded-full blur-[100px] mix-blend-screen"
               animate={{
@@ -80,7 +80,7 @@ export default function FixedBackground(): React.ReactElement {
               }}
               transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
             />
-            
+
             {/* Soft Mint Blob */}
             <motion.div
               className="absolute bottom-[5%] right-[-5%] w-[55%] h-[55%] rounded-full bg-emerald-300 opacity-70 blur-[100px]"

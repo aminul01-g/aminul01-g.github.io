@@ -172,7 +172,7 @@ export default function Home(): React.ReactElement {
           />
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <motion.div>
-              <div className="relative mx-auto w-56 overflow-hidden rounded-2xl border border-[var(--hairline)] shadow-glass sm:w-64 lg:mx-0">
+              <div className="relative mx-auto aspect-[4/5] w-56 overflow-hidden rounded-2xl border border-[var(--hairline)] shadow-glass sm:w-64 lg:mx-0">
                 <ImageWithFallback
                   src="/images/optimized/profile_pic.webp"
                   alt="Portrait of Aminul"

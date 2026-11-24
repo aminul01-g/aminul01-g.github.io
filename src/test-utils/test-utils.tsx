@@ -11,8 +11,10 @@ const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
-  render(ui, { wrapper: AllTheProviders, ...options });
+const customRender = (
+  ui: ReactElement,
+  options?: Omit<RenderOptions, 'wrapper'>
+): ReturnType<typeof render> => render(ui, { wrapper: AllTheProviders, ...options });
 
 export { screen, fireEvent, waitFor } from '@testing-library/react';
 export { customRender as render };
