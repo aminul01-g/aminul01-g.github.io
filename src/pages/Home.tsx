@@ -1,7 +1,9 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import Hero from './Hero';
+import Achievements from '../components/Achievements';
+import Contact from './Contact';
 import FeaturedProjectCard from '../components/FeaturedProjectCard';
 import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
 import ImageWithFallback from '../components/ImageWithFallback';
@@ -15,9 +17,6 @@ import { timelineData } from '../data/timeline';
 import { calculateReadingTime } from '../utils/readingTime';
 import { usePageTracking } from '../hooks/useAnalytics';
 import { FaRobot, FaCode, FaChartBar, FaTools } from 'react-icons/fa';
-
-const Achievements = lazy(() => import('../components/Achievements'));
-const Contact = lazy(() => import('./Contact'));
 
 const aboutSummary =
   "I'm an AI-driven Computer Science student at BUBT, passionate about building intelligent systems. My focus is Deep Learning, NLP and LLMs — with hands-on experience in PyTorch, TensorFlow and Hugging Face. Lately I've been exploring prompt engineering, multimodal AI and LangChain-based applications.";
@@ -235,13 +234,7 @@ export default function Home(): React.ReactElement {
             title="Milestones worth noting."
             description="Competitions, certifications and problem-solving work backed by artifacts."
           />
-          <Suspense
-            fallback={
-              <div className="py-10 text-center text-[var(--muted)]">Loading achievements…</div>
-            }
-          >
-            <Achievements />
-          </Suspense>
+          <Achievements />
         </section>
 
         {/* 03 — Experience */}
@@ -313,11 +306,7 @@ export default function Home(): React.ReactElement {
           )}
         </section>
 
-        <Suspense
-          fallback={<div className="py-10 text-center text-[var(--muted)]">Loading contact…</div>}
-        >
-          <Contact />
-        </Suspense>
+        <Contact />
       </div>
     </>
   );

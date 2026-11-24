@@ -55,8 +55,7 @@ export default function Footer(): React.ReactElement {
   return (
     <motion.footer
       className="relative z-30 glass-card backdrop-blur-enhanced border-t border-white/10 mt-20"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       viewport={{ once: true }}
     >
@@ -68,8 +67,7 @@ export default function Footer(): React.ReactElement {
           {/* Brand Section */}
           <motion.div
             className="text-center md:text-left"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h3 className="text-2xl font-display font-bold text-gradient mb-4">
@@ -94,8 +92,7 @@ export default function Footer(): React.ReactElement {
                     transition: { duration: 0.2 },
                   }}
                   whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 >
                   {link.icon}
@@ -107,8 +104,7 @@ export default function Footer(): React.ReactElement {
           {/* Quick Links */}
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
@@ -116,8 +112,7 @@ export default function Footer(): React.ReactElement {
               {quickLinks.map((link, index) => (
                 <motion.li
                   key={link.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 >
                   <Link
@@ -146,8 +141,7 @@ export default function Footer(): React.ReactElement {
           {/* Contact Info */}
           <motion.div
             className="text-center md:text-right"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h4 className="text-lg font-semibold text-white mb-4">Get In Touch</h4>
@@ -201,15 +195,13 @@ export default function Footer(): React.ReactElement {
         {/* Divider */}
         <motion.div
           className="border-t border-white/10 pt-8"
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
+          animate={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <motion.p
               className="text-sm text-[var(--theme-text-primary)] text-opacity-[0.65]"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               &copy; {currentYear} Md Aminul Islam Bhuiyan Amin. All rights reserved.
@@ -217,8 +209,7 @@ export default function Footer(): React.ReactElement {
 
             <motion.div
               className="flex items-center gap-6 text-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               <a
@@ -248,8 +239,7 @@ export default function Footer(): React.ReactElement {
             transition: { duration: 0.2 },
           }}
           whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
           aria-label="Back to top"
         >
