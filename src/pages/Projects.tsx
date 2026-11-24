@@ -4,6 +4,7 @@ import type { Project } from '../data/projects.d';
 import ProjectCard from '../components/ProjectCard';
 import ProjectCardSkeleton from '../components/ProjectCardSkeleton';
 import ProjectFilterBar from '../components/ProjectFilterBar';
+import SectionHeading from '../components/SectionHeading';
 import { motion, useInView } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -209,19 +210,12 @@ export default function Projects(): React.ReactElement {
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.7 }}
       >
-        <div className="flex flex-col items-center justify-center gap-2 mb-8">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight text-[var(--theme-text-primary)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-            <span className="inline-block align-middle">🚀</span> Projects
-          </h2>
-          <p className="text-center text-lg text-[var(--theme-text-primary)] text-opacity-[0.60] max-w-2xl mx-auto font-medium">
-            A showcase of my favorite projects, spanning{' '}
-            <span className="text-[var(--link)] font-semibold">AI</span>,{' '}
-            <span className="text-[var(--accent)] font-semibold">data science</span>, and{' '}
-            <span className="text-[var(--accent-2)] font-semibold">full-stack development</span>.
-            <br className="hidden sm:block" /> Each project reflects my passion for building
-            intelligent, impactful solutions.
-          </p>
-        </div>
+        <SectionHeading
+          index="00"
+          label="Portfolio"
+          title="Selected projects."
+          description="A showcase spanning AI, data science and full-stack development — each built to solve a real problem."
+        />
 
         {/* Enhanced Filter Bar */}
         <div className="mb-6">

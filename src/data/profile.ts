@@ -16,7 +16,7 @@ export interface Profile {
 }
 
 export const profile: Profile = {
-  name: 'Md Aminul Islam Bhuiyan',
+  name: 'Md Aminul Islam Bhuiyan Amin',
   title: 'AI Engineering Student | Deep Learning, NLP & LLMs',
   slogan: 'Building Intelligent Systems with Python, PyTorch, and TensorFlow.',
   profilePic: 'https://avatars.githubusercontent.com/u/188814014?v=4',

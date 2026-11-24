@@ -69,7 +69,7 @@ export default function ProjectCard({
       aria-label={`Project: ${title}`}
       role="article"
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{
@@ -176,7 +176,7 @@ export default function ProjectCard({
         <motion.h3
           className="text-xl font-display font-bold text-[var(--theme-text-primary)] mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300"
           initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
           {title}
@@ -185,7 +185,7 @@ export default function ProjectCard({
         <motion.p
           className="text-[var(--theme-text-primary)] text-opacity-80 mb-6 line-clamp-3 leading-relaxed flex-grow"
           initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           {description}
@@ -196,7 +196,7 @@ export default function ProjectCard({
           <motion.div
             className="mb-5 bg-gradient-to-r from-primary/10 to-indigo-500/10 border border-primary/20 rounded-lg p-3"
             initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
           >
             <div className="flex items-start gap-2">
@@ -215,7 +215,7 @@ export default function ProjectCard({
         <motion.div
           className="flex flex-wrap gap-2 mb-6"
           initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
           {tags.slice(0, 4).map((tag, i) => (
@@ -223,7 +223,7 @@ export default function ProjectCard({
               key={i}
               className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-[var(--theme-text-primary)] border border-white/20 hover:border-primary/40 hover:text-primary transition-all duration-300"
               initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
               whileHover={{
                 scale: 1.05,
                 y: -2,
@@ -238,7 +238,7 @@ export default function ProjectCard({
             <motion.span
               className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-[var(--theme-text-primary)] text-opacity-60 border border-white/10"
               initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}
             >
               +{tags.length - 4} more
@@ -250,7 +250,7 @@ export default function ProjectCard({
         <motion.div
           className="flex gap-3 mt-auto"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
           <div className="flex-1">
