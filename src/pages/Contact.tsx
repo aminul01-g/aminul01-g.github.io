@@ -71,7 +71,7 @@ export default function Contact(): React.ReactElement {
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-center mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
           initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
         >
@@ -82,7 +82,7 @@ export default function Contact(): React.ReactElement {
           <motion.div
             className="space-y-6 flex flex-col justify-stretch h-full"
             initial="hidden"
-            whileInView="visible"
+            animate="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={{
               hidden: {},
@@ -98,7 +98,7 @@ export default function Contact(): React.ReactElement {
                 className="group flex items-center GlassCard p-6 min-h-[90px] h-full transition-all duration-300 hover:scale-[1.02] cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500/40"
                 style={{ textDecoration: 'none' }}
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true, amount: 0.2 }}
               >

@@ -1,6 +1,7 @@
 import React from 'react';
 import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
 import BlogFilterBar from '../components/BlogFilterBar';
+import SectionHeading from '../components/SectionHeading';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
@@ -111,13 +112,12 @@ export default function Blog(): React.ReactElement {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7 }}
       >
-        <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] relative z-10">
-          Blog
-        </h2>
-        <p className="text-center text-[var(--theme-text-primary)] text-opacity-[0.50] mb-8 max-w-2xl mx-auto relative z-10">
-          Insights, tutorials, and stories from my journey in tech, AI, and creative coding. Explore
-          my thoughts, discoveries, and lessons learned along the way.
-        </p>
+        <SectionHeading
+          index="00"
+          label="Journal"
+          title="Notes from the journey."
+          description="Insights, tutorials and lessons from working in AI and software engineering."
+        />
         <BlogFilterBar
           tags={allTags}
           onFilter={setFilter}

@@ -12,7 +12,7 @@
 :root {
   color-scheme: dark;
   --ink: #f5f6fb;
-  --muted: #a8afc5;
+  --muted: #c2c9dc;
   --accent: #8b5cf6;
   --accent-2: #38bdf8;
   --link: #a78bfa;
@@ -29,7 +29,7 @@
 [data-theme='transparent'] {
   color-scheme: light;
   --ink: #171922;
-  --muted: #4c5468;
+  --muted: #414a60;
   --accent: #6d4df5;
   --accent-2: #0284c7;
   --link: #5b3ecc;
@@ -406,6 +406,21 @@ select:focus-visible {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--accent), var(--accent-2));
   border-radius: 999px;
+}
+
+/* Editorial motion: one slow marquee, paused on hover and disabled by reduced motion. */
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ============================================================

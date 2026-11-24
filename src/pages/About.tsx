@@ -145,7 +145,11 @@ export default function About(): React.ReactElement {
           <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/20 to-indigo-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-spin-slow" />
         </motion.div>
         <div className="flex-1 text-center md:text-left mb-10 md:mb-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 text-[var(--theme-text-primary)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] animate-fadeInUp text-center md:text-left">
+          <p className="eyebrow mb-6 justify-center md:justify-start">
+            <span className="status-dot" aria-hidden="true" />
+            About / BUBT, Dhaka
+          </p>
+          <h1 className="text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[1.05] tracking-[-0.05em] text-[var(--ink)]">
             Md Aminul Islam Bhuiyan Amin
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-6 justify-center md:justify-start">
@@ -218,11 +222,7 @@ export default function About(): React.ReactElement {
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
           </div>
@@ -332,7 +332,11 @@ export default function About(): React.ReactElement {
 
         {/* Interactive Skill Network */}
         <div className="mb-12 animate-fadeInUp">
-          <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading Network...</div>}>
+          <Suspense
+            fallback={
+              <div className="h-64 flex items-center justify-center">Loading Network...</div>
+            }
+          >
             <SkillNetwork />
           </Suspense>
         </div>
@@ -369,7 +373,9 @@ export default function About(): React.ReactElement {
                   style={{ width: `${skill.level}%` }}
                 ></div>
               </div>
-              <span className="text-xs text-[var(--theme-text-primary)] text-opacity-60">{skill.level}%</span>
+              <span className="text-xs text-[var(--theme-text-primary)] text-opacity-60">
+                {skill.level}%
+              </span>
             </motion.div>
           ))}
         </div>
@@ -420,9 +426,7 @@ export default function About(): React.ReactElement {
             />
           </a>
           <div>
-            <div className="font-semibold text-lg ">
-              B.Sc. in Computer Science & Engineering
-            </div>
+            <div className="font-semibold text-lg ">B.Sc. in Computer Science & Engineering</div>
             <a
               href="https://bubt.edu.bd/"
               target="_blank"
@@ -586,7 +590,9 @@ export default function About(): React.ReactElement {
               <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 Machine Learning Professional
               </h3>
-              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">IBM (Coursera)</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">
+                IBM (Coursera)
+              </p>
             </div>
           </motion.a>
 
@@ -613,7 +619,9 @@ export default function About(): React.ReactElement {
               <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 Neural Networks & Deep Learning
               </h3>
-              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">DeepLearning.AI (Coursera)</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">
+                DeepLearning.AI (Coursera)
+              </p>
             </div>
           </motion.a>
 
@@ -640,7 +648,9 @@ export default function About(): React.ReactElement {
               <h3 className="font-bold text-[var(--theme-text-primary)] mb-1">
                 SQL and Relational Databases
               </h3>
-              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">IBM (Cognitive Class)</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">
+                IBM (Cognitive Class)
+              </p>
             </div>
           </motion.a>
 
@@ -788,7 +798,7 @@ export default function About(): React.ReactElement {
         </motion.div>
       </motion.section>
 
-        {/* Verified metrics only — see README notes on content integrity. */}
+      {/* Verified metrics only — see README notes on content integrity. */}
 
       {/* Let's Connect Section restored to About page */}
       <motion.section

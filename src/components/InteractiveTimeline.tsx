@@ -106,7 +106,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
@@ -128,7 +128,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                   index % 2 === 0 ? '' : 'sm:flex-row-reverse'
                 }`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
@@ -162,7 +162,9 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     </h3>
 
                     {/* Subtitle */}
-                    <p className="text-lg text-[var(--theme-text-primary)] text-opacity-80 mb-3">{item.subtitle}</p>
+                    <p className="text-lg text-[var(--theme-text-primary)] text-opacity-80 mb-3">
+                      {item.subtitle}
+                    </p>
 
                     {/* Description */}
                     <p className="text-[var(--theme-text-primary)] leading-relaxed mb-4">
