@@ -37,7 +37,7 @@ export default function ProjectDetails(): React.ReactElement {
         />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://aminul01-g.github.io/projects/${slug}`} />
+        <meta property="og:url" content={`https://aminul01-g.github.io/#/projects/${slug}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={project?.title || 'Project'} />
         <meta
@@ -45,7 +45,7 @@ export default function ProjectDetails(): React.ReactElement {
           content={project?.description || 'Project by Aminul Islam Bhuiyan Amin.'}
         />
         <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
-        <link rel="canonical" href={`https://aminul01-g.github.io/projects/${slug}`} />
+        <link rel="canonical" href={`https://aminul01-g.github.io/#/projects/${slug}`} />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -67,7 +67,7 @@ export default function ProjectDetails(): React.ReactElement {
                 '@type': 'ListItem',
                 position: 3,
                 name: project.title,
-                item: `https://aminul01-g.github.io/projects/${slug}`,
+                item: `https://aminul01-g.github.io/#/projects/${slug}`,
               },
             ],
           })}
@@ -106,7 +106,7 @@ export default function ProjectDetails(): React.ReactElement {
         </p>
 
         <SocialShare
-          url={`https://aminul01-g.github.io/projects/${slug}`}
+          url={`https://aminul01-g.github.io/#/projects/${slug}`}
           title={project.title}
           className="mb-8"
         />

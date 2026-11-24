@@ -18,6 +18,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     localStorage.setItem('liquid-glass-theme', theme);
     document.documentElement.setAttribute('data-theme', theme);
+    // Tailwind's `dark:` variants are class-based, so keep the class in sync
+    // with the data-theme attribute used by the custom CSS variables.
+    document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
   const toggleTheme = () => {

@@ -1,312 +1,159 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import { profile } from '../data/profile';
 import Typewriter from '../components/Typewriter';
 import ImageWithFallback from '../components/ImageWithFallback';
-import ParticleBackground from '../components/ParticleBackground';
-import useScrollAnimation from '../hooks/useScrollAnimation';
-import ParallaxSection from '../components/ParallaxSection';
 import Button from '../components/Button';
-import TerminalOverlay from '../components/TerminalOverlay';
 
 const socialLinks = [
-  {
-    href: profile.github,
-    label: 'GitHub',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.091-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.579.688.481C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
-      </svg>
-    ),
-  },
-  {
-    href: profile.linkedin,
-    label: 'LinkedIn',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z" />
-      </svg>
-    ),
-  },
-  {
-    href: profile.leetcode,
-    label: 'LeetCode',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M8.7 14.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L5.42 12l3.28 2.3zm6.6 0 3.28-2.3-3.28-2.3a1 1 0 1 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 1 1-1.4-1.4z" />
-      </svg>
-    ),
-  },
-  {
-    href: profile.behance,
-    label: 'Behance',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M22 9.5h-6v1.5h6v-1.5zm-9.438 2.599c.535-.391.854-1.01.854-1.808 0-1.854-1.297-2.291-2.747-2.291h-6.669v9.5h6.826c1.635 0 3.174-.931 3.174-2.871 0-1.168-.519-1.9-1.438-2.53zm-5.562-2.099h2.588c.647 0 1.362.237 1.362 1.018 0 .708-.472 1.082-1.13 1.082h-2.82v-2.1zm2.97 6.5h-2.97v-2.4h2.949c.751 0 1.276.333 1.276 1.154 0 .82-.611 1.246-1.255 1.246zm11.03-2.5c-.088-.709-.35-1.27-.78-1.669-.456-.42-1.073-.631-1.836-.631-1.06 0-1.877.364-2.434 1.08-.466.605-.726 1.432-.726 2.365 0 .898.286 1.646.848 2.225.562.578 1.298.867 2.19.867 1.29 0 2.29-.591 2.702-1.57h-1.626c-.246.335-.612.5-1.096.5-.43 0-.781-.137-1.05-.408-.27-.271-.429-.648-.475-1.119h4.287c.031-.222.045-.438.05-.64.001-.08.002-.159.002-.237 0-.085-.001-.17-.004-.253-.006-.17-.016-.34-.035-.51z" />
-      </svg>
-    ),
-  },
-  {
-    href: profile.telegram,
-    label: 'Telegram',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M9.036 16.572l-.398 5.607c.57 0 .818-.244 1.116-.537l2.675-2.558 5.547 4.053c1.016.561 1.74.266 1.993-.941l3.617-16.964c.369-1.627-.591-2.264-1.627-1.872l-21.1 8.122c-1.617.627-1.6 1.527-.277 1.927l5.396 1.687 12.522-7.89c.59-.377 1.127-.168.686.209z" />
-      </svg>
-    ),
-  },
-  {
-    href: profile.huggingface,
-    label: 'Hugging Face',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 6.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm3 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM8.5 13h7a.5.5 0 0 1 .5.5c0 2.21-1.79 4-4 4s-4-1.79-4-4a.5.5 0 0 1 .5-.5z" />
-      </svg>
-    ),
-  },
+  { href: profile.github, label: 'GitHub', path: 'M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.6 9.6 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.75c0 .26.18.57.69.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z' },
+  { href: profile.linkedin, label: 'LinkedIn', path: 'M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z' },
+  { href: profile.leetcode, label: 'LeetCode', path: 'M8.7 14.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L5.42 12l3.28 2.3Zm6.6 0 3.28-2.3-3.28-2.3a1 1 0 1 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 1 1-1.4-1.4Z' },
+  { href: profile.huggingface, label: 'Hugging Face', path: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM9.5 8.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Zm5 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM8.5 13h7a.5.5 0 0 1 .5.5c0 2.21-1.79 4-4 4s-4-1.79-4-4a.5.5 0 0 1 .5-.5Z' },
+  { href: profile.telegram, label: 'Telegram', path: 'M9.04 16.57l-.4 5.61c.57 0 .82-.24 1.12-.54l2.67-2.56 5.55 4.05c1.01.56 1.74.27 1.99-.94l3.62-16.96c.37-1.63-.59-2.27-1.63-1.87L.94 8.03C-.68 8.66-.66 9.56.66 9.96l5.4 1.69 12.52-7.89c.59-.38 1.13-.17.69.21Z' },
 ];
 
+const nameWords = profile.name.split(' ');
+const firstLine = nameWords.slice(0, Math.ceil(nameWords.length / 2)).join(' ');
+const secondLine = nameWords.slice(Math.ceil(nameWords.length / 2)).join(' ');
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+};
+
 export default function Hero(): React.ReactElement {
-  const { elementRef } = useScrollAnimation();
-  const { scrollYProgress } = useScroll();
-
-  // Enhanced parallax transforms
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
-  const wordVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: () => ({
-      opacity: 1,
-      y: 0,
-    }),
-  };
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Local background orbs and gradient-mesh removed. 
-          Home page now relies entirely on the global FixedBackground in App.tsx 
-          for a unified Liquid Glass aesthetic across all routes. */}
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-32 sm:pt-32">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+          <motion.div variants={container} initial="hidden" animate="visible">
+            <motion.p variants={item} className="eyebrow mb-7">
+              <span className="status-dot" aria-hidden="true" />
+              AI engineer &amp; computer science student
+            </motion.p>
 
-      {/* Particle Background */}
-      <ParticleBackground />
+            <motion.h1
+              variants={item}
+              aria-label={profile.name}
+              className="text-[clamp(2.9rem,8vw,5.6rem)] font-bold leading-[1.03] tracking-[-0.055em]"
+            >
+              <span className="block">{firstLine}</span>
+              <span className="block text-gradient">{secondLine}</span>
+            </motion.h1>
 
-      {/* AI Terminal Overlay */}
-      <TerminalOverlay />
+            <motion.p
+              variants={item}
+              className="mt-7 font-mono text-sm uppercase tracking-[0.16em] text-[var(--theme-text-primary)] opacity-70"
+            >
+              {profile.title}
+            </motion.p>
 
-      {/* Main Content */}
-      <ParallaxSection className="relative z-10 w-full">
-        <motion.div
-          ref={elementRef as React.RefObject<HTMLDivElement>}
-          className="max-w-6xl mx-auto px-4 text-center"
-          style={{ y: contentY }}
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Enhanced Profile Image */}
-          <motion.div className="mb-8 relative" variants={itemVariants}>
-            <div className="relative inline-block">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-30"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
+            <motion.div variants={item} className="mt-3 min-h-[2.6rem]">
+              <Typewriter
+                words={[profile.slogan, 'Turning research into working software.']}
+                className="text-xl font-medium text-[var(--theme-text-primary)] sm:text-2xl"
+                speed={55}
+                pause={2200}
               />
-              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white/20 shadow-glass relative z-10">
+            </motion.div>
+
+            <motion.p
+              variants={item}
+              className="mt-6 max-w-xl text-base leading-relaxed text-[var(--theme-text-primary)] opacity-75 sm:text-lg"
+            >
+              I build intelligent systems with Python, PyTorch and TensorFlow — and care about
+              making them clear, useful and genuinely deployable.
+            </motion.p>
+
+            <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
+              <Link to="/projects" className="focus:outline-none">
+                <Button variant="primary" size="lg" glow>
+                  View projects
+                </Button>
+              </Link>
+              {profile.resume && (
+                <Button
+                  variant="glass"
+                  size="lg"
+                  onClick={() => window.open(profile.resume, '_blank', 'noopener,noreferrer')}
+                >
+                  Résumé
+                </Button>
+              )}
+            </motion.div>
+
+            <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-2">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  title={link.label}
+                  className="glass-card flex h-11 w-11 items-center justify-center rounded-xl opacity-80 transition duration-300 hover:opacity-100 hover:shadow-glow"
+                >
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={link.path} />
+                  </svg>
+                </a>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative hidden justify-center lg:flex"
+          >
+            <motion.div
+              animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative"
+            >
+              <div className="absolute -inset-8 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.18),transparent_70%)]" />
+              <div className="absolute -inset-3 rounded-full border border-white/10" />
+              <div className="absolute -inset-8 rounded-full border border-white/[0.05]" />
+              <div className="relative h-72 w-72 overflow-hidden rounded-full border border-white/20 shadow-glass xl:h-80 xl:w-80">
                 <ImageWithFallback
                   src="/images/optimized/profile_pic.webp"
-                  alt={profile.name}
-                  className="w-full h-full object-cover object-center"
-                  fallbackSrc="/images/optimized/profile_pic.webp"
+                  alt={`Portrait of ${profile.name}`}
+                  className="h-full w-full object-cover object-center"
                 />
               </div>
-              <motion.div
-                className="absolute -inset-2 rounded-full border-2 border-primary/30"
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-              />
-            </div>
+              <div className="glass-card absolute -bottom-5 -left-10 rounded-2xl px-4 py-3 shadow-glow">
+                <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] opacity-60">
+                  Stack
+                </p>
+                <p className="mt-1 text-sm font-semibold">Python · PyTorch · TensorFlow</p>
+              </div>
+            </motion.div>
           </motion.div>
+        </div>
+      </div>
 
-          {/* Enhanced Name with Gradient Text */}
-          <motion.h1
-            className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-6"
-            variants={containerVariants}
-          >
-            {profile.name.split(' ').map((word, index) => (
-              <motion.span
-                key={index}
-                custom={index}
-                variants={wordVariants}
-                className="inline-block mr-4 text-gradient"
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.h1>
-
-          {/* Enhanced Typewriter */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <Typewriter
-              words={[profile.title, profile.slogan]}
-              className="text-2xl sm:text-3xl lg:text-4xl mb-4 font-semibold text-[var(--theme-text-primary)]"
-              speed={70}
-              pause={1200}
-            />
-          </motion.div>
-
-          {/* Enhanced Description */}
-          <motion.p
-            className="text-[var(--theme-text-primary)] text-opacity-80 mb-12 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed"
-            variants={itemVariants}
-          >
-            AI Engineering Student passionate about building intelligent systems that shape the
-            future. Let&apos;s connect and create something extraordinary together!
-          </motion.p>
-
-          {/* Enhanced Social Icons */}
-          <motion.div className="flex justify-center gap-4 mb-12" variants={containerVariants}>
-            {socialLinks.map((link, index) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="glass-card p-4 rounded-2xl text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary transition-all duration-300 hover:shadow-glow group"
-                variants={itemVariants}
-                custom={index}
-                whileHover={{
-                  scale: 1.1,
-                  y: -5,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  className="group-hover:animate-pulse"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {link.icon}
-                </motion.div>
-              </motion.a>
-            ))}
-          </motion.div>
-
-          {/* Enhanced Call-to-Action Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            variants={itemVariants}
-          >
-            {profile.resume && (
-              <Button
-                variant="primary"
-                size="lg"
-                glow
-                icon={
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                }
-                onClick={() => window.open(profile.resume, '_blank')}
-              >
-                Download Resume
-              </Button>
-            )}
-
-            <Button
-              variant="glass"
-              size="lg"
-              icon={
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                  />
-                </svg>
-              }
-              onClick={() => {
-                const contactSection = document.getElementById('contact');
-                contactSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Let&apos;s Talk
-            </Button>
-          </motion.div>
-        </motion.div>
-      </ParallaxSection>
-
-      {/* Enhanced Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
+      <button
+        type="button"
+        onClick={() =>
+          document.getElementById('about')?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' })
+        }
+        aria-label="Scroll to about section"
+        className="absolute bottom-8 left-1/2 z-10 flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full opacity-60 transition hover:opacity-100"
       >
-        <motion.div
-          className="glass-card p-3 rounded-full cursor-pointer hover:shadow-glow transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => {
-            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-          }}
-        >
-          <motion.svg
-            className="w-6 h-6 text-[var(--theme-text-primary)] text-opacity-80"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </motion.svg>
-        </motion.div>
-      </motion.div>
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0-6-6m6 6 6-6" />
+        </svg>
+      </button>
     </section>
   );
 }

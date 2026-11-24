@@ -117,23 +117,23 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
         {/* Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary/50 to-indigo-500/50" />
+          <div className="absolute left-1/2 hidden sm:block transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary/50 to-indigo-500/50" />
 
           {/* Timeline Items */}
           <div className="space-y-12">
             {items.map((item, index) => (
               <motion.div
                 key={item.id}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                className={`relative flex flex-col gap-6 sm:gap-0 sm:flex-row ${
+                  index % 2 === 0 ? '' : 'sm:flex-row-reverse'
                 }`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 {/* Content Card */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                <div className={`w-full sm:w-5/12 ${index % 2 === 0 ? 'sm:pr-8' : 'sm:pl-8'}`}>
                   <motion.div
                     className="glass-card p-6 rounded-2xl relative group"
                     whileHover={{ scale: 1.02, y: -5 }}
@@ -191,10 +191,10 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                 </div>
 
                 {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-primary to-indigo-500 rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10" />
+                <div className="absolute left-1/2 hidden sm:block transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-primary to-indigo-500 rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10" />
 
                 {/* Spacer */}
-                <div className="w-5/12" />
+                <div className="w-5/12 hidden sm:block" />
               </motion.div>
             ))}
           </div>

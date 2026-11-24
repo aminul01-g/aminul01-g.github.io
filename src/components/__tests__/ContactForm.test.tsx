@@ -29,7 +29,7 @@ describe('ContactForm', () => {
     fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'bademail' } });
     fireEvent.change(screen.getByLabelText(/message/i), { target: { value: 'Hello world!' } });
     fireEvent.click(screen.getByText(/send message/i));
-    expect(await screen.findByText(/invalid email/i)).toBeInTheDocument();
+    expect(await screen.findByText(/please enter a valid email/i)).toBeInTheDocument();
   });
 
   it('shows message length error', async () => {
@@ -57,6 +57,6 @@ describe('ContactForm', () => {
     fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'test@mail.com' } });
     fireEvent.change(screen.getByLabelText(/message/i), { target: { value: 'Hello world!' } });
     fireEvent.click(screen.getByText(/send message/i));
-    await waitFor(() => expect(screen.getByText(/something went wrong/i)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/failed to send message/i)).toBeInTheDocument());
   });
 });

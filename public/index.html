@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://aminul01-g.github.io https://www.google-analytics.com https://www.googletagmanager.com https://randomuser.me; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://formspree.io; frame-src 'self' https://drive.google.com https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://aminul01-g.github.io https://www.google-analytics.com https://www.googletagmanager.com https://randomuser.me; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://formspree.io https://giscus.app https://*.sentry.io; frame-src 'self' https://drive.google.com https://www.youtube.com https://giscus.app; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;" />
+  <script>
+    // Apply the saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        var theme = localStorage.getItem('liquid-glass-theme') === 'transparent' ? 'transparent' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      } catch (e) { /* storage unavailable */ }
+    })();
+  </script>
   <meta name="theme-color" content="#000000" />
   <meta name="description"
     content="Portfolio and blog of Md Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT." />
@@ -43,25 +53,13 @@
       send_page_view: true
     });
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://randomuser.me" crossorigin>
-  <link rel="dns-prefetch" href="https://randomuser.me">
-  <link rel="prefetch" href="/static/js/main.bundle.js" as="script">
-  <link rel="prefetch" href="/static/css/main.bundle.css" as="style">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
-  <!-- If using Google Fonts, ensure font-display: swap is set in the stylesheet link -->
-  <!--
-      Performance Optimizations:
-      - preconnect/dns-prefetch for Google Fonts, analytics, avatars
-      - prefetch for main JS/CSS bundles
-      - font-display: swap for web fonts
-    -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" />
 </head>
 
 <body>

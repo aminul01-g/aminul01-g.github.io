@@ -34,8 +34,6 @@ export const projects: Project[] = [
     featured: true,
     date: '2025-11-17',
     role: 'Full Stack Developer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     caseStudy: {
       problem: 'Farmers lack access to real-time, localized agricultural advice, leading to suboptimal crop yield and poor disease management in crops.',
       solution: 'Developed an AI-powered farmer assistant web app integrating LLMs for contextual advice, disease detection models, and a responsive React frontend.',
@@ -55,8 +53,6 @@ export const projects: Project[] = [
     featured: true,
     date: '2025-11-08',
     role: 'Backend Developer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     caseStudy: {
       problem: 'Manual university administration processes were time-consuming and prone to errors, making it difficult to track students, courses, and grades efficiently.',
       solution: 'Built a robust console-based Java application with a structured MySQL database using JDBC, supporting CRUD operations for students, teachers, and courses.',
@@ -76,7 +72,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-09-21',
     role: 'AI Engineer',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
   },
   {
     title: 'Stress Level Detection',
@@ -91,8 +86,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-09-10',
     role: 'Data Scientist',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4',
   },
   {
     title: 'LinkedIn Post Generator',
@@ -107,8 +100,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-09-09',
     role: 'Developer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
   },
   {
     title: 'QA Transformers Finetune',
@@ -123,8 +114,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-09-01',
     role: 'ML Engineer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4',
   },
   {
     title: 'IMDB Sentiment Analysis',
@@ -139,7 +128,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-08-27',
     role: 'ML Engineer',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
   },
   {
     title: 'Next Word Prediction',
@@ -154,8 +142,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-08-08',
     role: 'ML Engineer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
   },
   {
     title: 'People Flow Tracker',
@@ -170,8 +156,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-08-05',
     role: 'CV Engineer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
   },
   {
     title: 'QA Prediction RNN',
@@ -186,8 +170,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-08-03',
     role: 'ML Engineer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
   },
   {
     title: 'Fashion Mnist Nn Vs Cnn',
@@ -216,7 +198,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-07-17',
     role: 'ML Engineer',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
   },
   {
     title: 'Clothing Classifier',
@@ -231,8 +212,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-07-17',
     role: 'ML Engineer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
   },
   {
     title: 'Clustering Iris Dataset',
@@ -261,7 +240,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-07-10',
     role: 'ML Researcher',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
   },
   {
     title: 'Diabetes Detection AI',
@@ -276,8 +254,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-07-05',
     role: 'ML Engineer',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
   },
   {
     title: 'AI Study Assistant API',
@@ -292,7 +268,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-06-14',
     role: 'Full Stack Developer',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
   },
   {
     title: 'Ames Housing Prediction',
@@ -307,8 +282,6 @@ export const projects: Project[] = [
     featured: false,
     date: '2025-06-14',
     role: 'Data Scientist',
-    videoUrl:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
   },
   {
     title: 'Cpp',

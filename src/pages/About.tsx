@@ -18,11 +18,9 @@ import React, { Suspense, lazy } from 'react';
 import ImageWithFallback from '../components/ImageWithFallback';
 import { profile } from '../data/profile';
 import { timelineData } from '../data/timeline';
-import { countersData } from '../data/counters';
 import { Helmet } from 'react-helmet-async';
 
 const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
-const AnimatedCounters = lazy(() => import('../components/AnimatedCounters'));
 const SkillNetwork = lazy(() => import('../components/SkillNetwork'));
 
 // GlassBg removed — FixedBackground is now global in App.tsx
@@ -99,7 +97,7 @@ export default function About(): React.ReactElement {
         />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aminul01-g.github.io/about" />
+        <meta property="og:url" content="https://aminul01-g.github.io/#/about" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About | Aminul Islam Bhuiyan Amin" />
         <meta
@@ -107,7 +105,7 @@ export default function About(): React.ReactElement {
           content="Learn more about Aminul Islam Bhuiyan Amin, AI-driven Computer Science student at BUBT."
         />
         <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
-        <link rel="canonical" href="https://aminul01-g.github.io/about" />
+        <link rel="canonical" href="https://aminul01-g.github.io/#/about" />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -123,7 +121,7 @@ export default function About(): React.ReactElement {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'About',
-                item: 'https://aminul01-g.github.io/about',
+                item: 'https://aminul01-g.github.io/#/about',
               },
             ],
           })}
@@ -790,16 +788,7 @@ export default function About(): React.ReactElement {
         </motion.div>
       </motion.section>
 
-      {/* Animated Counters */}
-      <Suspense
-        fallback={
-          <div className="flex justify-center items-center min-h-[10vh] text-lg">
-            Loading Counters...
-          </div>
-        }
-      >
-        <AnimatedCounters counters={countersData} />
-      </Suspense>
+        {/* Verified metrics only — see README notes on content integrity. */}
 
       {/* Let's Connect Section restored to About page */}
       <motion.section

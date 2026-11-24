@@ -213,7 +213,7 @@ export default function Navbar(): React.ReactElement {
               role="menuitem"
             >
               <a
-                href="/#contact"
+                href="/#/"
                 className="relative px-4 py-2 rounded-xl font-medium text-[var(--theme-text-primary)] hover:text-primary hover:bg-primary/5 transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50 group"
                 onClick={handleContactClick}
                 aria-label="Go to contact section"
@@ -301,7 +301,7 @@ export default function Navbar(): React.ReactElement {
                 role="menuitem"
               >
                 <a
-                  href="/#contact"
+                  href="/#/"
                   className="block py-3 px-4 rounded-xl font-medium text-[var(--theme-text-primary)] hover:text-primary hover:bg-primary/5 transition-all duration-300 hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-primary/50"
                   onClick={handleContactClick}
                   aria-label="Go to contact section"

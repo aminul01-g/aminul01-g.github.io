@@ -7,13 +7,16 @@ This project is a modern, accessible, and highly customizable React-based site t
 
 ## 🚀 Features
 
-- **Modern UI**: Glassmorphism, gradients, and smooth animations
-- **Multiple Themes**: Light, Dark, Amoled, Nord, Solarized, and High Contrast (for accessibility)
-- **Accessibility**: Keyboard navigation, focus styles, high contrast mode, and screen reader support
-- **Responsive Design**: Looks great on all devices
-- **Dynamic Content**: Projects, blog posts, skills, and achievements
-- **SEO Optimized**: Meta tags, Open Graph, and structured data
-- **Performance**: Lazy loading, code splitting, and optimized images
+- **Modern UI**: Restrained glass surfaces, typographic hierarchy and a quiet grid
+- **Two Themes**: Dark (default) and light, with no flash of the wrong theme on load
+- **Accessibility**: Skip link, keyboard navigation, visible focus states, reduced-motion support
+- **Responsive Design**: Verified at desktop and 390px mobile with no horizontal overflow
+- **Dynamic Content**: Projects, blog posts, skills and achievements
+- **SEO Optimized**: Meta tags, Open Graph and structured data aligned with hash routes
+- **Performance**: Code splitting, hashed routes and a ~5 MB published artifact
+
+> **Note:** the earlier testimonials, vanity counters and sample demo videos were removed because
+> they were unverified/placeholder content. Add them back only with real, attributable material.
 
 ---
 
@@ -99,9 +102,31 @@ public/
 
 ---
 
-## 🌐 Deployment
+## ✅ Quality checks
 
-This project is ready to deploy on GitHub Pages, Vercel, Netlify, or any static hosting provider.
+```bash
+npm run type-check
+CI=true npm test
+npm run lint        # pre-existing prettier warnings remain in src/data/blog.ts
+npm run build
+```
+
+All 13 Jest tests pass. Build output is ~5 MB (source maps disabled via `.env`).
+
+---
+
+## 🌐 Deployment (GitHub Pages)
+
+The site is published from the `main` branch by `.github/workflows/deploy.yml`
+(GitHub Pages source: **GitHub Actions**). No manual upload is needed.
+
+1. Merge changes into `main` (or push to `main`).
+2. The workflow runs `npm ci && npm run build` and uploads `build/` as a Pages artifact.
+3. Verify with `gh run list --repo aminul01-g/aminul01-g.github.io` and open
+   https://aminul01-g.github.io/.
+
+Routing uses `HashRouter`, so deep links look like `https://aminul01-g.github.io/#/projects`.
+Plain paths such as `/about` are not served by GitHub Pages and will 404 — always share hash URLs.
 
 ---
 

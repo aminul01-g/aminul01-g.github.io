@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 import React, { Suspense, lazy } from 'react';
 import { AccessibilityProvider } from './components/AccessibilityProvider';
 import AddToHomeScreenPrompt from './components/AddToHomeScreenPrompt';
@@ -12,7 +12,6 @@ import FloatingActions from './components/FloatingActions';
 import FixedBackground from './components/FixedBackground';
 import { ThemeProvider } from './components/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
-import SparkleCursor from './components/SparkleCursor';
 
 const AIChatbot = lazy(() =>
   import('./components/AIChatbot').then((module) => ({ default: module.AIChatbot }))
@@ -51,7 +50,6 @@ function AnimatedRoutes(): React.ReactElement {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<Post />} />
           <Route path="/about" element={<About />} />
-          {/* 404 fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
@@ -75,18 +73,18 @@ function AppContent(): React.ReactElement {
 
   return (
     <>
-
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
 
       <FixedBackground />
-      <SparkleCursor />
       <ThemeToggle />
       <ScrollProgress />
       <Navbar />
 
-      {/* Main content area should have id="main-content" */}
-      <div id="main-content" tabIndex={-1} className="outline-none">
+      <main id="main-content" tabIndex={-1} className="outline-none">
         <AnimatedRoutes />
-      </div>
+      </main>
 
       <FloatingActions>
         <BackToTopButton />
@@ -102,13 +100,15 @@ function AppContent(): React.ReactElement {
 
 function App(): React.ReactElement {
   return (
-    <ThemeProvider>
-      <ToastProvider>
-        <AccessibilityProvider>
-          <AppContent />
-        </AccessibilityProvider>
-      </ToastProvider>
-    </ThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <ThemeProvider>
+        <ToastProvider>
+          <AccessibilityProvider>
+            <AppContent />
+          </AccessibilityProvider>
+        </ToastProvider>
+      </ThemeProvider>
+    </MotionConfig>
   );
 }
 

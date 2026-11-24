@@ -144,7 +144,7 @@ export default function Projects(): React.ReactElement {
         />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aminul01-g.github.io/projects" />
+        <meta property="og:url" content="https://aminul01-g.github.io/#/projects" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Projects | Aminul Islam Bhuiyan Amin" />
         <meta
@@ -152,7 +152,7 @@ export default function Projects(): React.ReactElement {
           content="A showcase of AI, data science, and full-stack projects by Aminul Islam Bhuiyan Amin."
         />
         <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
-        <link rel="canonical" href="https://aminul01-g.github.io/projects" />
+        <link rel="canonical" href="https://aminul01-g.github.io/#/projects" />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -160,7 +160,7 @@ export default function Projects(): React.ReactElement {
             name: "Aminul Islam Bhuiyan Amin's Projects",
             description:
               'A showcase of AI, data science, and full-stack projects by Aminul Islam Bhuiyan Amin.',
-            url: 'https://aminul01-g.github.io/projects',
+            url: 'https://aminul01-g.github.io/#/projects',
             numberOfItems: projects.length,
             itemListElement: projects.map((project, index) => ({
               '@type': 'ListItem',
@@ -195,7 +195,7 @@ export default function Projects(): React.ReactElement {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Projects',
-                item: 'https://aminul01-g.github.io/projects',
+                item: 'https://aminul01-g.github.io/#/projects',
               },
             ],
           })}

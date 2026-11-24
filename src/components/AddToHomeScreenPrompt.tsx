@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-// Type for beforeinstallprompt event
 interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
   readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
   prompt(): Promise<void>;
 }
@@ -12,53 +10,67 @@ const AddToHomeScreenPrompt: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let timer: number | undefined;
+    let ready = false;
+    const maybeShow = () => {
+      if (ready && window.scrollY > window.innerHeight * 0.6) {
+        setVisible(true);
+        window.removeEventListener('scroll', maybeShow);
+      }
+    };
     const handler = (e: Event) => {
-      const promptEvent = e as BeforeInstallPromptEvent;
-      promptEvent.preventDefault();
-      setDeferredPrompt(promptEvent);
-      setVisible(true);
+      e.preventDefault();
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      // Never cover the hero: wait until a visitor has scrolled past it.
+      timer = window.setTimeout(() => {
+        ready = true;
+        maybeShow();
+      }, 3000);
+      window.addEventListener('scroll', maybeShow, { passive: true });
     };
     window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+      window.removeEventListener('scroll', maybeShow);
+      if (timer) window.clearTimeout(timer);
+    };
   }, []);
 
   const handleInstall = async () => {
-    if (deferredPrompt) {
-      await deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        setVisible(false);
-      }
-      setDeferredPrompt(null);
-    }
+    if (!deferredPrompt) return;
+    await deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') setVisible(false);
+    setDeferredPrompt(null);
   };
 
   if (!visible) return null;
 
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-card shadow-xl rounded-2xl p-4 flex flex-col gap-3 z-50 border border-gray-100 dark:border-gray-700 max-w-sm animate-in fade-in duration-500">
-      <div className="flex justify-between items-start gap-4">
-        <div>
-          <h3 className="font-semibold text-[var(--theme-text-primary)] mb-1">Install App</h3>
-          <p className="text-sm text-[var(--theme-text-primary)] text-opacity-80">Install for a better experience!</p>
-        </div>
-        <button
-          onClick={() => setVisible(false)}
-          className="text-[var(--theme-text-primary)] text-opacity-70 hover:text-[var(--theme-text-primary)] text-opacity-60 dark:hover:text-[var(--theme-text-primary)] text-opacity-90 transition-colors p-1"
-          aria-label="Dismiss"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+    <aside
+      aria-label="Install app"
+      className="glass-card fixed bottom-28 right-4 z-40 w-[min(19rem,calc(100vw-2rem))] rounded-2xl p-4 shadow-glow sm:right-6"
+    >
       <button
-        onClick={handleInstall}
-        className="w-full bg-primary hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-xl transition-colors text-sm"
+        type="button"
+        onClick={() => setVisible(false)}
+        className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-lg opacity-60 transition hover:opacity-100"
+        aria-label="Dismiss install prompt"
       >
-        Add to Home Screen
+        <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
       </button>
-    </div>
+      <h2 className="pr-8 text-sm font-semibold">Install this portfolio</h2>
+      <p className="mt-1 text-xs opacity-70">Keep it one tap away, even offline.</p>
+      <button
+        type="button"
+        onClick={handleInstall}
+        className="mt-3 w-full rounded-xl bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
+      >
+        Add to home screen
+      </button>
+    </aside>
   );
 };
 
