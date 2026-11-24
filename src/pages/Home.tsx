@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import Hero from './Hero';
-import ProjectCard from '../components/ProjectCard';
+import FeaturedProjectCard from '../components/FeaturedProjectCard';
 import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
 import ImageWithFallback from '../components/ImageWithFallback';
 import LinkButton from '../components/LinkButton';
@@ -261,18 +261,12 @@ export default function Home(): React.ReactElement {
           />
           <motion.div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((project, i) => (
-              <motion.article
-                key={project.title}
-                data-testid="project-card"
-                className="group relative flex flex-col rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6 transition duration-300 hover:border-[var(--hairline-strong)] hover:shadow-glow"
-              >
-                <span className="font-mono text-xs text-[var(--accent-2)]">
-                  {String(i + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}
-                </span>
-                <div className="mt-6">
-                  <ProjectCard {...project} />
-                </div>
-              </motion.article>
+              <FeaturedProjectCard
+                key={project.slug}
+                project={project}
+                index={i}
+                total={featured.length}
+              />
             ))}
           </motion.div>
           <div className="mt-10">
