@@ -39,7 +39,7 @@ describe('Projects Filter Logic', () => {
     fireEvent.click(showAdvancedButton);
 
     // Get all AI buttons and click the first one (should be the filter button)
-    const aiButtons = screen.getAllByText('#AI');
+    const aiButtons = screen.getAllByText(/#ai/i);
     if (aiButtons.length > 0) {
       fireEvent.click(aiButtons[0]);
     }

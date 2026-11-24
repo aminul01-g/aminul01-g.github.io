@@ -110,7 +110,7 @@ export default function Post(): React.ReactElement {
           }
         />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://aminul01-g.github.io/blog/${postSlug}`} />
+        <meta property="og:url" content={`https://aminul01-g.github.io/#/blog/${postSlug}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta
@@ -119,7 +119,7 @@ export default function Post(): React.ReactElement {
             post.summary || `Read this blog post by Aminul Islam Bhuiyan Amin about ${post.title}`
           }
         />
-        <link rel="canonical" href={`https://aminul01-g.github.io/blog/${postSlug}`} />
+        <link rel="canonical" href={`https://aminul01-g.github.io/#/blog/${postSlug}`} />
       </Helmet>
 
       <div className="max-w-7xl mx-auto my-12 px-4 lg:grid lg:grid-cols-[1fr_300px] gap-12 items-start">
@@ -247,7 +247,7 @@ export default function Post(): React.ReactElement {
 
             {/* Social Sharing */}
             <SocialShare
-              url={`https://aminul01-g.github.io/blog/${postSlug}`}
+              url={`https://aminul01-g.github.io/#/blog/${postSlug}`}
               title={post.title}
               className="my-8"
             />

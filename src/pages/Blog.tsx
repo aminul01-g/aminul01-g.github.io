@@ -44,7 +44,7 @@ export default function Blog(): React.ReactElement {
         />
         <meta property="og:image" content="https://aminul01-g.github.io/logo512.png" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aminul01-g.github.io/blog" />
+        <meta property="og:url" content="https://aminul01-g.github.io/#/blog" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Blog | Aminul Islam Bhuiyan Amin" />
         <meta
@@ -52,7 +52,7 @@ export default function Blog(): React.ReactElement {
           content="Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin."
         />
         <meta name="twitter:image" content="https://aminul01-g.github.io/logo512.png" />
-        <link rel="canonical" href="https://aminul01-g.github.io/blog" />
+        <link rel="canonical" href="https://aminul01-g.github.io/#/blog" />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -60,7 +60,7 @@ export default function Blog(): React.ReactElement {
             name: "Aminul Islam Bhuiyan Amin's Blog",
             description:
               'Read articles and insights on AI, ML, and software by Aminul Islam Bhuiyan Amin.',
-            url: 'https://aminul01-g.github.io/blog',
+            url: 'https://aminul01-g.github.io/#/blog',
             author: {
               '@type': 'Person',
               name: 'Aminul Islam Bhuiyan Amin',
@@ -79,7 +79,7 @@ export default function Blog(): React.ReactElement {
                 '@type': 'Person',
                 name: 'Aminul Islam Bhuiyan Amin',
               },
-              url: `https://aminul01-g.github.io/blog/${post.slug}`,
+              url: `https://aminul01-g.github.io/#/blog/${post.slug}`,
             })),
           })}
         </script>
@@ -99,7 +99,7 @@ export default function Blog(): React.ReactElement {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Blog',
-                item: 'https://aminul01-g.github.io/blog',
+                item: 'https://aminul01-g.github.io/#/blog',
               },
             ],
           })}

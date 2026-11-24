@@ -12,7 +12,6 @@ import BlogCardTiltWrapper from '../components/BlogCardTiltWrapper';
 import useScrollTrigger from '../hooks/useScrollTrigger';
 import { Helmet } from 'react-helmet-async';
 import { usePageTracking } from '../hooks/useAnalytics';
-import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import { FaRobot, FaCode, FaChartBar, FaTools } from 'react-icons/fa';
 import {
   SiTensorflow, SiPytorch, SiScikitlearn, SiPython, SiTypescript, SiC, SiCplusplus,
@@ -197,7 +196,7 @@ export default function Home(): React.ReactElement {
         <Hero />
 
         {/* About Section */}
-        <section className="bento-card">
+        <section id="about" className="bento-card scroll-mt-24">
           <div className="max-w-4xl mx-auto">
             <motion.div
               ref={aboutTrigger.ref}
@@ -477,9 +476,6 @@ export default function Home(): React.ReactElement {
             )}
           </div>
         </section>
-
-        {/* Testimonials Section */}
-        <TestimonialsCarousel />
 
         {/* Contact Section */}
         <Suspense
