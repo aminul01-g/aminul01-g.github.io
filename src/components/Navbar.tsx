@@ -176,7 +176,6 @@ export default function Navbar(): React.ReactElement {
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                role="menuitem"
               >
                 <Link
                   to={link.to}
@@ -247,7 +246,7 @@ export default function Navbar(): React.ReactElement {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            role="menu"
+            role="group"
             aria-label="Mobile navigation menu"
           >
             <div className="p-4 space-y-2 flex flex-col">
@@ -256,7 +255,6 @@ export default function Navbar(): React.ReactElement {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                role="menuitem"
               >
                 <button
                   onClick={() => {
@@ -276,7 +274,6 @@ export default function Navbar(): React.ReactElement {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  role="menuitem"
                 >
                   <Link
                     to={link.to}
@@ -298,7 +295,6 @@ export default function Navbar(): React.ReactElement {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.3, delay: navLinks.length * 0.1 }}
-                role="menuitem"
               >
                 <a
                   href="/#/"

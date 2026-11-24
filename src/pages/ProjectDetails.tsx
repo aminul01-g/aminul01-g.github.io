@@ -61,7 +61,7 @@ export default function ProjectDetails(): React.ReactElement {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Projects',
-                item: 'https://aminul01-g.github.io/projects',
+                item: 'https://aminul01-g.github.io/#/projects',
               },
               {
                 '@type': 'ListItem',
@@ -79,7 +79,7 @@ export default function ProjectDetails(): React.ReactElement {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-white/[0.06] text-[#8b5cf6] text-xs px-2 py-1 rounded"
+              className="bg-white/[0.06] text-[var(--link)] text-xs px-2 py-1 rounded"
             >
               #{tag}
             </span>
@@ -115,9 +115,24 @@ export default function ProjectDetails(): React.ReactElement {
         {project.caseStudy && (
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              { title: 'The Problem', icon: '🎯', text: project.caseStudy.problem, color: 'text-red-500' },
-              { title: 'The Solution', icon: '💡', text: project.caseStudy.solution, color: 'text-yellow-500' },
-              { title: 'The Impact', icon: '🚀', text: project.caseStudy.impact, color: 'text-green-500' },
+              {
+                title: 'The Problem',
+                icon: '🎯',
+                text: project.caseStudy.problem,
+                color: 'text-red-500',
+              },
+              {
+                title: 'The Solution',
+                icon: '💡',
+                text: project.caseStudy.solution,
+                color: 'text-yellow-500',
+              },
+              {
+                title: 'The Impact',
+                icon: '🚀',
+                text: project.caseStudy.impact,
+                color: 'text-green-500',
+              },
             ].map((item, i) => (
               <div
                 key={i}
@@ -139,7 +154,9 @@ export default function ProjectDetails(): React.ReactElement {
         <div className="prose dark:prose-invert max-w-none mb-8">
           {project.highlights && project.highlights.length > 0 && (
             <div className="mb-6">
-              <h2 className="text-2xl font-bold mb-4 text-[var(--theme-text-primary)]">Highlights</h2>
+              <h2 className="text-2xl font-bold mb-4 text-[var(--theme-text-primary)]">
+                Highlights
+              </h2>
               <ul className="list-disc pl-5 space-y-2">
                 {project.highlights.map((highlight, index) => (
                   <li key={index} className="text-[var(--theme-text-primary)]">
@@ -153,27 +170,27 @@ export default function ProjectDetails(): React.ReactElement {
           {/* Fallback if no specific details are available */}
           {(!project.highlights || project.highlights.length === 0) && (
             <div className="GlassCard p-6 rounded-xl">
-              <h3 className="text-lg font-semibold text-[#8b5cf6] mb-2">
-                About this Project
-              </h3>
+              <h3 className="text-lg font-semibold text-[var(--link)] mb-2">About this Project</h3>
               <p className="text-[var(--theme-text-primary)] text-opacity-[0.60]">
                 This project demonstrates key concepts in{' '}
-                {project.tags[0] || 'software development'}. Check out the source code on GitHub to
-                explore the implementation details, data pipelines, and model architectures used.
+                {project.tags[0] || 'software development'}. Explore the implementation details and
+                the approach behind it.
               </p>
             </div>
           )}
         </div>
 
         <div className="flex gap-4">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300"
-          >
-            View on GitHub
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300"
+            >
+              View on GitHub
+            </a>
+          )}
           <Link
             to="/projects"
             className="GlassCard px-6 py-3 rounded-2xl font-semibold text-[var(--theme-text-primary)] text-opacity-[0.80] hover:text-white hover:border-white/25 transition-all duration-300"

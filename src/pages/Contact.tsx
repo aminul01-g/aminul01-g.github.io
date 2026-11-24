@@ -66,10 +66,7 @@ const contactInfo = [
 
 export default function Contact(): React.ReactElement {
   return (
-    <section
-      id="contact"
-      className="py-16 pb-24 relative z-10 overflow-hidden"
-    >
+    <section id="contact" className="py-16 pb-24 relative z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 relative z-10">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-center mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
@@ -107,10 +104,10 @@ export default function Contact(): React.ReactElement {
               >
                 {info.icon}
                 <div>
-                  <div className="font-semibold text-[var(--theme-text-primary)] text-opacity-[0.90] text-base mb-1 group-hover:text-[#8b5cf6] transition-colors">
+                  <div className="font-semibold text-[var(--theme-text-primary)] text-opacity-[0.90] text-base mb-1 group-hover:text-[var(--link)] transition-colors">
                     {info.label}
                   </div>
-                  <div className="text-[var(--theme-text-primary)] text-opacity-[0.50] text-sm group-hover:text-[#8b5cf6] transition-colors">
+                  <div className="text-[var(--theme-text-primary)] text-opacity-[0.50] text-sm group-hover:text-[var(--link)] transition-colors">
                     {info.value}
                   </div>
                 </div>

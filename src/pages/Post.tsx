@@ -82,14 +82,16 @@ export default function Post(): React.ReactElement {
       });
     }
   } else if (post.body) {
-    headings = post.body.filter((block) => block.style === 'h2' || block.style === 'h3').map((block) => {
-      const text = block.children?.map((c) => c.text).join('') || '';
-      return {
-        text,
-        id: slugger.slug(text),
-        level: block.style || 'h2',
-      };
-    });
+    headings = post.body
+      .filter((block) => block.style === 'h2' || block.style === 'h3')
+      .map((block) => {
+        const text = block.children?.map((c) => c.text).join('') || '';
+        return {
+          text,
+          id: slugger.slug(text),
+          level: block.style || 'h2',
+        };
+      });
   }
 
   return (
@@ -139,7 +141,7 @@ export default function Post(): React.ReactElement {
                 {postTags.map((tag: string, index: number) => (
                   <span
                     key={`${tag}-${index}`}
-                    className="bg-white/[0.06] text-[#8b5cf6] text-xs px-2 py-1 rounded"
+                    className="bg-white/[0.06] text-[var(--link)] text-xs px-2 py-1 rounded"
                   >
                     {tag}
                   </span>
@@ -150,7 +152,7 @@ export default function Post(): React.ReactElement {
             {/* Post Content */}
             <div className="prose dark:prose-invert max-w-none">
               {post.markdownBody ? (
-                  <MarkdownRenderer content={post.markdownBody} />
+                <MarkdownRenderer content={post.markdownBody} />
               ) : post.body && post.body.length > 0 ? (
                 <div className="text-[var(--theme-text-primary)]">
                   {(() => {
@@ -161,7 +163,7 @@ export default function Post(): React.ReactElement {
                       // Helper to render children
                       const renderChildren = () => (
                         <>
-                          {block.children?.map((child: PortableTextSpan, childIndex: number) => (
+                          {block.children?.map((child: PortableTextSpan, childIndex: number) =>
                             // Handle newlines in text for simple bullet points behavior
                             child.text.split('\n').map((line: string, lineIndex: number) => (
                               <React.Fragment key={`${key}-child-${childIndex}-line-${lineIndex}`}>
@@ -169,78 +171,101 @@ export default function Post(): React.ReactElement {
                                 {line}
                               </React.Fragment>
                             ))
-                          ))}
+                          )}
                         </>
                       );
 
-                      const text = block.children?.map((c: PortableTextSpan) => c.text).join('') || '';
+                      const text =
+                        block.children?.map((c: PortableTextSpan) => c.text).join('') || '';
                       const id = renderSlugger.slug(text);
 
-                    switch (block.style) {
-                      case 'h1':
-                        return <h1 key={key}>{renderChildren()}</h1>;
-                      case 'h2':
-                        return (
-                          <h2 key={key} id={id} className="text-2xl font-bold mt-8 mb-4 scroll-mt-24 group">
-                            <a 
-                              href={`#${id}`} 
-                              onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-                              }}
-                              className="no-underline hover:underline decoration-primary cursor-pointer"
-                            >
-                              {renderChildren()}
-                              <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity">
-                                #
-                              </span>
-                            </a>
-                          </h2>
-                        );
-                      case 'h3':
-                        return (
-                          <h3 key={key} id={id} className="text-xl font-semibold mt-6 mb-3 scroll-mt-24 group">
-                            <a 
-                              href={`#${id}`} 
-                              onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-                              }}
-                              className="no-underline hover:underline decoration-primary cursor-pointer"
-                            >
-                              {renderChildren()}
-                              <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity text-sm">
-                                #
-                              </span>
-                            </a>
-                          </h3>
-                        );
-                      case 'blockquote':
-                        return (
-                          <blockquote key={key} className="border-l-4 border-primary pl-4 italic my-4">
-                            {renderChildren()}
-                          </blockquote>
-                        );
-                      case 'normal':
-                      default: {
-                        // Check if it looks like a list item (starts with •) for better styling
-                        const isList = block.children?.some((c: PortableTextSpan) => c.text.trim().startsWith('•'));
-                        if (isList) {
+                      switch (block.style) {
+                        case 'h1':
+                          return <h1 key={key}>{renderChildren()}</h1>;
+                        case 'h2':
                           return (
-                            <div key={key} className="my-4">
+                            <h2
+                              key={key}
+                              id={id}
+                              className="text-2xl font-bold mt-8 mb-4 scroll-mt-24 group"
+                            >
+                              <a
+                                href={`#${id}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  document
+                                    .getElementById(id)
+                                    ?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="no-underline hover:underline decoration-primary cursor-pointer"
+                              >
+                                {renderChildren()}
+                                <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity">
+                                  #
+                                </span>
+                              </a>
+                            </h2>
+                          );
+                        case 'h3':
+                          return (
+                            <h3
+                              key={key}
+                              id={id}
+                              className="text-xl font-semibold mt-6 mb-3 scroll-mt-24 group"
+                            >
+                              <a
+                                href={`#${id}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  document
+                                    .getElementById(id)
+                                    ?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="no-underline hover:underline decoration-primary cursor-pointer"
+                              >
+                                {renderChildren()}
+                                <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity text-sm">
+                                  #
+                                </span>
+                              </a>
+                            </h3>
+                          );
+                        case 'blockquote':
+                          return (
+                            <blockquote
+                              key={key}
+                              className="border-l-4 border-primary pl-4 italic my-4"
+                            >
                               {renderChildren()}
-                            </div>
+                            </blockquote>
+                          );
+                        case 'normal':
+                        default: {
+                          // Check if it looks like a list item (starts with •) for better styling
+                          const isList = block.children?.some((c: PortableTextSpan) =>
+                            c.text.trim().startsWith('•')
+                          );
+                          if (isList) {
+                            return (
+                              <div key={key} className="my-4">
+                                {renderChildren()}
+                              </div>
+                            );
+                          }
+                          return (
+                            <p key={key} className="mb-4 leading-relaxed">
+                              {renderChildren()}
+                            </p>
                           );
                         }
-                        return <p key={key} className="mb-4 leading-relaxed">{renderChildren()}</p>;
                       }
-                    }
-                  });
-                })()}
+                    });
+                  })()}
                 </div>
               ) : (
                 <p className="text-[var(--theme-text-primary)] text-opacity-70">
-                  Post content not available. The content may be coming soon or is currently unavailable.
+                  Post content not available. The content may be coming soon or is currently
+                  unavailable.
                 </p>
               )}
             </div>
@@ -290,7 +315,9 @@ export default function Post(): React.ReactElement {
               Table of Contents
             </h4>
             {headings.length === 0 ? (
-              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-60">No headings available.</p>
+              <p className="text-sm text-[var(--theme-text-primary)] text-opacity-60">
+                No headings available.
+              </p>
             ) : (
               <nav className="flex flex-col space-y-3">
                 {headings.map((heading, idx) => (
@@ -300,8 +327,9 @@ export default function Post(): React.ReactElement {
                       e.preventDefault();
                       document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className={`text-left text-sm text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary dark:hover:text-primary transition-colors line-clamp-2 ${heading.level === 'h3' ? 'pl-4 border-l-2 border-primary/20' : ''
-                      }`}
+                    className={`text-left text-sm text-[var(--theme-text-primary)] text-opacity-80 hover:text-primary dark:hover:text-primary transition-colors line-clamp-2 ${
+                      heading.level === 'h3' ? 'pl-4 border-l-2 border-primary/20' : ''
+                    }`}
                   >
                     {heading.text}
                   </button>

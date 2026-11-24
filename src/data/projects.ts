@@ -16,9 +16,12 @@ export const projects: Project[] = [
     role: 'AI Engineer',
     videoUrl: 'https://drive.google.com/file/d/1fQf4VwsC1ImUJouLbATtax5mKs9WIzl1/view?usp=sharing',
     caseStudy: {
-      problem: 'Enterprise users struggle to find specific information within large internal document repositories, and traditional keyword search often fails to capture semantic meaning or context.',
-      solution: 'Architected a RAG pipeline using LangGraph for orchestration and Pinecone for vector storage. Implemented a hybrid search router that dynamically delegates between document retrieval and Tavily web search based on query complexity.',
-      impact: 'Reduced information retrieval time by 60% and improved answer accuracy by 40% compared to keyword-based baseline. The system now supports multi-turn conversations with context spread across different domains.',
+      problem:
+        'Enterprise users struggle to find specific information within large internal document repositories, and traditional keyword search often fails to capture semantic meaning or context.',
+      solution:
+        'Architected a RAG pipeline using LangGraph for orchestration and Pinecone for vector storage. Implemented a hybrid search router that dynamically delegates between document retrieval and Tavily web search based on query complexity.',
+      impact:
+        'Reduced information retrieval time by 60% and improved answer accuracy by 40% compared to keyword-based baseline. The system now supports multi-turn conversations with context spread across different domains.',
     },
   },
   {
@@ -30,14 +33,17 @@ export const projects: Project[] = [
     github: 'https://github.com/aminul01-g/krishi-bondhu',
     slug: 'krishi-bondhu',
     thumbnail: '\ud83c\udf3e',
-    demoUrl: 'https://krishi-bondhu-rwjp.vercel.app',
+    demoUrl: undefined,
     featured: true,
     date: '2025-11-17',
     role: 'Full Stack Developer',
     caseStudy: {
-      problem: 'Farmers lack access to real-time, localized agricultural advice, leading to suboptimal crop yield and poor disease management in crops.',
-      solution: 'Developed an AI-powered farmer assistant web app integrating LLMs for contextual advice, disease detection models, and a responsive React frontend.',
-      impact: 'Won recognition at BUBT Tech Fusion Fest 2025. Empowered early testers with instant actionable farming advice and high-accuracy disease diagnostics from crop images.',
+      problem:
+        'Farmers lack access to real-time, localized agricultural advice, leading to suboptimal crop yield and poor disease management in crops.',
+      solution:
+        'Developed an AI-powered farmer assistant web app integrating LLMs for contextual advice, disease detection models, and a responsive React frontend.',
+      impact:
+        'Won recognition at BUBT Tech Fusion Fest 2025. Empowered early testers with instant actionable farming advice and high-accuracy disease diagnostics from crop images.',
     },
   },
   {
@@ -54,9 +60,12 @@ export const projects: Project[] = [
     date: '2025-11-08',
     role: 'Backend Developer',
     caseStudy: {
-      problem: 'Manual university administration processes were time-consuming and prone to errors, making it difficult to track students, courses, and grades efficiently.',
-      solution: 'Built a robust console-based Java application with a structured MySQL database using JDBC, supporting CRUD operations for students, teachers, and courses.',
-      impact: 'Streamlined university record management, eliminating data duplication and reducing query times by over 80%. Achieved a perfect score in the Advanced Programming course.',
+      problem:
+        'Manual university administration processes were time-consuming and prone to errors, making it difficult to track students, courses, and grades efficiently.',
+      solution:
+        'Built a robust console-based Java application with a structured MySQL database using JDBC, supporting CRUD operations for students, teachers, and courses.',
+      impact:
+        'Streamlined university record management, eliminating data duplication and reducing query times by over 80%. Achieved a perfect score in the Advanced Programming course.',
     },
   },
   {
@@ -65,10 +74,10 @@ export const projects: Project[] = [
       'A multi-tool AI agent built with LangChain and OpenAI that answers data-specific queries from medical datasets (Heart Disease, Cancer, Diabetes) and retrieves general medical knowledge via web search.',
     tags: ['Ai', 'Agents', 'Langchain'],
     technologies: ['Python', 'LangChain', 'OpenAI', 'Pandas'],
-    github: 'https://github.com/aminul01-g/multi-tool-medical-ai',
+    github: undefined,
     slug: 'multi-tool-medical-ai',
     thumbnail: '\ud83e\ude7a',
-    demoUrl: 'https://github.com/aminul01-g/multi-tool-medical-ai',
+    demoUrl: undefined,
     featured: false,
     date: '2025-09-21',
     role: 'AI Engineer',
@@ -121,10 +130,12 @@ export const projects: Project[] = [
       'NLP, Sentiment-Analysis, IMDB, Machine-Learning, Deep-Learning, BERT, Word2Vec, TF-IDF, Python',
     tags: ['Nlp', 'Sentiment', 'Deep Learning'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/IMDB-Sentiment-Analysis',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/IMDB-Sentiment-Analysis',
     slug: 'imdb-sentiment-analysis',
     thumbnail: '\ud83c\udfac',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/IMDB-Sentiment-Analysis',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/IMDB-Sentiment-Analysis',
     featured: false,
     date: '2025-08-27',
     role: 'ML Engineer',
@@ -135,10 +146,12 @@ export const projects: Project[] = [
       'Implements a word-level LSTM model in PyTorch for next word prediction using NLP techniques. Includes data preprocessing, custom dataset creation, model training, and inference on real-world text.',
     tags: ['Nlp', 'Lstm', 'Prediction'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Next_Word_Prediction-LSTM',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Next_Word_Prediction-LSTM',
     slug: 'next_word_prediction-lstm',
     thumbnail: '\ud83d\udcdd',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Next_Word_Prediction-LSTM',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Next_Word_Prediction-LSTM',
     featured: false,
     date: '2025-08-08',
     role: 'ML Engineer',
@@ -163,10 +176,12 @@ export const projects: Project[] = [
       'This project implements a simple Recurrent Neural Network (RNN) based question answering model using PyTorch. The model is trained on a small dataset of unique question-answer pairs to demonstrate the basic principles of building a sequence-to-sequence model for this task.',
     tags: ['Nlp', 'Rnn', 'Qa'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Question_Answer_prediction-RNN',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Question_Answer_prediction-RNN',
     slug: 'question_answer_prediction-rnn',
     thumbnail: '\u2753',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Question_Answer_prediction-RNN',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Question_Answer_prediction-RNN',
     featured: false,
     date: '2025-08-03',
     role: 'ML Engineer',
@@ -177,10 +192,12 @@ export const projects: Project[] = [
       'A comparative study of Neural Networks and Convolutional Neural Networks on the Fashion MNIST dataset using PyTorch.',
     tags: ['Jupyter Notebook'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/fashion-mnist-nn-vs-cnn',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/fashion-mnist-nn-vs-cnn',
     slug: 'fashion-mnist-nn-vs-cnn',
     thumbnail: '\ud83d\udcbb',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/fashion-mnist-nn-vs-cnn',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/fashion-mnist-nn-vs-cnn',
     featured: false,
     date: '2025-07-26',
     role: 'Developer',
@@ -191,10 +208,12 @@ export const projects: Project[] = [
       'This repository contains code for classifying with high accuracy  handwritten digits from the MNIST dataset using a simple feedforward neural network implemented in PyTorch.',
     tags: ['Computer Vision', 'Classification', 'Neural Networks'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Digit_Classification-acc-98.43',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Digit_Classification-acc-98.43',
     slug: 'digit_classification-acc-98.43',
     thumbnail: '\ud83d\udd22',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Digit_Classification-acc-98.43',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/Digit_Classification-acc-98.43',
     featured: false,
     date: '2025-07-17',
     role: 'ML Engineer',
@@ -205,10 +224,12 @@ export const projects: Project[] = [
       'A deep learning model (ANN) trained on the Fashion MNIST dataset using PyTorch. This project demonstrates how to train, save, and deploy a neural network to classify clothing items like shirts, sneakers, trousers, and more.',
     tags: ['Computer Vision', 'Fashion', 'Cnn'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/clothing-classifier',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/clothing-classifier',
     slug: 'clothing-classifier',
     thumbnail: '\ud83d\udc55',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/clothing-classifier',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/07_DeepLearning/clothing-classifier',
     featured: false,
     date: '2025-07-17',
     role: 'ML Engineer',
@@ -219,10 +240,12 @@ export const projects: Project[] = [
       "Unsupervised Clustering on Iris Dataset using K-Means, Hierarchical, and DBSCAN with EDA & Evaluation This project applies three unsupervised clustering algorithms to the Iris dataset and visualizes the results using PCA, dendrograms, and DBSCAN's density estimation. Evaluation includes confusion matrix and Adjusted Rand Index.",
     tags: ['Jupyter Notebook'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Clustering_Iris_Dataset',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Clustering_Iris_Dataset',
     slug: 'clustering_iris_dataset',
     thumbnail: '\ud83d\udcbb',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Clustering_Iris_Dataset',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Clustering_Iris_Dataset',
     featured: false,
     date: '2025-07-14',
     role: 'Developer',
@@ -233,10 +256,12 @@ export const projects: Project[] = [
       'I built a predictive model to classify people as Extroverts or Introverts based on behavioral features like energy level, emotional stability, and openness.  \ud83d\udcda Used a psychological dataset and trained models like Logistic Regression, Decision Tree, and Naive Bayes.',
     tags: ['Ml', 'Nlp', 'Classification'],
     technologies: ['Jupyter Notebook'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Personality_Detection-Extrovert_vs_Introvert',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Personality_Detection-Extrovert_vs_Introvert',
     slug: 'personality_detection-extrovert_vs_introvert',
     thumbnail: '\ud83c\udfad',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Personality_Detection-Extrovert_vs_Introvert',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Personality_Detection-Extrovert_vs_Introvert',
     featured: false,
     date: '2025-07-10',
     role: 'ML Researcher',
@@ -247,10 +272,12 @@ export const projects: Project[] = [
       'This project uses machine learning algorithms to predict whether a person is diabetic based on medical diagnostic measurements. It is built using Python and trained on the Pima Indians Diabetes Dataset from the UCI Machine Learning Repository.',
     tags: ['Healthcare', 'Ml', 'Python'],
     technologies: ['Python', 'scikit-learn', 'Flask', 'Docker'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Diabetes-Detection-System',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Diabetes-Detection-System',
     slug: 'diabetes-detection-system',
     thumbnail: '\ud83c\udfe5',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Diabetes-Detection-System',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Diabetes-Detection-System',
     featured: false,
     date: '2025-07-05',
     role: 'ML Engineer',
@@ -275,10 +302,12 @@ export const projects: Project[] = [
       'This project demonstrates a full machine learning pipeline for predicting house prices using a simulated version of the Ames Housing dataset.',
     tags: ['Data Science', 'Regression', 'Python'],
     technologies: ['Python', 'pandas', 'numpy', 'scikit-learn', 'Matplotlib'],
-    github: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Predictive-Modeling-of-Ames-Housing-Data',
+    github:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Predictive-Modeling-of-Ames-Housing-Data',
     slug: 'predictive-modeling-of-ames-housing-data',
     thumbnail: '\ud83c\udfe0',
-    demoUrl: 'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Predictive-Modeling-of-Ames-Housing-Data',
+    demoUrl:
+      'https://github.com/aminul01-g/my-learning-hub/tree/main/06_MachineLearning/Predictive-Modeling-of-Ames-Housing-Data',
     featured: false,
     date: '2025-06-14',
     role: 'Data Scientist',

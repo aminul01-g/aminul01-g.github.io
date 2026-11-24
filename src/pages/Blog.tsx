@@ -22,9 +22,7 @@ export default function Blog(): React.ReactElement {
     return posts.filter((post) => {
       const matchesTag = filter ? (post.tags || []).includes(filter) : true;
       const searchContent = (post.title + ' ' + (post.summary || '')).toLowerCase();
-      const matchesSearch = search
-        ? searchContent.includes(search.toLowerCase())
-        : true;
+      const matchesSearch = search ? searchContent.includes(search.toLowerCase()) : true;
       return matchesTag && matchesSearch;
     });
   }, [posts, filter, search]);
@@ -192,13 +190,15 @@ export default function Blog(): React.ReactElement {
                       {(post.tags || []).map((tag) => (
                         <span
                           key={tag}
-                          className="bg-white/[0.06] text-[#8b5cf6] text-xs px-2 py-1 rounded"
+                          className="bg-white/[0.06] text-[var(--link)] text-xs px-2 py-1 rounded"
                         >
                           #{tag}
                         </span>
                       ))}
                     </div>
-                    <p className="text-[var(--theme-text-primary)] text-opacity-[0.60]">{post.summary}</p>
+                    <p className="text-[var(--theme-text-primary)] text-opacity-[0.60]">
+                      {post.summary}
+                    </p>
                   </Link>
                 </motion.div>
               </BlogCardTiltWrapper>
