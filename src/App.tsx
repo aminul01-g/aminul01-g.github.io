@@ -5,7 +5,6 @@ import ScrollProgress from './components/ScrollProgress';
 import { AnimatePresence, MotionConfig } from 'framer-motion';
 import React, { Suspense, lazy } from 'react';
 import { AccessibilityProvider } from './components/AccessibilityProvider';
-import AddToHomeScreenPrompt from './components/AddToHomeScreenPrompt';
 import BackToTopButton from './components/BackToTopButton';
 import { ToastProvider, useToast } from './components/ToastContext';
 import FloatingActions from './components/FloatingActions';
@@ -93,7 +92,6 @@ function AppContent(): React.ReactElement {
         </Suspense>
       </FloatingActions>
       <Footer />
-      <AddToHomeScreenPrompt />
     </>
   );
 }

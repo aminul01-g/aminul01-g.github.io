@@ -13,18 +13,21 @@ const achievements = [
   },
   {
     title: 'AI Research Publication',
-    description: 'Preparing a paper on A Comparative Study of Machine Learning and Deep Learning Models for Sentiment Analysis of Bengali Text',
+    description:
+      'Preparing a paper on A Comparative Study of Machine Learning and Deep Learning Models for Sentiment Analysis of Bengali Text',
     icon: '📄',
   },
   {
     title: 'ICPC Regionalist',
-    description: 'Demonstrated advanced algorithmic problem-solving and teamwork skills by successfully competing in the prestigious International Collegiate Programming Contest (ICPC). Recognized for intense analytical thinking and competitive programming proficiency under pressure.',
+    description:
+      'Demonstrated advanced algorithmic problem-solving and teamwork skills by successfully competing in the prestigious International Collegiate Programming Contest (ICPC). Recognized for intense analytical thinking and competitive programming proficiency under pressure.',
     icon: '💻',
     image: '/images/certificates/2023-icpc.png',
   },
   {
     title: 'Hackathon Excellence',
-    description: 'Successfully participated in the "Hacktasyne" 10-Hour Hackathon at Tech Fusion Fest 2025, organized by the BASIS Students\' Forum of BUBT Chapter Club. Recognized for enthusiasm, teamwork, and innovative problem-solving.',
+    description:
+      'Successfully participated in the "Hacktasyne" 10-Hour Hackathon at Tech Fusion Fest 2025, organized by the BASIS Students\' Forum of BUBT Chapter Club. Recognized for enthusiasm, teamwork, and innovative problem-solving.',
     icon: '🥇',
     link: 'https://github.com/aminul01-g/krishi-bondhu.git',
     linkText: 'View Krishi-bondhu Project Repo',
@@ -34,10 +37,7 @@ const achievements = [
 
 export default function Achievements(): React.ReactElement {
   return (
-    <section id="achievements" className="max-w-5xl mx-auto my-16 px-4">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400 dark:from-primary dark:to-indigo-300">
-        Achievements
-      </h2>
+    <div id="achievements" className="max-w-5xl mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {achievements.map((a, i) => (
           <div
@@ -52,10 +52,10 @@ export default function Achievements(): React.ReactElement {
                 </h3>
                 <p className="text-[var(--theme-text-primary)] mb-3">{a.description}</p>
                 {a.link && (
-                  <a 
-                    href={a.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <a
+                    href={a.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-primary dark:text-indigo-400 hover:text-indigo-500 mb-2 hover:underline text-sm font-medium flex items-center gap-1 w-fit"
                   >
                     {a.linkText || 'View Details'} <FiExternalLink className="w-4 h-4" />
@@ -65,16 +65,16 @@ export default function Achievements(): React.ReactElement {
             </div>
             {a.image && (
               <div className="mt-2 w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
-                <ImageWithFallback 
-                  src={a.image} 
-                  alt={`${a.title} Certificate`} 
-                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" 
+                <ImageWithFallback
+                  src={a.image}
+                  alt={`${a.title} Certificate`}
+                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             )}
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

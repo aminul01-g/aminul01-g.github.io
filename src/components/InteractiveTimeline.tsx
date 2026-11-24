@@ -100,7 +100,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
   };
 
   return (
-    <section className="py-16 px-4 mt-32 relative z-10" ref={elementRef}>
+    <section className="bento-card scroll-mt-24" ref={elementRef}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -120,7 +120,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
           <div className="absolute left-1/2 hidden sm:block transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary/50 to-indigo-500/50" />
 
           {/* Timeline Items */}
-          <div className="space-y-12">
+          <div className="space-y-6">
             {items.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -135,7 +135,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                 {/* Content Card */}
                 <div className={`w-full sm:w-5/12 ${index % 2 === 0 ? 'sm:pr-8' : 'sm:pl-8'}`}>
                   <motion.div
-                    className="glass-card p-6 rounded-2xl relative group"
+                    className="glass-card p-5 rounded-2xl relative group"
                     whileHover={{ scale: 1.02, y: -5 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -167,7 +167,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     </p>
 
                     {/* Description */}
-                    <p className="text-[var(--theme-text-primary)] leading-relaxed mb-4">
+                    <p className="text-[var(--theme-text-primary)] leading-relaxed mb-4 line-clamp-3">
                       {item.description}
                     </p>
 
