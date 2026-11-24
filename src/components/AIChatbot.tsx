@@ -1,7 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
-import { FiMessageCircle, FiX, FiSend, FiMinimize2, FiMaximize2, FiMic, FiMicOff, FiVolume2, FiVolumeX } from 'react-icons/fi';
+import {
+  FiMessageCircle,
+  FiX,
+  FiSend,
+  FiMinimize2,
+  FiMaximize2,
+  FiMic,
+  FiMicOff,
+  FiVolume2,
+  FiVolumeX,
+} from 'react-icons/fi';
 import { projects } from '../data/projects';
 import Button from './Button';
 
@@ -60,18 +70,19 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   // Voice Mode State
   const [isListening, setIsListening] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognitionRef = useRef<any>(null); 
+  const recognitionRef = useRef<any>(null);
 
   // Initialize Speech Recognition
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const SpeechRecognition =
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
@@ -111,16 +122,18 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
 
   const speakResponse = (text: string) => {
     if (!voiceEnabled || !('speechSynthesis' in window)) return;
-    
+
     // Cancel current speech
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
     // Try to find a good English voice
     const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find(v => v.name.includes('Google US English')) || voices.find(v => v.lang === 'en-US');
+    const preferredVoice =
+      voices.find((v) => v.name.includes('Google US English')) ||
+      voices.find((v) => v.lang === 'en-US');
     if (preferredVoice) utterance.voice = preferredVoice;
-    
+
     utterance.rate = 1;
     utterance.pitch = 1;
     window.speechSynthesis.speak(utterance);
@@ -137,31 +150,33 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setIsTyping(true);
-      
+
       let greeting = "Hi! I'm Aminul's AI Assistant. How can I help you today?";
       let suggestions = knowledgeBase.quickReplies;
 
       // Project Context
       if (location.pathname.startsWith('/projects/') && location.pathname.length > 10) {
-        greeting = "I see checking out one of my projects! I can explain the architecture, tech stack, or key challenges provided in this project.";
+        greeting =
+          'I see checking out one of my projects! I can explain the architecture, tech stack, or key challenges provided in this project.';
         suggestions = [
           { text: 'Explain Architecture', action: 'project_arch' },
           { text: 'Tech Stack?', action: 'project_stack' },
-          ...knowledgeBase.quickReplies.slice(0, 3)
+          ...knowledgeBase.quickReplies.slice(0, 3),
         ];
       }
       // Blog Context
       else if (location.pathname.startsWith('/blog')) {
-        greeting = "Looking for technical insights? I can recommend articles or summarize my writing topics.";
+        greeting =
+          'Looking for technical insights? I can recommend articles or summarize my writing topics.';
         suggestions = [
           { text: 'Latest Articles', action: 'blog' },
           { text: 'Topics', action: 'skills' },
-          ...knowledgeBase.quickReplies.slice(0, 3)
+          ...knowledgeBase.quickReplies.slice(0, 3),
         ];
       }
       // Contact Context
       else if (location.pathname === '/contact') {
-        greeting = "Want to get in touch? I can help you find the best channel to reach Aminul.";
+        greeting = 'Want to get in touch? I can help you find the best channel to reach Aminul.';
         suggestions = [
           { text: 'Email', action: 'contact' },
           { text: 'LinkedIn', action: 'contact' },
@@ -210,21 +225,23 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
             quickReplies: [
               { text: 'Key challenges?', action: 'project_challenges' },
               { text: 'Architecture?', action: 'project_arch' },
-              { text: 'Back to all projects', action: 'projects' }
+              { text: 'Back to all projects', action: 'projects' },
             ],
           };
         }
         if (matches(['architecture', 'design', 'structure', 'how', 'arch'])) {
-           return {
+          return {
             text: `The architecture focuses on ${currentProject.tags[0]} principles. ${currentProject.description.split('.')[0]}. Check the GitHub repo for the full system diagram!`,
-             quickReplies: [{ text: 'View Code', action: 'contact' }] // Placeholder action
-           }
+            quickReplies: [{ text: 'View Code', action: 'contact' }], // Placeholder action
+          };
         }
         if (matches(['challenge', 'problem', 'difficult'])) {
-           return {
-             text: `One key challenge was optimizing performance and ensuring scalability. ` + (currentProject.highlights?.[0] || ''),
-             quickReplies: [{ text: 'Tech Stack', action: 'project_stack' }]
-           }
+          return {
+            text:
+              `One key challenge was optimizing performance and ensuring scalability. ` +
+              (currentProject.highlights?.[0] || ''),
+            quickReplies: [{ text: 'Tech Stack', action: 'project_stack' }],
+          };
         }
       }
     }
@@ -330,7 +347,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
 
       setIsTyping(false);
       setMessages((prev) => [...prev, botMessage]);
-      
+
       // Voice Output
       speakResponse(response.text);
 
@@ -356,9 +373,10 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
     if (action === 'blog') handleSendMessage('Show me blog posts');
     if (action === 'contact') handleSendMessage('How can I contact you?');
     if (action === 'about') handleSendMessage("What's your background?");
-    
+
     // Context specific
-    if (action === 'project_stack') handleSendMessage('What technologies are used in this project?');
+    if (action === 'project_stack')
+      handleSendMessage('What technologies are used in this project?');
     if (action === 'project_arch') handleSendMessage('How was this project built?');
   };
 
@@ -472,7 +490,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
-                        placeholder={isListening ? 'Listening...' : "Type a message..."}
+                        placeholder={isListening ? 'Listening...' : 'Type a message...'}
                         className={`w-full glass-card border-0 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 ${isListening ? 'animate-pulse ring-2 ring-red-500/50' : ''}`}
                       />
                       {/* Voice Indicator Pulse */}
@@ -493,12 +511,18 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                     <Button
                       onClick={toggleVoiceInput}
                       className={`!p-2 !rounded-xl aspect-square flex items-center justify-center transition-colors ${
-                        isListening ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-[var(--theme-text-primary)] text-opacity-60'
+                        isListening
+                          ? 'bg-red-500 hover:bg-red-600 text-white'
+                          : 'bg-gray-100 dark:bg-gray-700 text-[var(--theme-text-primary)] text-opacity-60'
                       }`}
                       aria-label="Toggle voice input"
                       variant="ghost"
                     >
-                      {isListening ? <FiMicOff className="w-4 h-4" /> : <FiMic className="w-4 h-4" />}
+                      {isListening ? (
+                        <FiMicOff className="w-4 h-4" />
+                      ) : (
+                        <FiMic className="w-4 h-4" />
+                      )}
                     </Button>
 
                     <Button
@@ -510,16 +534,20 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
                       <FiSend className="w-4 h-4" />
                     </Button>
                   </div>
-                  
+
                   {/* Voice Options */}
                   <div className="flex justify-end mt-2">
-                     <button 
-                       onClick={() => setVoiceEnabled(!voiceEnabled)}
-                       className={`flex items-center gap-1.5 text-[10px] font-medium transition-colors ${voiceEnabled ? 'text-primary' : 'text-[var(--theme-text-primary)] text-opacity-70'}`}
-                     >
-                       {voiceEnabled ? <FiVolume2 className="w-3 h-3" /> : <FiVolumeX className="w-3 h-3" />}
-                       {voiceEnabled ? 'Voice Response On' : 'Voice Response Off'}
-                     </button>
+                    <button
+                      onClick={() => setVoiceEnabled(!voiceEnabled)}
+                      className={`flex items-center gap-1.5 text-[10px] font-medium transition-colors ${voiceEnabled ? 'text-primary' : 'text-[var(--theme-text-primary)] text-opacity-70'}`}
+                    >
+                      {voiceEnabled ? (
+                        <FiVolume2 className="w-3 h-3" />
+                      ) : (
+                        <FiVolumeX className="w-3 h-3" />
+                      )}
+                      {voiceEnabled ? 'Voice Response On' : 'Voice Response Off'}
+                    </button>
                   </div>
                 </div>
               </>
@@ -535,10 +563,12 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
             initial={{ opacity: 0, x: 20, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 10, scale: 0.9 }}
-            className="fixed bottom-8 right-20 sm:right-24 z-[70] pointer-events-none"
+            className="fixed bottom-24 right-20 z-[70] pointer-events-none hidden sm:block"
           >
             <div className="glass-card px-4 py-2 rounded-xl flex items-center gap-2">
-              <span className="text-sm font-medium whitespace-nowrap text-[var(--theme-text-primary)]">Need help? 👋</span>
+              <span className="text-sm font-medium whitespace-nowrap text-[var(--theme-text-primary)]">
+                Need help? 👋
+              </span>
               {/* Arrow */}
               <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 glass-card transform rotate-45" />
             </div>
@@ -552,12 +582,18 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className={`p-3.5 sm:p-4 rounded-[28px] sm:rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.4)] border transition-all duration-300 backdrop-blur-[15px] z-[60] ${
-          isOpen ? 'bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--theme-text-primary)]' : 'bg-gradient-to-tr from-[#ec4899] to-[#8b5cf6] border-white/20 text-white hover:from-[#f472b6] hover:to-[#a78bfa]'
+          isOpen
+            ? 'bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--theme-text-primary)]'
+            : 'bg-gradient-to-tr from-[#ec4899] to-[#8b5cf6] border-white/20 text-white hover:from-[#f472b6] hover:to-[#a78bfa]'
         }`}
         style={{ backdropFilter: 'var(--glass-blur)' }}
         aria-label={isOpen ? 'Close chat assistant' : 'Open chat assistant'}
       >
-        {isOpen ? <FiX className="w-5 h-5 sm:w-6 sm:h-6" /> : <FiMessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />}
+        {isOpen ? (
+          <FiX className="w-5 h-5 sm:w-6 sm:h-6" />
+        ) : (
+          <FiMessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+        )}
       </motion.button>
     </>
   );

@@ -65,7 +65,7 @@ export default function ProjectCard({
 
   return (
     <motion.article
-      className="group h-full flex flex-col glass-card backdrop-blur-enhanced border-gradient shadow-glass hover:shadow-glow transition-all duration-500 card-hover focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-2xl overflow-hidden"
+      className="group flex flex-col glass-card backdrop-blur-enhanced border-gradient shadow-glass hover:shadow-glow transition-all duration-500 card-hover focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-2xl overflow-hidden"
       aria-label={`Project: ${title}`}
       role="article"
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -86,7 +86,7 @@ export default function ProjectCard({
     >
       {/* Enhanced Project Image/Icon */}
       {/* Enhanced Project Media Slider */}
-      <div className="relative w-full h-48 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 overflow-hidden">
+      <div className="relative w-full h-36 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 overflow-hidden">
         <AnimatePresence mode="wait">
           {!showVideo || !videoUrl ? (
             <motion.div
@@ -175,7 +175,7 @@ export default function ProjectCard({
       <div className="flex-1 p-6 relative z-10 flex flex-col">
         <motion.h3
           className="text-xl font-display font-bold text-[var(--theme-text-primary)] mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300"
-          initial={{ opacity: 0, y: 10 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
@@ -183,8 +183,8 @@ export default function ProjectCard({
         </motion.h3>
 
         <motion.p
-          className="text-[var(--theme-text-primary)] text-opacity-80 mb-6 line-clamp-3 leading-relaxed flex-grow"
-          initial={{ opacity: 0, y: 10 }}
+          className="text-[var(--theme-text-primary)] text-opacity-80 mb-5 line-clamp-3 leading-relaxed"
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
@@ -195,7 +195,7 @@ export default function ProjectCard({
         {caseStudy && (
           <motion.div
             className="mb-5 bg-gradient-to-r from-primary/10 to-indigo-500/10 border border-primary/20 rounded-lg p-3"
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
           >
@@ -214,7 +214,7 @@ export default function ProjectCard({
         {/* Enhanced Tags with better animations */}
         <motion.div
           className="flex flex-wrap gap-2 mb-6"
-          initial={{ opacity: 0, y: 10 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
@@ -222,7 +222,7 @@ export default function ProjectCard({
             <motion.span
               key={i}
               className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-[var(--theme-text-primary)] border border-white/20 hover:border-primary/40 hover:text-primary transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{
                 scale: 1.05,
@@ -237,7 +237,7 @@ export default function ProjectCard({
           {tags.length > 4 && (
             <motion.span
               className="px-3 py-1.5 text-xs font-medium rounded-full glass-card backdrop-blur-sm text-[var(--theme-text-primary)] text-opacity-60 border border-white/10"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}
             >
@@ -249,7 +249,7 @@ export default function ProjectCard({
         {/* Enhanced Action Buttons */}
         <motion.div
           className="flex gap-3 mt-auto"
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >

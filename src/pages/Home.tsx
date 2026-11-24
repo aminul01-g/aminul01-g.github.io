@@ -171,7 +171,7 @@ export default function Home(): React.ReactElement {
             description="A look at who I am, what I work with, and how I think about building intelligent systems."
           />
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <motion.div>
               <div className="relative mx-auto w-56 overflow-hidden rounded-2xl border border-[var(--hairline)] shadow-glass sm:w-64 lg:mx-0">
                 <ImageWithFallback
                   src="/images/optimized/profile_pic.webp"
@@ -245,13 +245,11 @@ export default function Home(): React.ReactElement {
         </section>
 
         {/* 03 — Experience */}
-        <section className="bento-card">
-          <InteractiveTimeline
-            items={timelineData}
-            title="Experience & Education"
-            subtitle="A brief journey through my academic and professional work"
-          />
-        </section>
+        <InteractiveTimeline
+          items={timelineData}
+          title="Experience & Education"
+          subtitle="A brief journey through my academic and professional work"
+        />
 
         {/* 04 — Work */}
         <section id="work" className="bento-card scroll-mt-24">
@@ -261,12 +259,7 @@ export default function Home(): React.ReactElement {
             title="Things I've actually built."
             description="A few projects where I owned the problem, the implementation and the outcome."
           />
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid gap-5 md:grid-cols-3"
-          >
+          <motion.div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((project, i) => (
               <motion.article
                 key={project.title}
@@ -276,17 +269,9 @@ export default function Home(): React.ReactElement {
                 <span className="font-mono text-xs text-[var(--accent-2)]">
                   {String(i + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}
                 </span>
-                <div className="mt-6 flex-1">
+                <div className="mt-6">
                   <ProjectCard {...project} />
                 </div>
-                {project.caseStudy?.impact && (
-                  <p className="mt-5 border-t border-[var(--hairline)] pt-4 text-xs leading-relaxed text-[var(--muted)]">
-                    <span className="font-mono uppercase tracking-[0.14em] text-[var(--accent-2)]">
-                      Impact{' '}
-                    </span>
-                    {project.caseStudy.impact}
-                  </p>
-                )}
               </motion.article>
             ))}
           </motion.div>
