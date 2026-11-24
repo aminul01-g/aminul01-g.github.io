@@ -36,10 +36,12 @@ global.window.matchMedia =
     };
   };
 
-if (typeof (global as any).TextEncoder === 'undefined') {
-  (global as any).TextEncoder = TextEncoder;
+const globals = global as unknown as Record<string, unknown>;
+
+if (typeof globals.TextEncoder === 'undefined') {
+  globals.TextEncoder = TextEncoder;
 }
 
-if (typeof (global as any).TextDecoder === 'undefined') {
-  (global as any).TextDecoder = TextDecoder;
+if (typeof globals.TextDecoder === 'undefined') {
+  globals.TextDecoder = TextDecoder;
 }

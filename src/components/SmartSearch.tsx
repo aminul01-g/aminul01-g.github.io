@@ -341,7 +341,9 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                 {/* Recent Searches */}
                 {recentSearches.length > 0 && (
                   <div>
-                    <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70 mb-3">Recent Searches</h3>
+                    <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70 mb-3">
+                      Recent Searches
+                    </h3>
                     <div className="flex flex-wrap gap-2">
                       {recentSearches.map((search, index) => (
                         <button
@@ -380,7 +382,9 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                 {/* Suggestions */}
                 {suggestions.length > 0 && (
                   <div className="mb-4">
-                    <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70 mb-2">Suggestions</h3>
+                    <h3 className="text-sm font-medium text-[var(--theme-text-primary)] text-opacity-70 mb-2">
+                      Suggestions
+                    </h3>
                     <div className="flex flex-wrap gap-2">
                       {suggestions.map((suggestion, index) => (
                         <button

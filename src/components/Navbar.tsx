@@ -114,7 +114,7 @@ export default function Navbar(): React.ReactElement {
             <Link
               to="/"
               className="text-xl sm:text-2xl font-bold font-display text-gradient hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg px-1 sm:px-2 py-1 leading-none"
-              aria-label="Go to homepage"
+              aria-label="Aminul — go to homepage"
             >
               Aminul
             </Link>

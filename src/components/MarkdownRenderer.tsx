@@ -24,24 +24,19 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
 
           // 1. Handle Interactive Components
           if (lang === 'interactive') {
-             const componentName = String(children).trim();
-             if (componentName === '<Counter />') {
-               return <InteractiveCounter />;
-             }
-             if (componentName === '<Button />') {
-                 return <Button variant="primary">Demo Button</Button>;
-             }
-             return <div className="text-red-500">Unknown component: {componentName}</div>;
+            const componentName = String(children).trim();
+            if (componentName === '<Counter />') {
+              return <InteractiveCounter />;
+            }
+            if (componentName === '<Button />') {
+              return <Button variant="primary">Demo Button</Button>;
+            }
+            return <div className="text-red-500">Unknown component: {componentName}</div>;
           }
 
           // 2. Syntax Highlighting for standard code
           return !inline && match ? (
-            <SyntaxHighlighter
-              style={vscDarkPlus}
-              language={lang}
-              PreTag="div"
-              {...props}
-            >
+            <SyntaxHighlighter style={vscDarkPlus} language={lang} PreTag="div" {...props}>
               {String(children).replace(/\n$/, '')}
             </SyntaxHighlighter>
           ) : (

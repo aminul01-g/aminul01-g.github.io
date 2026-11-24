@@ -181,7 +181,9 @@ export default function ProjectFilterBar({
                 animate={{ opacity: 1, y: 0 }}
                 className="flex flex-wrap gap-2 items-center"
               >
-                <span className="text-sm text-[var(--theme-text-primary)] text-opacity-70">Active filters:</span>
+                <span className="text-sm text-[var(--theme-text-primary)] text-opacity-70">
+                  Active filters:
+                </span>
                 {filterState.selectedTags.map((tag) => (
                   <motion.span
                     key={tag}

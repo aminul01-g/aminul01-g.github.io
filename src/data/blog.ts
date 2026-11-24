@@ -44,7 +44,6 @@ function makeKeyedBlocks(blocks: InputBlock[], blockPrefix: string): PortableTex
 }
 
 export const blogPosts: BlogPost[] = [
-
   {
     _id: '1',
     _createdAt: '2025-06-15T12:00:00Z',
@@ -62,7 +61,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Artificial Intelligence (AI) is no longer a futuristic concept reserved for research labs and sci-fi movies—it’s shaping how we work, learn, and interact with technology every single day. From recommendation systems and voice assistants to medical diagnosis and autonomous systems, AI is everywhere.",
+              text: 'Artificial Intelligence (AI) is no longer a futuristic concept reserved for research labs and sci-fi movies—it’s shaping how we work, learn, and interact with technology every single day. From recommendation systems and voice assistants to medical diagnosis and autonomous systems, AI is everywhere.',
             },
           ],
         },
@@ -72,7 +71,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "But this wasn’t always obvious to me.",
+              text: 'But this wasn’t always obvious to me.',
             },
           ],
         },
@@ -82,7 +81,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This blog post is a reflection on my journey into AI—how I started as a complete beginner, the challenges I faced, the skills I built along the way, and how those early steps shaped my path toward becoming an AI Engineer. If you’re someone standing at the starting line, unsure where or how to begin, this story is for you.",
+              text: 'This blog post is a reflection on my journey into AI—how I started as a complete beginner, the challenges I faced, the skills I built along the way, and how those early steps shaped my path toward becoming an AI Engineer. If you’re someone standing at the starting line, unsure where or how to begin, this story is for you.',
             },
           ],
         },
@@ -102,7 +101,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Like many beginners, my initial exposure to AI came through buzzwords—machine learning, deep learning, neural networks. I was fascinated, but also overwhelmed. Online tutorials promised quick mastery, yet most skipped the fundamentals, leaving me confused rather than confident.",
+              text: 'Like many beginners, my initial exposure to AI came through buzzwords—machine learning, deep learning, neural networks. I was fascinated, but also overwhelmed. Online tutorials promised quick mastery, yet most skipped the fundamentals, leaving me confused rather than confident.',
             },
           ],
         },
@@ -112,7 +111,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "At that stage, I didn’t know:",
+              text: 'At that stage, I didn’t know:',
             },
           ],
         },
@@ -122,7 +121,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• What AI really meant in practice",
+              text: '• What AI really meant in practice',
             },
           ],
         },
@@ -132,7 +131,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• How much math or programming was required",
+              text: '• How much math or programming was required',
             },
           ],
         },
@@ -142,7 +141,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Whether AI was even realistic for someone like me",
+              text: '• Whether AI was even realistic for someone like me',
             },
           ],
         },
@@ -152,7 +151,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "What I did have was curiosity—and that turned out to be enough to begin.",
+              text: 'What I did have was curiosity—and that turned out to be enough to begin.',
             },
           ],
         },
@@ -172,7 +171,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "One of the biggest lessons I learned early was this:",
+              text: 'One of the biggest lessons I learned early was this:',
             },
           ],
         },
@@ -182,7 +181,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "AI is built on fundamentals, not magic.",
+              text: 'AI is built on fundamentals, not magic.',
             },
           ],
         },
@@ -192,7 +191,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Before touching any advanced models, I focused on strengthening my base.",
+              text: 'Before touching any advanced models, I focused on strengthening my base.',
             },
           ],
         },
@@ -212,7 +211,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Python became my primary language due to its simplicity and massive AI ecosystem. I learned:",
+              text: 'Python became my primary language due to its simplicity and massive AI ecosystem. I learned:',
             },
           ],
         },
@@ -222,7 +221,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Variables, loops, functions\n• Data structures\n• Writing clean, readable code",
+              text: '• Variables, loops, functions\n• Data structures\n• Writing clean, readable code',
             },
           ],
         },
@@ -232,7 +231,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This phase was crucial—without programming fluency, AI concepts remain abstract.",
+              text: 'This phase was crucial—without programming fluency, AI concepts remain abstract.',
             },
           ],
         },
@@ -252,7 +251,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Instead of avoiding math, I faced it head-on:",
+              text: 'Instead of avoiding math, I faced it head-on:',
             },
           ],
         },
@@ -262,7 +261,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Linear algebra for understanding vectors and matrices\n• Probability and statistics for data and predictions\n• Basic calculus to grasp how models learn",
+              text: '• Linear algebra for understanding vectors and matrices\n• Probability and statistics for data and predictions\n• Basic calculus to grasp how models learn',
             },
           ],
         },
@@ -272,7 +271,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "I didn’t aim for perfection—just conceptual clarity.",
+              text: 'I didn’t aim for perfection—just conceptual clarity.',
             },
           ],
         },
@@ -292,7 +291,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Once my foundations were solid, I moved into Machine Learning (ML)—where data meets algorithms. I learned how machines:",
+              text: 'Once my foundations were solid, I moved into Machine Learning (ML)—where data meets algorithms. I learned how machines:',
             },
           ],
         },
@@ -302,7 +301,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Learn patterns from data\n• Make predictions\n• Improve through optimization",
+              text: '• Learn patterns from data\n• Make predictions\n• Improve through optimization',
             },
           ],
         },
@@ -312,7 +311,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Some of the first models I worked with included:",
+              text: 'Some of the first models I worked with included:',
             },
           ],
         },
@@ -322,7 +321,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Linear and logistic regression\n• Decision trees\n• K-Nearest Neighbors",
+              text: '• Linear and logistic regression\n• Decision trees\n• K-Nearest Neighbors',
             },
           ],
         },
@@ -332,7 +331,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Seeing a model learn from data for the first time was a turning point—it made AI feel real.",
+              text: 'Seeing a model learn from data for the first time was a turning point—it made AI feel real.',
             },
           ],
         },
@@ -352,7 +351,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The real excitement began when I stepped into Deep Learning. Neural networks unlocked the ability to:",
+              text: 'The real excitement began when I stepped into Deep Learning. Neural networks unlocked the ability to:',
             },
           ],
         },
@@ -362,7 +361,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Recognize handwritten digits\n• Classify images\n• Understand sequences and patterns",
+              text: '• Recognize handwritten digits\n• Classify images\n• Understand sequences and patterns',
             },
           ],
         },
@@ -372,7 +371,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Using frameworks like PyTorch, I built and trained neural networks from scratch. Debugging models, tuning parameters, and watching accuracy improve taught me patience, discipline, and problem-solving at a deeper level.",
+              text: 'Using frameworks like PyTorch, I built and trained neural networks from scratch. Debugging models, tuning parameters, and watching accuracy improve taught me patience, discipline, and problem-solving at a deeper level.',
             },
           ],
         },
@@ -392,7 +391,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Learning models wasn’t enough. To think like an AI Engineer, I had to think about systems, not just algorithms. That meant learning:",
+              text: 'Learning models wasn’t enough. To think like an AI Engineer, I had to think about systems, not just algorithms. That meant learning:',
             },
           ],
         },
@@ -402,7 +401,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• How to structure AI projects\n• How to deploy models\n• How to optimize performance\n• How AI systems behave in real-world environments",
+              text: '• How to structure AI projects\n• How to deploy models\n• How to optimize performance\n• How AI systems behave in real-world environments',
             },
           ],
         },
@@ -412,7 +411,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "I began focusing on model efficiency, lightweight architectures, and practical applications over theoretical perfection. This shift—from learning AI to engineering AI solutions—was a major milestone.",
+              text: 'I began focusing on model efficiency, lightweight architectures, and practical applications over theoretical perfection. This shift—from learning AI to engineering AI solutions—was a major milestone.',
             },
           ],
         },
@@ -432,7 +431,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The journey wasn’t smooth—and it still isn’t. Some of the toughest challenges included:",
+              text: 'The journey wasn’t smooth—and it still isn’t. Some of the toughest challenges included:',
             },
           ],
         },
@@ -442,7 +441,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Imposter syndrome\n• Too many resources, too little clarity\n• Debugging models that failed silently\n• Balancing theory with hands-on practice",
+              text: '• Imposter syndrome\n• Too many resources, too little clarity\n• Debugging models that failed silently\n• Balancing theory with hands-on practice',
             },
           ],
         },
@@ -452,7 +451,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "But each challenge reinforced an important truth: Struggle is not a sign of failure—it’s a sign of growth.",
+              text: 'But each challenge reinforced an important truth: Struggle is not a sign of failure—it’s a sign of growth.',
             },
           ],
         },
@@ -472,7 +471,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Looking back, a few principles made all the difference:",
+              text: 'Looking back, a few principles made all the difference:',
             },
           ],
         },
@@ -482,7 +481,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Consistency beats intensity\n• Build projects, even small ones\n• Understand before optimizing\n• Learn by explaining to others\n• AI is a marathon, not a sprint",
+              text: '• Consistency beats intensity\n• Build projects, even small ones\n• Understand before optimizing\n• Learn by explaining to others\n• AI is a marathon, not a sprint',
             },
           ],
         },
@@ -492,7 +491,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "These lessons continue to guide my learning today.",
+              text: 'These lessons continue to guide my learning today.',
             },
           ],
         },
@@ -512,7 +511,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "AI Engineering sits at the intersection of software development, data science, and real-world problem solving. It’s not just about making models accurate—it’s about making them usable, scalable, and impactful. That challenge is what excites me the most.",
+              text: 'AI Engineering sits at the intersection of software development, data science, and real-world problem solving. It’s not just about making models accurate—it’s about making them usable, scalable, and impactful. That challenge is what excites me the most.',
             },
           ],
         },
@@ -532,7 +531,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "If you’re a beginner wondering whether AI is “too hard,” let me say this:",
+              text: 'If you’re a beginner wondering whether AI is “too hard,” let me say this:',
             },
           ],
         },
@@ -542,7 +541,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "You don’t need to be a genius.\nYou don’t need to know everything.\nYou just need to start—and keep going.",
+              text: 'You don’t need to be a genius.\nYou don’t need to know everything.\nYou just need to start—and keep going.',
             },
           ],
         },
@@ -552,7 +551,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Every expert in AI was once confused, stuck, and unsure. What separates them is not talent, but persistence. This journey—from beginner to engineer—is still ongoing for me. And that’s the best part.",
+              text: 'Every expert in AI was once confused, stuck, and unsure. What separates them is not talent, but persistence. This journey—from beginner to engineer—is still ongoing for me. And that’s the best part.',
             },
           ],
         },
@@ -562,7 +561,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Thanks for reading. If you’re exploring AI, building projects, or carving your own path into this field—welcome. You’re exactly where you need to be.",
+              text: 'Thanks for reading. If you’re exploring AI, building projects, or carving your own path into this field—welcome. You’re exactly where you need to be.',
             },
           ],
         },
@@ -587,7 +586,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Every AI engineer remembers their first real project—the one that turns theory into something tangible. For me, that milestone was building a Smart Study Assistant using Python. It wasn’t just a project; it was the moment AI stopped being “something I was learning” and became “something I was building.”",
+              text: 'Every AI engineer remembers their first real project—the one that turns theory into something tangible. For me, that milestone was building a Smart Study Assistant using Python. It wasn’t just a project; it was the moment AI stopped being “something I was learning” and became “something I was building.”',
             },
           ],
         },
@@ -597,7 +596,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In this post, I’ll walk through the motivation, design decisions, technical stack, challenges, and lessons I learned while developing my first end-to-end AI application.",
+              text: 'In this post, I’ll walk through the motivation, design decisions, technical stack, challenges, and lessons I learned while developing my first end-to-end AI application.',
             },
           ],
         },
@@ -617,7 +616,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "As a student navigating multiple subjects, deadlines, and learning resources, I noticed a recurring problem: Studying lacked structure, personalization, and feedback.",
+              text: 'As a student navigating multiple subjects, deadlines, and learning resources, I noticed a recurring problem: Studying lacked structure, personalization, and feedback.',
             },
           ],
         },
@@ -627,7 +626,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Most tools were either static (to-do lists, notes), overwhelming (too many features), or completely non-intelligent.",
+              text: 'Most tools were either static (to-do lists, notes), overwhelming (too many features), or completely non-intelligent.',
             },
           ],
         },
@@ -637,7 +636,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "I wanted to build something that could assist with daily study planning, track progress intelligently, provide adaptive learning support, and feel like a personal academic companion. That idea became the Smart Study Assistant.",
+              text: 'I wanted to build something that could assist with daily study planning, track progress intelligently, provide adaptive learning support, and feel like a personal academic companion. That idea became the Smart Study Assistant.',
             },
           ],
         },
@@ -657,7 +656,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The goal was simple but ambitious: Create an AI-powered assistant that helps students study smarter, not harder.",
+              text: 'The goal was simple but ambitious: Create an AI-powered assistant that helps students study smarter, not harder.',
             },
           ],
         },
@@ -677,7 +676,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• User authentication system\n• Study session tracking\n• Task and goal management\n• Quiz and self-assessment support\n• Basic AI-driven recommendations\n• Clean and intuitive user interface",
+              text: '• User authentication system\n• Study session tracking\n• Task and goal management\n• Quiz and self-assessment support\n• Basic AI-driven recommendations\n• Clean and intuitive user interface',
             },
           ],
         },
@@ -687,7 +686,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Instead of chasing complexity, I focused on building a complete, usable system.",
+              text: 'Instead of chasing complexity, I focused on building a complete, usable system.',
             },
           ],
         },
@@ -707,7 +706,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "I deliberately chose tools that are widely used in real-world AI systems:",
+              text: 'I deliberately chose tools that are widely used in real-world AI systems:',
             },
           ],
         },
@@ -727,7 +726,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Python – for its simplicity, flexibility, and AI ecosystem",
+              text: 'Python – for its simplicity, flexibility, and AI ecosystem',
             },
           ],
         },
@@ -747,7 +746,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Data handling and logic processing\n• Basic ML concepts for recommendations\n• Modular code architecture",
+              text: '• Data handling and logic processing\n• Basic ML concepts for recommendations\n• Modular code architecture',
             },
           ],
         },
@@ -767,7 +766,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Separation of logic, data, and interface\n• Scalable structure for future features\n• Clean and readable codebase",
+              text: '• Separation of logic, data, and interface\n• Scalable structure for future features\n• Clean and readable codebase',
             },
           ],
         },
@@ -777,7 +776,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This project helped me understand how AI fits into software engineering, not just notebooks.",
+              text: 'This project helped me understand how AI fits into software engineering, not just notebooks.',
             },
           ],
         },
@@ -797,7 +796,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "At a high level, the Smart Study Assistant operates in three layers:",
+              text: 'At a high level, the Smart Study Assistant operates in three layers:',
             },
           ],
         },
@@ -817,7 +816,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Handles login and user input\n• Displays study data and progress\n• Ensures a smooth user experience",
+              text: '• Handles login and user input\n• Displays study data and progress\n• Ensures a smooth user experience',
             },
           ],
         },
@@ -837,7 +836,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Tracks study patterns\n• Analyzes completed tasks\n• Generates simple recommendations\n• Supports quiz evaluation",
+              text: '• Tracks study patterns\n• Analyzes completed tasks\n• Generates simple recommendations\n• Supports quiz evaluation',
             },
           ],
         },
@@ -857,7 +856,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Stores user data securely\n• Tracks history and performance\n• Enables personalized insights",
+              text: '• Stores user data securely\n• Tracks history and performance\n• Enables personalized insights',
             },
           ],
         },
@@ -867,7 +866,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This layered approach made the system easier to debug, scale, and extend.",
+              text: 'This layered approach made the system easier to debug, scale, and extend.',
             },
           ],
         },
@@ -887,7 +886,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Building my first AI project wasn’t easy—and that’s what made it valuable.",
+              text: 'Building my first AI project wasn’t easy—and that’s what made it valuable.',
             },
           ],
         },
@@ -907,7 +906,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "I initially jumped into coding too fast. I learned the hard way that poor design leads to messy systems.",
+              text: 'I initially jumped into coding too fast. I learned the hard way that poor design leads to messy systems.',
             },
           ],
         },
@@ -927,7 +926,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Unlike toy datasets, user data is unpredictable. I had to handle missing inputs, edge cases, and inconsistent study behavior.",
+              text: 'Unlike toy datasets, user data is unpredictable. I had to handle missing inputs, edge cases, and inconsistent study behavior.',
             },
           ],
         },
@@ -947,7 +946,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Not everything needs deep learning. Choosing simple, explainable logic over complex models improved reliability and clarity.",
+              text: 'Not everything needs deep learning. Choosing simple, explainable logic over complex models improved reliability and clarity.',
             },
           ],
         },
@@ -967,7 +966,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This project taught me lessons no tutorial ever could:",
+              text: 'This project taught me lessons no tutorial ever could:',
             },
           ],
         },
@@ -977,7 +976,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• AI projects are software projects first\n• Clean architecture matters more than fancy models\n• Small features done well beat complex features done poorly\n• Debugging is where real learning happens\n• Building for users changes how you think as an engineer",
+              text: '• AI projects are software projects first\n• Clean architecture matters more than fancy models\n• Small features done well beat complex features done poorly\n• Debugging is where real learning happens\n• Building for users changes how you think as an engineer',
             },
           ],
         },
@@ -987,7 +986,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Most importantly, I learned how to finish a project.",
+              text: 'Most importantly, I learned how to finish a project.',
             },
           ],
         },
@@ -1007,7 +1006,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The Smart Study Assistant marked a shift in my mindset: From learner → builder, from theory → application, from curiosity → confidence.",
+              text: 'The Smart Study Assistant marked a shift in my mindset: From learner → builder, from theory → application, from curiosity → confidence.',
             },
           ],
         },
@@ -1017,7 +1016,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "It gave me hands-on experience with AI system design, confidence to tackle larger projects, and a strong foundation for advanced AI engineering concepts.",
+              text: 'It gave me hands-on experience with AI system design, confidence to tackle larger projects, and a strong foundation for advanced AI engineering concepts.',
             },
           ],
         },
@@ -1027,7 +1026,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This project became the base upon which I now build more advanced, scalable AI systems.",
+              text: 'This project became the base upon which I now build more advanced, scalable AI systems.',
             },
           ],
         },
@@ -1047,7 +1046,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Future improvements I envision include:\n• Personalized learning recommendations\n• NLP-based doubt solving\n• Adaptive quizzes\n• Analytics-driven progress insights\n• Deployment as a web or mobile app",
+              text: 'Future improvements I envision include:\n• Personalized learning recommendations\n• NLP-based doubt solving\n• Adaptive quizzes\n• Analytics-driven progress insights\n• Deployment as a web or mobile app',
             },
           ],
         },
@@ -1057,7 +1056,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The journey doesn’t stop—it evolves.",
+              text: 'The journey doesn’t stop—it evolves.',
             },
           ],
         },
@@ -1077,7 +1076,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Your first AI project doesn’t have to be revolutionary. It just has to be finished, functional, and thoughtfully built.",
+              text: 'Your first AI project doesn’t have to be revolutionary. It just has to be finished, functional, and thoughtfully built.',
             },
           ],
         },
@@ -1087,7 +1086,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The Smart Study Assistant was my first step into applied AI—and it proved that with the right mindset, building intelligent systems is absolutely achievable.",
+              text: 'The Smart Study Assistant was my first step into applied AI—and it proved that with the right mindset, building intelligent systems is absolutely achievable.',
             },
           ],
         },
@@ -1097,7 +1096,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "If you’re starting your own AI journey: build something useful, learn from the struggle, and keep going.",
+              text: 'If you’re starting your own AI journey: build something useful, learn from the struggle, and keep going.',
             },
           ],
         },
@@ -1107,7 +1106,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Thanks for reading. More projects, insights, and deep dives coming soon 🚀",
+              text: 'Thanks for reading. More projects, insights, and deep dives coming soon 🚀',
             },
           ],
         },
@@ -1132,7 +1131,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "As AI assistants become more capable and widely adopted, a new skill has quietly emerged at the center of human–AI interaction: Prompt Engineering.",
+              text: 'As AI assistants become more capable and widely adopted, a new skill has quietly emerged at the center of human–AI interaction: Prompt Engineering.',
             },
           ],
         },
@@ -1142,7 +1141,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Unlike traditional programming, where logic is explicitly coded, modern AI systems—especially large language models—respond to instructions written in natural language. The quality of those instructions often determines the quality of the output.",
+              text: 'Unlike traditional programming, where logic is explicitly coded, modern AI systems—especially large language models—respond to instructions written in natural language. The quality of those instructions often determines the quality of the output.',
             },
           ],
         },
@@ -1152,7 +1151,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This is where prompt engineering comes in.",
+              text: 'This is where prompt engineering comes in.',
             },
           ],
         },
@@ -1172,7 +1171,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt engineering is the practice of designing, structuring, and refining inputs (prompts) given to AI models in order to produce accurate, reliable, and useful outputs.",
+              text: 'Prompt engineering is the practice of designing, structuring, and refining inputs (prompts) given to AI models in order to produce accurate, reliable, and useful outputs.',
             },
           ],
         },
@@ -1182,7 +1181,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In simple terms: A prompt is to an AI model what a specification is to a software system.",
+              text: 'In simple terms: A prompt is to an AI model what a specification is to a software system.',
             },
           ],
         },
@@ -1192,7 +1191,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "A vague prompt leads to vague results. A well-crafted prompt can unlock surprisingly precise and intelligent behavior.",
+              text: 'A vague prompt leads to vague results. A well-crafted prompt can unlock surprisingly precise and intelligent behavior.',
             },
           ],
         },
@@ -1212,7 +1211,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Large language models do not “understand” intent the way humans do. They predict responses based on patterns learned from data. Prompt engineering helps bridge the gap between human intent and model interpretation.",
+              text: 'Large language models do not “understand” intent the way humans do. They predict responses based on patterns learned from data. Prompt engineering helps bridge the gap between human intent and model interpretation.',
             },
           ],
         },
@@ -1222,7 +1221,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "By providing clearer context, constraints, and examples, we guide the model toward better reasoning and more relevant outputs.",
+              text: 'By providing clearer context, constraints, and examples, we guide the model toward better reasoning and more relevant outputs.',
             },
           ],
         },
@@ -1252,7 +1251,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "From coding copilots and chatbots to research tools and customer support agents, AI assistants now influence real-world decisions. Poor prompts can lead to hallucinated answers, inconsistent behavior, and misleading outputs. Good prompt engineering improves reliability and trust.",
+              text: 'From coding copilots and chatbots to research tools and customer support agents, AI assistants now influence real-world decisions. Poor prompts can lead to hallucinated answers, inconsistent behavior, and misleading outputs. Good prompt engineering improves reliability and trust.',
             },
           ],
         },
@@ -1272,7 +1271,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt engineering doesn’t change the model—it changes how much of the model’s intelligence you can access.",
+              text: 'Prompt engineering doesn’t change the model—it changes how much of the model’s intelligence you can access.',
             },
           ],
         },
@@ -1282,7 +1281,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "With the same AI system: A weak prompt gives a generic response. A strong prompt produces structured, domain-specific insight. This makes prompt engineering a high-leverage skill.",
+              text: 'With the same AI system: A weak prompt gives a generic response. A strong prompt produces structured, domain-specific insight. This makes prompt engineering a high-leverage skill.',
             },
           ],
         },
@@ -1302,7 +1301,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "While fine-tuning models is powerful, it’s expensive and complex. In many cases, well-designed prompts can achieve comparable results without retraining the model. This is especially important for startups, individual developers, and rapid prototyping.",
+              text: 'While fine-tuning models is powerful, it’s expensive and complex. In many cases, well-designed prompts can achieve comparable results without retraining the model. This is especially important for startups, individual developers, and rapid prototyping.',
             },
           ],
         },
@@ -1322,7 +1321,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "A strong prompt usually contains one or more of the following:",
+              text: 'A strong prompt usually contains one or more of the following:',
             },
           ],
         },
@@ -1332,7 +1331,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "🔹 Clear Role Definition: Assigning the AI a role improves focus. “Act as an experienced software architect…”",
+              text: '🔹 Clear Role Definition: Assigning the AI a role improves focus. “Act as an experienced software architect…”',
             },
           ],
         },
@@ -1342,7 +1341,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "🔹 Context: Providing background reduces ambiguity. “This is for a beginner-level AI portfolio project…”",
+              text: '🔹 Context: Providing background reduces ambiguity. “This is for a beginner-level AI portfolio project…”',
             },
           ],
         },
@@ -1352,7 +1351,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "🔹 Constraints: Limits help guide output format and depth. “Explain in under 300 words using bullet points.”",
+              text: '🔹 Constraints: Limits help guide output format and depth. “Explain in under 300 words using bullet points.”',
             },
           ],
         },
@@ -1362,7 +1361,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "🔹 Examples (Few-Shot Prompting): Showing examples helps models infer patterns. Input → Output pairs",
+              text: '🔹 Examples (Few-Shot Prompting): Showing examples helps models infer patterns. Input → Output pairs',
             },
           ],
         },
@@ -1372,7 +1371,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "🔹 Step-by-Step Reasoning: Encouraging structured thinking improves accuracy. “Break the solution into logical steps.”",
+              text: '🔹 Step-by-Step Reasoning: Encouraging structured thinking improves accuracy. “Break the solution into logical steps.”',
             },
           ],
         },
@@ -1392,7 +1391,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Traditional Programming: Explicit logic, Deterministic output, Code syntax, Compiled & executed.",
+              text: 'Traditional Programming: Explicit logic, Deterministic output, Code syntax, Compiled & executed.',
             },
           ],
         },
@@ -1402,7 +1401,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt Engineering: Implicit guidance, Probabilistic output, Natural language, Interpreted by model.",
+              text: 'Prompt Engineering: Implicit guidance, Probabilistic output, Natural language, Interpreted by model.',
             },
           ],
         },
@@ -1412,7 +1411,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt engineering doesn’t replace programming—it complements it.",
+              text: 'Prompt engineering doesn’t replace programming—it complements it.',
             },
           ],
         },
@@ -1432,7 +1431,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Writing overly vague prompts\n• Asking multiple unrelated questions at once\n• Ignoring output constraints\n• Expecting perfect results on the first try",
+              text: '• Writing overly vague prompts\n• Asking multiple unrelated questions at once\n• Ignoring output constraints\n• Expecting perfect results on the first try',
             },
           ],
         },
@@ -1442,7 +1441,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt engineering is iterative. Refinement is part of the process.",
+              text: 'Prompt engineering is iterative. Refinement is part of the process.',
             },
           ],
         },
@@ -1462,7 +1461,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt engineering is already shaping AI tutoring systems, code generation tools, chatbots, virtual agents, research summarization, and content generation workflows. In many systems, the prompt is the product logic.",
+              text: 'Prompt engineering is already shaping AI tutoring systems, code generation tools, chatbots, virtual agents, research summarization, and content generation workflows. In many systems, the prompt is the product logic.',
             },
           ],
         },
@@ -1482,7 +1481,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "As AI models become more powerful, the bottleneck is shifting from computation to communication. Knowing how to talk to AI systems effectively will be as important as knowing how to code.",
+              text: 'As AI models become more powerful, the bottleneck is shifting from computation to communication. Knowing how to talk to AI systems effectively will be as important as knowing how to code.',
             },
           ],
         },
@@ -1492,7 +1491,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "For AI engineers, prompt engineering enables faster prototyping, better system behavior, and more controllable AI outputs. It’s not a shortcut—it’s a new interface paradigm.",
+              text: 'For AI engineers, prompt engineering enables faster prototyping, better system behavior, and more controllable AI outputs. It’s not a shortcut—it’s a new interface paradigm.',
             },
           ],
         },
@@ -1512,7 +1511,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt engineering represents a fundamental shift in how humans interact with intelligent systems. It transforms natural language into a powerful tool for controlling complex AI behavior.",
+              text: 'Prompt engineering represents a fundamental shift in how humans interact with intelligent systems. It transforms natural language into a powerful tool for controlling complex AI behavior.',
             },
           ],
         },
@@ -1522,7 +1521,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In the age of AI assistants, the question is no longer “Can the model do this?” but rather “Can I ask the right way?”",
+              text: 'In the age of AI assistants, the question is no longer “Can the model do this?” but rather “Can I ask the right way?”',
             },
           ],
         },
@@ -1532,7 +1531,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Mastering that skill is what makes prompt engineering matter.",
+              text: 'Mastering that skill is what makes prompt engineering matter.',
             },
           ],
         },
@@ -1542,7 +1541,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Thanks for reading. More insights on AI, engineering, and intelligent systems coming soon 🚀",
+              text: 'Thanks for reading. More insights on AI, engineering, and intelligent systems coming soon 🚀',
             },
           ],
         },
@@ -1567,7 +1566,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Large Language Models (LLMs) are powerful—but on their own, they are incomplete. They hallucinate, lack domain-specific knowledge, and operate without access to private or up-to-date data.",
+              text: 'Large Language Models (LLMs) are powerful—but on their own, they are incomplete. They hallucinate, lack domain-specific knowledge, and operate without access to private or up-to-date data.',
             },
           ],
         },
@@ -1577,7 +1576,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "To solve this, modern AI systems increasingly rely on Retrieval-Augmented Generation (RAG).",
+              text: 'To solve this, modern AI systems increasingly rely on Retrieval-Augmented Generation (RAG).',
             },
           ],
         },
@@ -1587,7 +1586,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In this post, I’ll walk through how I designed and built a production-ready RAG chatbot using LangGraph for orchestration and Pinecone for vector search—focusing not just on what I built, but why each architectural decision matters.",
+              text: 'In this post, I’ll walk through how I designed and built a production-ready RAG chatbot using LangGraph for orchestration and Pinecone for vector search—focusing not just on what I built, but why each architectural decision matters.',
             },
           ],
         },
@@ -1607,7 +1606,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "LLMs generate responses based on training data—but: They cannot access proprietary documents, they struggle with factual consistency, and they fail silently when knowledge is missing.",
+              text: 'LLMs generate responses based on training data—but: They cannot access proprietary documents, they struggle with factual consistency, and they fail silently when knowledge is missing.',
             },
           ],
         },
@@ -1617,7 +1616,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "RAG addresses this by retrieving relevant context from external knowledge sources and injecting that context into the generation step. This transforms LLMs from language generators into knowledge-grounded systems.",
+              text: 'RAG addresses this by retrieving relevant context from external knowledge sources and injecting that context into the generation step. This transforms LLMs from language generators into knowledge-grounded systems.',
             },
           ],
         },
@@ -1637,7 +1636,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The chatbot is designed as a modular, production-grade pipeline, not a monolithic script.",
+              text: 'The chatbot is designed as a modular, production-grade pipeline, not a monolithic script.',
             },
           ],
         },
@@ -1657,7 +1656,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Document ingestion & embedding pipeline\\n• Vector database (Pinecone)\\n• LLM reasoning and response generation\\n• Stateful orchestration with LangGraph\\n• Failure handling and control flow",
+              text: '• Document ingestion & embedding pipeline\\n• Vector database (Pinecone)\\n• LLM reasoning and response generation\\n• Stateful orchestration with LangGraph\\n• Failure handling and control flow',
             },
           ],
         },
@@ -1667,7 +1666,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Each component can be scaled, tested, and improved independently.",
+              text: 'Each component can be scaled, tested, and improved independently.',
             },
           ],
         },
@@ -1687,7 +1686,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Traditional chain-based pipelines break down in complex workflows. LangGraph enables: Stateful execution, conditional branching, looping and retries, and human-in-the-loop flows.",
+              text: 'Traditional chain-based pipelines break down in complex workflows. LangGraph enables: Stateful execution, conditional branching, looping and retries, and human-in-the-loop flows.',
             },
           ],
         },
@@ -1697,7 +1696,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In other words, it allows LLM systems to behave like real applications, not linear demos.",
+              text: 'In other words, it allows LLM systems to behave like real applications, not linear demos.',
             },
           ],
         },
@@ -1707,7 +1706,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "LangGraph was used to: Control query → retrieve → generate → validate flow, handle fallback logic when retrieval fails, and maintain conversational state.",
+              text: 'LangGraph was used to: Control query → retrieve → generate → validate flow, handle fallback logic when retrieval fails, and maintain conversational state.',
             },
           ],
         },
@@ -1727,7 +1726,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Pinecone serves as the system’s long-term memory. Why Pinecone? Low-latency vector similarity search, horizontal scalability, and production-grade reliability.",
+              text: 'Pinecone serves as the system’s long-term memory. Why Pinecone? Low-latency vector similarity search, horizontal scalability, and production-grade reliability.',
             },
           ],
         },
@@ -1747,7 +1746,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Documents are chunked\\n• Each chunk is embedded\\n• Embeddings are stored with metadata\\n• User queries retrieve top-k relevant chunks",
+              text: '• Documents are chunked\\n• Each chunk is embedded\\n• Embeddings are stored with metadata\\n• User queries retrieve top-k relevant chunks',
             },
           ],
         },
@@ -1757,7 +1756,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This ensures responses are grounded in verifiable source material.",
+              text: 'This ensures responses are grounded in verifiable source material.',
             },
           ],
         },
@@ -1777,7 +1776,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The request lifecycle looks like this:",
+              text: 'The request lifecycle looks like this:',
             },
           ],
         },
@@ -1787,7 +1786,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "1. User submits a query\\n2. Query is embedded\\n3. Pinecone retrieves relevant context\\n4. Context is injected into the prompt\\n5. LLM generates a grounded response\\n6. Output is validated and returned",
+              text: '1. User submits a query\\n2. Query is embedded\\n3. Pinecone retrieves relevant context\\n4. Context is injected into the prompt\\n5. LLM generates a grounded response\\n6. Output is validated and returned',
             },
           ],
         },
@@ -1797,7 +1796,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "If retrieval confidence is low, the system triggers fallback logic instead of hallucinating.",
+              text: 'If retrieval confidence is low, the system triggers fallback logic instead of hallucinating.',
             },
           ],
         },
@@ -1817,7 +1816,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Building a demo is easy. Building a system is not. Key production concerns addressed:",
+              text: 'Building a demo is easy. Building a system is not. Key production concerns addressed:',
             },
           ],
         },
@@ -1827,7 +1826,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Prompt size management\\n• Latency optimization\\n• Error handling and retries\\n• Logging and observability\\n• Deterministic system behavior",
+              text: '• Prompt size management\\n• Latency optimization\\n• Error handling and retries\\n• Logging and observability\\n• Deterministic system behavior',
             },
           ],
         },
@@ -1837,7 +1836,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "These considerations separate prototypes from deployable systems.",
+              text: 'These considerations separate prototypes from deployable systems.',
             },
           ],
         },
@@ -1867,7 +1866,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Smaller chunks improve recall but reduce coherence. Finding the balance required experimentation.",
+              text: 'Smaller chunks improve recall but reduce coherence. Finding the balance required experimentation.',
             },
           ],
         },
@@ -1887,7 +1886,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Embedding choice and metadata filtering had a significant impact on output quality.",
+              text: 'Embedding choice and metadata filtering had a significant impact on output quality.',
             },
           ],
         },
@@ -1907,7 +1906,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "LangGraph adds structure—but also requires disciplined design.",
+              text: 'LangGraph adds structure—but also requires disciplined design.',
             },
           ],
         },
@@ -1917,7 +1916,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Each trade-off reinforced the importance of engineering judgment.",
+              text: 'Each trade-off reinforced the importance of engineering judgment.',
             },
           ],
         },
@@ -1937,7 +1936,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This project reflects how modern AI systems are actually built in production: LLMs as components, not monoliths; external knowledge as first-class citizens; control flow as critical infrastructure.",
+              text: 'This project reflects how modern AI systems are actually built in production: LLMs as components, not monoliths; external knowledge as first-class citizens; control flow as critical infrastructure.',
             },
           ],
         },
@@ -1947,7 +1946,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "It also demonstrates skills beyond model usage: System design, tool orchestration, and reliability thinking.",
+              text: 'It also demonstrates skills beyond model usage: System design, tool orchestration, and reliability thinking.',
             },
           ],
         },
@@ -1967,7 +1966,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Planned improvements include: Hybrid search (keyword + vector), feedback-driven retrieval tuning, streaming responses, and multi-agent extensions.",
+              text: 'Planned improvements include: Hybrid search (keyword + vector), feedback-driven retrieval tuning, streaming responses, and multi-agent extensions.',
             },
           ],
         },
@@ -1977,7 +1976,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This system is a foundation, not a finish line.",
+              text: 'This system is a foundation, not a finish line.',
             },
           ],
         },
@@ -1997,7 +1996,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Retrieval-Augmented Generation is not a trend—it’s a necessity. As LLMs move into production environments, engineering discipline matters more than model size. Tools like LangGraph and Pinecone make it possible to build AI systems that are not only powerful, but reliable, explainable, and scalable.",
+              text: 'Retrieval-Augmented Generation is not a trend—it’s a necessity. As LLMs move into production environments, engineering discipline matters more than model size. Tools like LangGraph and Pinecone make it possible to build AI systems that are not only powerful, but reliable, explainable, and scalable.',
             },
           ],
         },
@@ -2007,7 +2006,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This project was a key step in my journey toward building real-world AI infrastructure—and many more are ahead.",
+              text: 'This project was a key step in my journey toward building real-world AI infrastructure—and many more are ahead.',
             },
           ],
         },
@@ -2017,7 +2016,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Thanks for reading. More deep dives into AI engineering, LLM systems, and production design coming soon 🚀",
+              text: 'Thanks for reading. More deep dives into AI engineering, LLM systems, and production design coming soon 🚀',
             },
           ],
         },
@@ -2042,7 +2041,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Large Language Models (LLMs) are incredibly capable out of the box—but in many real-world applications, general intelligence is not enough. We often need models that speak a specific domain language, follow consistent formats, or behave according to strict constraints.",
+              text: 'Large Language Models (LLMs) are incredibly capable out of the box—but in many real-world applications, general intelligence is not enough. We often need models that speak a specific domain language, follow consistent formats, or behave according to strict constraints.',
             },
           ],
         },
@@ -2052,7 +2051,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "That’s where fine-tuning comes in.",
+              text: 'That’s where fine-tuning comes in.',
             },
           ],
         },
@@ -2062,7 +2061,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In this post, I’ll walk through parameter-efficient fine-tuning using LoRA (Low-Rank Adaptation)—why it matters, how it works, and how I approached it in practice.",
+              text: 'In this post, I’ll walk through parameter-efficient fine-tuning using LoRA (Low-Rank Adaptation)—why it matters, how it works, and how I approached it in practice.',
             },
           ],
         },
@@ -2082,7 +2081,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt engineering can take you far, but it has limits. Fine-tuning becomes valuable when: Prompts grow too long or fragile, behavior must be consistent across sessions, domain knowledge is narrow but critical, and latency and cost matter.",
+              text: 'Prompt engineering can take you far, but it has limits. Fine-tuning becomes valuable when: Prompts grow too long or fragile, behavior must be consistent across sessions, domain knowledge is narrow but critical, and latency and cost matter.',
             },
           ],
         },
@@ -2092,7 +2091,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Instead of repeatedly instructing a model, fine-tuning helps it internalize patterns.",
+              text: 'Instead of repeatedly instructing a model, fine-tuning helps it internalize patterns.',
             },
           ],
         },
@@ -2112,7 +2111,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Traditional fine-tuning updates all model parameters, which leads to: Massive GPU memory requirements, long training times, risk of catastrophic forgetting, and difficulty maintaining multiple task variants.",
+              text: 'Traditional fine-tuning updates all model parameters, which leads to: Massive GPU memory requirements, long training times, risk of catastrophic forgetting, and difficulty maintaining multiple task variants.',
             },
           ],
         },
@@ -2122,7 +2121,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "For most teams, full fine-tuning is simply impractical.",
+              text: 'For most teams, full fine-tuning is simply impractical.',
             },
           ],
         },
@@ -2142,7 +2141,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "LoRA offers a smarter alternative. Instead of updating the full weight matrices, LoRA freezes the base model, injects small, trainable low-rank matrices, and updates only these adapters during training.",
+              text: 'LoRA offers a smarter alternative. Instead of updating the full weight matrices, LoRA freezes the base model, injects small, trainable low-rank matrices, and updates only these adapters during training.',
             },
           ],
         },
@@ -2152,7 +2151,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This dramatically reduces trainable parameters, memory usage, and compute cost while preserving most of the model’s original knowledge.",
+              text: 'This dramatically reduces trainable parameters, memory usage, and compute cost while preserving most of the model’s original knowledge.',
             },
           ],
         },
@@ -2172,7 +2171,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "At a high level: Pretrained weights remain frozen, low-rank matrices approximate weight updates, only adapter parameters are trained, and adapters can be merged or swapped.",
+              text: 'At a high level: Pretrained weights remain frozen, low-rank matrices approximate weight updates, only adapter parameters are trained, and adapters can be merged or swapped.',
             },
           ],
         },
@@ -2182,7 +2181,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This makes LoRA ideal for domain adaptation, instruction tuning, and multi-task experimentation.",
+              text: 'This makes LoRA ideal for domain adaptation, instruction tuning, and multi-task experimentation.',
             },
           ],
         },
@@ -2212,7 +2211,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Open-weight LLMs suitable for fine-tuning. Balance between size, performance, and hardware limits.",
+              text: 'Open-weight LLMs suitable for fine-tuning. Balance between size, performance, and hardware limits.',
             },
           ],
         },
@@ -2232,7 +2231,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "High-quality, task-specific examples. Clear input–output structure. Noise reduction over dataset size. Data quality mattered far more than quantity.",
+              text: 'High-quality, task-specific examples. Clear input–output structure. Noise reduction over dataset size. Data quality mattered far more than quantity.',
             },
           ],
         },
@@ -2252,7 +2251,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Key considerations included: Rank (r) selection, target layers (attention projections), learning rate stability, and gradient accumulation. Each choice involved trade-offs between speed, memory, and performance.",
+              text: 'Key considerations included: Rank (r) selection, target layers (attention projections), learning rate stability, and gradient accumulation. Each choice involved trade-offs between speed, memory, and performance.',
             },
           ],
         },
@@ -2272,7 +2271,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "After fine-tuning: The model followed instructions more reliably, output formats became consistent, and domain-specific responses improved significantly.",
+              text: 'After fine-tuning: The model followed instructions more reliably, output formats became consistent, and domain-specific responses improved significantly.',
             },
           ],
         },
@@ -2282,7 +2281,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Interestingly, LoRA preserved general reasoning ability while sharpening task focus.",
+              text: 'Interestingly, LoRA preserved general reasoning ability while sharpening task focus.',
             },
           ],
         },
@@ -2302,7 +2301,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "🔸 Overfitting on Small Datasets: LoRA makes training easy—but overfitting easier too.\\n🔸 Hyperparameter Sensitivity: Small changes in rank or learning rate had noticeable effects.\\n🔸 Evaluation Complexity: Measuring improvement required qualitative and task-specific metrics.",
+              text: '🔸 Overfitting on Small Datasets: LoRA makes training easy—but overfitting easier too.\\n🔸 Hyperparameter Sensitivity: Small changes in rank or learning rate had noticeable effects.\\n🔸 Evaluation Complexity: Measuring improvement required qualitative and task-specific metrics.',
             },
           ],
         },
@@ -2312,7 +2311,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "These challenges reinforced the importance of controlled experimentation.",
+              text: 'These challenges reinforced the importance of controlled experimentation.',
             },
           ],
         },
@@ -2332,7 +2331,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Prompt Engineering: Fast iteration, No training cost, Fragile prompts, Runtime overhead.\\nLoRA Fine-Tuning: Stable behavior, Training required, Robust outputs, Lower inference cost.",
+              text: 'Prompt Engineering: Fast iteration, No training cost, Fragile prompts, Runtime overhead.\\nLoRA Fine-Tuning: Stable behavior, Training required, Robust outputs, Lower inference cost.',
             },
           ],
         },
@@ -2342,7 +2341,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In practice, the two work best together.",
+              text: 'In practice, the two work best together.',
             },
           ],
         },
@@ -2362,7 +2361,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "LoRA shines when: You need repeatable, structured outputs, the task is narrow but critical, hardware resources are limited, and multiple task variants are required.",
+              text: 'LoRA shines when: You need repeatable, structured outputs, the task is narrow but critical, hardware resources are limited, and multiple task variants are required.',
             },
           ],
         },
@@ -2372,7 +2371,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "It enables customization without sacrificing scalability.",
+              text: 'It enables customization without sacrificing scalability.',
             },
           ],
         },
@@ -2392,7 +2391,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Future directions include: Multi-adapter routing, LoRA + RAG hybrid systems, adapter-based continual learning, and quantized LoRA for edge deployment.",
+              text: 'Future directions include: Multi-adapter routing, LoRA + RAG hybrid systems, adapter-based continual learning, and quantized LoRA for edge deployment.',
             },
           ],
         },
@@ -2402,7 +2401,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "The ecosystem is evolving fast—and LoRA is a core building block.",
+              text: 'The ecosystem is evolving fast—and LoRA is a core building block.',
             },
           ],
         },
@@ -2422,7 +2421,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Fine-tuning is not about making models “smarter.” It’s about making them more useful.",
+              text: 'Fine-tuning is not about making models “smarter.” It’s about making them more useful.',
             },
           ],
         },
@@ -2432,7 +2431,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "LoRA lowers the barrier to entry, allowing engineers to adapt powerful LLMs efficiently and responsibly. For anyone building production AI systems, understanding parameter-efficient fine-tuning is no longer optional—it’s essential.",
+              text: 'LoRA lowers the barrier to entry, allowing engineers to adapt powerful LLMs efficiently and responsibly. For anyone building production AI systems, understanding parameter-efficient fine-tuning is no longer optional—it’s essential.',
             },
           ],
         },
@@ -2442,7 +2441,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This project marked an important step in my journey toward practical LLM engineering.",
+              text: 'This project marked an important step in my journey toward practical LLM engineering.',
             },
           ],
         },
@@ -2452,7 +2451,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Thanks for reading. More hands-on AI engineering insights coming soon 🚀",
+              text: 'Thanks for reading. More hands-on AI engineering insights coming soon 🚀',
             },
           ],
         },
@@ -2477,7 +2476,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Training an AI model is only half the job. In real-world systems, the true challenge begins after the model achieves good metrics.",
+              text: 'Training an AI model is only half the job. In real-world systems, the true challenge begins after the model achieves good metrics.',
             },
           ],
         },
@@ -2487,7 +2486,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Deployment is where assumptions break, edge cases appear, and engineering discipline matters most. In this post, I’ll share the practical lessons I learned while deploying AI models to production, focusing on what actually makes systems reliable, scalable, and maintainable.",
+              text: 'Deployment is where assumptions break, edge cases appear, and engineering discipline matters most. In this post, I’ll share the practical lessons I learned while deploying AI models to production, focusing on what actually makes systems reliable, scalable, and maintainable.',
             },
           ],
         },
@@ -2507,7 +2506,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "In development, models live in notebooks: Clean datasets, controlled environments, and one-off execution. Production environments are different: Unpredictable inputs, latency constraints, resource limits, and continuous usage.",
+              text: 'In development, models live in notebooks: Clean datasets, controlled environments, and one-off execution. Production environments are different: Unpredictable inputs, latency constraints, resource limits, and continuous usage.',
             },
           ],
         },
@@ -2517,7 +2516,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Bridging this gap requires rethinking the model as part of a system, not a standalone artifact.",
+              text: 'Bridging this gap requires rethinking the model as part of a system, not a standalone artifact.',
             },
           ],
         },
@@ -2537,7 +2536,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "One of the biggest mistakes beginners make is treating deployment as an afterthought.",
+              text: 'One of the biggest mistakes beginners make is treating deployment as an afterthought.',
             },
           ],
         },
@@ -2547,7 +2546,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Key design decisions I learned to make early: Input/output schemas, versioned models, stateless inference logic, and clear separation between model and application code.",
+              text: 'Key design decisions I learned to make early: Input/output schemas, versioned models, stateless inference logic, and clear separation between model and application code.',
             },
           ],
         },
@@ -2557,7 +2556,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "These choices reduced friction later and enabled smoother iteration.",
+              text: 'These choices reduced friction later and enabled smoother iteration.',
             },
           ],
         },
@@ -2577,7 +2576,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "A typical production setup involved:",
+              text: 'A typical production setup involved:',
             },
           ],
         },
@@ -2587,7 +2586,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• A trained and serialized model\\n• An inference service (API-based)\\n• Input validation and preprocessing\\n• Logging and monitoring layers\\n• CI/CD hooks for updates",
+              text: '• A trained and serialized model\\n• An inference service (API-based)\\n• Input validation and preprocessing\\n• Logging and monitoring layers\\n• CI/CD hooks for updates',
             },
           ],
         },
@@ -2597,7 +2596,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This architecture ensured the model could be served, updated, and observed reliably.",
+              text: 'This architecture ensured the model could be served, updated, and observed reliably.',
             },
           ],
         },
@@ -2627,7 +2626,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "A slightly less accurate model that responds faster often wins in production.",
+              text: 'A slightly less accurate model that responds faster often wins in production.',
             },
           ],
         },
@@ -2647,7 +2646,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Choosing the right inference mode had major cost and performance implications.",
+              text: 'Choosing the right inference mode had major cost and performance implications.',
             },
           ],
         },
@@ -2667,7 +2666,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "CPU, memory, and concurrency limits shaped model selection and optimization.",
+              text: 'CPU, memory, and concurrency limits shaped model selection and optimization.',
             },
           ],
         },
@@ -2687,7 +2686,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "A deployed model without monitoring is a black box. Critical signals I learned to track: Request latency, error rates, input distribution drift, and output anomalies.",
+              text: 'A deployed model without monitoring is a black box. Critical signals I learned to track: Request latency, error rates, input distribution drift, and output anomalies.',
             },
           ],
         },
@@ -2697,7 +2696,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Observability turned silent failures into actionable insights.",
+              text: 'Observability turned silent failures into actionable insights.',
             },
           ],
         },
@@ -2717,7 +2716,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Some of the most frequent issues included: Unexpected input formats, dependency mismatches, model version confusion, and silent performance degradation.",
+              text: 'Some of the most frequent issues included: Unexpected input formats, dependency mismatches, model version confusion, and silent performance degradation.',
             },
           ],
         },
@@ -2727,7 +2726,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Each failure reinforced the need for defensive engineering.",
+              text: 'Each failure reinforced the need for defensive engineering.',
             },
           ],
         },
@@ -2747,7 +2746,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Production models evolve. Key practices: Explicit model versioning, backward-compatible APIs, rollback strategies, and canary deployments.",
+              text: 'Production models evolve. Key practices: Explicit model versioning, backward-compatible APIs, rollback strategies, and canary deployments.',
             },
           ],
         },
@@ -2757,7 +2756,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "These practices minimized risk while enabling continuous improvement.",
+              text: 'These practices minimized risk while enabling continuous improvement.',
             },
           ],
         },
@@ -2777,7 +2776,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Successful deployment requires collaboration across: Data science, Backend engineering, DevOps, and Product teams. Clear interfaces and shared responsibility made the system sustainable.",
+              text: 'Successful deployment requires collaboration across: Data science, Backend engineering, DevOps, and Product teams. Clear interfaces and shared responsibility made the system sustainable.',
             },
           ],
         },
@@ -2797,7 +2796,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "• Models are products, not experiments\\n• Simplicity beats complexity in production\\n• Monitoring is not optional\\n• Deployment skill separates engineers from researchers",
+              text: '• Models are products, not experiments\\n• Simplicity beats complexity in production\\n• Monitoring is not optional\\n• Deployment skill separates engineers from researchers',
             },
           ],
         },
@@ -2807,7 +2806,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "These lessons reshaped how I approach every AI project.",
+              text: 'These lessons reshaped how I approach every AI project.',
             },
           ],
         },
@@ -2827,7 +2826,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Future improvements I plan to explore: Automated retraining pipelines, drift-aware retraining triggers, scalable inference infrastructure, and edge and on-device deployment.",
+              text: 'Future improvements I plan to explore: Automated retraining pipelines, drift-aware retraining triggers, scalable inference infrastructure, and edge and on-device deployment.',
             },
           ],
         },
@@ -2837,7 +2836,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Production is not a destination—it’s a continuous process.",
+              text: 'Production is not a destination—it’s a continuous process.',
             },
           ],
         },
@@ -2857,7 +2856,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Deploying AI models to production is where theory meets reality. It demands not just ML knowledge, but strong software engineering, system design, and operational thinking.",
+              text: 'Deploying AI models to production is where theory meets reality. It demands not just ML knowledge, but strong software engineering, system design, and operational thinking.',
             },
           ],
         },
@@ -2867,7 +2866,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "For anyone serious about building real-world AI systems, mastering deployment is not optional—it’s essential.",
+              text: 'For anyone serious about building real-world AI systems, mastering deployment is not optional—it’s essential.',
             },
           ],
         },
@@ -2877,7 +2876,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "This experience marked a major step in my growth as an AI Engineer.",
+              text: 'This experience marked a major step in my growth as an AI Engineer.',
             },
           ],
         },
@@ -2887,7 +2886,7 @@ export const blogPosts: BlogPost[] = [
           children: [
             {
               _type: 'span',
-              text: "Thanks for reading. More real-world AI engineering insights coming soon 🚀",
+              text: 'Thanks for reading. More real-world AI engineering insights coming soon 🚀',
             },
           ],
         },
