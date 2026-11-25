@@ -18,7 +18,7 @@ export default function FixedBackground(): React.ReactElement {
         {isDark ? (
           <motion.div
             key="dark-bg"
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
@@ -64,7 +64,7 @@ export default function FixedBackground(): React.ReactElement {
         ) : (
           <motion.div
             key="light-bg"
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}

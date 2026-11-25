@@ -432,7 +432,7 @@ select:focus-visible {
   z-index: 200;
   padding: 0.6rem 1rem;
   border-radius: 10px;
-  background: var(--accent);
+  background: #4f46e5;
   color: #fff;
   font-weight: 600;
   transition: top 0.2s ease;

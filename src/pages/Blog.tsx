@@ -107,8 +107,7 @@ export default function Blog(): React.ReactElement {
       <motion.section
         id="blog"
         className="relative max-w-5xl mx-auto p-8 GlassCard rounded-3xl animate-fadeInUp transition-all duration-300 mb-16 overflow-hidden mt-8"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7 }}
       >
@@ -150,17 +149,13 @@ export default function Blog(): React.ReactElement {
               <BlogCardTiltWrapper key={post.slug}>
                 <motion.div
                   className="GlassCard rounded-2xl p-6 flex flex-col items-start transition-all duration-300 hover:scale-[1.03] group focus-within:ring-2 focus-within:ring-purple-500/40"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.12, delay: i * 0.06 }}
-                  tabIndex={0}
-                  aria-label={`Blog post: ${post.title}`}
                 >
                   <Link
                     to={`/blog/${post.slug}`}
                     className="block w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-lg transition-all duration-200 group-hover:scale-[1.02]"
                     style={{ minHeight: 64 }}
-                    aria-label={`Read blog post: ${post.title}`}
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <svg
@@ -177,7 +172,7 @@ export default function Blog(): React.ReactElement {
                           d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h5l2-2h5a2 2 0 012 2v12a2 2 0 01-2 2z"
                         />
                       </svg>
-                      <h3 className="text-xl font-semibold text-primary mb-0 dark:text-primary group-hover:underline">
+                      <h3 className="text-xl font-semibold text-[var(--ink)] mb-0 dark:text-[var(--ink)] group-hover:underline">
                         {post.title}
                       </h3>
                     </div>

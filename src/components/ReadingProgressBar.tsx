@@ -26,7 +26,7 @@ const ReadingProgressBar: React.FC<ReadingProgressBarProps> = ({ className = '' 
   return (
     <motion.div
       className={`fixed top-0 left-0 w-full h-1 z-50 ${className}`}
-      initial={{ opacity: 0, y: -10 }}
+      initial={false}
       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
     >

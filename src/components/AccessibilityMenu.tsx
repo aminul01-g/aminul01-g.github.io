@@ -56,7 +56,7 @@ export default function AccessibilityMenu(): React.ReactElement {
           <motion.div
             id="accessibility-menu"
             className="absolute bottom-16 right-0 glass-card rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-4 min-w-[280px]"
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            initial={false}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}

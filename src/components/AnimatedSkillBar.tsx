@@ -20,7 +20,6 @@ const AnimatedSkillBar: React.FC<AnimatedSkillBarProps> = ({ skill, index }) => 
     <motion.div
       ref={elementRef}
       className="mb-6"
-      initial={{ opacity: 0, x: -50 }}
       animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
@@ -79,8 +78,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
       <div className="max-w-4xl mx-auto">
         <motion.div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
@@ -95,8 +93,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
             className="glass-card p-8 rounded-2xl"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.04, boxShadow: '0 4px 32px #a5b4fa55' }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
@@ -109,8 +106,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
 
           <motion.div
             className="glass-card p-8 rounded-2xl"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.04, boxShadow: '0 4px 32px #a5b4fa55' }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}

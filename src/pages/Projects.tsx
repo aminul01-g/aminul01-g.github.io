@@ -5,7 +5,7 @@ import ProjectCard from '../components/ProjectCard';
 import ProjectCardSkeleton from '../components/ProjectCardSkeleton';
 import ProjectFilterBar from '../components/ProjectFilterBar';
 import SectionHeading from '../components/SectionHeading';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { usePageTracking } from '../hooks/useAnalytics';
@@ -120,16 +120,6 @@ export default function Projects(): React.ReactElement {
     return filtered;
   }, [projects, selectedTags, search, sortBy, sortOrder]);
 
-  // --- Improved fix for framer-motion initial animation sticking on mobile ---
-  const sectionRef = React.useRef(null);
-  // Try a more forgiving threshold and margin for mobile quirks
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.01,
-    margin: '0px 0px -100px 0px',
-  });
-  // Debug removed for production
-
   return (
     <>
       <Helmet>
@@ -203,11 +193,9 @@ export default function Projects(): React.ReactElement {
         </script>
       </Helmet>
       <motion.section
-        ref={sectionRef}
         id="projects"
         className="w-full min-h-screen px-2 sm:px-4 py-6 sm:py-8 pb-24 relative z-10"
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <SectionHeading
@@ -235,7 +223,6 @@ export default function Projects(): React.ReactElement {
         {!loading && (
           <motion.div
             className="mb-6 text-center text-sm text-[var(--theme-text-primary)] text-opacity-[0.40]"
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
             Showing {filteredAndSortedProjects.length} of {projects.length} projects
@@ -255,7 +242,6 @@ export default function Projects(): React.ReactElement {
         <motion.div
           className="w-full max-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-4"
           variants={container}
-          initial="hidden"
           animate="show"
         >
           {loading ? (
@@ -267,7 +253,6 @@ export default function Projects(): React.ReactElement {
           ) : filteredAndSortedProjects.length === 0 ? (
             <motion.div
               className="col-span-full text-center text-[var(--theme-text-primary)] text-opacity-[0.40] py-8 text-lg"
-              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="mb-4">

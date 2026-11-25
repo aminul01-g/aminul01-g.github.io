@@ -73,7 +73,12 @@ export default function ProjectDetails(): React.ReactElement {
           })}
         </script>
       </Helmet>
-      <section className="max-w-3xl mx-auto my-12 p-8 GlassCard rounded-2xl">
+      <section className="bento-card max-w-3xl">
+        <div className="mb-7 flex items-center gap-4 font-mono text-[0.68rem] uppercase tracking-[0.18em]">
+          <span className="text-[var(--accent-2)]">04</span>
+          <span className="h-px flex-1 bg-[var(--hairline)]" aria-hidden="true" />
+          <span className="text-[var(--muted)]">Case study</span>
+        </div>
         <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag) => (

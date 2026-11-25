@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Hero from './Hero';
 import Achievements from '../components/Achievements';
@@ -72,6 +73,15 @@ const marqueeItems = [
 
 export default function Home(): React.ReactElement {
   usePageTracking('/', 'Home');
+  const location = useLocation();
+  React.useEffect(() => {
+    if (location.pathname === '/contact') {
+      const timer = window.setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'auto' });
+      }, 150);
+      return () => window.clearTimeout(timer);
+    }
+  }, [location.pathname]);
   const featured = projects.filter((p) => p.featured).slice(0, 3);
 
   return (

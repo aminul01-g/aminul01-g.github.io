@@ -63,7 +63,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
   return (
     <motion.div
       className={`glass-card p-6 rounded-2xl backdrop-blur-xl ${className}`}
-      initial={{ opacity: 0, y: 20 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -71,7 +71,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
       <div className="relative mb-6">
         <motion.div
           className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
-          initial={{ opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
@@ -102,7 +102,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
           <motion.button
             onClick={() => setSearchTerm('')}
             className="absolute inset-y-0 right-0 pr-4 flex items-center text-[var(--theme-text-primary)] text-opacity-70 hover:text-white transition-colors duration-200"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -133,7 +133,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
                     ? 'bg-primary/20 border-primary/40 text-primary-300'
                     : 'bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40'
                 }`}
-                initial={{ opacity: 0, y: 10 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ scale: 1.05 }}
@@ -156,7 +156,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
           <motion.button
             onClick={clearFilters}
             className="text-primary-300 hover:text-primary-200 transition-colors duration-200 flex items-center gap-1"
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -179,7 +179,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({ posts, onSearchChange, classNam
         {(searchTerm || selectedTags.length > 0) && (
           <motion.div
             className="mt-4 p-3 bg-white/5 rounded-lg border border-white/10"
-            initial={{ opacity: 0, height: 0 }}
+            initial={false}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}

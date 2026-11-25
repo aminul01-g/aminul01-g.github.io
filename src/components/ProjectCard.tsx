@@ -68,7 +68,7 @@ export default function ProjectCard({
       className="group flex flex-col glass-card backdrop-blur-enhanced border-gradient shadow-glass hover:shadow-glow transition-all duration-500 card-hover focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-2xl overflow-hidden"
       aria-label={`Project: ${title}`}
       role="article"
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -113,7 +113,7 @@ export default function ProjectCard({
               {/* Enhanced gradient overlays for thumbnail */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={{ opacity: 0 }}
+                initial={false}
                 whileHover={{ opacity: 1 }}
               />
               {/* Floating particles for thumbnail */}
@@ -134,7 +134,7 @@ export default function ProjectCard({
             <motion.div
               key="video"
               className="absolute inset-0 bg-black"
-              initial={{ x: '100%', opacity: 0 }}
+              initial={false}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >

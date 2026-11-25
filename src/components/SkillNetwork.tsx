@@ -111,7 +111,7 @@ export default function SkillNetwork(): React.ReactElement {
               y2={`${end.y}%`}
               stroke="white"
               strokeWidth={isActive ? 2 : 1}
-              initial={{ pathLength: 0, opacity: 0 }}
+              initial={false}
               animate={{
                 pathLength: 1,
                 opacity: isActive ? 0.6 : isDimmed ? 0.05 : 0.2,
@@ -138,7 +138,7 @@ export default function SkillNetwork(): React.ReactElement {
             }}
             onHoverStart={() => setHoveredNode(node.id)}
             onHoverEnd={() => setHoveredNode(null)}
-            initial={{ scale: 0, opacity: 0 }}
+            initial={false}
             animate={{
               scale: isHovered ? 1.2 : 1,
               opacity: isDimmed ? 0.2 : 1,

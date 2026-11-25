@@ -105,7 +105,6 @@ export default function ContactForm(): React.ReactElement {
       noValidate
       aria-label="Contact form"
       variants={formVariants}
-      initial="hidden"
       animate="visible"
     >
       {/* Header */}
@@ -167,7 +166,7 @@ export default function ContactForm(): React.ReactElement {
           <motion.span
             id="name-error"
             className="text-sm text-red-500 flex items-center gap-2"
-            initial={{ opacity: 0, y: -5 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
@@ -223,7 +222,7 @@ export default function ContactForm(): React.ReactElement {
           <motion.span
             id="email-error"
             className="text-sm text-red-500 flex items-center gap-2"
-            initial={{ opacity: 0, y: -5 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
@@ -277,7 +276,7 @@ export default function ContactForm(): React.ReactElement {
           <motion.span
             id="message-error"
             className="text-sm text-red-500 flex items-center gap-2"
-            initial={{ opacity: 0, y: -5 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             role="alert"
             aria-live="polite"
@@ -298,7 +297,7 @@ export default function ContactForm(): React.ReactElement {
       {submitStatus === 'success' && (
         <motion.div
           className="glass-card p-4 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center gap-3"
-          initial={{ opacity: 0, y: -10 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           role="alert"
           aria-live="polite"
@@ -326,7 +325,7 @@ export default function ContactForm(): React.ReactElement {
       {submitStatus === 'error' && (
         <motion.div
           className="glass-card p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3"
-          initial={{ opacity: 0, y: -10 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           role="alert"
           aria-live="polite"

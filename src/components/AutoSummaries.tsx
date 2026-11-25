@@ -362,7 +362,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
       <AnimatePresence>
         {showSettings && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
+            initial={false}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className="glass-card rounded-xl p-6 border border-primary/10"
@@ -581,7 +581,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
             {summaries.slice(1).map((summary, index) => (
               <motion.div
                 key={summary.id}
-                initial={{ opacity: 0, y: 10 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card rounded-lg p-4 border border-gray-200 dark:border-gray-700"

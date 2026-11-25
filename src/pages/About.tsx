@@ -16,6 +16,7 @@ import { SiFoodpanda } from 'react-icons/si';
 import { GiFamilyTree } from 'react-icons/gi';
 import React, { Suspense, lazy } from 'react';
 import ImageWithFallback from '../components/ImageWithFallback';
+import SectionHeading from '../components/SectionHeading';
 import { profile } from '../data/profile';
 import { timelineData } from '../data/timeline';
 import { Helmet } from 'react-helmet-async';
@@ -191,7 +192,7 @@ export default function About(): React.ReactElement {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[var(--theme-text-primary)] text-opacity-60 hover:text-primary transition-colors  dark:hover:text-primary"
             >
-              <span className="text-blue-500">Bē</span>Behance
+              <span className="text-[var(--accent-2)]">Bē</span>Behance
             </a>
             <a
               href="https://t.me/aminul01g"
@@ -251,11 +252,11 @@ export default function About(): React.ReactElement {
         aria-label="Professional summary"
       >
         <motion.h2
-          className="text-3xl sm:text-4xl font-extrabold mb-4 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] flex items-center gap-2 animate-fadeInUp text-center"
+          className="text-3xl sm:text-4xl font-bold mb-4 text-[var(--theme-text-primary)] flex items-center gap-2 animate-fadeInUp text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          🧠 Summary
+          Summary
         </motion.h2>
         <div className="mb-4">
           <span className="inline-block bg-white/10 text-white border border-white/20 font-bold px-4 py-2 rounded-full text-lg shadow-sm animate-fadeInUp">
@@ -323,11 +324,11 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
+          className="text-4xl font-bold mb-10 text-[var(--theme-text-primary)] animate-fadeInUp text-center sm:text-left"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          🛠 Technical Skills
+          Technical Skills
         </motion.h2>
 
         {/* Interactive Skill Network */}
@@ -356,8 +357,7 @@ export default function About(): React.ReactElement {
             <motion.div
               key={skill.label}
               whileHover={{ scale: 1.02 }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.08, delay: i * 0.03 }}
               className="GlassCard p-6 flex flex-col items-center cursor-pointer animate-fadeInUp group"
               tabIndex={0}
@@ -399,16 +399,15 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-8 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
+          className="text-4xl font-bold mb-8 text-[var(--theme-text-primary)] text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          🎓 Education
+          Education
         </motion.h2>
         <motion.div
           className="GlassCard p-7 mb-10 flex items-center gap-5 transition-all duration-300 hover:scale-[1.02]"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
         >
@@ -441,17 +440,15 @@ export default function About(): React.ReactElement {
           </div>
         </motion.div>
         <motion.h2
-          className="text-4xl font-extrabold mb-8 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-4xl font-bold mb-8 text-[var(--theme-text-primary)] text-center"
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          💼 Experience
+          Experience
         </motion.h2>
         <motion.div
           className="GlassCard p-7 mb-4 flex flex-col transition-all duration-300 hover:scale-[1.02]"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
@@ -488,19 +485,18 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
+          className="text-4xl font-bold mb-10 text-[var(--theme-text-primary)] animate-fadeInUp text-center sm:text-left"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          🚀 AI Engineering Experience
+          AI Engineering Experience
         </motion.h2>
         <div className="grid gap-10 md:grid-cols-2">
           {projectData.map((proj, i) => (
             <motion.div
               key={proj.label}
               whileHover={{ scale: 1.02 }}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.08, delay: i * 0.04 }}
               className="relative GlassCard p-7 flex items-start gap-4 transition-all duration-300 cursor-pointer animate-fadeInUp group"
               tabIndex={0}
@@ -532,11 +528,11 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-4xl font-extrabold mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center"
+          className="text-4xl font-bold mb-10 text-[var(--theme-text-primary)] animate-fadeInUp text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          📜 Certifications
+          Certifications
         </motion.h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {/* Certificate Cards */}
@@ -546,8 +542,7 @@ export default function About(): React.ReactElement {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
@@ -573,8 +568,7 @@ export default function About(): React.ReactElement {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
@@ -602,8 +596,7 @@ export default function About(): React.ReactElement {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
@@ -631,8 +624,7 @@ export default function About(): React.ReactElement {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             className="group GlassCard overflow-hidden transition-all duration-300 cursor-pointer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
@@ -656,8 +648,7 @@ export default function About(): React.ReactElement {
 
           <motion.div
             className="group rounded-2xl glass-card border border-primary/20 dark:border-gray-700 shadow-xl overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
@@ -677,12 +668,11 @@ export default function About(): React.ReactElement {
           </motion.div>
         </div>
         <motion.h2
-          className="text-4xl font-extrabold mt-16 mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] animate-fadeInUp text-center sm:text-left"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-4xl font-bold mt-16 mb-10 text-[var(--theme-text-primary)] animate-fadeInUp text-center sm:text-left"
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          🏆 Awards & Extracurriculars
+          Awards & Extracurriculars
         </motion.h2>
         <div className="grid gap-10 md:grid-cols-2">
           {/* Awards & Extracurriculars */}
@@ -741,16 +731,15 @@ export default function About(): React.ReactElement {
         transition={{ duration: 0.7 }}
       >
         <motion.h2
-          className="text-3xl font-extrabold mb-8 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] text-center"
+          className="text-3xl font-bold mb-8 text-[var(--theme-text-primary)] text-center"
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          📌 Highlights
+          Highlights
         </motion.h2>
         <motion.div
           className="glass-card rounded-2xl p-8 flex flex-wrap gap-4 justify-center shadow-lg border border-white/30 dark:border-gray-700/60 backdrop-blur-md"
-          initial="hidden"
-          whileInView="visible"
+          animate="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={{
             hidden: {},
@@ -759,8 +748,7 @@ export default function About(): React.ReactElement {
         >
           <motion.span
             className="inline-flex items-center gap-2 bg-primary/10 text-primary font-semibold px-5 py-3 rounded-full dark:bg-indigo-900/30 dark:text-indigo-300 shadow-sm hover:scale-105 transition-all duration-200"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <FaCheckCircle />
@@ -769,8 +757,7 @@ export default function About(): React.ReactElement {
           </motion.span>
           <motion.span
             className="inline-flex items-center gap-2 bg-primary/10 text-primary font-semibold px-5 py-3 rounded-full dark:bg-indigo-900/30 dark:text-indigo-300 shadow-sm hover:scale-105 transition-all duration-200"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <FaDocker />
@@ -778,8 +765,7 @@ export default function About(): React.ReactElement {
           </motion.span>
           <motion.span
             className="inline-flex items-center gap-2 bg-primary/10 text-primary font-semibold px-5 py-3 rounded-full dark:bg-indigo-900/30 dark:text-indigo-300 shadow-sm hover:scale-105 transition-all duration-200"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <FaGitAlt />
@@ -787,8 +773,7 @@ export default function About(): React.ReactElement {
           </motion.span>
           <motion.span
             className="inline-flex items-center gap-2 bg-primary/10 text-primary font-semibold px-5 py-3 rounded-full dark:bg-indigo-900/30 dark:text-indigo-300 shadow-sm hover:scale-105 transition-all duration-200"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <FaRobot />
@@ -806,16 +791,12 @@ export default function About(): React.ReactElement {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
-        <motion.h2
-          className="text-3xl font-extrabold mb-4 text-[var(--theme-text-primary)] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Let&apos;s Connect!
-        </motion.h2>
-        <p className="mb-6 text-[var(--theme-text-primary)]">
-          Interested in collaborating, hiring, or just want to chat about AI? Reach out.
-        </p>
+        <SectionHeading
+          index="06"
+          label="Contact"
+          title="Let's connect."
+          description="Interested in collaborating, hiring, or just talking about AI? Reach out."
+        />
         <a
           href={profile.resume}
           target="_blank"
@@ -839,7 +820,7 @@ export default function About(): React.ReactElement {
           href="https://linkedin.com/in/aminulai"
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-4 btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"
+          className="ml-4 btn bg-[#4F46E5] hover:bg-[#4338CA] text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-indigo-200 dark:hover:shadow-indigo-900 transition-transform duration-200 inline-flex items-center gap-2"
         >
           <FaLinkedin />
           Connect on LinkedIn
