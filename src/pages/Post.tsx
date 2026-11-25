@@ -140,7 +140,9 @@ export default function Post(): React.ReactElement {
               <div className="flex items-center gap-3">
                 <span>Published on {post.date || 'an unknown date'}</span>
                 <span>•</span>
-                <span className="font-medium text-primary">{calculateReadingTime(post.body)}</span>
+                <span className="font-medium text-[var(--link)]">
+                  {calculateReadingTime(post.body)}
+                </span>
               </div>
               <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
                 {postTags.map((tag: string, index: number) => (
@@ -316,9 +318,9 @@ export default function Post(): React.ReactElement {
         {/* Sidebar Column */}
         <aside className="hidden lg:block sticky top-24 self-start space-y-8">
           <div className="GlassCard rounded-2xl p-6">
-            <h4 className="font-bold text-lg mb-4 text-primary border-b border-primary/10 pb-2">
+            <h3 className="font-bold text-lg mb-4 text-[var(--link)] border-b border-[var(--hairline)] pb-2">
               Table of Contents
-            </h4>
+            </h3>
             {headings.length === 0 ? (
               <p className="text-sm text-[var(--theme-text-primary)] text-opacity-60">
                 No headings available.
