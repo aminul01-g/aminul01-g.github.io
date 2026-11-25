@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Hero from './Hero';
 import Achievements from '../components/Achievements';
@@ -73,15 +72,28 @@ const marqueeItems = [
 
 export default function Home(): React.ReactElement {
   usePageTracking('/', 'Home');
-  const location = useLocation();
   React.useEffect(() => {
-    if (location.pathname === '/contact') {
-      const timer = window.setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'auto' });
-      }, 150);
-      return () => window.clearTimeout(timer);
-    }
-  }, [location.pathname]);
+    if (!window.location.hash.startsWith('#/contact')) return;
+    let attempts = 0;
+    let timer: number;
+    const scrollToContact = () => {
+      const el = document.getElementById('contact');
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        const root = document.documentElement;
+        const previous = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo({ top, behavior: 'auto' });
+        root.style.scrollBehavior = previous;
+      }
+      // The page grows as lazy sections load; retry until the scroll sticks.
+      if (window.scrollY < 1000 && attempts++ < 10) {
+        timer = window.setTimeout(scrollToContact, 350);
+      }
+    };
+    timer = window.setTimeout(scrollToContact, 600);
+    return () => window.clearTimeout(timer);
+  }, []);
   const featured = projects.filter((p) => p.featured).slice(0, 3);
 
   return (
