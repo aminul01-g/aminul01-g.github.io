@@ -35,7 +35,7 @@ export default function AccessibilityMenu(): React.ReactElement {
       <button
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
-        className="bg-primary text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
+        className="bg-[#4F46E5] text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent"
         aria-label="Accessibility settings"
         aria-expanded={isOpen}
         aria-controls="accessibility-menu"
@@ -87,7 +87,7 @@ export default function AccessibilityMenu(): React.ReactElement {
                       onClick={() => handleFontSizeChange(size)}
                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         fontSize === size
-                          ? 'bg-primary text-white'
+                          ? 'bg-[#4F46E5] text-white'
                           : 'bg-gray-100 dark:bg-gray-700 text-[var(--theme-text-primary)] hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                       aria-pressed={fontSize === size}
@@ -123,9 +123,9 @@ export default function AccessibilityMenu(): React.ReactElement {
 
               {/* Keyboard Shortcuts Info */}
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                <h4 className="text-sm font-medium text-[var(--theme-text-primary)] mb-2">
+                <h3 className="text-sm font-medium text-[var(--theme-text-primary)] mb-2">
                   Keyboard Shortcuts
-                </h4>
+                </h3>
                 <div className="text-xs text-[var(--theme-text-primary)] text-opacity-70 space-y-1">
                   <div>• Tab: Navigate through elements</div>
                   <div>• Enter/Space: Activate buttons</div>
