@@ -350,7 +350,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
       case 'blog':
         return 'text-green-500';
       case 'skill':
-        return 'text-purple-500';
+        return 'text-[var(--link)]';
       default:
         return 'text-[var(--theme-text-primary)] text-opacity-60';
     }
@@ -445,7 +445,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
                     </p>
 
                     {/* Reason */}
-                    <div className="flex items-center gap-2 text-xs text-primary">
+                    <div className="flex items-center gap-2 text-xs text-[var(--link)]">
                       <FiTrendingUp className="w-3 h-3" />
                       <span>{item.reason}</span>
                     </div>
@@ -456,7 +456,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
                         item.tags.map((tag: string, tagIndex: number) => (
                           <span
                             key={tagIndex}
-                            className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full"
+                            className="text-xs px-2 py-1 bg-primary/20 text-[var(--link)] rounded-full"
                           >
                             {tag}
                           </span>
@@ -475,7 +475,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
                       <span>Relevance: {Math.round(item.relevanceScore * 100)}%</span>
                     </div>
 
-                    <div className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all">
+                    <div className="flex items-center gap-1 text-[var(--link)] text-sm font-medium group-hover:gap-2 transition-all">
                       <span>Explore</span>
                       <FiArrowRight className="w-4 h-4" />
                     </div>
@@ -505,7 +505,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
               .sort(([, a], [, b]) => b - a)
               .slice(0, 5)
               .map(([tag, count]: [string, number]) => (
-                <span key={tag} className="px-2 py-1 bg-primary/20 text-primary rounded-full">
+                <span key={tag} className="px-2 py-1 bg-primary/20 text-[var(--link)] rounded-full">
                   {tag} ({count})
                 </span>
               ))}
