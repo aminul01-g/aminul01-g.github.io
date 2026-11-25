@@ -38,7 +38,7 @@ const FeedbackWidget: React.FC<{ className?: string }> = ({ className = '' }) =>
       className={`rounded-lg glass-card p-4 shadow-md flex flex-col items-center gap-3 ${className}`}
       aria-label="Feedback form"
     >
-      <span className="font-semibold text-primary">Was this page helpful?</span>
+      <span className="font-semibold text-[var(--link)]">Was this page helpful?</span>
       <div className="flex gap-4">
         <button
           type="button"

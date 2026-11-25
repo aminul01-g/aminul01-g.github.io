@@ -207,7 +207,7 @@ export default function Post(): React.ReactElement {
                                 className="no-underline hover:underline decoration-primary cursor-pointer"
                               >
                                 {renderChildren()}
-                                <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity">
+                                <span className="opacity-0 group-hover:opacity-100 ml-2 text-[var(--link)] transition-opacity">
                                   #
                                 </span>
                               </a>
@@ -231,7 +231,7 @@ export default function Post(): React.ReactElement {
                                 className="no-underline hover:underline decoration-primary cursor-pointer"
                               >
                                 {renderChildren()}
-                                <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary transition-opacity text-sm">
+                                <span className="opacity-0 group-hover:opacity-100 ml-2 text-[var(--link)] transition-opacity text-sm">
                                   #
                                 </span>
                               </a>

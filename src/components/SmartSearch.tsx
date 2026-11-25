@@ -264,7 +264,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
       case 'blog':
         return 'text-green-500';
       case 'skill':
-        return 'text-purple-500';
+        return 'text-[var(--link)]';
       default:
         return 'text-[var(--theme-text-primary)] text-opacity-60';
     }
@@ -369,7 +369,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
                       <button
                         key={index}
                         onClick={() => handleSearch(search)}
-                        className="px-3 py-1 bg-primary/20 hover:bg-primary/30 rounded-full text-sm text-primary transition-colors"
+                        className="px-3 py-1 bg-primary/20 hover:bg-primary/30 rounded-full text-sm text-[var(--link)] transition-colors"
                       >
                         {search}
                       </button>

@@ -308,7 +308,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
       case 'technical':
         return 'text-green-500';
       case 'marketing':
-        return 'text-purple-500';
+        return 'text-[var(--link)]';
       default:
         return 'text-[var(--theme-text-primary)] text-opacity-60';
     }
@@ -536,7 +536,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
                 {currentSummary.keywords.map((keyword, index) => (
                   <span
                     key={index}
-                    className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full"
+                    className="text-xs px-2 py-1 bg-primary/20 text-[var(--link)] rounded-full"
                   >
                     {keyword}
                   </span>
