@@ -394,7 +394,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
               width: isMinimized ? '300px' : '350px',
             }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className={`fixed bottom-24 right-4 sm:right-6 glass-card rounded-2xl shadow-2xl overflow-hidden z-[70] border border-gray-200 dark:border-gray-700 flex flex-col ${className}`}
+            className={`fixed bottom-32 right-4 sm:right-6 glass-card rounded-2xl shadow-2xl overflow-hidden z-[70] border border-gray-200 dark:border-gray-700 flex flex-col ${className}`}
           >
             {/* Header */}
             <div className="p-4 bg-primary text-white flex justify-between items-center bg-gradient-to-r from-primary to-indigo-600">
@@ -563,7 +563,7 @@ export const AIChatbot: React.FC<AIChatbotProps> = ({ className = '' }) => {
             initial={false}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 10, scale: 0.9 }}
-            className="fixed bottom-24 right-20 z-[70] pointer-events-none hidden sm:block"
+            className="fixed bottom-32 right-20 z-[70] pointer-events-none hidden sm:block"
           >
             <div className="glass-card px-4 py-2 rounded-xl flex items-center gap-2">
               <span className="text-sm font-medium whitespace-nowrap text-[var(--theme-text-primary)]">

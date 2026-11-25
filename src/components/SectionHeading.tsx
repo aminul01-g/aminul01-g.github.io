@@ -16,7 +16,7 @@ export default function SectionHeading({
     <header className="mb-12 md:mb-16">
       <div className="mb-6 flex items-center gap-4">
         <span className="font-mono text-xs text-[var(--accent-2)]">{index}</span>
-        <span className="h-px flex-1 bg-[var(--hairline)]" aria-hidden="true" />
+        <span className="section-rule flex-1" aria-hidden="true" />
         <span className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--muted)]">
           {label}
         </span>
