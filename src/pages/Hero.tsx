@@ -42,7 +42,7 @@ export default function Hero(): React.ReactElement {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-32 sm:pt-32">
+    <section className="relative flex min-h-[100svh] items-start overflow-hidden pt-16 pb-64 sm:pt-16 sm:pb-64">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           <motion.div>
