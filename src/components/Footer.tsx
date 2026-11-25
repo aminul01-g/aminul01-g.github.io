@@ -107,7 +107,7 @@ export default function Footer(): React.ReactElement {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <motion.li
@@ -144,7 +144,7 @@ export default function Footer(): React.ReactElement {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-semibold text-white mb-4">Get In Touch</h4>
+            <h3 className="text-lg font-semibold text-white mb-4">Get In Touch</h3>
             <div className="space-y-2 text-[var(--theme-text-primary)] text-opacity-[0.50]">
               <p className="flex items-center justify-center md:justify-end gap-2">
                 <svg

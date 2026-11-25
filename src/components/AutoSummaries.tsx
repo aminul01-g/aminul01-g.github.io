@@ -350,7 +350,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
           <button
             onClick={generateNewSummary}
             disabled={isGenerating}
-            className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/80 text-white rounded-lg transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white rounded-lg transition-colors disabled:opacity-50"
           >
             <FiRefreshCw className={`w-4 h-4 ${isGenerating ? 'animate-spin' : ''}`} />
             {isGenerating ? 'Generating...' : 'Regenerate'}
@@ -531,7 +531,7 @@ export const AutoSummaries: React.FC<AutoSummariesProps> = ({
           {/* Keywords */}
           {currentSummary.keywords.length > 0 && (
             <div className="space-y-2">
-              <h4 className="text-sm font-medium text-[var(--theme-text-primary)]">Key Topics:</h4>
+              <h3 className="text-sm font-medium text-[var(--theme-text-primary)]">Key Topics:</h3>
               <div className="flex flex-wrap gap-2">
                 {currentSummary.keywords.map((keyword, index) => (
                   <span
