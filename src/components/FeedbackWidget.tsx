@@ -67,7 +67,7 @@ const FeedbackWidget: React.FC<{ className?: string }> = ({ className = '' }) =>
       />
       <button
         type="submit"
-        className="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-primary-700 transition mt-2"
+        className="bg-[#4F46E5] text-white px-4 py-2 rounded font-semibold hover:bg-[#4338CA] transition mt-2"
         disabled={!feedback}
       >
         Submit
