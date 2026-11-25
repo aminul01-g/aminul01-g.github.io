@@ -275,7 +275,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center pt-20"
@@ -283,7 +283,7 @@ export const SmartSearch: React.FC<SmartSearchProps> = ({ isOpen, onClose }) => 
       >
         <motion.div
           ref={searchContainerRef}
-          initial={{ opacity: 0, y: -20, scale: 0.95 }}
+          initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.95 }}
           className="w-full max-w-2xl mx-4 glass-card rounded-2xl shadow-2xl"

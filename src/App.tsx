@@ -31,7 +31,7 @@ function AnimatedRoutes(): React.ReactElement {
       <Suspense
         fallback={
           <div
-            className="flex justify-center items-center min-h-[40vh] text-lg"
+            className="flex justify-center items-center min-h-[100vh] text-lg"
             role="status"
             aria-live="polite"
           >
@@ -44,6 +44,7 @@ function AnimatedRoutes(): React.ReactElement {
       >
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
           <Route path="/blog" element={<Blog />} />

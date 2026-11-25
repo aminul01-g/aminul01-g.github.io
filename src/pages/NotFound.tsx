@@ -1,22 +1,24 @@
-import { Link } from 'react-router-dom';
+import LinkButton from '../components/LinkButton';
 
 const NotFound: React.FC = () => (
-  <div className="flex flex-col items-center justify-center min-h-screen text-center px-4 relative z-10">
-    <h1 className="text-8xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#EC4899] drop-shadow-lg">
+  <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center relative z-10">
+    <div className="mb-8 flex w-full max-w-lg items-center gap-4">
+      <span className="font-mono text-xs text-[var(--accent-2)]">00</span>
+      <span className="h-px flex-1 bg-[var(--hairline)]" aria-hidden="true" />
+      <span className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--muted)]">
+        Error
+      </span>
+    </div>
+    <h1 className="text-[clamp(4rem,14vw,9rem)] font-bold leading-none tracking-[-0.06em] text-[var(--ink)]">
       404
     </h1>
-    <h2 className="text-2xl font-semibold mb-2 text-[var(--theme-text-primary)] text-opacity-[0.90]">
-      Page Not Found
-    </h2>
-    <p className="mb-6 text-lg text-[var(--theme-text-primary)] text-opacity-[0.50]">
-      Sorry, the page you are looking for does not exist.
+    <h2 className="mt-6 text-2xl font-semibold text-[var(--ink)]">Page not found.</h2>
+    <p className="mt-3 max-w-md text-[var(--muted)]">
+      That route doesn’t exist. The homepage is still here.
     </p>
-    <Link
-      to="/"
-      className="inline-block px-6 py-3 rounded-2xl bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white font-semibold hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300"
-    >
-      Go Home
-    </Link>
+    <div className="mt-8">
+      <LinkButton to="/">Back to homepage</LinkButton>
+    </div>
   </div>
 );
 

@@ -91,7 +91,7 @@ const SocialSharing: React.FC<SocialSharingProps> = ({
   return (
     <motion.div
       className={`flex items-center gap-3 ${className}`}
-      initial={{ opacity: 0, y: 20 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -126,7 +126,7 @@ const SocialSharing: React.FC<SocialSharingProps> = ({
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           title={`Share on ${platform.name}`}
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: index * 0.1 }}
         >

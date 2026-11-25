@@ -64,7 +64,7 @@ export default function ProjectFilterBar({
   return (
     <motion.div
       className="w-full space-y-4"
-      initial={{ opacity: 0, y: 20 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -99,6 +99,7 @@ export default function ProjectFilterBar({
         {/* Sort Dropdown */}
         <div className="relative">
           <select
+            aria-label="Sort projects"
             value={`${filterState.sortBy}-${filterState.sortOrder}`}
             onChange={(e) => {
               const [sortBy, sortOrder] = e.target.value.split('-');
@@ -129,7 +130,7 @@ export default function ProjectFilterBar({
             className="px-3 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
           >
             Clear All
@@ -141,7 +142,7 @@ export default function ProjectFilterBar({
       <AnimatePresence>
         {showAdvanced && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
+            initial={false}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
@@ -164,7 +165,7 @@ export default function ProjectFilterBar({
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={false}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: tags.indexOf(tag) * 0.05 }}
                   >
@@ -177,7 +178,7 @@ export default function ProjectFilterBar({
             {/* Active Filters Display */}
             {filterState.selectedTags.length > 0 && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 className="flex flex-wrap gap-2 items-center"
               >
@@ -188,7 +189,7 @@ export default function ProjectFilterBar({
                   <motion.span
                     key={tag}
                     className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/20 text-primary text-xs"
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={false}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.8 }}
                   >

@@ -99,7 +99,7 @@ export default function Navbar(): React.ReactElement {
         className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[calc(100%-11rem)] sm:w-[90%] max-w-2xl glass-card backdrop-blur-3xl border border-white/20 z-50 shadow-glass rounded-[24px]"
         role="navigation"
         aria-label="Main navigation"
-        initial={{ y: 100, opacity: 0, x: '-50%' }}
+        initial={false}
         animate={{ y: 0, opacity: 1, x: '-50%' }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       >
@@ -107,7 +107,7 @@ export default function Navbar(): React.ReactElement {
           {/* Logo and Search */}
           <motion.div
             className="flex items-center gap-1.5 sm:gap-4"
-            initial={{ x: -50, opacity: 0 }}
+            initial={false}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
@@ -137,7 +137,7 @@ export default function Navbar(): React.ReactElement {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            initial={{ x: 50, opacity: 0 }}
+            initial={false}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
@@ -166,14 +166,14 @@ export default function Navbar(): React.ReactElement {
           {/* Desktop Menu */}
           <motion.div
             className="hidden sm:flex items-center space-x-1"
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.to}
-                initial={{ y: -20, opacity: 0 }}
+                initial={false}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               >
@@ -206,7 +206,7 @@ export default function Navbar(): React.ReactElement {
 
             {/* Desktop Contact */}
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
+              initial={false}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
               role="menuitem"
@@ -242,7 +242,7 @@ export default function Navbar(): React.ReactElement {
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
             }}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={false}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
@@ -252,7 +252,7 @@ export default function Navbar(): React.ReactElement {
             <div className="p-4 space-y-2 flex flex-col">
               {/* Mobile Search */}
               <motion.div
-                initial={{ x: -20, opacity: 0 }}
+                initial={false}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.3 }}
               >
@@ -271,7 +271,7 @@ export default function Navbar(): React.ReactElement {
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.to}
-                  initial={{ x: -20, opacity: 0 }}
+                  initial={false}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
@@ -292,7 +292,7 @@ export default function Navbar(): React.ReactElement {
 
               {/* Mobile Contact */}
               <motion.div
-                initial={{ x: -20, opacity: 0 }}
+                initial={false}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.3, delay: navLinks.length * 0.1 }}
               >

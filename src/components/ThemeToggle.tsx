@@ -12,7 +12,7 @@ export default function ThemeToggle(): React.ReactElement {
       className={`fixed top-6 sm:top-8 right-6 sm:right-8 z-[100] w-12 h-12 flex items-center justify-center rounded-full glass-card border-[var(--glass-border)] transition-all duration-500 overflow-hidden shadow-[var(--glass-shadow)] hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-primary/50`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      initial={{ opacity: 0, scale: 0 }}
+      initial={false}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.5 }}
       aria-label="Toggle Theme"

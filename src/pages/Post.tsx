@@ -127,7 +127,12 @@ export default function Post(): React.ReactElement {
       <div className="max-w-7xl mx-auto my-12 px-4 lg:grid lg:grid-cols-[1fr_300px] gap-12 items-start">
         {/* Main Content Column */}
         <div className="space-y-12 min-w-0">
-          <article className="prose prose-invert max-w-none GlassCard rounded-2xl p-8">
+          <article className="prose prose-invert max-w-none glass-card rounded-2xl p-8">
+            <div className="mb-7 flex items-center gap-4 font-mono text-[0.68rem] uppercase tracking-[0.18em] not-prose">
+              <span className="text-[var(--accent-2)]">05</span>
+              <span className="h-px flex-1 bg-[var(--hairline)]" aria-hidden="true" />
+              <span className="text-[var(--muted)]">Journal</span>
+            </div>
             <h1 className="mb-2">{post.title}</h1>
 
             {/* Post Metadata */}

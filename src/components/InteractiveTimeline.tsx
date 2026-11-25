@@ -105,7 +105,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
         {/* Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
@@ -127,7 +127,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                 className={`relative flex flex-col gap-6 sm:gap-0 sm:flex-row ${
                   index % 2 === 0 ? '' : 'sm:flex-row-reverse'
                 }`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                initial={false}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}

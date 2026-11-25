@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import ContactForm from '../components/ContactForm';
+import SectionHeading from '../components/SectionHeading';
 
 const contactInfo = [
   {
@@ -68,20 +69,16 @@ export default function Contact(): React.ReactElement {
   return (
     <section id="contact" className="py-16 pb-24 relative z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 relative z-10">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-10 text-[var(--theme-text-primary)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-        >
-          Let&apos;s Connect
-        </motion.h2>
+        <SectionHeading
+          index="06"
+          label="Contact"
+          title="Let's connect."
+          description="Have a project, a question, or just want to say hello? I'd like to hear from you."
+        />
         <div className="grid md:grid-cols-2 gap-8 items-start">
           {/* Contact Info Cards */}
           <motion.div
             className="space-y-6 flex flex-col justify-stretch h-full"
-            initial="hidden"
             animate="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={{
@@ -97,7 +94,7 @@ export default function Contact(): React.ReactElement {
                 key={info.label}
                 className="group flex items-center GlassCard p-6 min-h-[90px] h-full transition-all duration-300 hover:scale-[1.02] cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500/40"
                 style={{ textDecoration: 'none' }}
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true, amount: 0.2 }}
