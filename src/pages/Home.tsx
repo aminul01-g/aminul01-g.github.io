@@ -206,9 +206,16 @@ export default function Home(): React.ReactElement {
                   Currently
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                  Exploring prompt engineering, multimodal AI and LangChain-based applications while
-                  studying at BUBT.
+                  Working as a Data Analyst at Intelligent Image Management Inc. (IIMI) while
+                  studying at BUBT — exploring prompt engineering, multimodal AI and LangChain-based
+                  applications.
                 </p>
+                <a
+                  href="#/about"
+                  className="mt-3 inline-flex items-center gap-1 text-sm text-[var(--link)] hover:underline"
+                >
+                  More about my journey →
+                </a>
               </div>
             </motion.div>
 
@@ -241,9 +248,6 @@ export default function Home(): React.ReactElement {
                   </motion.div>
                 ))}
               </motion.div>
-              <div className="mt-8">
-                <LinkButton to="/about">More about me</LinkButton>
-              </div>
             </div>
           </div>
         </section>

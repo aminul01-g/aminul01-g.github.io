@@ -18,7 +18,6 @@ import { SiDribbble, SiLeetcode } from 'react-icons/si';
 import type { IconType } from 'react-icons';
 import SectionHeading from '../components/SectionHeading';
 import { profile } from '../data/profile';
-import { projects } from '../data/projects';
 import { timelineData } from '../data/timeline';
 
 const InteractiveTimeline = lazy(() => import('../components/InteractiveTimeline'));
@@ -79,8 +78,6 @@ const socials: Array<{ label: string; href?: string; icon: IconType }> = [
 ].filter((item): item is { label: string; href: string; icon: IconType } => Boolean(item.href));
 
 export default function About(): React.ReactElement {
-  const featured = projects.filter((project) => project.featured).slice(0, 3);
-
   return (
     <div className="relative z-10 min-h-screen pb-32">
       <Helmet>
@@ -155,6 +152,14 @@ export default function About(): React.ReactElement {
                   {label}
                 </a>
               ))}
+            </div>
+            <div className="mt-6">
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-1 text-sm text-[var(--link)] hover:underline"
+              >
+                See selected work →
+              </Link>
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-xs">
@@ -288,40 +293,6 @@ export default function About(): React.ReactElement {
         <section className="bento-card mb-24">
           <SectionHeading
             index="04"
-            label="Work"
-            title="Featured projects."
-            description="Three pieces of work I would show first. The full index lives on the projects page."
-          />
-          <div className="grid gap-6 md:grid-cols-3">
-            {featured.map((project) => (
-              <Link
-                key={project.slug}
-                to={`/projects/${project.slug}`}
-                className="glass-card group rounded-2xl p-6 transition-colors hover:border-[var(--hairline-strong)]"
-              >
-                <p className="font-mono text-xs text-[var(--accent-2)]">
-                  {project.date?.slice(0, 7) || 'Project'}
-                </p>
-                <h3 className="mt-3 text-lg font-semibold group-hover:text-[var(--link)]">
-                  {project.title}
-                </h3>
-                <p className="mt-3 line-clamp-3 text-sm text-[var(--muted)]">
-                  {project.description}
-                </p>
-                <p className="mt-5 font-mono text-xs uppercase tracking-[0.2em] text-[var(--link)]">
-                  View case study →
-                </p>
-              </Link>
-            ))}
-          </div>
-          <Link to="/projects" className="btn mt-8 inline-flex">
-            See all projects
-          </Link>
-        </section>
-
-        <section className="bento-card mb-24">
-          <SectionHeading
-            index="05"
             label="Credentials"
             title="Certificates &amp; recognition."
             description="Verified certificates and activities from the last few years."
@@ -367,7 +338,7 @@ export default function About(): React.ReactElement {
 
         <section className="bento-card mb-16 text-center">
           <SectionHeading
-            index="06"
+            index="05"
             label="Contact"
             title="Let's connect."
             description="Interested in collaborating, hiring, or talking about AI? Reach out."
