@@ -20,6 +20,7 @@ interface ProjectFilterBarProps {
   search?: string;
   sortBy?: SortBy;
   sortOrder?: SortOrder;
+  tagCounts?: Record<string, number>;
 }
 
 const [defaultSortBy, defaultSortOrder] = DEFAULT_SORT.split('-') as [SortBy, SortOrder];
@@ -34,6 +35,7 @@ export default function ProjectFilterBar({
   search: controlledSearch,
   sortBy: controlledSortBy,
   sortOrder: controlledSortOrder,
+  tagCounts,
 }: ProjectFilterBarProps): React.ReactElement {
   const [filterState, setFilterState] = useState<FilterState>({
     search: controlledSearch ?? '',
@@ -190,7 +192,10 @@ export default function ProjectFilterBar({
                     transition={{ delay: tags.indexOf(tag) * 0.05 }}
                     aria-pressed={filterState.selectedTags.includes(tag)}
                   >
-                    #{tag}
+                    <span>#{tag}</span>
+                    {tagCounts?.[tag] !== undefined && (
+                      <span className="ml-1.5 opacity-60">{tagCounts[tag]}</span>
+                    )}
                   </motion.button>
                 ))}
               </div>
