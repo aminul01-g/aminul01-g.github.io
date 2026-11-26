@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DEFAULT_SORT, SORT_OPTIONS, type SortBy, type SortOrder } from '../utils/projectFilters';
 
 interface FilterState {
   search: string;
   selectedTags: string[];
-  sortBy: 'date' | 'name' | 'popularity' | 'technology';
-  sortOrder: 'asc' | 'desc';
+  sortBy: SortBy;
+  sortOrder: SortOrder;
 }
+
+interface ProjectFilterBarProps {
+  tags: string[];
+  onFilter: (tags: string[]) => void;
+  onSearch: (q: string) => void;
+  onSort: (sortBy: string, sortOrder: SortOrder) => void;
+  activeTag?: string | null;
+  /** Controlled values. When supplied by the parent they are the source of truth. */
+  selectedTags?: string[];
+  search?: string;
+  sortBy?: SortBy;
+  sortOrder?: SortOrder;
+}
+
+const [defaultSortBy, defaultSortOrder] = DEFAULT_SORT.split('-') as [SortBy, SortOrder];
 
 export default function ProjectFilterBar({
   tags,
@@ -14,20 +30,28 @@ export default function ProjectFilterBar({
   onSearch,
   onSort,
   activeTag,
-}: {
-  tags: string[];
-  onFilter: (tags: string[]) => void;
-  onSearch: (q: string) => void;
-  onSort: (sortBy: string, sortOrder: 'asc' | 'desc') => void;
-  activeTag?: string | null;
-}): React.ReactElement {
+  selectedTags: controlledTags,
+  search: controlledSearch,
+  sortBy: controlledSortBy,
+  sortOrder: controlledSortOrder,
+}: ProjectFilterBarProps): React.ReactElement {
   const [filterState, setFilterState] = useState<FilterState>({
-    search: '',
-    selectedTags: activeTag ? [activeTag] : [],
-    sortBy: 'name',
-    sortOrder: 'asc',
+    search: controlledSearch ?? '',
+    selectedTags: controlledTags ?? (activeTag ? [activeTag] : []),
+    sortBy: controlledSortBy ?? defaultSortBy,
+    sortOrder: controlledSortOrder ?? defaultSortOrder,
   });
   const [showAdvanced, setShowAdvanced] = useState(false);
+
+  // Keep in sync when the parent changes state (e.g. browser back/forward).
+  useEffect(() => {
+    setFilterState({
+      search: controlledSearch ?? '',
+      selectedTags: controlledTags ?? [],
+      sortBy: controlledSortBy ?? defaultSortBy,
+      sortOrder: controlledSortOrder ?? defaultSortOrder,
+    });
+  }, [controlledSearch, controlledTags, controlledSortBy, controlledSortOrder]);
 
   const handleSearchChange = (value: string) => {
     setFilterState((prev) => ({ ...prev, search: value }));
@@ -35,16 +59,15 @@ export default function ProjectFilterBar({
   };
 
   const handleTagToggle = (tag: string) => {
-    setFilterState((prev) => {
-      const newTags = prev.selectedTags.includes(tag)
-        ? prev.selectedTags.filter((t) => t !== tag)
-        : [...prev.selectedTags, tag];
-      onFilter(newTags);
-      return { ...prev, selectedTags: newTags };
-    });
+    // Compute outside the state updater — calling onFilter there is a side effect.
+    const newTags = filterState.selectedTags.includes(tag)
+      ? filterState.selectedTags.filter((t) => t !== tag)
+      : [...filterState.selectedTags, tag];
+    setFilterState((prev) => ({ ...prev, selectedTags: newTags }));
+    onFilter(newTags);
   };
 
-  const handleSortChange = (sortBy: FilterState['sortBy'], sortOrder: 'asc' | 'desc') => {
+  const handleSortChange = (sortBy: SortBy, sortOrder: SortOrder) => {
     setFilterState((prev) => ({ ...prev, sortBy, sortOrder }));
     onSort(sortBy, sortOrder);
   };
@@ -53,12 +76,12 @@ export default function ProjectFilterBar({
     setFilterState({
       search: '',
       selectedTags: [],
-      sortBy: 'date',
-      sortOrder: 'desc',
+      sortBy: defaultSortBy,
+      sortOrder: defaultSortOrder,
     });
     onFilter([]);
     onSearch('');
-    onSort('date', 'desc');
+    onSort(defaultSortBy, defaultSortOrder);
   };
 
   return (
@@ -68,7 +91,6 @@ export default function ProjectFilterBar({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Search Bar */}
       <div className="relative">
         <motion.input
           type="text"
@@ -84,6 +106,7 @@ export default function ProjectFilterBar({
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -94,36 +117,35 @@ export default function ProjectFilterBar({
         </svg>
       </div>
 
-      {/* Filter Controls */}
       <div className="flex flex-wrap items-center gap-3">
-        {/* Sort Dropdown */}
         <div className="relative">
           <select
             aria-label="Sort projects"
             value={`${filterState.sortBy}-${filterState.sortOrder}`}
             onChange={(e) => {
-              const [sortBy, sortOrder] = e.target.value.split('-');
-              handleSortChange(sortBy as FilterState['sortBy'], sortOrder as 'asc' | 'desc');
+              const [sortBy, sortOrder] = e.target.value.split('-') as [SortBy, SortOrder];
+              handleSortChange(sortBy, sortOrder);
             }}
             className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-[var(--theme-text-primary)] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
           >
-            <option value="name-asc">Name A-Z</option>
-            <option value="name-desc">Name Z-A</option>
-            <option value="technology-asc">Technology A-Z</option>
+            {SORT_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
 
-        {/* Advanced Filters Toggle */}
         <motion.button
           onClick={() => setShowAdvanced(!showAdvanced)}
           className="px-3 py-2 rounded-lg border border-primary/20 dark:border-gray-700 glass-card text-[var(--theme-text-primary)] hover:bg-primary/5 hover:bg-white/10 transition-all"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          aria-expanded={showAdvanced}
         >
           {showAdvanced ? 'Hide' : 'Show'} Advanced
         </motion.button>
 
-        {/* Clear All */}
         {(filterState.search || filterState.selectedTags.length > 0) && (
           <motion.button
             onClick={clearAllFilters}
@@ -138,7 +160,6 @@ export default function ProjectFilterBar({
         )}
       </div>
 
-      {/* Advanced Filters */}
       <AnimatePresence>
         {showAdvanced && (
           <motion.div
@@ -148,7 +169,6 @@ export default function ProjectFilterBar({
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
-            {/* Tag Filters */}
             <div>
               <h3 className="text-sm font-medium text-[var(--theme-text-primary)] mb-2">
                 Filter by Technology ({filterState.selectedTags.length} selected)
@@ -168,6 +188,7 @@ export default function ProjectFilterBar({
                     initial={false}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: tags.indexOf(tag) * 0.05 }}
+                    aria-pressed={filterState.selectedTags.includes(tag)}
                   >
                     #{tag}
                   </motion.button>
@@ -175,7 +196,6 @@ export default function ProjectFilterBar({
               </div>
             </div>
 
-            {/* Active Filters Display */}
             {filterState.selectedTags.length > 0 && (
               <motion.div
                 initial={false}
@@ -188,7 +208,7 @@ export default function ProjectFilterBar({
                 {filterState.selectedTags.map((tag) => (
                   <motion.span
                     key={tag}
-                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/20 text-primary text-xs"
+                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/20 text-[var(--link)] text-xs"
                     initial={false}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.8 }}

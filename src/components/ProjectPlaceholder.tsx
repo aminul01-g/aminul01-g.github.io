@@ -1,72 +1,41 @@
-import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 
 interface ProjectPlaceholderProps {
   title: string;
   className?: string;
 }
 
+/**
+ * Neutral editorial cover for projects without a real screenshot.
+ * Deliberately monochrome so it reads as a placeholder, not as product imagery.
+ */
 export default function ProjectPlaceholder({
   title,
   className = '',
 }: ProjectPlaceholderProps): React.ReactElement {
-  // Generate consistent "random" values based on title string
-  const hash = useMemo(() => {
-    let h = 0;
-    for (let i = 0; i < title.length; i++) {
-      h = Math.imul(31, h) + title.charCodeAt(i) || 0;
-    }
-    return Math.abs(h);
-  }, [title]);
-
-  const hue = hash % 360;
-  const pattern = hash % 4; // 0: dots, 1: lines, 2: grid, 3: circles
-
-  const gradientStart = `hsl(${hue}, 70%, 60%)`;
-  const gradientEnd = `hsl(${(hue + 40) % 360}, 70%, 40%)`;
+  const initial = title.trim().charAt(0).toUpperCase() || '·';
 
   return (
     <div
-      className={`relative overflow-hidden bg-gray-900 flex items-center justify-center ${className}`}
-      style={{
-        background: `linear-gradient(135deg, ${gradientStart}, ${gradientEnd})`,
-      }}
+      className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-[#111319] ${className}`}
+      aria-hidden="true"
     >
-      {/* Abstract Patterns Overlay */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-20 pointer-events-none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <pattern
-          id={`pattern-${hash}`}
-          x="0"
-          y="0"
-          width="40"
-          height="40"
-          patternUnits="userSpaceOnUse"
-        >
-          {pattern === 0 && <circle cx="2" cy="2" r="2" fill="white" />}
-          {pattern === 1 && (
-            <path d="M0 40L40 0H20L0 20M40 40V20L20 40" stroke="white" strokeWidth="2" />
-          )}
-          {pattern === 2 && <path d="M40 0H0V40" stroke="white" strokeWidth="2" fill="none" />}
-          {pattern === 3 && (
-            <circle cx="20" cy="20" r="10" stroke="white" strokeWidth="2" fill="none" />
-          )}
-        </pattern>
-        <rect width="100%" height="100%" fill={`url(#pattern-${hash})`} />
-      </svg>
-
-      {/* Code Snippet / Title Overlay */}
-      <motion.div
-        initial={false}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 text-white text-center p-4 bg-black/30 backdrop-blur-sm rounded-xl border border-white/20"
-      >
-        <div className="text-4xl mb-2 font-mono">{title.charAt(0).toUpperCase()}</div>
-        <div className="text-xs font-mono opacity-80">&lt;Code /&gt;</div>
-      </motion.div>
+      <div
+        className="absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(148,163,184,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.10) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+      <div className="relative z-10 flex flex-col items-center gap-2">
+        <span className="font-mono text-5xl font-bold text-[var(--muted)] opacity-60">
+          {initial}
+        </span>
+        <span className="font-mono text-[0.6rem] uppercase tracking-[0.24em] text-[var(--muted)] opacity-50">
+          Case study
+        </span>
+      </div>
     </div>
   );
 }

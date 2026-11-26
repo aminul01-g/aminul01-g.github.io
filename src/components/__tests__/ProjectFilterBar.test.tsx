@@ -49,4 +49,25 @@ describe('ProjectFilterBar', () => {
     fireEvent.click(screen.getByText('#AI'));
     expect(onFilter).toHaveBeenCalledWith(['AI']);
   });
+
+  it('emits a selectable sort value when clearing all filters', () => {
+    render(
+      <ProjectFilterBar
+        tags={tags}
+        activeTag={null}
+        onFilter={onFilter}
+        onSearch={onSearch}
+        onSort={onSort}
+      />
+    );
+
+    fireEvent.click(screen.getByText('Show Advanced'));
+    fireEvent.click(screen.getByText('#AI'));
+    fireEvent.click(screen.getByText('Clear All'));
+
+    expect(onSort).toHaveBeenCalledWith('popularity', 'desc');
+    const select = screen.getByLabelText('Sort projects') as HTMLSelectElement;
+    const values = Array.from(select.options).map((option) => option.value);
+    expect(values).toContain('popularity-desc');
+  });
 });
