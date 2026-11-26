@@ -14,7 +14,6 @@ export const projects: Project[] = [
     featured: true,
     date: '2025-12-25',
     role: 'AI Engineer',
-    videoUrl: 'https://drive.google.com/file/d/1fQf4VwsC1ImUJouLbATtax5mKs9WIzl1/view?usp=sharing',
     caseStudy: {
       problem:
         'Enterprise users struggle to find specific information within large internal document repositories, and traditional keyword search often fails to capture semantic meaning or context.',
