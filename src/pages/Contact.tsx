@@ -67,7 +67,11 @@ const contactInfo = [
 
 export default function Contact(): React.ReactElement {
   return (
-    <section id="contact" className="py-16 pb-24 relative z-10 overflow-hidden">
+    <section
+      id="contact"
+      data-ambient="contact"
+      className="py-16 pb-24 relative z-10 overflow-hidden"
+    >
       <div className="max-w-5xl mx-auto px-4 relative z-10">
         <SectionHeading
           index="06"

@@ -125,7 +125,10 @@ export default function About(): React.ReactElement {
       </Helmet>
 
       <div className="mx-auto max-w-6xl px-5 pt-28 sm:px-8">
-        <section className="bento-card grid items-center gap-12 pb-20 md:grid-cols-[1.3fr_0.7fr]">
+        <section
+          data-ambient="about"
+          className="bento-card grid items-center gap-12 pb-20 md:grid-cols-[1.3fr_0.7fr]"
+        >
           <div>
             <div className="mb-6 flex items-center gap-4">
               <span className="font-mono text-xs text-[var(--accent-2)]">01</span>
@@ -179,7 +182,7 @@ export default function About(): React.ReactElement {
           </div>
         </section>
 
-        <section className="bento-card mb-24">
+        <section data-ambient="about" className="bento-card mb-24">
           <SectionHeading
             index="01"
             label="Summary"
@@ -226,7 +229,7 @@ export default function About(): React.ReactElement {
           </div>
         </section>
 
-        <section className="bento-card mb-24">
+        <section data-ambient="about" className="bento-card mb-24">
           <SectionHeading
             index="02"
             label="Skills"
@@ -249,7 +252,7 @@ export default function About(): React.ReactElement {
           </div>
         </section>
 
-        <section className="bento-card mb-24">
+        <section data-ambient="about" className="bento-card mb-24">
           <SectionHeading
             index="03"
             label="Journey"
@@ -290,7 +293,7 @@ export default function About(): React.ReactElement {
           </div>
         </section>
 
-        <section className="bento-card mb-24">
+        <section data-ambient="recognition" className="bento-card mb-24">
           <SectionHeading
             index="04"
             label="Credentials"
@@ -336,7 +339,7 @@ export default function About(): React.ReactElement {
           </div>
         </section>
 
-        <section className="bento-card mb-16 text-center">
+        <section data-ambient="contact" className="bento-card mb-16 text-center">
           <SectionHeading
             index="05"
             label="Contact"

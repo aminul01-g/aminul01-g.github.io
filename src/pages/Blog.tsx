@@ -106,6 +106,7 @@ export default function Blog(): React.ReactElement {
       </Helmet>
       <motion.section
         id="blog"
+        data-ambient="writing"
         className="relative max-w-5xl mx-auto p-8 GlassCard rounded-3xl animate-fadeInUp transition-all duration-300 mb-16 overflow-hidden mt-8"
         animate={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}

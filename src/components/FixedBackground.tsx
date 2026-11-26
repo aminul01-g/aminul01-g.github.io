@@ -1,5 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
+
+type Ambient = 'hero' | 'about' | 'recognition' | 'work' | 'writing' | 'contact';
+
+const AMBIENTS: Ambient[] = ['hero', 'about', 'recognition', 'work', 'writing', 'contact'];
 
 interface Mote {
   x: number;
@@ -36,12 +41,32 @@ const FIELD_SEEDS = [
   { x: 0.5, y: 0.5, size: 0.42, speedX: 0.00007, speedY: 0.00015, phase: 2.4 },
 ];
 
-/**
- * Low-resolution animated mesh: drifting colour fields, a faint constellation
- * network, pointer ripples and occasional light streaks. Upscaled by the
- * browser, so the cost stays low while the motion reads as fluid.
- */
-function LivingMesh({ dark }: { dark: boolean }) {
+const DARK_PALETTES: Record<Ambient, string[]> = {
+  hero: ['124,58,237', '56,189,248', '236,72,153', '99,102,241', '16,185,129'],
+  about: ['139,92,246', '45,212,191', '168,85,247', '59,130,246', '251,191,36'],
+  recognition: ['251,191,36', '244,114,182', '167,139,250', '56,189,248', '250,204,21'],
+  work: ['56,189,248', '99,102,241', '34,211,238', '139,92,246', '16,185,129'],
+  writing: ['236,72,153', '167,139,250', '251,146,60', '129,140,248', '56,189,248'],
+  contact: ['16,185,129', '56,189,248', '139,92,246', '52,211,153', '99,102,241'],
+};
+
+const LIGHT_PALETTES: Record<Ambient, string[]> = {
+  hero: ['167,139,250', '125,211,252', '244,114,182', '129,140,248', '110,231,183'],
+  about: ['167,139,250', '94,234,212', '192,132,252', '147,197,253', '253,224,71'],
+  recognition: ['251,191,36', '244,114,182', '167,139,250', '125,211,252', '253,230,138'],
+  work: ['125,211,252', '165,180,252', '103,232,249', '167,139,250', '110,231,183'],
+  writing: ['244,114,182', '167,139,250', '251,146,60', '165,180,252', '125,211,252'],
+  contact: ['110,231,183', '125,211,252', '167,139,250', '94,234,212', '165,180,252'],
+};
+
+/** Quarter-resolution fluid mesh that follows the active section's palette. */
+function LivingMesh({
+  dark,
+  sectionRef,
+}: {
+  dark: boolean;
+  sectionRef: React.MutableRefObject<string>;
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -50,10 +75,6 @@ function LivingMesh({ dark }: { dark: boolean }) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const ctx = canvas.getContext('2d');
     if (!ctx || reduce) return;
-
-    const palette = dark
-      ? ['124,58,237', '56,189,248', '236,72,153', '99,102,241', '16,185,129']
-      : ['167,139,250', '125,211,252', '244,114,182', '129,140,248', '110,231,183'];
 
     const scale = 4;
     let cw = 0;
@@ -64,19 +85,30 @@ function LivingMesh({ dark }: { dark: boolean }) {
     let raf = 0;
     let last = 0;
     let lastRipple = 0;
-    let pointer = { x: -999, y: -999 };
     let streak: { x: number; y: number; life: number } | null = null;
+    let currentPalette = '';
+
+    const paletteFor = (section: string) =>
+      (dark ? DARK_PALETTES : LIGHT_PALETTES)[
+        (AMBIENTS.includes(section as Ambient) ? section : 'hero') as Ambient
+      ];
+
+    const configure = () => {
+      const palette = paletteFor(sectionRef.current);
+      fields = FIELD_SEEDS.map((seed, index) => ({
+        ...seed,
+        color: palette[index % palette.length],
+        alpha: dark ? 0.5 : 0.34,
+      }));
+      currentPalette = sectionRef.current;
+    };
 
     const resize = () => {
       cw = Math.max(1, Math.ceil(window.innerWidth / scale));
       ch = Math.max(1, Math.ceil(window.innerHeight / scale));
       canvas.width = cw;
       canvas.height = ch;
-      fields = FIELD_SEEDS.map((seed, index) => ({
-        ...seed,
-        color: palette[index % palette.length],
-        alpha: dark ? 0.5 : 0.34,
-      }));
+      configure();
       motes = Array.from({ length: 58 }, () => ({
         x: Math.random() * cw,
         y: Math.random() * ch,
@@ -89,10 +121,14 @@ function LivingMesh({ dark }: { dark: boolean }) {
     };
 
     const onPointer = (event: PointerEvent) => {
-      pointer = { x: event.clientX / scale, y: event.clientY / scale };
       const now = performance.now();
       if (now - lastRipple > 150) {
-        ripples.push({ x: pointer.x, y: pointer.y, radius: 1, life: 1 });
+        ripples.push({
+          x: event.clientX / scale,
+          y: event.clientY / scale,
+          radius: 1,
+          life: 1,
+        });
         lastRipple = now;
       }
     };
@@ -101,9 +137,9 @@ function LivingMesh({ dark }: { dark: boolean }) {
       raf = requestAnimationFrame(draw);
       if (document.hidden || time - last < 33) return;
       last = time;
+      if (currentPalette !== sectionRef.current) configure();
       ctx.clearRect(0, 0, cw, ch);
 
-      // Fluid colour fields.
       ctx.globalCompositeOperation = dark ? 'screen' : 'source-over';
       for (const field of fields) {
         const x = (0.5 + 0.36 * Math.sin(time * field.speedX + field.phase)) * cw;
@@ -117,7 +153,6 @@ function LivingMesh({ dark }: { dark: boolean }) {
         ctx.fillRect(0, 0, cw, ch);
       }
 
-      // Constellation links — faint, only for nearby motes.
       ctx.globalCompositeOperation = 'source-over';
       ctx.lineWidth = 0.35;
       for (let i = 0; i < motes.length; i++) {
@@ -127,7 +162,7 @@ function LivingMesh({ dark }: { dark: boolean }) {
           const dist = Math.hypot(dx, dy);
           if (dist < 46) {
             ctx.strokeStyle = dark
-              ? `rgba(190,210,255,${0.13 * (1 - dist / 46)})`
+              ? `rgba(200,218,255,${0.14 * (1 - dist / 46)})`
               : `rgba(79,70,130,${0.11 * (1 - dist / 46)})`;
             ctx.beginPath();
             ctx.moveTo(motes[i].x, motes[i].y);
@@ -153,7 +188,6 @@ function LivingMesh({ dark }: { dark: boolean }) {
         ctx.fill();
       }
 
-      // Pointer ripples.
       ripples = ripples.filter((ripple) => ripple.life > 0);
       for (const ripple of ripples) {
         ripple.radius += 0.9;
@@ -196,16 +230,50 @@ function LivingMesh({ dark }: { dark: boolean }) {
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', onPointer);
     };
-  }, [dark]);
+  }, [dark, sectionRef]);
 
   return <canvas ref={ref} className="bg-mesh" aria-hidden="true" />;
 }
 
 export default function FixedBackground(): React.ReactElement {
   const { theme } = useTheme();
+  const location = useLocation();
   const dark = theme !== 'transparent';
   const rootRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<string>('hero');
 
+  // The environment follows whatever section the visitor is actually reading.
+  useEffect(() => {
+    let observer: IntersectionObserver | undefined;
+    let timer = 0;
+    const attach = () => {
+      const root = rootRef.current;
+      if (!root) return;
+      const targets = Array.from(document.querySelectorAll('[data-ambient]'));
+      if (!targets.length) return;
+      observer?.disconnect();
+      observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          if (!visible[0]) return;
+          const section = String(visible[0].target.getAttribute('data-ambient') || 'hero');
+          root.dataset.section = section;
+          sectionRef.current = section;
+        },
+        { rootMargin: '-30% 0px -50% 0px', threshold: [0, 0.15, 0.4, 0.75] }
+      );
+      targets.forEach((target) => observer?.observe(target));
+    };
+    timer = window.setTimeout(attach, 60);
+    return () => {
+      window.clearTimeout(timer);
+      observer?.disconnect();
+    };
+  }, [location.pathname]);
+
+  // Pointer spot and scroll parallax, both rAF-throttled and reduced-motion aware.
   useEffect(() => {
     const root = rootRef.current;
     if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -240,7 +308,7 @@ export default function FixedBackground(): React.ReactElement {
   }, []);
 
   return (
-    <div ref={rootRef} className="site-bg" data-mode={theme} aria-hidden="true">
+    <div ref={rootRef} className="site-bg" data-mode={theme} data-section="hero" aria-hidden="true">
       <div className="aurora-field">
         <div className="aurora aurora-one" />
         <div className="aurora aurora-two" />
@@ -248,8 +316,11 @@ export default function FixedBackground(): React.ReactElement {
         <div className="aurora-ribbon ribbon-one" />
         <div className="aurora-ribbon ribbon-two" />
       </div>
+      {AMBIENTS.map((ambient) => (
+        <div key={ambient} className="ambient-layer" data-for={ambient} />
+      ))}
       <div className="bg-spotlight" />
-      <LivingMesh dark={dark} />
+      <LivingMesh dark={dark} sectionRef={sectionRef} />
       <div className="bg-grid" />
       <div className="bg-stars-static" />
       <div className="bg-vignette" />

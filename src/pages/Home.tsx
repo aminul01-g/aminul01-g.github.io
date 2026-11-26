@@ -184,7 +184,7 @@ export default function Home(): React.ReactElement {
         <TechMarquee items={marqueeItems} />
 
         {/* 01 — About */}
-        <section id="about" className="bento-card scroll-mt-24">
+        <section id="about" data-ambient="about" className="bento-card scroll-mt-24">
           <SectionHeading
             index="01"
             label="About"
@@ -253,7 +253,7 @@ export default function Home(): React.ReactElement {
         </section>
 
         {/* 02 — Achievements */}
-        <section className="bento-card">
+        <section data-ambient="recognition" className="bento-card">
           <SectionHeading
             index="02"
             label="Recognition"
@@ -271,7 +271,7 @@ export default function Home(): React.ReactElement {
         />
 
         {/* 04 — Work */}
-        <section id="work" className="bento-card scroll-mt-24">
+        <section id="work" data-ambient="work" className="bento-card scroll-mt-24">
           <SectionHeading
             index="04"
             label="Selected work"
@@ -294,7 +294,7 @@ export default function Home(): React.ReactElement {
         </section>
 
         {/* 05 — Writing */}
-        <section className="bento-card">
+        <section data-ambient="writing" className="bento-card">
           <SectionHeading
             index="05"
             label="Writing"
