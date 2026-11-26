@@ -77,6 +77,37 @@ body {
   overflow: hidden;
   pointer-events: none;
   background: var(--theme-bg-primary);
+  --pointer-x: 50vw;
+  --pointer-y: 30vh;
+  --scroll-shift: 0px;
+  --aurora-1: radial-gradient(circle, rgba(124, 58, 237, 0.68), transparent 68%);
+  --aurora-2: radial-gradient(circle, rgba(56, 189, 248, 0.58), transparent 68%);
+  --aurora-3: radial-gradient(circle, rgba(236, 72, 153, 0.44), transparent 70%);
+  --ribbon-1: conic-gradient(from 0deg, transparent 0deg, rgba(139, 92, 246, 0.16) 70deg, transparent 150deg, rgba(56, 189, 248, 0.12) 250deg, transparent 330deg);
+  --ribbon-2: conic-gradient(from 180deg, transparent 0deg, rgba(236, 72, 153, 0.12) 90deg, transparent 180deg, rgba(99, 102, 241, 0.14) 280deg, transparent 360deg);
+  --spot-color: rgba(139, 92, 246, 0.18);
+  --grid-color: rgba(148, 163, 184, 0.13);
+  --star-color: rgba(214, 228, 255, 0.82);
+  --vignette: inset 0 0 220px rgba(0, 0, 0, 0.45);
+}
+
+.site-bg[data-mode='transparent'] {
+  --aurora-1: radial-gradient(circle, rgba(167, 139, 250, 0.58), transparent 68%);
+  --aurora-2: radial-gradient(circle, rgba(125, 211, 252, 0.55), transparent 68%);
+  --aurora-3: radial-gradient(circle, rgba(253, 186, 230, 0.48), transparent 70%);
+  --ribbon-1: conic-gradient(from 0deg, transparent 0deg, rgba(167, 139, 250, 0.2) 70deg, transparent 150deg, rgba(125, 211, 252, 0.18) 250deg, transparent 330deg);
+  --ribbon-2: conic-gradient(from 180deg, transparent 0deg, rgba(244, 114, 182, 0.14) 90deg, transparent 180deg, rgba(129, 140, 248, 0.16) 280deg, transparent 360deg);
+  --spot-color: rgba(99, 102, 241, 0.11);
+  --grid-color: rgba(71, 85, 105, 0.14);
+  --star-color: rgba(79, 70, 130, 0.5);
+  --vignette: inset 0 0 200px rgba(255, 255, 255, 0.55);
+}
+
+.aurora-field {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(0, var(--scroll-shift), 0);
+  will-change: transform;
 }
 
 .aurora {
@@ -90,7 +121,7 @@ body {
   height: 48vw;
   left: -14%;
   top: -18%;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.62), transparent 68%);
+  background: var(--aurora-1);
   animation: aurora-drift-one 26s ease-in-out infinite alternate;
 }
 
@@ -99,7 +130,7 @@ body {
   height: 46vw;
   right: -12%;
   top: 8%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.52), transparent 68%);
+  background: var(--aurora-2);
   animation: aurora-drift-two 32s ease-in-out infinite alternate;
 }
 
@@ -108,26 +139,57 @@ body {
   height: 40vw;
   left: 22%;
   bottom: -22%;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.38), transparent 70%);
+  background: var(--aurora-3);
   animation: aurora-drift-three 38s ease-in-out infinite alternate;
 }
 
-.site-bg[data-mode='transparent'] .aurora-one {
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.5), transparent 68%);
+
+.aurora-ribbon {
+  position: absolute;
+  width: 110vw;
+  height: 110vw;
+  left: -5vw;
+  top: -55vh;
+  border-radius: 50%;
+  will-change: transform;
+  animation: ribbon-turn 90s linear infinite;
 }
-.site-bg[data-mode='transparent'] .aurora-two {
-  background: radial-gradient(circle, rgba(125, 211, 252, 0.45), transparent 68%);
+
+.ribbon-two {
+  left: auto;
+  right: -25vw;
+  top: auto;
+  bottom: -70vh;
+  width: 90vw;
+  height: 90vw;
+  animation-duration: 120s;
+  animation-direction: reverse;
 }
-.site-bg[data-mode='transparent'] .aurora-three {
-  background: radial-gradient(circle, rgba(167, 243, 208, 0.45), transparent 70%);
+
+.bg-spotlight {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: min(76vw, 980px);
+  height: min(76vw, 980px);
+  border-radius: 50%;
+  transform: translate3d(
+    calc(var(--pointer-x) - 50%),
+    calc(var(--pointer-y) - 50%),
+    0
+  );
+  background: radial-gradient(circle, var(--spot-color), transparent 62%);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  animation: spotlight-breathe 9s ease-in-out infinite alternate;
 }
 
 .bg-grid {
   position: absolute;
   inset: -80px;
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.13) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.13) 1px, transparent 1px);
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 98%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 98%);
@@ -139,28 +201,34 @@ body {
   inset: 0;
   opacity: 0.8;
   background-image:
-    radial-gradient(1.5px 1.5px at 12% 18%, rgba(196, 210, 255, 0.9), transparent),
-    radial-gradient(1.5px 1.5px at 72% 9%, rgba(196, 210, 255, 0.75), transparent),
-    radial-gradient(2px 2px at 38% 38%, rgba(196, 210, 255, 0.65), transparent),
-    radial-gradient(1.5px 1.5px at 88% 44%, rgba(196, 210, 255, 0.8), transparent),
-    radial-gradient(1px 1px at 21% 62%, rgba(196, 210, 255, 0.7), transparent),
-    radial-gradient(2px 2px at 57% 73%, rgba(196, 210, 255, 0.55), transparent),
-    radial-gradient(1.5px 1.5px at 8% 84%, rgba(196, 210, 255, 0.65), transparent),
-    radial-gradient(1.5px 1.5px at 92% 88%, rgba(196, 210, 255, 0.7), transparent);
+    radial-gradient(1.5px 1.5px at 12% 18%, var(--star-color), transparent),
+    radial-gradient(1.5px 1.5px at 72% 9%, var(--star-color), transparent),
+    radial-gradient(2px 2px at 38% 38%, var(--star-color), transparent),
+    radial-gradient(1.5px 1.5px at 88% 44%, var(--star-color), transparent),
+    radial-gradient(1px 1px at 21% 62%, var(--star-color), transparent),
+    radial-gradient(2px 2px at 57% 73%, var(--star-color), transparent),
+    radial-gradient(1.5px 1.5px at 8% 84%, var(--star-color), transparent),
+    radial-gradient(1.5px 1.5px at 92% 88%, var(--star-color), transparent);
   -webkit-mask-image: linear-gradient(to bottom, #000, transparent 90%);
   mask-image: linear-gradient(to bottom, #000, transparent 90%);
 }
 
 .site-bg[data-mode='transparent'] .bg-stars-static {
-  opacity: 0.35;
-  filter: invert(0.6) sepia(0.2);
+  opacity: 0.55;
 }
 
-.bg-stars {
+.bg-particles {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+}
+
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--vignette);
+  z-index: 1;
 }
 
 .bg-grain {
@@ -187,7 +255,17 @@ body {
 }
 
 @keyframes grid-pan {
-  to { background-position: 76px 76px; }
+  to { background-position: 64px 64px; }
+}
+
+@keyframes ribbon-turn {
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1.08); }
+}
+
+@keyframes spotlight-breathe {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
 }
 
 /* A light travels along every section rule. */
