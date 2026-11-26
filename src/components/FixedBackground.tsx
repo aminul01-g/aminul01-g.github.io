@@ -10,16 +10,38 @@ interface Mote {
   phase: number;
 }
 
-interface Bokeh {
+interface Field {
+  color: string;
+  alpha: number;
   x: number;
   y: number;
-  r: number;
-  speed: number;
-  alpha: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  phase: number;
 }
 
-/** Lightweight depth layer: 52 motes, 8 soft bokeh circles, capped ~30fps. */
-function ParticleField({ dark }: { dark: boolean }) {
+interface Ripple {
+  x: number;
+  y: number;
+  radius: number;
+  life: number;
+}
+
+const FIELD_SEEDS = [
+  { x: 0.24, y: 0.26, size: 0.55, speedX: 0.00016, speedY: 0.00011, phase: 0 },
+  { x: 0.78, y: 0.2, size: 0.5, speedX: 0.00012, speedY: 0.00017, phase: 1.7 },
+  { x: 0.62, y: 0.82, size: 0.58, speedX: 0.00009, speedY: 0.00013, phase: 3.1 },
+  { x: 0.1, y: 0.72, size: 0.46, speedX: 0.00014, speedY: 0.00008, phase: 4.6 },
+  { x: 0.5, y: 0.5, size: 0.42, speedX: 0.00007, speedY: 0.00015, phase: 2.4 },
+];
+
+/**
+ * Low-resolution animated mesh: drifting colour fields, a faint constellation
+ * network, pointer ripples and occasional light streaks. Upscaled by the
+ * browser, so the cost stays low while the motion reads as fluid.
+ */
+function LivingMesh({ dark }: { dark: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -29,90 +51,137 @@ function ParticleField({ dark }: { dark: boolean }) {
     const ctx = canvas.getContext('2d');
     if (!ctx || reduce) return;
 
+    const palette = dark
+      ? ['124,58,237', '56,189,248', '236,72,153', '99,102,241', '16,185,129']
+      : ['167,139,250', '125,211,252', '244,114,182', '129,140,248', '110,231,183'];
+
+    const scale = 4;
+    let cw = 0;
+    let ch = 0;
+    let fields: Field[] = [];
     let motes: Mote[] = [];
-    let bokeh: Bokeh[] = [];
+    let ripples: Ripple[] = [];
     let raf = 0;
     let last = 0;
-    let w = 0;
-    let h = 0;
+    let lastRipple = 0;
+    let pointer = { x: -999, y: -999 };
     let streak: { x: number; y: number; life: number } | null = null;
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      motes = Array.from({ length: 52 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 1.3 + 0.6,
-        speed: Math.random() * 0.14 + 0.04,
-        drift: (Math.random() - 0.5) * 0.06,
+      cw = Math.max(1, Math.ceil(window.innerWidth / scale));
+      ch = Math.max(1, Math.ceil(window.innerHeight / scale));
+      canvas.width = cw;
+      canvas.height = ch;
+      fields = FIELD_SEEDS.map((seed, index) => ({
+        ...seed,
+        color: palette[index % palette.length],
+        alpha: dark ? 0.5 : 0.34,
+      }));
+      motes = Array.from({ length: 58 }, () => ({
+        x: Math.random() * cw,
+        y: Math.random() * ch,
+        r: Math.random() * 0.55 + 0.35,
+        speed: Math.random() * 0.045 + 0.012,
+        drift: (Math.random() - 0.5) * 0.02,
         phase: Math.random() * Math.PI * 2,
       }));
-      bokeh = Array.from({ length: 8 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 26 + 12,
-        speed: Math.random() * 0.08 + 0.02,
-        alpha: Math.random() * 0.05 + 0.02,
-      }));
+      ripples = [];
+    };
+
+    const onPointer = (event: PointerEvent) => {
+      pointer = { x: event.clientX / scale, y: event.clientY / scale };
+      const now = performance.now();
+      if (now - lastRipple > 150) {
+        ripples.push({ x: pointer.x, y: pointer.y, radius: 1, life: 1 });
+        lastRipple = now;
+      }
     };
 
     const draw = (time: number) => {
       raf = requestAnimationFrame(draw);
       if (document.hidden || time - last < 33) return;
       last = time;
-      ctx.clearRect(0, 0, w, h);
+      ctx.clearRect(0, 0, cw, ch);
 
-      for (const b of bokeh) {
-        b.y -= b.speed;
-        if (b.y < -b.r) {
-          b.y = h + b.r;
-          b.x = Math.random() * w;
+      // Fluid colour fields.
+      ctx.globalCompositeOperation = dark ? 'screen' : 'source-over';
+      for (const field of fields) {
+        const x = (0.5 + 0.36 * Math.sin(time * field.speedX + field.phase)) * cw;
+        const y = (0.5 + 0.32 * Math.cos(time * field.speedY + field.phase)) * ch;
+        const radius = field.size * cw * (0.9 + 0.1 * Math.sin(time * 0.00023 + field.phase));
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        gradient.addColorStop(0, `rgba(${field.color},${field.alpha})`);
+        gradient.addColorStop(0.55, `rgba(${field.color},${field.alpha * 0.42})`);
+        gradient.addColorStop(1, `rgba(${field.color},0)`);
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, cw, ch);
+      }
+
+      // Constellation links — faint, only for nearby motes.
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.lineWidth = 0.35;
+      for (let i = 0; i < motes.length; i++) {
+        for (let j = i + 1; j < motes.length; j++) {
+          const dx = motes[i].x - motes[j].x;
+          const dy = motes[i].y - motes[j].y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 46) {
+            ctx.strokeStyle = dark
+              ? `rgba(190,210,255,${0.13 * (1 - dist / 46)})`
+              : `rgba(79,70,130,${0.11 * (1 - dist / 46)})`;
+            ctx.beginPath();
+            ctx.moveTo(motes[i].x, motes[i].y);
+            ctx.lineTo(motes[j].x, motes[j].y);
+            ctx.stroke();
+          }
         }
-        ctx.globalAlpha = b.alpha;
-        ctx.fillStyle = dark ? '#a78bfa' : '#6366f1';
+      }
+
+      ctx.fillStyle = dark ? 'rgba(226,236,255,0.9)' : 'rgba(67,56,120,0.55)';
+      for (const mote of motes) {
+        mote.y -= mote.speed;
+        mote.x += mote.drift;
+        if (mote.y < -2) {
+          mote.y = ch + 2;
+          mote.x = Math.random() * cw;
+        }
+        if (mote.x < -2) mote.x = cw + 2;
+        if (mote.x > cw + 2) mote.x = -2;
+        ctx.globalAlpha = 0.45 + 0.55 * Math.sin(time / 850 + mote.phase) ** 2;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.arc(mote.x, mote.y, mote.r, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      ctx.fillStyle = dark ? 'rgba(214,228,255,0.85)' : 'rgba(79,70,130,0.45)';
-      for (const m of motes) {
-        m.y -= m.speed;
-        m.x += m.drift;
-        if (m.y < -4) {
-          m.y = h + 4;
-          m.x = Math.random() * w;
-        }
-        if (m.x < -4) m.x = w + 4;
-        if (m.x > w + 4) m.x = -4;
-        const twinkle = 0.55 + 0.45 * Math.sin(time / 850 + m.phase);
-        ctx.globalAlpha = twinkle;
+      // Pointer ripples.
+      ripples = ripples.filter((ripple) => ripple.life > 0);
+      for (const ripple of ripples) {
+        ripple.radius += 0.9;
+        ripple.life -= 0.016;
+        ctx.globalAlpha = Math.max(0, ripple.life) * (dark ? 0.28 : 0.2);
+        ctx.strokeStyle = dark ? '#c4b5fd' : '#6366f1';
+        ctx.lineWidth = 0.6;
         ctx.beginPath();
-        ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        ctx.stroke();
       }
 
-      if (Math.floor(time / 4600) !== Math.floor((time - 34) / 4600)) {
-        streak = { x: Math.random() * w * 0.8, y: Math.random() * h * 0.5, life: 1 };
+      if (Math.floor(time / 4200) !== Math.floor((time - 34) / 4200)) {
+        streak = { x: Math.random() * cw * 0.8, y: Math.random() * ch * 0.5, life: 1 };
       }
       if (streak && streak.life > 0) {
-        streak.x += 7;
-        streak.y += 3.5;
+        streak.x += 2;
+        streak.y += 1;
         streak.life -= 0.014;
-        const grad = ctx.createLinearGradient(streak.x, streak.y, streak.x - 80, streak.y - 40);
-        grad.addColorStop(0, dark ? 'rgba(180,205,255,0.6)' : 'rgba(99,102,241,0.35)');
-        grad.addColorStop(1, 'transparent');
+        const gradient = ctx.createLinearGradient(streak.x, streak.y, streak.x - 22, streak.y - 11);
+        gradient.addColorStop(0, dark ? 'rgba(200,220,255,0.7)' : 'rgba(99,102,241,0.4)');
+        gradient.addColorStop(1, 'transparent');
         ctx.globalAlpha = Math.max(0, streak.life);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.4;
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 0.8;
         ctx.beginPath();
         ctx.moveTo(streak.x, streak.y);
-        ctx.lineTo(streak.x - 80, streak.y - 40);
+        ctx.lineTo(streak.x - 22, streak.y - 11);
         ctx.stroke();
       }
       ctx.globalAlpha = 1;
@@ -120,14 +189,16 @@ function ParticleField({ dark }: { dark: boolean }) {
 
     resize();
     window.addEventListener('resize', resize);
+    window.addEventListener('pointermove', onPointer, { passive: true });
     raf = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
+      window.removeEventListener('pointermove', onPointer);
     };
   }, [dark]);
 
-  return <canvas ref={ref} className="bg-particles" aria-hidden="true" />;
+  return <canvas ref={ref} className="bg-mesh" aria-hidden="true" />;
 }
 
 export default function FixedBackground(): React.ReactElement {
@@ -135,7 +206,6 @@ export default function FixedBackground(): React.ReactElement {
   const dark = theme !== 'transparent';
   const rootRef = useRef<HTMLDivElement>(null);
 
-  // Pointer spot and scroll parallax, both rAF-throttled and reduced-motion aware.
   useEffect(() => {
     const root = rootRef.current;
     if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -179,9 +249,9 @@ export default function FixedBackground(): React.ReactElement {
         <div className="aurora-ribbon ribbon-two" />
       </div>
       <div className="bg-spotlight" />
+      <LivingMesh dark={dark} />
       <div className="bg-grid" />
       <div className="bg-stars-static" />
-      <ParticleField dark={dark} />
       <div className="bg-vignette" />
       <div className="bg-grain" />
     </div>

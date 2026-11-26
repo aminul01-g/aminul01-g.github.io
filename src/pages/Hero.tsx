@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { profile } from '../data/profile';
 import Typewriter from '../components/Typewriter';
-import ImageWithFallback from '../components/ImageWithFallback';
 import Button from '../components/Button';
 
 const socialLinks = [
@@ -131,9 +130,12 @@ export default function Hero(): React.ReactElement {
               <div className="absolute -inset-3 rounded-full border border-white/10" />
               <div className="absolute -inset-8 rounded-full border border-white/[0.05]" />
               <div className="relative h-72 w-72 overflow-hidden rounded-full border border-white/20 shadow-glass xl:h-80 xl:w-80">
-                <ImageWithFallback
+                <img
                   src="/images/optimized/profile_pic.webp"
                   alt={`Portrait of ${profile.name}`}
+                  width={1080}
+                  height={1350}
+                  loading="eager"
                   className="h-full w-full object-cover object-center"
                 />
               </div>
