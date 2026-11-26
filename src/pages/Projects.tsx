@@ -2,123 +2,81 @@ import React from 'react';
 import { projects } from '../data/projects';
 import type { Project } from '../data/projects.d';
 import ProjectCard from '../components/ProjectCard';
-import ProjectCardSkeleton from '../components/ProjectCardSkeleton';
 import ProjectFilterBar from '../components/ProjectFilterBar';
 import SectionHeading from '../components/SectionHeading';
-import { motion } from 'framer-motion';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { usePageTracking } from '../hooks/useAnalytics';
+import {
+  DEFAULT_SORT,
+  filterProjects,
+  sortProjects,
+  type SortBy,
+  type SortOrder,
+} from '../utils/projectFilters';
+
+const [defaultSortBy, defaultSortOrder] = DEFAULT_SORT.split('-') as [SortBy, SortOrder];
+
+function parseSort(value: string): [SortBy, SortOrder] {
+  const [by, order] = value.split('-');
+  const allowed: SortBy[] = ['name', 'technology', 'date', 'popularity'];
+  return [
+    allowed.includes(by as SortBy) ? (by as SortBy) : defaultSortBy,
+    order === 'asc' ? 'asc' : 'desc',
+  ];
+}
+
+/** Query params live after the hash in HashRouter, not in location.search. */
+function readParams(): URLSearchParams {
+  return new URLSearchParams(window.location.hash.split('?')[1] || '');
+}
 
 export default function Projects(): React.ReactElement {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // Read filter from query params on mount
-  const params = new URLSearchParams(location.search);
-  const initialFilter = params.get('filter')?.split(',') || [];
-  const initialSearch = params.get('search') || '';
-  const initialSort = params.get('sort') || 'name-asc';
-
-  const [selectedTags, setSelectedTags] = React.useState<string[]>(initialFilter);
-  const [search, setSearch] = React.useState(initialSearch);
-  const [sortBy, setSortBy] = React.useState(initialSort.split('-')[0]);
-  const [sortOrder, setSortOrder] = React.useState<'asc' | 'desc'>(
-    initialSort.split('-')[1] as 'asc' | 'desc'
+  const [selectedTags, setSelectedTags] = React.useState<string[]>(
+    () => readParams().get('filter')?.split(',').filter(Boolean) || []
   );
-  const [loading, setLoading] = React.useState(true);
+  const [search, setSearch] = React.useState(() => readParams().get('search') || '');
+  const [sort, setSort] = React.useState<[SortBy, SortOrder]>(() =>
+    parseSort(readParams().get('sort') || DEFAULT_SORT)
+  );
 
-  // Track page view
   usePageTracking('/projects', 'Projects');
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  };
-
-  // Update URL when filters change
+  // Shareable URLs without a navigate() loop.
   React.useEffect(() => {
-    const params = new URLSearchParams(location.search);
-
-    if (selectedTags.length > 0) {
-      params.set('filter', selectedTags.join(','));
-    } else {
-      params.delete('filter');
+    const params = new URLSearchParams();
+    if (selectedTags.length) params.set('filter', selectedTags.join(','));
+    if (search) params.set('search', search);
+    if (sort[0] !== defaultSortBy || sort[1] !== defaultSortOrder) {
+      params.set('sort', `${sort[0]}-${sort[1]}`);
     }
-
-    if (search) {
-      params.set('search', search);
-    } else {
-      params.delete('search');
+    const query = params.toString();
+    const base = `${window.location.pathname}${window.location.hash.split('?')[0] || '#/projects'}`;
+    const next = `${base}${query ? `?${query}` : ''}`;
+    if (`${window.location.pathname}${window.location.hash}` !== next) {
+      window.history.replaceState(null, '', next);
     }
+  }, [selectedTags, search, sort]);
 
-    if (sortBy !== 'date' || sortOrder !== 'desc') {
-      params.set('sort', `${sortBy}-${sortOrder}`);
-    } else {
-      params.delete('sort');
-    }
+  const allTags = Array.from(new Set(projects.flatMap((project) => project.tags || []))).sort();
 
-    navigate({ search: params.toString() }, { replace: true });
-  }, [selectedTags, search, sortBy, sortOrder, navigate, location.search]);
+  const visible = React.useMemo(
+    () => sortProjects(filterProjects(projects, selectedTags, search), sort[0], sort[1]),
+    [selectedTags, search, sort]
+  );
+  const featured = visible.filter((project) => project.featured);
+  const rest = visible.filter((project) => !project.featured);
 
-  React.useEffect(() => {
-    // Simulate loading delay for skeleton demo (replace with real loading logic if needed)
-    const timeout = setTimeout(() => setLoading(false), 700);
-    return () => clearTimeout(timeout);
-  }, []);
+  const card = (project: Project) => (
+    <div key={project.slug} className="h-full" data-testid="project-card">
+      <ProjectCard {...project} />
+    </div>
+  );
 
-  const allTags = Array.from(new Set(projects.flatMap((project) => project.tags || [])));
-
-  // Enhanced filtering and sorting
-  const filteredAndSortedProjects = React.useMemo(() => {
-    const filtered = projects.filter((project) => {
-      const matchesTags =
-        selectedTags.length === 0 || selectedTags.some((tag) => (project.tags || []).includes(tag));
-
-      const matchesSearch =
-        !search ||
-        (project.title + project.description + (project.tags || []).join(' '))
-          .toLowerCase()
-          .includes(search.toLowerCase());
-
-      return matchesTags && matchesSearch;
-    });
-
-    // Sorting
-    filtered.sort((a, b) => {
-      let aValue: string | number = '',
-        bValue: string | number = '';
-      switch (sortBy) {
-        case 'name':
-          aValue = a.title.toLowerCase();
-          bValue = b.title.toLowerCase();
-          break;
-        case 'technology':
-          aValue = (a.tags || []).join(' ').toLowerCase();
-          bValue = (b.tags || []).join(' ').toLowerCase();
-          break;
-        default:
-          return 0;
-      }
-      if (sortOrder === 'asc') {
-        return aValue > bValue ? 1 : -1;
-      } else {
-        return aValue < bValue ? 1 : -1;
-      }
-    });
-
-    return filtered;
-  }, [projects, selectedTags, search, sortBy, sortOrder]);
+  const clearAll = () => {
+    setSelectedTags([]);
+    setSearch('');
+    setSort([defaultSortBy, defaultSortOrder]);
+  };
 
   return (
     <>
@@ -163,10 +121,7 @@ export default function Projects(): React.ReactElement {
                 url: project.github,
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web',
-                author: {
-                  '@type': 'Person',
-                  name: 'Aminul Islam Bhuiyan Amin',
-                },
+                author: { '@type': 'Person', name: 'Aminul Islam Bhuiyan Amin' },
               },
             })),
           })}
@@ -192,104 +147,84 @@ export default function Projects(): React.ReactElement {
           })}
         </script>
       </Helmet>
-      <motion.section
-        id="projects"
-        className="w-full min-h-screen px-2 sm:px-4 py-6 sm:py-8 pb-24 relative z-10"
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        <SectionHeading
-          index="00"
-          label="Portfolio"
-          title="Selected projects."
-          description="A showcase spanning AI, data science and full-stack development — each built to solve a real problem."
-        />
 
-        {/* Enhanced Filter Bar */}
-        <div className="mb-6">
-          <ProjectFilterBar
-            tags={allTags}
-            onFilter={setSelectedTags}
-            onSearch={setSearch}
-            onSort={(sortBy, sortOrder) => {
-              setSortBy(sortBy);
-              setSortOrder(sortOrder);
-            }}
-            activeTag={selectedTags[0] || null}
+      <section id="projects" className="relative z-10 w-full px-4 py-10 pb-24 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            index="04"
+            label="Portfolio"
+            title="Selected projects."
+            description="AI, data science and software engineering work — featured projects first, then the full index."
           />
-        </div>
 
-        {/* Results Summary */}
-        {!loading && (
-          <motion.div
-            className="mb-6 text-center text-sm text-[var(--theme-text-primary)] text-opacity-[0.40]"
-            animate={{ opacity: 1 }}
-          >
-            Showing {filteredAndSortedProjects.length} of {projects.length} projects
-            {(selectedTags.length > 0 || search) && (
-              <span className="ml-2">
-                (filtered by{' '}
-                {selectedTags.length > 0
-                  ? `${selectedTags.length} tag${selectedTags.length > 1 ? 's' : ''}`
-                  : ''}
-                {selectedTags.length > 0 && search ? ' and ' : ''}
-                {search ? 'search' : ''})
-              </span>
-            )}
-          </motion.div>
-        )}
+          <div className="mb-8">
+            <ProjectFilterBar
+              tags={allTags}
+              activeTag={selectedTags[0] || null}
+              selectedTags={selectedTags}
+              search={search}
+              sortBy={sort[0]}
+              sortOrder={sort[1]}
+              onFilter={setSelectedTags}
+              onSearch={setSearch}
+              onSort={(by, order) => setSort([by as SortBy, order])}
+            />
+          </div>
 
-        <motion.div
-          className="w-full max-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-4"
-          variants={container}
-          animate="show"
-        >
-          {loading ? (
-            Array.from({ length: 6 }).map((_, i) => <ProjectCardSkeleton key={i} />)
-          ) : projects.length === 0 ? (
-            <div className="col-span-full text-center text-red-400 py-8 font-bold text-lg">
-              No projects loaded. Please check your data source.
+          <p className="mb-8 text-center text-sm text-[var(--muted)]" aria-live="polite">
+            Showing {visible.length} of {projects.length} projects
+            {(selectedTags.length > 0 || search) && ' (filtered)'}
+          </p>
+
+          {visible.length === 0 ? (
+            <div className="glass-card rounded-2xl p-10 text-center">
+              <p className="mb-2 text-xl font-semibold">No projects found</p>
+              <p className="mb-6 text-[var(--muted)]">
+                Try a different search or clear the filters.
+              </p>
+              <button type="button" onClick={clearAll} className="btn">
+                Clear filters
+              </button>
             </div>
-          ) : filteredAndSortedProjects.length === 0 ? (
-            <motion.div
-              className="col-span-full text-center text-[var(--theme-text-primary)] text-opacity-[0.40] py-8 text-lg"
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <div className="mb-4">
-                <svg
-                  className="w-16 h-16 mx-auto text-[var(--theme-text-primary)] text-opacity-70 mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-                <p className="text-xl font-semibold mb-2">No projects found</p>
-                <p className="text-[var(--theme-text-primary)] text-opacity-60">
-                  Try adjusting your search or filters
-                </p>
-              </div>
-            </motion.div>
           ) : (
-            filteredAndSortedProjects.map((project: Project, i: number) => (
-              <motion.div
-                key={i}
-                variants={item}
-                className="h-full GlassCard rounded-[24px] p-1"
-                data-testid="project-card"
-              >
-                <ProjectCard {...project} />
-              </motion.div>
-            ))
+            <>
+              {featured.length > 0 && (
+                <div className="mb-16">
+                  <div className="mb-6 flex items-center gap-4">
+                    <h2 className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--accent-2)]">
+                      Featured work
+                    </h2>
+                    <span className="section-rule flex-1" aria-hidden="true" />
+                    <span className="font-mono text-xs text-[var(--muted)]">
+                      {String(featured.length).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {featured.map(card)}
+                  </div>
+                </div>
+              )}
+
+              {rest.length > 0 && (
+                <div>
+                  <div className="mb-6 flex items-center gap-4">
+                    <h2 className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--accent-2)]">
+                      Full index
+                    </h2>
+                    <span className="section-rule flex-1" aria-hidden="true" />
+                    <span className="font-mono text-xs text-[var(--muted)]">
+                      {String(rest.length).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {rest.map(card)}
+                  </div>
+                </div>
+              )}
+            </>
           )}
-        </motion.div>
-        {/* Floating Contact Button - removed, now handled globally */}
-      </motion.section>
+        </div>
+      </section>
     </>
   );
 }

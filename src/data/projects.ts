@@ -21,7 +21,7 @@ export const projects: Project[] = [
       solution:
         'Architected a RAG pipeline using LangGraph for orchestration and Pinecone for vector storage. Implemented a hybrid search router that dynamically delegates between document retrieval and Tavily web search based on query complexity.',
       impact:
-        'Reduced information retrieval time by 60% and improved answer accuracy by 40% compared to keyword-based baseline. The system now supports multi-turn conversations with context spread across different domains.',
+        'Compared retrieval quality against a keyword-based baseline and added multi-turn conversations with context spread across domains.',
     },
   },
   {
@@ -65,7 +65,7 @@ export const projects: Project[] = [
       solution:
         'Built a robust console-based Java application with a structured MySQL database using JDBC, supporting CRUD operations for students, teachers, and courses.',
       impact:
-        'Streamlined university record management, eliminating data duplication and reducing query times by over 80%. Achieved a perfect score in the Advanced Programming course.',
+        'Streamlined university record management by removing data duplication and simplifying queries.',
     },
   },
   {
