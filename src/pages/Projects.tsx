@@ -151,7 +151,11 @@ export default function Projects(): React.ReactElement {
         </script>
       </Helmet>
 
-      <section id="projects" className="relative z-10 w-full px-4 py-10 pb-24 sm:px-6">
+      <section
+        id="projects"
+        data-ambient="work"
+        className="relative z-10 w-full px-4 py-10 pb-24 sm:px-6"
+      >
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             index="04"

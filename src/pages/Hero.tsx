@@ -41,7 +41,10 @@ export default function Hero(): React.ReactElement {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-[100svh] items-start overflow-hidden pt-16 pb-64 sm:pt-16 sm:pb-64">
+    <section
+      data-ambient="hero"
+      className="relative flex min-h-[100svh] items-start overflow-hidden pt-16 pb-64 sm:pt-16 sm:pb-64"
+    >
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           <motion.div>
@@ -75,6 +78,12 @@ export default function Hero(): React.ReactElement {
               I build intelligent systems with Python, PyTorch and TensorFlow — and care about
               making them clear, useful and genuinely deployable.
             </motion.p>
+
+            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--muted)]">
+              <span>BSc CSE · BUBT</span>
+              <span>Data Analyst · IIMI</span>
+              <span>5 certifications</span>
+            </div>
 
             <motion.div className="mt-9 flex flex-wrap items-center gap-3">
               <Link to="/projects" className="focus:outline-none">

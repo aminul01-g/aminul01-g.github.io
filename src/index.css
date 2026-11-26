@@ -83,8 +83,22 @@ body {
   --aurora-1: radial-gradient(circle, rgba(124, 58, 237, 0.68), transparent 68%);
   --aurora-2: radial-gradient(circle, rgba(56, 189, 248, 0.58), transparent 68%);
   --aurora-3: radial-gradient(circle, rgba(236, 72, 153, 0.44), transparent 70%);
-  --ribbon-1: conic-gradient(from 0deg, transparent 0deg, rgba(139, 92, 246, 0.16) 70deg, transparent 150deg, rgba(56, 189, 248, 0.12) 250deg, transparent 330deg);
-  --ribbon-2: conic-gradient(from 180deg, transparent 0deg, rgba(236, 72, 153, 0.12) 90deg, transparent 180deg, rgba(99, 102, 241, 0.14) 280deg, transparent 360deg);
+  --ribbon-1: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(139, 92, 246, 0.16) 70deg,
+    transparent 150deg,
+    rgba(56, 189, 248, 0.12) 250deg,
+    transparent 330deg
+  );
+  --ribbon-2: conic-gradient(
+    from 180deg,
+    transparent 0deg,
+    rgba(236, 72, 153, 0.12) 90deg,
+    transparent 180deg,
+    rgba(99, 102, 241, 0.14) 280deg,
+    transparent 360deg
+  );
   --spot-color: rgba(139, 92, 246, 0.18);
   --grid-color: rgba(148, 163, 184, 0.13);
   --star-color: rgba(214, 228, 255, 0.82);
@@ -95,8 +109,22 @@ body {
   --aurora-1: radial-gradient(circle, rgba(167, 139, 250, 0.58), transparent 68%);
   --aurora-2: radial-gradient(circle, rgba(125, 211, 252, 0.55), transparent 68%);
   --aurora-3: radial-gradient(circle, rgba(253, 186, 230, 0.48), transparent 70%);
-  --ribbon-1: conic-gradient(from 0deg, transparent 0deg, rgba(167, 139, 250, 0.2) 70deg, transparent 150deg, rgba(125, 211, 252, 0.18) 250deg, transparent 330deg);
-  --ribbon-2: conic-gradient(from 180deg, transparent 0deg, rgba(244, 114, 182, 0.14) 90deg, transparent 180deg, rgba(129, 140, 248, 0.16) 280deg, transparent 360deg);
+  --ribbon-1: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(167, 139, 250, 0.2) 70deg,
+    transparent 150deg,
+    rgba(125, 211, 252, 0.18) 250deg,
+    transparent 330deg
+  );
+  --ribbon-2: conic-gradient(
+    from 180deg,
+    transparent 0deg,
+    rgba(244, 114, 182, 0.14) 90deg,
+    transparent 180deg,
+    rgba(129, 140, 248, 0.16) 280deg,
+    transparent 360deg
+  );
   --spot-color: rgba(99, 102, 241, 0.11);
   --grid-color: rgba(71, 85, 105, 0.14);
   --star-color: rgba(79, 70, 130, 0.5);
@@ -108,6 +136,86 @@ body {
   inset: 0;
   transform: translate3d(0, var(--scroll-shift), 0);
   will-change: transform;
+}
+
+/* Section ambience: the environment changes as the reader moves through the story. */
+.ambient-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  will-change: opacity;
+}
+
+.site-bg[data-section='hero'] .ambient-layer[data-for='hero'],
+.site-bg[data-section='about'] .ambient-layer[data-for='about'],
+.site-bg[data-section='recognition'] .ambient-layer[data-for='recognition'],
+.site-bg[data-section='work'] .ambient-layer[data-for='work'],
+.site-bg[data-section='writing'] .ambient-layer[data-for='writing'],
+.site-bg[data-section='contact'] .ambient-layer[data-for='contact'] {
+  opacity: 1;
+}
+
+.ambient-layer[data-for='hero'] {
+  background:
+    radial-gradient(60vw 50vw at 18% 12%, rgba(124, 58, 237, 0.24), transparent 70%),
+    radial-gradient(55vw 45vw at 85% 78%, rgba(56, 189, 248, 0.18), transparent 70%);
+}
+.ambient-layer[data-for='about'] {
+  background:
+    radial-gradient(58vw 46vw at 12% 20%, rgba(139, 92, 246, 0.24), transparent 70%),
+    radial-gradient(52vw 42vw at 88% 66%, rgba(45, 212, 191, 0.18), transparent 70%);
+}
+.ambient-layer[data-for='recognition'] {
+  background:
+    radial-gradient(56vw 44vw at 16% 18%, rgba(251, 191, 36, 0.2), transparent 70%),
+    radial-gradient(54vw 46vw at 86% 72%, rgba(244, 114, 182, 0.18), transparent 70%);
+}
+.ambient-layer[data-for='work'] {
+  background:
+    radial-gradient(60vw 46vw at 14% 16%, rgba(56, 189, 248, 0.24), transparent 70%),
+    radial-gradient(54vw 44vw at 88% 74%, rgba(99, 102, 241, 0.22), transparent 70%);
+}
+.ambient-layer[data-for='writing'] {
+  background:
+    radial-gradient(58vw 44vw at 16% 18%, rgba(236, 72, 153, 0.2), transparent 70%),
+    radial-gradient(54vw 44vw at 86% 74%, rgba(167, 139, 250, 0.2), transparent 70%);
+}
+.ambient-layer[data-for='contact'] {
+  background:
+    radial-gradient(58vw 46vw at 14% 18%, rgba(16, 185, 129, 0.2), transparent 70%),
+    radial-gradient(54vw 44vw at 86% 72%, rgba(56, 189, 248, 0.2), transparent 70%);
+}
+
+.site-bg[data-mode='transparent'] .ambient-layer[data-for='hero'] {
+  background:
+    radial-gradient(60vw 50vw at 18% 12%, rgba(167, 139, 250, 0.28), transparent 70%),
+    radial-gradient(55vw 45vw at 85% 78%, rgba(125, 211, 252, 0.24), transparent 70%);
+}
+.site-bg[data-mode='transparent'] .ambient-layer[data-for='about'] {
+  background:
+    radial-gradient(58vw 46vw at 12% 20%, rgba(167, 139, 250, 0.26), transparent 70%),
+    radial-gradient(52vw 42vw at 88% 66%, rgba(94, 234, 212, 0.24), transparent 70%);
+}
+.site-bg[data-mode='transparent'] .ambient-layer[data-for='recognition'] {
+  background:
+    radial-gradient(56vw 44vw at 16% 18%, rgba(251, 191, 36, 0.26), transparent 70%),
+    radial-gradient(54vw 46vw at 86% 72%, rgba(244, 114, 182, 0.22), transparent 70%);
+}
+.site-bg[data-mode='transparent'] .ambient-layer[data-for='work'] {
+  background:
+    radial-gradient(60vw 46vw at 14% 16%, rgba(125, 211, 252, 0.28), transparent 70%),
+    radial-gradient(54vw 44vw at 88% 74%, rgba(165, 180, 252, 0.26), transparent 70%);
+}
+.site-bg[data-mode='transparent'] .ambient-layer[data-for='writing'] {
+  background:
+    radial-gradient(58vw 44vw at 16% 18%, rgba(244, 114, 182, 0.24), transparent 70%),
+    radial-gradient(54vw 44vw at 86% 74%, rgba(167, 139, 250, 0.24), transparent 70%);
+}
+.site-bg[data-mode='transparent'] .ambient-layer[data-for='contact'] {
+  background:
+    radial-gradient(58vw 46vw at 14% 18%, rgba(110, 231, 183, 0.28), transparent 70%),
+    radial-gradient(54vw 44vw at 86% 72%, rgba(125, 211, 252, 0.26), transparent 70%);
 }
 
 .aurora {
@@ -143,7 +251,6 @@ body {
   animation: aurora-drift-three 38s ease-in-out infinite alternate;
 }
 
-
 .aurora-ribbon {
   position: absolute;
   width: 110vw;
@@ -173,11 +280,7 @@ body {
   width: min(76vw, 980px);
   height: min(76vw, 980px);
   border-radius: 50%;
-  transform: translate3d(
-    calc(var(--pointer-x) - 50%),
-    calc(var(--pointer-y) - 50%),
-    0
-  );
+  transform: translate3d(calc(var(--pointer-x) - 50%), calc(var(--pointer-y) - 50%), 0);
   background: radial-gradient(circle, var(--spot-color), transparent 62%);
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
@@ -241,32 +344,60 @@ body {
 }
 
 @keyframes aurora-drift-one {
-  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
-  to { transform: translate3d(9vw, 6vh, 0) scale(1.18); opacity: 1; }
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: translate3d(9vw, 6vh, 0) scale(1.18);
+    opacity: 1;
+  }
 }
 
 @keyframes aurora-drift-two {
-  from { transform: translate3d(0, 0, 0) scale(1.08); opacity: 0.8; }
-  to { transform: translate3d(-8vw, 8vh, 0) scale(0.9); opacity: 0.9; }
+  from {
+    transform: translate3d(0, 0, 0) scale(1.08);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate3d(-8vw, 8vh, 0) scale(0.9);
+    opacity: 0.9;
+  }
 }
 
 @keyframes aurora-drift-three {
-  from { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0.78; }
-  to { transform: translate3d(6vw, -7vh, 0) scale(1.15); opacity: 0.85; }
+  from {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0.78;
+  }
+  to {
+    transform: translate3d(6vw, -7vh, 0) scale(1.15);
+    opacity: 0.85;
+  }
 }
 
 @keyframes grid-pan {
-  to { background-position: 64px 64px; }
+  to {
+    background-position: 64px 64px;
+  }
 }
 
 @keyframes ribbon-turn {
-  from { transform: rotate(0deg) scale(1); }
-  to { transform: rotate(360deg) scale(1.08); }
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.08);
+  }
 }
 
 @keyframes spotlight-breathe {
-  from { opacity: 0.65; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.65;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* A light travels along every section rule. */
@@ -288,7 +419,9 @@ body {
 }
 
 @keyframes rule-sweep {
-  to { transform: translateX(400%); }
+  to {
+    transform: translateX(400%);
+  }
 }
 
 /* Content rises once on load — no observer needed, so it can never stay hidden. */
@@ -302,8 +435,12 @@ body {
 }
 
 @keyframes surface-rise {
-  from { transform: translateY(18px); }
-  to { transform: translateY(0); }
+  from {
+    transform: translateY(18px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 h1,
