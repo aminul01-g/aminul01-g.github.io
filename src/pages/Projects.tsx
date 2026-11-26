@@ -58,6 +58,9 @@ export default function Projects(): React.ReactElement {
   }, [selectedTags, search, sort]);
 
   const allTags = Array.from(new Set(projects.flatMap((project) => project.tags || []))).sort();
+  const tagCounts: Record<string, number> = Object.fromEntries(
+    allTags.map((tag) => [tag, projects.filter((project) => project.tags?.includes(tag)).length])
+  );
 
   const visible = React.useMemo(
     () => sortProjects(filterProjects(projects, selectedTags, search), sort[0], sort[1]),
@@ -160,6 +163,7 @@ export default function Projects(): React.ReactElement {
           <div className="mb-8">
             <ProjectFilterBar
               tags={allTags}
+              tagCounts={tagCounts}
               activeTag={selectedTags[0] || null}
               selectedTags={selectedTags}
               search={search}

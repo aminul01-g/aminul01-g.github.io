@@ -62,6 +62,12 @@ const certificates = [
     image: '/images/certificates/ibm-sql-databases.png',
     href: 'https://courses.cognitiveclass.ai/certificates/0bfe1618a2f141dbbc2ac87a2f628ef0',
   },
+  {
+    title: 'Data Analytics (Python)',
+    issuer: 'BUBT-TAFE',
+    image: '/images/certificates/bubt-data-analytics.png',
+    href: '/images/certificates/bubt-data-analytics.png',
+  },
 ];
 
 const socials: Array<{ label: string; href?: string; icon: IconType }> = [
@@ -124,10 +130,13 @@ export default function About(): React.ReactElement {
       <div className="mx-auto max-w-6xl px-5 pt-28 sm:px-8">
         <section className="bento-card grid items-center gap-12 pb-20 md:grid-cols-[1.3fr_0.7fr]">
           <div>
-            <p className="eyebrow mb-6">
-              <span className="status-dot" aria-hidden="true" />
-              About / BUBT, Dhaka
-            </p>
+            <div className="mb-6 flex items-center gap-4">
+              <span className="font-mono text-xs text-[var(--accent-2)]">01</span>
+              <span className="section-rule w-12" aria-hidden="true" />
+              <span className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--muted)]">
+                About / BUBT, Dhaka
+              </span>
+            </div>
             <h1 className="text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.05] tracking-[-0.05em] text-[var(--ink)]">
               {profile.name}
             </h1>
@@ -208,14 +217,6 @@ export default function About(): React.ReactElement {
                   <dd className="font-medium">ML · NLP · LLMs · Deployment</dd>
                 </div>
               </dl>
-              <a
-                href={profile.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn mt-7 inline-flex"
-              >
-                View résumé
-              </a>
             </div>
           </div>
         </section>
